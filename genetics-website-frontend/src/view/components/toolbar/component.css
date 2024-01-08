@@ -1,0 +1,30 @@
+.Toolbar {
+    background-color: #E1E1E1;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.ToolbarButton {
+    background-color: #E1E1E1;
+    border: none;
+    height: 60px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    color: #434343;
+    font-family: "Inter", monospace;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ToolbarButton:hover {
+    background-color: #FF4300;
+    color: white;
+    transition-duration: 0.2s;
+}
