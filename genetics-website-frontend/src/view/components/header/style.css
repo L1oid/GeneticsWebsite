@@ -10,11 +10,10 @@
 .Heading {
     color: #434343;
     margin-left: 10%;
+    flex-shrink: 0;
 
-    font-family: "Inter", monospace;
     font-size: 24px;
     font-weight: 800;
-    flex-shrink: 0;
 }
 
 .MainMenu {
@@ -23,8 +22,8 @@
     width: 100%;
     height: fit-content;
     justify-content: center;
-    flex-shrink: 0;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 
 .MainMenuButton {
@@ -37,7 +36,6 @@
     flex-shrink: 0;
 
     color: #434343;
-    font-family: "Inter", monospace;
     font-size: 18px;
     font-weight: 600;
 }
@@ -55,7 +53,6 @@
     flex-shrink: 0;
 
     color: #FF4300;
-    font-family: "Inter", monospace;
     font-size: 24px;
     font-weight: 600;
 }
