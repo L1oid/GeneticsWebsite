@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/gen1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/gen2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/gen3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/next.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/prev.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/slider_news/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/header/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/header/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/news/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/news/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/slider_news/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/slider_news/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1705407880384</updated>
       <workItem from="1705407881666" duration="7043000" />
-      <workItem from="1705415359058" duration="2930000" />
+      <workItem from="1705415359058" duration="4645000" />
     </task>
     <servers />
   </component>

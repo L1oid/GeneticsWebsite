@@ -21,12 +21,12 @@ function SliderNewsComponent() {
 
     return (
         <div className="slider-container">
-            <div className="prev" onClick={prev}></div>
             <div className="slide-panel" ref={bgContainerRef}>
                 {bg_images.map((bg, index) => {
-                    return <img key={index} src={bg} alt={`background-${index}`} />;
+                    return <img key={index} src={bg} alt={`background-${index}`}/>;
                 })}
             </div>
+            <div className="prev" onClick={prev}></div>
             <div className="next" onClick={next}></div>
         </div>
     )
