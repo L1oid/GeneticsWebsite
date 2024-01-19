@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/slide1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/slide2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/slide3.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/slider_news/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/gen1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/gen2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/gen3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/next.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/prev.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/slider_news/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,6 +92,7 @@
       <updated>1705407880384</updated>
       <workItem from="1705407881666" duration="7043000" />
       <workItem from="1705415359058" duration="4645000" />
+      <workItem from="1705663044360" duration="13438000" />
     </task>
     <servers />
   </component>

@@ -1,33 +1,63 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 
 import "./style.css"
 
-import genetics_bg1 from "./gen1.jpeg";
-import genetics_bg2 from "./gen2.jpg";
-import genetics_bg3 from "./gen3.jpg";
-
 function SliderNewsComponent() {
-    let bgContainerRef = useRef(null)
+    const slides = [
+        {url: "http://localhost:3000/slide1.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У ПТИЦЫ"},
+        {url: "http://localhost:3000/slide2.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У ЧЕЛОВАКА"},
+        {url: "http://localhost:3000/slide3.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У РЫБЫ"}
+    ]
 
-    const bg_images = [genetics_bg1, genetics_bg2, genetics_bg3]
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [activeDot, setActiveDot] = useState(0);
 
-    const prev = () => {
-        bgContainerRef.current.scrollLeft -= 1000;
-    };
+    const slideStyles = {
+        backgroundImage: `url(${slides[currentIndex].url})`
+    }
 
-    const next = () => {
-        bgContainerRef.current.scrollLeft += 1000;
-    };
+    function goToPrev() {
+        const isFirstSlide = currentIndex === 0;
+        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
+        setActiveDot(newIndex);
+    }
+
+    function goToNext() {
+        const isLastSlide = currentIndex === slides.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+        setActiveDot(newIndex);
+    }
+
+    function goToSlide(slideIndex) {
+        setCurrentIndex(slideIndex);
+        setActiveDot(slideIndex);
+    }
 
     return (
-        <div className="slider-container">
-            <div className="slide-panel" ref={bgContainerRef}>
-                {bg_images.map((bg, index) => {
-                    return <img key={index} src={bg} alt={`background-${index}`}/>;
-                })}
+        <div className="container">
+            <div className="slider">
+                <div className="left-arrow" onClick={goToPrev}>❰</div>
+                <div className="right-arrow" onClick={goToNext}>❱</div>
+                <div className="slide" style={slideStyles}></div>
+                <div className="dots-container">
+                    {slides.map((slide, slideIndex) => (
+                        <div className={`dot ${activeDot === slideIndex ? 'active' : ''}`}
+                             key={slideIndex}
+                             onClick={() => goToSlide(slideIndex)}>
+                        </div>
+                    ))}
+                </div>
+                <div className="slide-plate">
+                    <div className="slide-header">
+                        {slides[currentIndex].title}
+                    </div>
+                    <div className="slide-footer">
+                        <button className="slide-button">Подробнее</button>
+                    </div>
+                </div>
             </div>
-            <div className="prev" onClick={prev}></div>
-            <div className="next" onClick={next}></div>
         </div>
     )
 }
