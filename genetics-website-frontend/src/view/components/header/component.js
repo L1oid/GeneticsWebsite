@@ -4,20 +4,12 @@ import './style.css';
 
 function HeaderComponent() {
     return (
-        <div>
-            <div className='Header'>
-                <div className="Heading">
-                    Кафедра генетики и<br/>
-                    фундаментальной медицины
-                </div>
-                <button className='LoginButton'>Вход</button>
+        <div className='header-container'>
+            <div className="heading">
+                Кафедра генетики и<br/>
+                фундаментальной медицины
             </div>
-            <div className='MainMenu'>
-                <button className='MainMenuButton'>НОВОСТИ</button>
-                <button className='MainMenuButton'>НАУКА</button>
-                <button className='MainMenuButton'>ОБРАЗОВАНИЕ</button>
-                <button className='MainMenuButton'>О КАФЕДРЕ</button>
-            </div>
+            <button className='login-button'>Вход</button>
         </div>
     )
 }

@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import "./style.css"
 
 function SliderNewsComponent() {
     const slides = [
         {url: "http://localhost:3000/slide1.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У ПТИЦЫ"},
-        {url: "http://localhost:3000/slide2.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У ЧЕЛОВАКА"},
+        {url: "http://localhost:3000/slide2.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У ЧЕЛОВЕКА"},
         {url: "http://localhost:3000/slide3.jpg", title: "ГЕНЕТИКИ КУЗБАССА ОТКРЫЛИ НОВЫЙ ГЕН У РЫБЫ"}
     ]
 
@@ -16,19 +16,17 @@ function SliderNewsComponent() {
         backgroundImage: `url(${slides[currentIndex].url})`
     }
 
-    function goToPrev() {
-        const isFirstSlide = currentIndex === 0;
-        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex);
-        setActiveDot(newIndex);
-    }
+    useEffect(() => {
+        function goToNext() {
+            const isLastSlide = currentIndex === slides.length - 1;
+            const newIndex = isLastSlide ? 0 : currentIndex + 1;
+            setCurrentIndex(newIndex);
+            setActiveDot(newIndex);
+        }
 
-    function goToNext() {
-        const isLastSlide = currentIndex === slides.length - 1;
-        const newIndex = isLastSlide ? 0 : currentIndex + 1;
-        setCurrentIndex(newIndex);
-        setActiveDot(newIndex);
-    }
+        let interval = setInterval(goToNext, 5000);
+        return () => clearInterval(interval);
+    });
 
     function goToSlide(slideIndex) {
         setCurrentIndex(slideIndex);
@@ -36,10 +34,8 @@ function SliderNewsComponent() {
     }
 
     return (
-        <div className="container">
+        <div className="slider-container">
             <div className="slider">
-                <div className="left-arrow" onClick={goToPrev}>❰</div>
-                <div className="right-arrow" onClick={goToNext}>❱</div>
                 <div className="slide" style={slideStyles}></div>
                 <div className="dots-container">
                     {slides.map((slide, slideIndex) => (

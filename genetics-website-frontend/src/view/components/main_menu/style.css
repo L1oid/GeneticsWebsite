@@ -1,0 +1,28 @@
+.main-menu-container {
+    background-color: #E1E1E1;
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.main-menu-button {
+    background-color: #E1E1E1;
+    border: none;
+    height: 60px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    color: #434343;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.main-menu-button:hover {
+    background-color: #FF4300;
+    color: white;
+    transition-duration: 0.2s;
+}
