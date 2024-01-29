@@ -1,23 +1,9 @@
 import React from 'react';
 
 import './style.css';
+import news_list from '../../../state/news_list'
 
 function OtherNewsComponent() {
-    const news_list = [
-        {
-            url: "http://localhost:3000/slide1.jpg",
-            title: "Генетики Кузбасса открыли новый ген у птицы",
-            date: "20.01.2024",
-            content: "Новый ген предоставил науке новые возможности для развития исследований рыб"
-        },
-        {
-            url: "http://localhost:3000/slide2.jpg",
-            title: "Генетики Кузбасса открыли новый ген у человека",
-            date: "21.01.2024",
-            content: "Новый ген предоставил науке новые возможности для развития исследований людей"
-        }
-    ]
-
     return (
         <div className="other-news-container">
             <div className="other-news-column-1">
@@ -26,11 +12,19 @@ function OtherNewsComponent() {
                     {news_list.map((news, newsIndex) => (
                         <div className="other-news-item" key={newsIndex}>
                             <div className="other-news-card">
-                                {news_list[newsIndex].date}
-                                <br/>
-                                {news_list[newsIndex].title}
-                                <br/>
-                                {news_list[newsIndex].content}
+                                <div className="other-news-card-date">
+                                    {news_list[newsIndex].date}
+                                </div>
+                                <div className="other-news-card-title">
+                                    {news_list[newsIndex].title}
+                                </div>
+                                <img className="other-news-card-image"
+                                     src={news_list[newsIndex].image_url}
+                                     alt={"news_image_" + newsIndex}
+                                />
+                                <div className="other-news-card-content">
+                                    {news_list[newsIndex].content}
+                                </div>
                             </div>
                         </div>
                     ))}

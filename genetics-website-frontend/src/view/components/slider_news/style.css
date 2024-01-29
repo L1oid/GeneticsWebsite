@@ -44,7 +44,8 @@
     border: 2px solid white;
     padding: 16px 42px;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .slide-button:hover {
@@ -57,7 +58,7 @@
     width: 100%;
     color: white;
     font-size: 38px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .right-arrow:hover {

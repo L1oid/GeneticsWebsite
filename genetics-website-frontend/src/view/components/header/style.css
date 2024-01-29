@@ -2,23 +2,28 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: 10%;
-    margin-left: 10%;
+    margin-right: 15%;
+    margin-left: 15%;
+    padding-left: 15px;
+    padding-right: 15px;
     height: 130px;
     flex-shrink: 0;
 }
 
 .heading {
     color: #434343;
+    padding-right: 10px;
+    padding-left: 10px;
     flex-shrink: 0;
 
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .login-button {
     border: none;
     background-color: transparent;
+    cursor: pointer;
     flex-shrink: 0;
 
     color: #FF4300;

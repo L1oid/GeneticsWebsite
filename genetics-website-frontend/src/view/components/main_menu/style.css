@@ -14,10 +14,11 @@
     width: 150px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     flex-shrink: 0;
 
     color: #434343;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
 
