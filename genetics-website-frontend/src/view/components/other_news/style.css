@@ -1,6 +1,9 @@
 .other-news-container {
     margin-right: 15%;
     margin-left: 15%;
+}
+
+.other-news-container-row-1 {
     display: flex;
 }
 
@@ -37,12 +40,13 @@
     padding-left: 10px;
     margin-bottom: 20px;
     flex-basis: 50%;
+    width: 50%;
 }
 
 .other-news-card {
     border: 2px solid #E1E1E1;
-    font-size: 24px;
     cursor: pointer;
+    height: 100%;
 }
 
 .other-news-card:hover {
@@ -57,6 +61,7 @@
     color: #666666;
     font-size: 20px;
     font-weight: 600;
+    overflow: hidden;
 }
 
 .other-news-card-title {
@@ -68,6 +73,7 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 1.5;
+    overflow: hidden;
 }
 
 .other-news-card-image {
@@ -81,4 +87,88 @@
     color: #272727;
     font-size: 16px;
     line-height: 1.5;
+    overflow: hidden;
+}
+
+.other-news-container-row-2 {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 20px;
+}
+
+.other-news-load-more {
+    display: block;
+    height: 50px;
+    background-color: #E1E1E1;
+
+    color: #FF4300;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px;
+    font-weight: 600;
+}
+
+.other-news-load-more:hover {
+    background-color: #FF4300;
+    color: #FFFFFF;
+    transition-duration: 0.2s;
+}
+
+.event-item {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.event-card {
+    border: 2px solid #E1E1E1;
+    background-color: #E1E1E1;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    border: 2px solid #FF4300;
+    transition-duration: 0.2s;
+}
+
+.event-card-title {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #272727;
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
+    overflow: hidden;
+}
+
+.event-card-date {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #FF4300;
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
+    overflow: hidden;
+}
+
+.event-card-time {
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #FF4300;
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
+    overflow: hidden;
+}
+
+.event-card-content {
+    margin: 15px;
+
+    color: #272727;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden;
 }

@@ -8,6 +8,7 @@
 }
 
 .main-menu-button {
+    display: flex;
     background-color: #E1E1E1;
     border: none;
     height: 60px;
@@ -17,6 +18,7 @@
     cursor: pointer;
     flex-shrink: 0;
 
+    text-decoration: none;
     color: #434343;
     font-size: 16px;
     font-weight: 600;

@@ -1,14 +1,15 @@
 import React from 'react';
 
 import './style.css';
+import {Link} from "react-router-dom";
 
 function MainMenuComponent() {
     return (
         <div className='main-menu-container'>
-            <button className='main-menu-button'>НОВОСТИ</button>
-            <button className='main-menu-button'>НАУКА</button>
-            <button className='main-menu-button'>ОБРАЗОВАНИЕ</button>
-            <button className='main-menu-button'>О КАФЕДРЕ</button>
+            <Link className='main-menu-button' to="/">НОВОСТИ</Link>
+            <Link to="/science" className='main-menu-button'>НАУКА</Link>
+            <Link to="/education" className='main-menu-button'>ОБРАЗОВАНИЕ</Link>
+            <Link to="/about" className='main-menu-button'>О КАФЕДРЕ</Link>
         </div>
     )
 }

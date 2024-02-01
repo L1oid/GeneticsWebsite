@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
-import NewsPage from './view/pages/news/page.js';
+import "./style.css";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const newsPage = ( <NewsPage /> );
-
-const router = (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={newsPage} />
-        </Routes>
-    </BrowserRouter>
+root.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
 );
-
-root.render(router);
