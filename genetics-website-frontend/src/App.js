@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 import Layout from "./view/pages/layout/page";
+import ScrollToTop from "./view/components/scroll_to_top/component";
 
 import NewsPage from './view/pages/public/news/page';
 import NewsContentPage from './view/pages/public/news_item/page';
@@ -12,6 +13,7 @@ import AboutPage from './view/pages/public/about/page'
 function App() {
     return (
         <>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<NewsPage />} />

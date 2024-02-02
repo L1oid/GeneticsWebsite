@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import "./style.css"
 import news_list from '../../../state/news_list'
+import {Link} from "react-router-dom";
 
 function SliderNewsComponent() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,7 +46,7 @@ function SliderNewsComponent() {
                         {news_list[currentIndex].title}
                     </div>
                     <div className="slide-footer">
-                        <button className="slide-button">Подробнее</button>
+                        <Link className="slide-button" to={`/news/${news_list[currentIndex].id}`}>Подробнее</Link>
                     </div>
                 </div>
             </div>
