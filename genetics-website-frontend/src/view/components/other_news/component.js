@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './style.css';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import news_list from '../../../state/news_list'
 import events_list from '../../../state/events_list'
@@ -32,7 +32,7 @@ function OtherNewsComponent() {
                                         {news_list[newsIndex].title}
                                     </div>
                                     <img className="other-news-card-image"
-                                         src={news_list[newsIndex].image_url}
+                                         src={news_list[newsIndex].image_url[0]}
                                          alt={"news_image_" + newsIndex}
                                     />
                                     <div className="other-news-card-content">
@@ -68,9 +68,9 @@ function OtherNewsComponent() {
                 </div>
             </div>
             <div className="other-news-container-row-2">
-                <a href="/" className="other-news-load-more">
+                <Link className="other-news-load-more" to="/">
                     Показать ещё
-                </a>
+                </Link>
             </div>
         </div>
     )
