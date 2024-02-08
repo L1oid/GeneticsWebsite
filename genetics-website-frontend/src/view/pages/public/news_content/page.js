@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 import './style.css';
 
-import news_list from '../../../../state/news_list'
+import news_list from '../../../../back-end/news_list'
 
 function NewsContentPage() {
     const {id} = useParams()

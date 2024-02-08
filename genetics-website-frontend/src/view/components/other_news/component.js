@@ -1,14 +1,24 @@
-import React from 'react';
-
-import './style.css';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 
-import news_list from '../../../state/news_list'
-import events_list from '../../../state/events_list'
+import './style.css';
+
+import events_list from '../../../back-end/events_list'
+import {fetchNews, clearNews} from "../../../state/newsSlice";
 
 function OtherNewsComponent() {
 
     const navigate = useNavigate();
+    const news_list = useSelector(state => state.news.news_list);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchNews());
+        return () => {
+            dispatch(clearNews());
+        };
+    }, [dispatch])
 
     const handleNavigateClick = (href) => {
         navigate(href);

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import "./style.css"
-import news_list from '../../../state/news_list'
+import news_list from '../../../back-end/news_list'
 import {Link} from "react-router-dom";
 
 function SliderNewsComponent() {
