@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/state/newsSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/state/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/events_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/back-end/events_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/footer_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/back-end/footer_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/news_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/back-end/news_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/footer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/footer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/other_news/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/other_news/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/slider_news/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/slider_news/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/news_content/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/news_content/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/other_news/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/other_news/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,29 +42,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/lloid/Documents/GitHub/GeneticsWebsite/genetics-website-frontend/public",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "C:/Users/lloid/AppData/Roaming/JetBrains/IntelliJIdea2023.3/node/node-v18.15.0-win-x64/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.npm start.executor": "Run",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lloid/Documents/GitHub/GeneticsWebsite/genetics-website-frontend&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/lloid/AppData/Roaming/JetBrains/IntelliJIdea2023.3/node/node-v18.15.0-win-x64/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\public" />
@@ -126,6 +115,12 @@
       <workItem from="1707204005753" duration="1901000" />
       <workItem from="1707206007425" duration="482000" />
       <workItem from="1707366914192" duration="14924000" />
+      <workItem from="1707470165676" duration="11262000" />
+      <workItem from="1707538293318" duration="2202000" />
+      <workItem from="1707546601020" duration="674000" />
+      <workItem from="1707647037441" duration="5000" />
+      <workItem from="1707716320036" duration="1111000" />
+      <workItem from="1708321427342" duration="774000" />
     </task>
     <servers />
   </component>

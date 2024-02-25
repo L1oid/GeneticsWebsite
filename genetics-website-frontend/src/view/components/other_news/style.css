@@ -7,15 +7,6 @@
     display: flex;
 }
 
-.other-news-heading {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #FF4300;
-    font-size: 38px;
-}
-
 .other-news-column-1 {
     padding-left: 15px;
     padding-right: 15px;
@@ -28,6 +19,15 @@
     padding-right: 15px;
     width: 40%;
     min-height: 1px;
+}
+
+.other-news-heading {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #FF4300;
+    font-size: 38px;
 }
 
 .other-news-list {
