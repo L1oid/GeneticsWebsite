@@ -9,7 +9,9 @@ function HeaderComponent() {
                 Кафедра генетики и<br/>
                 фундаментальной медицины
             </div>
-            <button className='login-button'>Вход</button>
+            <div className='login-container'>
+                <button className='login-button'>Вход</button>
+            </div>
         </div>
     )
 }

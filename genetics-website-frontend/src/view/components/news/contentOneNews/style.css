@@ -1,6 +1,4 @@
 .news-content-container {
-    margin-right: 15%;
-    margin-left: 15%;
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -26,7 +24,12 @@
     margin-bottom: 30px;
     line-height: 1.5;
     color: #272727;
+    text-align: justify;
     font-size: 18px;
+}
+
+.news-content-hyperlink {
+    word-break: break-all;
 }
 
 .news-content-count-images {
@@ -42,11 +45,18 @@
     margin-top: 10px;
     margin-bottom: 30px;
     position: relative;
-    width: fit-content;
+    max-width: 100%;
 }
 
 .news-content-slider-image {
     display: block;
+    max-width: 100%;
+}
+
+@media screen and (min-width: 1100px) {
+    .news-content-slider {
+        width: fit-content;
+    }
 }
 
 .news-content-slider-left {

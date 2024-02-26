@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SliderNews from '../../../components/slider_news/component'
-import OtherNews from '../../../components/other_news/component'
+import SliderNews from '../../../components/news/sliderNews/component'
+import OtherNews from '../../../components/news/otherNews/component'
 
 function NewsPage() {
     return (

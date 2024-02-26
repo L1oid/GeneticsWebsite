@@ -4,8 +4,8 @@ import {Link, useNavigate} from "react-router-dom";
 
 import './style.css';
 
-import events_list from '../../../back-end/events_list'
-import {fetchNews, clearNews} from "../../../state/newsSlice";
+import events_list from '../../../../back-end/events_list'
+import {fetchNews, clearNews} from "../../../../state/newsSlice";
 
 function OtherNewsComponent() {
 
@@ -25,7 +25,7 @@ function OtherNewsComponent() {
     };
 
     return (
-        <div className="other-news-container">
+        <div className="page-container">
             <div className="other-news-container-row-1">
                 <div className="other-news-column-1">
                     <h2 className="other-news-heading">Новости</h2>
@@ -52,6 +52,11 @@ function OtherNewsComponent() {
                             </div>
                         ))}
                     </div>
+                </div>
+                <div className="other-news-container-row-3">
+                    <Link className="other-news-load-more" to="/">
+                        Показать ещё
+                    </Link>
                 </div>
                 <div className="other-news-column-2">
                     <h2 className="other-news-heading">События</h2>
