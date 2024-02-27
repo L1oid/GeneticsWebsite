@@ -10,21 +10,49 @@
     flex-shrink: 0;
 }
 
+.burger-button {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+    background-color: #E1E1E1;
+}
+
+.burger-button:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 4px;
+    background-color: #434343;
+}
+
+.burger-button span {
+    position: absolute;
+    top: 18px;
+    left: 5px;
+    width: 30px;
+    height: 4px;
+    background-color: #434343;
+}
+
+.burger-button:after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 30px;
+    height: 4px;
+    background-color: #434343;
+}
+
 @media screen and (min-width: 0px) and (max-width: 799px) {
-    .header-container {
-        height: fit-content;
-        display: block;
-    }
     .login-container {
-        display: flex;
-        justify-content: center;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        display: none;
     }
     .heading {
-        padding-top: 25px;
-        padding-bottom: 10px;
+        width: 80%;
     }
 }
 
@@ -32,17 +60,29 @@
     .header-container {
         max-width: 700px;
     }
+
+    .burger-button {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 1100px) and (max-width: 1399px) {
     .header-container {
         max-width: 1000px;
     }
+
+    .burger-button {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 1400px) {
     .header-container {
         max-width: 1300px;
+    }
+
+    .burger-button {
+        display: none;
     }
 }
 
@@ -52,6 +92,7 @@
     padding-left: 10px;
     flex-shrink: 0;
 
+    line-height: 1.2;
     font-size: 24px;
     font-weight: 600;
 }
@@ -60,12 +101,12 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 0;
+    padding-right: 10px;
     flex-shrink: 0;
 
     color: #FF4300;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .login-button:hover {

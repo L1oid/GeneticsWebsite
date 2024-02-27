@@ -1,16 +1,20 @@
 import React from 'react';
 
 import './style.css';
+import {Link} from "react-router-dom";
 
-function HeaderComponent() {
+function HeaderComponent(props) {
     return (
         <div className='header-container'>
-            <div className="heading">
-                Кафедра генетики и<br/>
-                фундаментальной медицины
-            </div>
+            <Link
+                className='heading'
+                to="/">Кафедра генетики и<br/>фундаментальной медицины
+            </Link>
             <div className='login-container'>
-                <button className='login-button'>Вход</button>
+                <Link className='login-button' to="/">Вход</Link>
+            </div>
+            <div className="burger-button" onClick={() => props.setActive(!props.active)}>
+                <span/>
             </div>
         </div>
     )
