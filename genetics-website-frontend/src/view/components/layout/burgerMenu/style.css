@@ -16,6 +16,11 @@
 
 .burger-menu-list {
     width: 100%;
+    padding-left: 0;
+}
+
+.burger-menu-element {
+    list-style-type: none;
 }
 
 .burger-menu-button {

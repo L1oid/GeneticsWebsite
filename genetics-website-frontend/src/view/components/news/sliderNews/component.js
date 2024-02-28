@@ -29,6 +29,19 @@ function SliderNewsComponent() {
         setActiveDot(slideIndex);
     }
 
+    const goToPrevious = () => {
+        const isFirstImage = currentIndex === 0;
+        const newIndex = isFirstImage ? news_list.length - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
+        setActiveDot(newIndex);
+    };
+    const goToNext = () => {
+        const isLastImage = currentIndex === news_list.length - 1;
+        const newIndex = isLastImage ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+        setActiveDot(newIndex);
+    };
+
     return (
         <div className="slider-container">
             <div className="slider">
@@ -41,6 +54,10 @@ function SliderNewsComponent() {
                         </div>
                     ))}
                 </div>
+                <span className="material-symbols-outlined slider-news-left"
+                      onClick={goToPrevious}>chevron_left</span>
+                <span className="material-symbols-outlined slider-news-right"
+                      onClick={goToNext}>chevron_right</span>
                 <div className="slide-plate">
                     <div className="slide-header">
                         {news_list[currentIndex].title}

@@ -3,10 +3,11 @@ import {useParams} from "react-router-dom";
 import parse from 'html-react-parser';
 
 import './style.css';
+import BreadcrumpComponent from "../../common/breadcrump/component";
 
 import news_list from '../../../../back-end/news_list'
 
-function ContentOneNewsComponent() {
+function ContentOneNewsComponent(props) {
     const {id} = useParams();
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -32,9 +33,25 @@ function ContentOneNewsComponent() {
         setCurrentIndex(newIndex);
     };
 
+    const ways = [
+        {
+            link: "/",
+            name: "Главная"
+        },
+        {
+            link: "/news",
+            name: "Новости"
+        },
+        {
+            link: "/news/" + id,
+            name: news_list[id].title
+        },
+    ]
+
     return (
         <div className="page-container">
             <div className="news-content-container">
+                <BreadcrumpComponent ways={ways}/>
                 <h1 className="news-content-heading">
                     {news_list[id].title}
                 </h1>
@@ -48,12 +65,10 @@ function ContentOneNewsComponent() {
                     {currentIndex + 1}/{news_list[id].image_url.length}
                 </h2>
                 <div className="news-content-slider">
-                    <div className="news-content-slider-left" onClick={goToPrevious}>
-                        ❮
-                    </div>
-                    <div className="news-content-slider-right" onClick={goToNext}>
-                        ❯
-                    </div>
+                    <span className="material-symbols-outlined news-content-slider-left"
+                          onClick={goToPrevious}>chevron_left</span>
+                    <span className="material-symbols-outlined news-content-slider-right"
+                          onClick={goToNext}>chevron_right</span>
                     <img className="news-content-slider-image"
                          src={news_list[id].image_url[currentIndex]}
                          alt={"news_image_" + currentIndex}

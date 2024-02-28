@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Outlet, useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 import HeaderComponent from "../../components/layout/header/component";
 import MainMenuComponent from "../../components/layout/mainMenu/component";
 import FooterComponent from "../../components/layout/footer/component";
 import BurgerMenuComponent from "../../components/layout/burgerMenu/component";
+import {saveBurgerMenuStatus} from "../../../state/layoutSlice";
 
 function Layout() {
-    const [burgerMenuActive, setBurgerMenuActive] = useState(false);
-
     const location = useLocation();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setBurgerMenuActive(false);
-    }, [location]);
-
+        dispatch(saveBurgerMenuStatus(false));
+    }, [dispatch, location]);
 
     return (
         <div>
-            <HeaderComponent active={burgerMenuActive} setActive={setBurgerMenuActive} />
+            <HeaderComponent />
             <MainMenuComponent />
-            <BurgerMenuComponent active={burgerMenuActive} setActive={setBurgerMenuActive}/>
+            <BurgerMenuComponent />
             <Outlet />
             <FooterComponent />
         </div>
