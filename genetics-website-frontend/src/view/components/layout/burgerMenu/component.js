@@ -10,7 +10,7 @@ function BurgerMenuComponent(props) {
         <div className={burgerMenuStatus ? 'burger-menu active' : "burger-menu"}>
             <ul className="burger-menu-list">
                 <li className="burger-menu-element">
-                    <Link to="/" className='burger-menu-button'>НОВОСТИ</Link>
+                    <Link to="/news" className='burger-menu-button'>НОВОСТИ</Link>
                 </li>
                 <li className="burger-menu-element">
                     <Link to="/" className='burger-menu-button'>НАУКА</Link>

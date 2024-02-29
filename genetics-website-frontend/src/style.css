@@ -9,7 +9,6 @@
 .page-container {
     margin-right: auto;
     margin-left: auto;
-    min-height: 755px;
 }
 
 @media screen and (min-width: 800px) and (max-width: 1099px) {

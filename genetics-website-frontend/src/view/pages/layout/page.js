@@ -6,7 +6,7 @@ import HeaderComponent from "../../components/layout/header/component";
 import MainMenuComponent from "../../components/layout/mainMenu/component";
 import FooterComponent from "../../components/layout/footer/component";
 import BurgerMenuComponent from "../../components/layout/burgerMenu/component";
-import {saveBurgerMenuStatus} from "../../../state/layoutSlice";
+import {saveBurgerMenuStatus} from "../../../state/slices/layoutSlice";
 
 function Layout() {
     const location = useLocation();

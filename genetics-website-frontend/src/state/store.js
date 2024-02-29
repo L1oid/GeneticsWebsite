@@ -1,7 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 
-import newsReducer from "./newsSlice"
-import layoutReducer from "./layoutSlice"
+import newsReducer from "./slices/newsSlice"
+import layoutReducer from "./slices/layoutSlice"
 
 export default configureStore({
     reducer: {

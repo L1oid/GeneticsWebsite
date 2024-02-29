@@ -1,0 +1,15 @@
+.not-found-container {
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.not-found-text {
+    color: #434343;
+    font-size: 24px;
+    font-weight: 600;
+}
