@@ -13,10 +13,10 @@ function BurgerMenuComponent(props) {
                     <Link to="/news" className='burger-menu-button'>НОВОСТИ</Link>
                 </li>
                 <li className="burger-menu-element">
-                    <Link to="/" className='burger-menu-button'>НАУКА</Link>
+                    <Link to="/science" className='burger-menu-button'>НАУКА</Link>
                 </li>
                 <li className="burger-menu-element">
-                    <Link to="/" className='burger-menu-button'>ОБРАЗОВАНИЕ</Link>
+                    <Link to="/education" className='burger-menu-button'>ОБРАЗОВАНИЕ</Link>
                 </li>
                 <li className="burger-menu-element">
                     <Link to="/" className='burger-menu-button'>О КАФЕДРЕ</Link>

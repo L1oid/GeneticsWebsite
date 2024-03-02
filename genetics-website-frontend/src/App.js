@@ -8,6 +8,9 @@ import MainPage from './view/pages/public/main/page';
 import OneNewsPage from "./view/pages/public/oneNews/page";
 import NewsPage from "./view/pages/public/news/page";
 import NotFoundPage from "./view/pages/public/notFound/page";
+import SciencePage from "./view/pages/public/science/page";
+import ArticlePage from "./view/pages/public/article/page";
+import EducationPage from "./view/pages/public/education/page";
 
 function App() {
     return (
@@ -18,6 +21,9 @@ function App() {
                     <Route index element={<MainPage />} />
                     <Route path="/news/" element={<NewsPage />} />
                     <Route path="/news/:id" element={<OneNewsPage />} />
+                    <Route path="/science/" element={<SciencePage />} />
+                    <Route path="/science/:id" element={<ArticlePage />} />
+                    <Route path="/education/" element={<EducationPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>

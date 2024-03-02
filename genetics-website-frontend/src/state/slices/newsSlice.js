@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import news_list from "../../back-end/news_list";
+import news_list from "../../data/news_list";
 
 export const fetchNews = createAsyncThunk(
     "news/fetchNews",

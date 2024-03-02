@@ -7,8 +7,8 @@ function MainMenuComponent() {
     return (
         <div className='main-menu-container'>
             <Link className='main-menu-button' to="/news">НОВОСТИ</Link>
-            <Link to="/" className='main-menu-button'>НАУКА</Link>
-            <Link to="/" className='main-menu-button'>ОБРАЗОВАНИЕ</Link>
+            <Link to="/science" className='main-menu-button'>НАУКА</Link>
+            <Link to="/education" className='main-menu-button'>ОБРАЗОВАНИЕ</Link>
             <Link to="/" className='main-menu-button'>О КАФЕДРЕ</Link>
         </div>
     )

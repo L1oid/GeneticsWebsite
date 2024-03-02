@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './style.css';
-import footer_info from "../../../../back-end/footer_info";
+import footer_info from "../../../../data/footer_info";
 
 function FooterComponent() {
     return (

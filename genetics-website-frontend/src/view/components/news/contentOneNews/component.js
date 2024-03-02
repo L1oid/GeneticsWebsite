@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 
-import news_list from '../../../../back-end/news_list'
+import news_list from '../../../../data/news_list'
 
 function ContentOneNewsComponent(props) {
     const {id} = useParams();
