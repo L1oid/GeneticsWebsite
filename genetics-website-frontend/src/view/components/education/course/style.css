@@ -1,7 +1,7 @@
 .course-container {
     padding-right: 15px;
     padding-left: 15px;
-    height: 1000px;
+    margin-bottom: 30px;
 }
 
 .column-course-container {
@@ -53,11 +53,6 @@
     user-select: none;
 }
 
-.course-navigation-item-title.materials:hover {
-    color: #FF4300;
-    text-decoration: underline;
-}
-
 .course-navigation-item-list {
     display: none;
 }
@@ -80,4 +75,36 @@
 .course-navigation-item-list-href:hover {
     color: #FF4300;
     text-decoration: underline;
+}
+
+.course-content-container {
+    width: 100%;
+    padding: 15px 15px 15px 15px;
+    background-color: #E1E1E1;
+}
+
+.course-content-title {
+    color: #272727;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.course-content-item {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.course-content-item-name {
+    margin-left: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #272727;
+}
+
+.course-content-item-name:hover {
+    color: #FF4300;
+}
+
+.material-symbols-outlined.icon {
+    color: #FF4300;
 }
