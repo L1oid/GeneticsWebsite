@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 
 function BreadcrumpComponent(props) {
     const burgerMenuStatus = useSelector(state => state.layout.burgerMenuStatus);
-
-    // Условный класс для margin-top
+    
     const containerClass = burgerMenuStatus ? 'breadcrumb-container with-margin' : 'breadcrumb-container';
 
     return (

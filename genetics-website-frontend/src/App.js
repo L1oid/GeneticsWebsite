@@ -11,6 +11,7 @@ import NotFoundPage from "./view/pages/public/notFound/page";
 import SciencePage from "./view/pages/public/science/page";
 import ArticlePage from "./view/pages/public/article/page";
 import EducationPage from "./view/pages/public/education/page";
+import LoginPage from "./view/pages/public/login/page";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<MainPage />} />
+                    <Route path="/login/" element={<LoginPage />} />
                     <Route path="/news/" element={<NewsPage />} />
                     <Route path="/news/:id" element={<OneNewsPage />} />
                     <Route path="/science/" element={<SciencePage />} />

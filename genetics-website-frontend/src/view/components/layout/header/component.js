@@ -15,8 +15,8 @@ function HeaderComponent(props) {
                 className='heading'
                 to="/">Кафедра генетики и<br/>фундаментальной медицины
             </Link>
-            <div className='login-container'>
-                <Link className='login-button' to="/">Вход</Link>
+            <div className='header-login-container'>
+                <Link className='header-login-button-text' to="/login">Вход</Link>
             </div>
             <div className="burger-button" onClick={() => dispatch(saveBurgerMenuStatus(!burgerMenuStatus))}>
                 <span/>

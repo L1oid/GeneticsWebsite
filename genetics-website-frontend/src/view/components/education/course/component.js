@@ -5,7 +5,7 @@ import ed_materials_list from "../../../../data/ed_materials_list";
 import './style.css';
 
 import BreadcrumpComponent from "../../common/breadcrump/component";
-import {Link} from "react-router-dom";
+import CourseNavigationComponent from "../courseNavigation/component";
 
 function CourseComponent() {
 
@@ -29,30 +29,11 @@ function CourseComponent() {
                 <p className="course-heading">Образование</p>
                 <div className="column-course-container">
                     <div className="course-column-1">
-                        <div className="course-navigation">
-                            <p className="course-navigation-title">Навигация</p>
-                            <p className="course-navigation-item-title">
-                                <Link className="course-navigation-item-list-href"
-                                      to={"/education"}>Образовательные материалы
-                                </Link>
-                            </p>
-                            <p className="course-navigation-item-title"
-                               onClick={() => setItemListStatus(!itemListStatus)}>
-                                Общедоступные курсы
-                            </p>
-                            <div
-                                className={itemListStatus ? "course-navigation-item-list" : "course-navigation-item-list active"}>
-                                {course_list.map((course, courseIndex) => (
-                                    course.private === false && (
-                                        <p className="course-navigation-item-list-title">
-                                            <Link className="course-navigation-item-list-href"
-                                                  to={"/education/" + course.id}>{course.title}</Link>
-                                        </p>
-                                    )
-                                ))}
-                            </div>
-                            <div className="course-navigation-item-title">Мои курсы</div>
-                        </div>
+                        <CourseNavigationComponent
+                            setItemListStatus={setItemListStatus}
+                            itemListStatus={itemListStatus}
+                            courseList={course_list}
+                        />
                     </div>
                     <div className="course-column-2">
                         <div className="course-content-container">

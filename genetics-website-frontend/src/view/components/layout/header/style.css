@@ -48,9 +48,14 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 799px) {
-    .login-container {
+    .header-login-button-text {
         display: none;
     }
+
+    .header-login-container {
+        display: none;
+    }
+
     .heading {
         width: 80%;
     }
@@ -98,20 +103,19 @@
     text-decoration: none;
 }
 
-.login-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+.header-login-container {
     padding-right: 10px;
-    flex-shrink: 0;
+}
 
+.header-login-button-text {
     color: #FF4300;
     font-size: 24px;
     font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
 }
 
-.login-button:hover {
+.header-login-button-text:hover {
     background-color: #E1E1E1;
     transition-duration: 0.2s;
 }

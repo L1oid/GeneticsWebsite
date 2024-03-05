@@ -13,12 +13,12 @@ function CourseNavigationComponent(props) {
                 </Link>
             </p>
             <p className="course-navigation-item-title"
-               onClick={() => setItemListStatus(!itemListStatus)}>
+               onClick={() => props.setItemListStatus(!props.itemListStatus)}>
                 Общедоступные курсы
             </p>
             <div
-                className={itemListStatus ? "course-navigation-item-list" : "course-navigation-item-list active"}>
-                {course_list.map((course, courseIndex) => (
+                className={props.itemListStatus ? "course-navigation-item-list" : "course-navigation-item-list active"}>
+                {props.courseList.map((course, courseIndex) => (
                     course.private === false && (
                         <p className="course-navigation-item-list-title">
                             <Link className="course-navigation-item-list-href"
