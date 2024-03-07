@@ -1,0 +1,31 @@
+.account {
+    padding-right: 15px;
+    padding-left: 15px;
+    height: 1000px;
+}
+
+.account-container-heading {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #FF4300;
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.account-container-row-2 {
+    display: flex;
+}
+
+.account-container-column-1 {
+    width: 25%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.account-container-column-2 {
+    width: 75%;
+    padding-left: 10px;
+    padding-right: 10px;
+}

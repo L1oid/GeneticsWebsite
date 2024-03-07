@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/state/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/state/slices/userSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountMenu/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/layouts/accountLayout/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/layouts/accountLayout/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/pages/private/personalArea/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/userSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/loginContainer/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/layout/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/layouts/mainLayout/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JSX File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -74,11 +84,11 @@
       <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view\layouts" />
+      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view" />
+      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view\pages\layouts" />
       <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\state\Slices" />
       <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view\components\common" />
-      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view\components\news" />
-      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\view\components\layout" />
-      <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\src\back-end" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -141,6 +151,8 @@
       <workItem from="1709695716778" duration="1213000" />
       <workItem from="1709702638656" duration="1132000" />
       <workItem from="1709717345089" duration="10605000" />
+      <workItem from="1709775523920" duration="768000" />
+      <workItem from="1709776308084" duration="14343000" />
     </task>
     <servers />
   </component>

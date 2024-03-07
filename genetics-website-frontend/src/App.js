@@ -1,7 +1,8 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 
-import Layout from "./view/pages/layout/page";
+import MainLayout from "./view/layouts/mainLayout/page";
+import AccountLayout from "./view/layouts/accountLayout/page";
 import ScrollToTop from "./view/components/layout/scrollToTop/component";
 
 import MainPage from './view/pages/public/main/page';
@@ -12,13 +13,14 @@ import SciencePage from "./view/pages/public/science/page";
 import ArticlePage from "./view/pages/public/article/page";
 import EducationPage from "./view/pages/public/education/page";
 import LoginPage from "./view/pages/public/login/page";
+import PersonalAreaPage from "./view/pages/private/personalArea/page";
 
 function App() {
     return (
         <>
             <ScrollToTop />
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route path="/" element={<MainLayout />}>
                     <Route index element={<MainPage />} />
                     <Route path="/login/" element={<LoginPage />} />
                     <Route path="/news/" element={<NewsPage />} />
@@ -27,6 +29,10 @@ function App() {
                     <Route path="/science/:id" element={<ArticlePage />} />
                     <Route path="/education/" element={<EducationPage />} />
                     <Route path="*" element={<NotFoundPage />} />
+                    <Route path="/account" element={<AccountLayout />}>
+                        <Route index element={<PersonalAreaPage />} />
+                        <Route path="/account/kek/" element={<PersonalAreaPage />} />
+                    </Route>
                 </Route>
             </Routes>
         </>

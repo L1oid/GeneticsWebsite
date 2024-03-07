@@ -8,7 +8,7 @@ import FooterComponent from "../../components/layout/footer/component";
 import BurgerMenuComponent from "../../components/layout/burgerMenu/component";
 import {saveBurgerMenuStatus} from "../../../state/slices/layoutSlice";
 
-function Layout() {
+function MainLayout() {
     const location = useLocation();
     const dispatch = useDispatch();
 
@@ -27,4 +27,4 @@ function Layout() {
     )
 }
 
-export default Layout;
+export default MainLayout;

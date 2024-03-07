@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {useDispatch, useSelector} from "react-redux";
-import {authUser} from "../../../../state/slices/userSlice";
+import {authUser, clearErrorAndStatus} from "../../../../state/slices/userSlice";
+import {Navigate, useLocation} from "react-router-dom";
 
 function LoginContainerComponent(props) {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const {status, error} = useSelector(state => state.user);
+    const location = useLocation();
+    const {status, error, isAuth} = useSelector(state => state.user);
+
+    useEffect(() => {
+        dispatch(clearErrorAndStatus());
+    }, [dispatch, location]);
 
     function handleLoginButton() {
         const user ={
@@ -31,7 +37,7 @@ function LoginContainerComponent(props) {
         }
     ]
 
-    return (
+    return !isAuth ? (
         <div className="page-container">
             <div className="login-container">
                 <BreadcrumpComponent ways={ways}></BreadcrumpComponent>
@@ -54,16 +60,16 @@ function LoginContainerComponent(props) {
                         />
                         <button
                             onClick={handleLoginButton}
-                            className="login-window-button">Войти
+                            className={`login-window-button ${status === "loading" ? "disabled" : ""}`}
+                            disabled={status === "loading"}>
+                            Войти
                         </button>
-                        {status === "loading" && <p>Загрузка</p>}
-                        {error && <p>{error}</p>}
                     </div>
                     <div className="login-window-column-2">
                         <p className="login-window-info-heading">Добро пожаловать!</p>
                         <p className="login-window-info">
                             Для входа на сайт необходимо авторизоваться.
-                            Пожалуйста, ведите логин и пароль пользователя.
+                            Пожалуйста, введите логин и пароль пользователя.
                         </p>
                         <p className="login-window-info bold">
                             Для получения логина и пароля обратитесь,
@@ -72,9 +78,14 @@ function LoginContainerComponent(props) {
                         </p>
                     </div>
                 </div>
+                <div className={`login-error-window ${error ? 'error-visible' : 'error-hidden'}`}>
+                    <p className="login-error-text">{error}</p>
+                </div>
             </div>
         </div>
-    );
+    ) : (
+        <Navigate to="/account" />
+    )
 }
 
 export default LoginContainerComponent;
