@@ -13,7 +13,7 @@ import SciencePage from "./view/pages/public/science/page";
 import ArticlePage from "./view/pages/public/article/page";
 import EducationPage from "./view/pages/public/education/page";
 import LoginPage from "./view/pages/public/login/page";
-import PersonalAreaPage from "./view/pages/private/personalArea/page";
+import PersonalDataPage from "./view/pages/private/personalData/page";
 
 function App() {
     return (
@@ -30,8 +30,7 @@ function App() {
                     <Route path="/education/" element={<EducationPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                     <Route path="/account" element={<AccountLayout />}>
-                        <Route index element={<PersonalAreaPage />} />
-                        <Route path="/account/kek/" element={<PersonalAreaPage />} />
+                        <Route index element={<PersonalDataPage />} />
                     </Route>
                 </Route>
             </Routes>

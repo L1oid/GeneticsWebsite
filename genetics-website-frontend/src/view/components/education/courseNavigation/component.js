@@ -20,7 +20,7 @@ function CourseNavigationComponent(props) {
                 className={props.itemListStatus ? "course-navigation-item-list" : "course-navigation-item-list active"}>
                 {props.courseList.map((course, courseIndex) => (
                     course.private === false && (
-                        <p className="course-navigation-item-list-title">
+                        <p className="course-navigation-item-list-title" key={courseIndex}>
                             <Link className="course-navigation-item-list-href"
                                   to={"/education/" + course.id}>{course.title}</Link>
                         </p>

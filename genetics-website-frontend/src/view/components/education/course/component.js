@@ -39,7 +39,7 @@ function CourseComponent() {
                         <div className="course-content-container">
                             <p className="course-content-title">Образовательные материалы</p>
                             {ed_materials_list.map((material, materialIndex) => (
-                                <div className="course-content-item">
+                                <div className="course-content-item" key={materialIndex}>
                                     <span className="material-symbols-outlined icon">picture_as_pdf</span>
                                     <a href={material.url} className="course-content-item-name">{material.name}</a>
                                 </div>

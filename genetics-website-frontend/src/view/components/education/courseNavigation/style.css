@@ -5,7 +5,7 @@
 }
 
 .course-navigation-title {
-    color: #272727;
+    color: #434343;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -14,7 +14,7 @@
 .course-navigation-item-title {
     padding-top: 5px;
     padding-bottom: 5px;
-    color: #272727;
+    color: #434343;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
@@ -37,7 +37,7 @@
 
 .course-navigation-item-list-href {
     text-decoration: none;
-    color: #272727;
+    color: #434343;
 }
 
 .course-navigation-item-list-href:hover {

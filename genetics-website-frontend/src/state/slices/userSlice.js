@@ -7,34 +7,42 @@ import storage from 'redux-persist/lib/storage';
 export const authUser = createAsyncThunk(
     "user/authUser",
     async function({login, password}, {rejectWithValue, dispatch}) {
-        const response = await fetch(api.url + api.authorization, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                userName: login,
-                password: password
-            })
-        })
-        if (!response.ok) {
-            const text = await response.text();
-            return rejectWithValue({
-                status: response.status,
-                statusText: response.statusText,
-                text: text
+        try {
+            const response = await fetch(api.url + api.authorization, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    userName: login,
+                    password: password
+                })
             });
-        }
-        else {
-            const token = response.headers.get('Authorization');
-            let decodedToken = {};
-            decodedToken = await jwtDecode(token);
-            dispatch(setUser({
-                login: decodedToken.sub,
-                token: token,
-                id: decodedToken.id,
-                firstName:decodedToken.firstName,
-                lastName: decodedToken.lastName,
-                roles: decodedToken.roles
-            }));
+
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            } else {
+                const token = response.headers.get('Authorization');
+                let decodedToken = {};
+                decodedToken = await jwtDecode(token);
+                dispatch(setUser({
+                    login: decodedToken.sub,
+                    token: token,
+                    id: decodedToken.id,
+                    firstName: decodedToken.firstName,
+                    lastName: decodedToken.lastName,
+                    roles: decodedToken.roles
+                }));
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: 'Сервер не отвечает'
+            });
         }
     }
 );
@@ -100,8 +108,10 @@ const setError = (state, action) => {
         state.error = "Неверный пароль"
     } else if (action.payload.status === 404) {
         state.error = "Такого пользователя не существует"
+    } else if (action.payload.status === 504) {
+        state.error = "Сервер не отвечает"
     } else {
-        state.error = "Неизветсная ошибка"
+        state.error = "Неизвестная ошибка"
     }
 }
 

@@ -5,7 +5,10 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 function BurgerMenuComponent(props) {
+
     const burgerMenuStatus = useSelector(state => state.layout.burgerMenuStatus);
+    const isAuth = useSelector(state => state.user.isAuth);
+
     return (
         <div className={burgerMenuStatus ? 'burger-menu active' : "burger-menu"}>
             <ul className="burger-menu-list">
@@ -22,7 +25,11 @@ function BurgerMenuComponent(props) {
                     <Link to="/" className='burger-menu-button'>О КАФЕДРЕ</Link>
                 </li>
                 <li className="burger-menu-element">
-                    <Link to="/login" className='burger-menu-button'>ВОЙТИ</Link>
+                    {isAuth ? (
+                        <Link to="/account" className='burger-menu-button'>ЛИЧНЫЙ КАБИНЕТ</Link>
+                    ) : (
+                        <Link to="/login" className='burger-menu-button'>ВОЙТИ</Link>
+                    )}
                 </li>
             </ul>
         </div>
