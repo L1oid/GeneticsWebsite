@@ -8,11 +8,11 @@
     color: #434343;
     font-size: 18px;
     font-weight: 600;
-    width: 150px;
+    width: 25%;
 }
 
 .disabled-input-content-input {
-    width: 300px;
+    width: 75%;
     padding: 5px 5px;
     border: 2px solid #434343;
     border-radius: 4px;
@@ -20,17 +20,14 @@
     color: #434343;
 }
 
-@media screen and (min-width: 0px) and (max-width: 799px) {
+@media screen and (min-width: 0px) and (max-width: 1099px) {
+    .disabled-input-content {
+        display: block;
+    }
     .disabled-input-content-text {
-        width: 30%;
+        width: 100%;
     }
     .disabled-input-content-input {
-        width: 70%;
-    }
-}
-
-@media screen and (min-width: 800px) and (max-width: 1099px) {
-    .disabled-input-content-text {
-        width: 100px;
+        width: 100%;
     }
 }

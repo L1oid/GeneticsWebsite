@@ -7,12 +7,11 @@
     color: #434343;
     font-size: 18px;
     font-weight: 600;
-    width: 150px;
+    width: 25%;
 }
 
 .roles-list-container {
     display: flex;
-    flex-direction: column;
 }
 
 .roles-list-item {
@@ -21,14 +20,15 @@
     color: #434343;
 }
 
-@media screen and (min-width: 0px) and (max-width: 799px) {
-    .roles-list-content-text {
-        width: 30%;
-    }
+.roles-list-item {
+    margin-right: 5px;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1099px) {
+@media screen and (min-width: 0px) and (max-width: 1099px) {
+    .roles-list-content {
+        display: block;
+    }
     .roles-list-content-text {
-        width: 100px;
+        width: 100%;
     }
 }

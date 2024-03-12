@@ -2,9 +2,9 @@ import React from 'react';
 
 import './style.css';
 import {Link} from "react-router-dom";
-import {removeUser} from "../../../../state/slices/userSlice";
+import {removeUser} from "../../../../state/slices/user/userSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {ADMINISTRATION} from "../../../../state/roles";
+import {ADMINISTRATION} from "../../../../state/consts/roles";
 
 function AccountMenuComponent(props) {
     const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function AccountMenuComponent(props) {
             {isAdmin && (
                 <div className="account-menu-admin-buttons">
                     <Link className={"account-menu-button"}
-                          to={"/account/user-registration"}>
+                          to={"/account/registration-user"}>
                         <span className="material-symbols-outlined account-icon">person_add</span>
                         Регистрация пользователя
                     </Link>

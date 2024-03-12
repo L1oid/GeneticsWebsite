@@ -14,6 +14,8 @@ import ArticlePage from "./view/pages/public/article/page";
 import EducationPage from "./view/pages/public/education/page";
 import LoginPage from "./view/pages/public/login/page";
 import PersonalDataPage from "./view/pages/private/personalData/page";
+import ChangePasswordPage from "./view/pages/private/changePassword/page";
+import RegistrationUserPage from "./view/pages/private/registrationUser/page";
 
 function App() {
     return (
@@ -31,6 +33,8 @@ function App() {
                     <Route path="*" element={<NotFoundPage />} />
                     <Route path="/account" element={<AccountLayout />}>
                         <Route index element={<PersonalDataPage />} />
+                        <Route path="/account/change-password/" element={<ChangePasswordPage />} />
+                        <Route path="/account/registration-user/" element={<RegistrationUserPage />} />
                     </Route>
                 </Route>
             </Routes>

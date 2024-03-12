@@ -1,7 +1,7 @@
 import React from 'react';
 
 import "./style.css"
-import {ADMINISTRATION, MODERATOR} from "../../../../state/roles";
+import {ADMINISTRATION, MODERATOR} from "../../../../state/consts/roles";
 
 function RolesListComponent(props) {
 

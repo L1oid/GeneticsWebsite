@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './style.css';
-import DisabledInputComponent from "../../common/disabledInput/component";
+import DisabledInputComponent from "../disabledInput/component";
 import {useSelector} from "react-redux";
 import RolesListComponent from "../rolesList/component";
 function PersonalDataContainerComponent(props) {
@@ -18,10 +18,10 @@ function PersonalDataContainerComponent(props) {
                 <p className="personal-data-container-title">Личные данные пользователя</p>
             </div>
             <div className="personal-data-container-row-2">
-                <RolesListComponent title="Роли:" value={roles}></RolesListComponent>
-                <DisabledInputComponent title="Логин:" value={login}></DisabledInputComponent>
-                <DisabledInputComponent title="Имя:" value={firstName}></DisabledInputComponent>
-                <DisabledInputComponent title="Фамилия:" value={lastName}></DisabledInputComponent>
+                <RolesListComponent title="Роли" value={roles}></RolesListComponent>
+                <DisabledInputComponent title="Логин" value={login}></DisabledInputComponent>
+                <DisabledInputComponent title="Имя" value={firstName}></DisabledInputComponent>
+                <DisabledInputComponent title="Фамилия" value={lastName}></DisabledInputComponent>
             </div>
         </div>
     )

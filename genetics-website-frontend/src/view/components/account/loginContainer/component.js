@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
+import {Navigate, useLocation} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
-import {useDispatch, useSelector} from "react-redux";
-import {authUser, clearErrorAndStatus} from "../../../../state/slices/userSlice";
-import {Navigate, useLocation} from "react-router-dom";
+import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {authUser} from "../../../../state/slices/user/asyncActions";
 
 function LoginContainerComponent(props) {
 
