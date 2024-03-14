@@ -1,12 +1,12 @@
 import React from 'react';
 
 import "./style.css"
-import {ADMINISTRATION, MODERATOR} from "../../../../state/consts/roles";
+import {ADMINISTRATOR, MODERATOR} from "../../../../state/consts/roles";
 
 function RolesListComponent(props) {
 
     const roles = props.value.map(role => {
-        if (role === ADMINISTRATION) {
+        if (role === ADMINISTRATOR) {
             return "Администратор";
         } else if (role === MODERATOR) {
             return "Модератор";
@@ -23,11 +23,13 @@ function RolesListComponent(props) {
                 </span>
             </div>
             <div className="roles-list-container">
-                {roles.map((role, roleIndex) => (
-                    <div className="roles-list-item" key={roleIndex}>
-                        {roles[roleIndex]}
-                    </div>
-                ))}
+                <div className="roles-list-items">
+                    {roles.map((role, roleIndex) => (
+                        <div className="roles-list-item" key={roleIndex}>
+                            {roles[roleIndex]}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

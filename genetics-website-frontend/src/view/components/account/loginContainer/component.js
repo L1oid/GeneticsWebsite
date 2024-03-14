@@ -6,6 +6,7 @@ import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
 import {authUser} from "../../../../state/slices/user/asyncActions";
+import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 
 function LoginContainerComponent(props) {
 
@@ -13,7 +14,7 @@ function LoginContainerComponent(props) {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const location = useLocation();
-    const {status, error, isAuth} = useSelector(state => state.user);
+    const {status, isAuth} = useSelector(state => state.user);
 
     useEffect(() => {
         dispatch(clearErrorAndStatus());
@@ -79,8 +80,8 @@ function LoginContainerComponent(props) {
                         </p>
                     </div>
                 </div>
-                <div className={`login-error-window ${error ? 'error-visible' : 'error-hidden'}`}>
-                    <p className="login-error-text">{error}</p>
+                <div className="login-error-window">
+                    <ErrorAndSuccessWindowComponent />
                 </div>
             </div>
         </div>

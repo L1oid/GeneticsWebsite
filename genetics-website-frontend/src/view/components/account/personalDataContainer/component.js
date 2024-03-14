@@ -4,6 +4,7 @@ import './style.css';
 import DisabledInputComponent from "../disabledInput/component";
 import {useSelector} from "react-redux";
 import RolesListComponent from "../rolesList/component";
+import AccountPageCommonTitleComponent from "../accountPagesCommonTitle/component";
 function PersonalDataContainerComponent(props) {
 
     const roles = useSelector(state => state.user.roles);
@@ -15,13 +16,13 @@ function PersonalDataContainerComponent(props) {
     return (
         <div className="personal-data-container">
             <div className="personal-data-container-row-1">
-                <p className="personal-data-container-title">Личные данные пользователя</p>
+                <AccountPageCommonTitleComponent title={"Личные данные пользователя"} />
             </div>
             <div className="personal-data-container-row-2">
-                <RolesListComponent title="Роли" value={roles}></RolesListComponent>
                 <DisabledInputComponent title="Логин" value={login}></DisabledInputComponent>
                 <DisabledInputComponent title="Имя" value={firstName}></DisabledInputComponent>
                 <DisabledInputComponent title="Фамилия" value={lastName}></DisabledInputComponent>
+                <RolesListComponent title="Роли" value={roles}></RolesListComponent>
             </div>
         </div>
     )

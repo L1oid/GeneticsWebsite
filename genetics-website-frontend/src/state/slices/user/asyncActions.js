@@ -105,3 +105,18 @@ export const changePassword = createAsyncThunk(
         }
     }
 );
+
+export const registrationUser = createAsyncThunk(
+    "user/registrationUser",
+    async function(_, {rejectWithValue, getState, dispatch}) {
+        try {
+
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);

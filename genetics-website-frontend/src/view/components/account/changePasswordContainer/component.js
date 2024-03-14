@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
 
 import './style.css';
 import EnabledInputComponent from "../enabledInput/component";
 import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
 import {changePassword} from "../../../../state/slices/user/asyncActions";
+import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
+import AccountCommonButtonComponent from "../accountCommonButton/component";
+import AccountPageCommonTitleComponent from "../accountPagesCommonTitle/component";
 
 
 function ChangePasswordContainerComponent(props) {
@@ -16,7 +19,6 @@ function ChangePasswordContainerComponent(props) {
 
     const location = useLocation();
     const dispatch = useDispatch();
-    const {status, error, success} = useSelector(state => state.user);
 
     useEffect(() => {
         dispatch(clearErrorAndStatus());
@@ -41,7 +43,7 @@ function ChangePasswordContainerComponent(props) {
     return (
         <div className="change-password-container">
             <div className="change-password-container-row-1">
-                <p className="change-password-container-title">Смена пароля</p>
+                <AccountPageCommonTitleComponent title={"Смена пароля"}/>
             </div>
             <div className="change-password-container-row-2">
                 <div className="change-password-window">
@@ -60,15 +62,10 @@ function ChangePasswordContainerComponent(props) {
                         type={"password"}
                         value={repeatPassword}
                         handle={(e) => setRepeatPassword(e.target.value)}/>
-                    <button className={`change-password-button ${status === "loading" ? "disabled" : ""}`}
-                            onClick={changePasswordHandle}
-                            disabled={status === "loading"}>Сменить пароль
-                    </button>
-                    <div
-                        className={`change-password-error-window ${error || success ? 'change-password-error-visible' : 'change-password-error-hidden'}`}>
-                        {error && <p className="change-password-error-text">{error}</p>}
-                        {success && <p className="change-password-error-text">{success}</p>}
-                    </div>
+                    <AccountCommonButtonComponent
+                        handle={changePasswordHandle}
+                        title={"Сменить пароль"}/>
+                    <ErrorAndSuccessWindowComponent />
                 </div>
             </div>
         </div>

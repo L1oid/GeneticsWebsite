@@ -1,37 +1,41 @@
-.roles-list-content {
+.select-roles-content {
     display: flex;
     margin-bottom: 15px;
 }
 
-.roles-list-content-text {
+.select-roles-content-text {
     color: #434343;
     font-size: 18px;
     font-weight: 600;
     width: 25%;
 }
 
-.roles-list-container {
+.select-roles-content-checkboxes {
     width: 75%;
 }
 
-.roles-list-items {
+.select-roles-content-items {
     display: flex;
     width: fit-content;
 }
 
-.roles-list-item {
+.select-roles-content-item {
     font-size: 18px;
     font-weight: 600;
     color: #434343;
     margin-right: 10px;
 }
 
+.select-roles-content-item-checkbox {
+    margin-right: 5px;
+}
+
 @media screen and (min-width: 0px) and (max-width: 1099px) {
-    .roles-list-items {
+    .select-roles-content-items {
         flex-direction: column;
         float: right;
     }
-    .roles-list-item {
+    .select-roles-content-item {
         margin-bottom: 10px;
         margin-right: 0;
     }

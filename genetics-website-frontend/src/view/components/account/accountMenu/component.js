@@ -4,12 +4,12 @@ import './style.css';
 import {Link} from "react-router-dom";
 import {removeUser} from "../../../../state/slices/user/userSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {ADMINISTRATION} from "../../../../state/consts/roles";
+import {ADMINISTRATOR} from "../../../../state/consts/roles";
 
 function AccountMenuComponent(props) {
     const dispatch = useDispatch();
     const {roles} = useSelector(state => state.user)
-    const isAdmin = roles.includes(ADMINISTRATION);
+    const isAdmin = roles.includes(ADMINISTRATOR);
 
     return (
         <div className="account-menu">

@@ -56,7 +56,7 @@ export const setChangePasswordError = (state, action) => {
         case 400:
             switch (action.payload.text) {
                 case SHORT_PASSWORD:
-                    state.error = "Длина пароля должна быть не менее 8 символов";
+                    state.error = "Длина пароля должна быть не менее 6 символов";
                     break;
                 case PASSWORD_INCLUDES_SPACES:
                     state.error = "Пароль не должен содержать пробелы";

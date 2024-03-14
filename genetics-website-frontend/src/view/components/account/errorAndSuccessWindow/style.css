@@ -1,0 +1,27 @@
+.error-and-success-window {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 20px;
+    background-color: #E1E1E1;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, height 0.5s ease;
+}
+
+.error-and-success-window-visible {
+    opacity: 1;
+    height: auto;
+}
+
+.error-and-success-window-hidden {
+    opacity: 0;
+    height: 0;
+}
+
+.error-and-success-window-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FF4300;
+}
