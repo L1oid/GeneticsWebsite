@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {authUser, changePassword} from "./asyncActions";
-import {setAuthError, setChangePasswordError} from "./errorHandles";
+import {authUser, changePassword, registrationUser} from "./asyncActions";
+import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandles";
 import {clearErrorAndStatusReducer, removeUserReducer, setUserReducer} from "./reducers";
 
 const userSlice = createSlice({
@@ -48,6 +48,18 @@ const userSlice = createSlice({
             state.success = "Пароль успешно изменен";
         })
         builder.addCase(changePassword.rejected, (setChangePasswordError))
+
+        builder.addCase(registrationUser.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(registrationUser.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Пользователь успешно создан";
+        })
+        builder.addCase(registrationUser.rejected, (setRegistrationUserError))
     }
 });
 

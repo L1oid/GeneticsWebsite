@@ -5,31 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountCommonButton/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountCommonButton/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountPagesCommonTitle/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountPagesCommonTitle/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/errorAndSuccessWindow/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/errorAndSuccessWindow/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/selectRoles/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/selectRoles/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/roles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/user/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/user/errorHandles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/errorHandles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/loginContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/user/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/userSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/rolesList/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/rolesList/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/rolesList/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/rolesList/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/registrationUser/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/registrationUser/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/selectRoles/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/selectRoles/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/selectRoles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/selectRoles/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,30 +51,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lloid/Documents/GitHub/GeneticsWebsite/genetics-website-frontend&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/lloid/AppData/Roaming/JetBrains/IntelliJIdea2023.3/node/node-v18.15.0-win-x64/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lloid/Documents/GitHub/GeneticsWebsite/genetics-website-frontend",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/lloid/AppData/Roaming/JetBrains/IntelliJIdea2023.3/node/node-v18.15.0-win-x64/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lloid\Documents\GitHub\GeneticsWebsite\genetics-website-frontend\public" />
@@ -170,6 +155,7 @@
       <workItem from="1710231363809" duration="4134000" />
       <workItem from="1710236552498" duration="7441000" />
       <workItem from="1710385475970" duration="9161000" />
+      <workItem from="1710558811980" duration="7228000" />
     </task>
     <servers />
   </component>

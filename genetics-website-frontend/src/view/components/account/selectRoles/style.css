@@ -20,6 +20,7 @@
 }
 
 .select-roles-content-item {
+    cursor: pointer;
     font-size: 18px;
     font-weight: 600;
     color: #434343;
@@ -28,6 +29,12 @@
 
 .select-roles-content-item-checkbox {
     margin-right: 5px;
+    cursor: pointer;
+}
+
+.select-roles-content-item-label {
+    user-select: none;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 0px) and (max-width: 1099px) {

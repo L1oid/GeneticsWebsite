@@ -1,7 +1,7 @@
 import React from 'react';
 
 import "./style.css"
-import {ADMINISTRATOR, MODERATOR} from "../../../../state/consts/roles";
+import {ADMINISTRATOR, MODERATOR, STUDENT, TEACHER} from "../../../../state/consts/roles";
 
 function RolesListComponent(props) {
 
@@ -10,6 +10,10 @@ function RolesListComponent(props) {
             return "Администратор";
         } else if (role === MODERATOR) {
             return "Модератор";
+        } else if (role === TEACHER) {
+            return "Преподаватель";
+        } else if (role === STUDENT) {
+            return "Студент";
         } else {
             return role;
         }

@@ -11,11 +11,9 @@ import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 import SelectRolesComponent from "../selectRoles/component";
 
 import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {registrationUser} from "../../../../state/slices/user/asyncActions";
 
 function RegistrationUserContainerComponent(props) {
-
-    const location = useLocation();
-    const dispatch = useDispatch();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -24,12 +22,32 @@ function RegistrationUserContainerComponent(props) {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
 
+    const location = useLocation();
+    const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(clearErrorAndStatus());
     }, [dispatch, location]);
 
+    function clearInputs() {
+        setUsername("");
+        setPassword("");
+        setRoleNames([]);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+    }
+
     function registrationUserHandle() {
-        return roleNames
+        dispatch(registrationUser({
+            username: username,
+            password: password,
+            roleNames: roleNames,
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        }));
+        clearInputs()
     }
 
     return (
@@ -65,6 +83,7 @@ function RegistrationUserContainerComponent(props) {
                         value={lastName}
                         handle={(e) => setLastName(e.target.value)}/>
                     <SelectRolesComponent
+                        roles={roleNames}
                         handle={setRoleNames} />
                     <AccountCommonButtonComponent
                         title={"Зарегистрировать"}
