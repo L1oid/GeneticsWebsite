@@ -4,9 +4,9 @@ import {useDispatch} from "react-redux";
 
 import './style.css';
 
-import EnabledInputComponent from "../enabledInput/component";
-import AccountPageCommonTitleComponent from "../accountPagesCommonTitle/component";
-import AccountCommonButtonComponent from "../accountCommonButton/component";
+import RowInputTextComponent from "../rowInputText/component";
+import AccountPageTitleComponent from "../accountPageTitle/component";
+import AccountPageButtonComponent from "../accountPageButton/component";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 import SelectRolesComponent from "../selectRoles/component";
 
@@ -53,39 +53,44 @@ function RegistrationUserContainerComponent(props) {
     return (
         <div className="registration-user-container">
             <div className="registration-user-container-row-1">
-                <AccountPageCommonTitleComponent title={"Регистрация пользователя"} />
+                <AccountPageTitleComponent title={"Регистрация пользователя"} />
             </div>
             <div className="registration-user-container-row-2">
                 <div className="registration-user-window">
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Логин"}
                         type={"text"}
                         value={username}
+                        disabled={false}
                         handle={(e) => setUsername(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Пароль"}
                         type={"password"}
                         value={password}
+                        disabled={false}
                         handle={(e) => setPassword(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Почта"}
                         type={"email"}
                         value={email}
+                        disabled={false}
                         handle={(e) => setEmail(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Имя"}
                         type={"text"}
                         value={firstName}
+                        disabled={false}
                         handle={(e) => setFirstName(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Фамилия"}
                         type={"text"}
                         value={lastName}
+                        disabled={false}
                         handle={(e) => setLastName(e.target.value)}/>
                     <SelectRolesComponent
                         roles={roleNames}
                         handle={setRoleNames} />
-                    <AccountCommonButtonComponent
+                    <AccountPageButtonComponent
                         title={"Зарегистрировать"}
                         handle={registrationUserHandle}/>
                     <ErrorAndSuccessWindowComponent/>

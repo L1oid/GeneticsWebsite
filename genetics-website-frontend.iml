@@ -7,5 +7,10 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="materialize" level="application" />
+    <orderEntry type="library" name="react-quill" level="application" />
+    <orderEntry type="library" name="react" level="application" />
+    <orderEntry type="library" name="react-dom" level="application" />
+    <orderEntry type="library" name="babel-standalone" level="application" />
+    <orderEntry type="library" name="quill" level="application" />
   </component>
 </module>

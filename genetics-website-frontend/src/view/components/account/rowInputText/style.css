@@ -1,33 +1,28 @@
-.disabled-input-content {
+.enabled-input-content {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.disabled-input-content-text {
+.enabled-input-content-text {
     color: #434343;
     font-size: 18px;
     font-weight: 600;
     width: 25%;
 }
 
-.disabled-input-content-input {
+.enabled-input-content-input {
     width: 75%;
-    padding: 5px 5px;
-    border: 2px solid #434343;
-    border-radius: 4px;
-    font-size: 18px;
-    color: #434343;
 }
 
 @media screen and (min-width: 0px) and (max-width: 1099px) {
-    .disabled-input-content {
+    .enabled-input-content {
         display: block;
     }
-    .disabled-input-content-text {
+    .enabled-input-content-text {
         width: 100%;
     }
-    .disabled-input-content-input {
+    .enabled-input-content-input {
         width: 100%;
     }
 }

@@ -1,0 +1,13 @@
+.create-news-container-row-2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-news-title-input {
+    margin-bottom: 15px;
+}
+
+.create-news-image-warning {
+    font-size: 18px;
+    color: #FF4300;
+}

@@ -3,16 +3,16 @@ import React from "react";
 
 import "./style.css"
 
-function AccountCommonButtonComponent(props) {
+function AccountPageButtonComponent(props) {
 
     const {status} = useSelector(state => state.user);
 
     return (
-        <button className={`account-common-button ${status === "loading" ? "disabled" : ""}`}
+        <button className={`account-page-button ${status === "loading" ? "disabled" : ""}`}
                 onClick={props.handle}
                 disabled={status === "loading"}>{props.title}
         </button>
     )
 }
 
-export default AccountCommonButtonComponent;
+export default AccountPageButtonComponent;

@@ -16,6 +16,7 @@ import LoginPage from "./view/pages/public/login/page";
 import PersonalDataPage from "./view/pages/private/personalData/page";
 import ChangePasswordPage from "./view/pages/private/changePassword/page";
 import RegistrationUserPage from "./view/pages/private/registrationUser/page";
+import CreateNewsPage from "./view/pages/private/createNews/page";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                         <Route index element={<PersonalDataPage />} />
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
                         <Route path="/account/registration-user/" element={<RegistrationUserPage />} />
+                        <Route path="/account/create-news/" element={<CreateNewsPage />} />
                     </Route>
                 </Route>
             </Routes>

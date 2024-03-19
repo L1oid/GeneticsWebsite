@@ -3,12 +3,12 @@ import {useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
 
 import './style.css';
-import EnabledInputComponent from "../enabledInput/component";
+import RowInputTextComponent from "../rowInputText/component";
 import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
 import {changePassword} from "../../../../state/slices/user/asyncActions";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
-import AccountCommonButtonComponent from "../accountCommonButton/component";
-import AccountPageCommonTitleComponent from "../accountPagesCommonTitle/component";
+import AccountPageButtonComponent from "../accountPageButton/component";
+import AccountPageTitleComponent from "../accountPageTitle/component";
 
 
 function ChangePasswordContainerComponent(props) {
@@ -43,26 +43,29 @@ function ChangePasswordContainerComponent(props) {
     return (
         <div className="change-password-container">
             <div className="change-password-container-row-1">
-                <AccountPageCommonTitleComponent title={"Смена пароля"}/>
+                <AccountPageTitleComponent title={"Смена пароля"}/>
             </div>
             <div className="change-password-container-row-2">
                 <div className="change-password-window">
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Старый пароль"}
                         type={"password"}
                         value={oldPassword}
+                        disabled={false}
                         handle={(e) => setOldPassword(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Новый пароль"}
                         type={"password"}
                         value={password}
+                        disabled={false}
                         handle={(e) => setPassword(e.target.value)}/>
-                    <EnabledInputComponent
+                    <RowInputTextComponent
                         title={"Повторите пароль"}
                         type={"password"}
                         value={repeatPassword}
+                        disabled={false}
                         handle={(e) => setRepeatPassword(e.target.value)}/>
-                    <AccountCommonButtonComponent
+                    <AccountPageButtonComponent
                         handle={changePasswordHandle}
                         title={"Сменить пароль"}/>
                     <ErrorAndSuccessWindowComponent />

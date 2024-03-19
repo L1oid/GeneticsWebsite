@@ -29,7 +29,7 @@
     padding-right: 10px;
 }
 
-@media screen and (min-width: 0px) and (max-width: 799px) {
+@media screen and (min-width: 0px) and (max-width: 1099px) {
     .account-container-row-2 {
         display: block;
     }
@@ -40,16 +40,6 @@
 
     .account-container-column-2 {
         width: 100%;
-    }
-}
-
-@media screen and (min-width: 800px) and (max-width: 1099px) {
-    .account-container-column-1 {
-        width: 35%;
-    }
-
-    .account-container-column-2 {
-        width: 65%;
     }
 }
 

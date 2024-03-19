@@ -1,0 +1,15 @@
+.text-editor {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+
+.quill {
+    .ql-toolbar {
+        border: 2px solid #434343;
+    }
+    .ql-container {
+        border: 2px solid #434343;
+        font-size: 18px;
+    }
+}
