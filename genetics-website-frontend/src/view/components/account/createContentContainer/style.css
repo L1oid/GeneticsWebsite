@@ -1,0 +1,27 @@
+.create-content-container-row-2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-content-title-input {
+    margin-bottom: 15px;
+}
+
+.create-content-image-warning {
+    font-size: 18px;
+    color: #FF4300;
+}
+
+.create-content-type {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.create-content-news-options {
+    display: none;
+    padding-left: 15px;
+}
+
+.create-content-news-options.visible {
+    display: block;
+}

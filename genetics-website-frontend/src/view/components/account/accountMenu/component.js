@@ -47,7 +47,7 @@ function AccountMenuComponent(props) {
                     <Link className={"account-menu-button"}
                           to={"/account/create-news"}>
                         <span className="material-symbols-outlined account-icon">news</span>
-                        Создание новости
+                        Создание новостей и статей
                     </Link>
                 </div>
             )}

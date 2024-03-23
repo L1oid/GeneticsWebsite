@@ -1,0 +1,14 @@
+.slider-checkbox-container {
+    display: flex;
+    user-select: none;
+    color: #434343;
+    font-size: 18px;
+    font-weight: 600;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-checkbox-text {
+    padding-right: 5px;
+}

@@ -3,14 +3,14 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 import {MODERATOR} from "../../../../state/consts/roles";
-import CreateNewsContainerComponent from "../../../components/account/createNewsContainer/component";
+import CreateContentContainerComponent from "../../../components/account/createContentContainer/component";
 
 function CreateNewsPage(props) {
     const {roles} = useSelector(state => state.user)
     const isModerator = roles.includes(MODERATOR);
 
     return isModerator ? (
-        <CreateNewsContainerComponent />
+        <CreateContentContainerComponent />
     ) : (
         <Navigate to="/account" />
     )
