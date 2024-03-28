@@ -19,12 +19,6 @@ function BurgerMenuComponent(props) {
                     <Link to="/science" className='burger-menu-button'>НАУКА</Link>
                 </li>
                 <li className="burger-menu-element">
-                    <Link to="/education" className='burger-menu-button'>ОБРАЗОВАНИЕ</Link>
-                </li>
-                <li className="burger-menu-element">
-                    <Link to="/" className='burger-menu-button'>О КАФЕДРЕ</Link>
-                </li>
-                <li className="burger-menu-element">
                     {isAuth ? (
                         <Link to="/account" className='burger-menu-button'>ЛИЧНЫЙ КАБИНЕТ</Link>
                     ) : (

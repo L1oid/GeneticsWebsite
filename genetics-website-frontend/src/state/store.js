@@ -8,32 +8,22 @@ import {
     PURGE,
     REGISTER
 } from 'redux-persist'
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 
-import newsReducer from "./slices/newsSlice";
-import layoutReducer from "./slices/layoutSlice";
+import contentReducer from "./slices/content/contentSlice";
+import layoutReducer from "./slices/layout/layoutSlice";
 import scienceReducer from "./slices/scienceSlice";
 import userReducer from "./slices/user/userSlice";
 
 const rootReducer = combineReducers({
-    news: newsReducer,
+    content: contentReducer,
     layout: layoutReducer,
     science: scienceReducer,
     user: userReducer
 });
 
-const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['news', 'layout', 'science']
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

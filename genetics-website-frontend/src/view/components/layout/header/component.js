@@ -3,7 +3,7 @@ import React from 'react';
 import './style.css';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {saveBurgerMenuStatus} from "../../../../state/slices/layoutSlice";
+import {saveBurgerMenuStatus} from "../../../../state/slices/layout/layoutSlice";
 
 function HeaderComponent(props) {
     const dispatch = useDispatch();

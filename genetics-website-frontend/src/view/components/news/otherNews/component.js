@@ -5,12 +5,12 @@ import {Link, useNavigate} from "react-router-dom";
 import './style.css';
 
 import events_list from '../../../../data/events_list'
-import {fetchNews, clearNews} from "../../../../state/slices/newsSlice";
+import {fetchNews, clearNews} from "../../../../state/slices/content/contentSlice";
 
 function OtherNewsComponent() {
 
     const navigate = useNavigate();
-    const news_list = useSelector(state => state.news.news_list);
+    const news_list = useSelector(state => state.content.news_list);
     const dispatch = useDispatch();
 
     useEffect(() => {

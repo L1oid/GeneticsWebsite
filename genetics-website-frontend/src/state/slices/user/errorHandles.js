@@ -7,7 +7,7 @@ import {
     USER_NOT_FOUND, USERNAME_INCLUDES_SPACES,
     WRONG_CREDENTIALS
 } from "../../consts/errorText";
-import {removeUserReducer} from "./reducers";
+import {globalExit} from "../../globalExit";
 
 export const setAuthError = (state, action) => {
     state.status = "rejected";
@@ -79,7 +79,7 @@ export const setChangePasswordError = (state, action) => {
                     break;
                 case CHANGE_OTHER_USER_PASSWORD:
                     state.error = "Попытка изменить пароль другого пользователя";
-                    removeUserReducer(state);
+                    globalExit(state);
                     break;
                 default:
                     state.error = "Неизвестная ошибка";
@@ -151,11 +151,11 @@ export const setRegistrationUserError = (state, action) => {
             switch (action.payload.text) {
                 case NO_AUTH_HEADER:
                     state.error = "Отсутствует заголовок авторизации"
-                    removeUserReducer(state);
+                    globalExit(state);
                     break;
                 case USER_DONT_HAVE_ADMIN_PRIVILEGES:
                     state.error = "У вас нет прав на это действие"
-                    removeUserReducer(state);
+                    globalExit(state);
                     break;
                 default:
                     state.error = "Неизвестная ошибка"

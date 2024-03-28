@@ -4,11 +4,11 @@ import {Link, useNavigate} from "react-router-dom";
 
 import './style.css';
 
-import {fetchNews, clearNews} from "../../../../state/slices/newsSlice";
+import {fetchNews, clearNews} from "../../../../state/slices/content/contentSlice";
 import BreadcrumpComponent from "../../common/breadcrump/component";
 
 function ListNewsComponent() {
-    const news_list = useSelector(state => state.news.news_list);
+    const news_list = useSelector(state => state.content.news_list);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

@@ -3,6 +3,13 @@ import {createSlice} from "@reduxjs/toolkit";
 import {authUser, changePassword, registrationUser} from "./asyncActions";
 import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandles";
 import {clearErrorAndStatusReducer, removeUserReducer, setUserReducer} from "./reducers";
+import storage from "redux-persist/lib/storage";
+import {persistReducer} from "redux-persist";
+
+const userPersistConfig = {
+    key: 'user',
+    storage: storage
+};
 
 const userSlice = createSlice({
     name: 'user',
@@ -65,4 +72,6 @@ const userSlice = createSlice({
 
 export const { setUser, removeUser , clearErrorAndStatus} = userSlice.actions;
 
-export default userSlice.reducer;
+const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
+
+export default persistedUserReducer;

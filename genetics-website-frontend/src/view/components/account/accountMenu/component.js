@@ -5,12 +5,18 @@ import {Link} from "react-router-dom";
 import {removeUser} from "../../../../state/slices/user/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {ADMINISTRATOR, MODERATOR} from "../../../../state/consts/roles";
+import {clearPreviewContent} from "../../../../state/slices/content/contentSlice";
 
 function AccountMenuComponent(props) {
     const dispatch = useDispatch();
     const {roles} = useSelector(state => state.user)
     const isAdmin = roles.includes(ADMINISTRATOR);
     const isModerator = roles.includes(MODERATOR);
+
+    function exit() {
+        dispatch(removeUser());
+        dispatch(clearPreviewContent());
+    }
 
     return (
         <div className="account-menu">
@@ -47,12 +53,12 @@ function AccountMenuComponent(props) {
                     <Link className={"account-menu-button"}
                           to={"/account/create-news"}>
                         <span className="material-symbols-outlined account-icon">news</span>
-                        Создание новостей и статей
+                        Создание контента
                     </Link>
                 </div>
             )}
             <button className={"account-menu-button exit"}
-                    onClick={(e) => dispatch(removeUser())}>
+                    onClick={exit}>
                 <span className="material-symbols-outlined account-icon exit">logout</span>
                 Выйти
             </button>

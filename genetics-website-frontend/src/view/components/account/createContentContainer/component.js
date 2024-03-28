@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 
 import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {
+    setPreviewContentForSlider,
+    setPreviewContentText,
+    setPreviewContentTitle,
+    setPreviewContentType
+} from "../../../../state/slices/content/contentSlice";
+import {ARTICLE, NEWS} from "../../../../state/consts/contentTypes";
 
 import AccountPageTitleComponent from "../accountPageTitle/component";
 import TextEditorComponent from "../textEditor/component";
@@ -12,62 +19,101 @@ import AccountPageSubtitleComponent from "../accountPageSubtitle/component";
 import AccountPageInputComponent from "../accountPageInput/component";
 import ImageListComponent from "../imageList/component";
 import TypeContentSelectComponent from "../typeContentSelect/component";
-import {NEWS} from "../../../../state/consts/contentTypes";
 import SliderCheckboxComponent from "../sliderCheckbox/component";
+import AccountPageButtonComponent from "../accountPageButton/component";
+import PreviewContentComponent from "../../news/previewContent/component";
 
 function CreateContentContainerComponent(props) {
 
     const location = useLocation();
     const dispatch = useDispatch();
 
-    const [images, setImages] = useState([]);
-    const [contentType, setContentType] = useState(NEWS);
-    const [contentTypeText, setContentTypeText] = useState("");
+    const previewContent = useSelector(state => state.content.previewContent)
 
-    useEffect(() => {
-        if (contentType === NEWS) {
-            setContentTypeText("новости")
-        } else {
-            setContentTypeText("статьи")
-        }
-    }, [contentType]);
+    const [contentText, setContentText] = useState(previewContent.text);
+    const [contentImages, setContentImages] = useState([]);
 
     useEffect(() => {
         dispatch(clearErrorAndStatus());
     }, [dispatch, location]);
 
+    useEffect(() => {
+        dispatch(setPreviewContentText(contentText));
+    }, [dispatch, contentText]);
 
     const handleImageChange = (event) => {
         const fileList = event.target.files;
         const imagesArray = Array.from(fileList);
-        setImages(prevImages => [...prevImages, ...imagesArray]);
+        setContentImages(prevImages => [...prevImages, ...imagesArray]);
     };
+
+    const handleImageDelete = (imageIndex) => {
+        setContentImages(prevImages => {
+            return prevImages.filter((_, index) => index !== imageIndex);
+        });
+    };
+
+    const handleButtonConfirm = () => {
+        if (previewContent.type === NEWS) {
+
+        } else if (previewContent.type === ARTICLE) {
+
+        }
+    }
 
     return (
         <div className="create-content-container">
             <div className="create-content-container-row-1">
-                <AccountPageTitleComponent title={"Создание " + contentTypeText} />
+                <AccountPageTitleComponent
+                    title="Создание контента" />
             </div>
             <div className="create-content-container-row-2">
-                <AccountPageSubtitleComponent title={"Тип"}/>
+                <AccountPageSubtitleComponent
+                    title={"Тип"}/>
                 <div className="create-content-type">
                     <TypeContentSelectComponent
-                        setContentType={setContentType}
-                        contentType={contentType}/>
-                    <div className={contentType === NEWS ? "create-content-news-options visible" : "create-content-news-options"}>
-                        <SliderCheckboxComponent/>
+                        setContentType={(e) => dispatch(setPreviewContentType(e.target.value))}
+                        contentType={previewContent.type}/>
+                    <div
+                        className={previewContent.type === NEWS ? "create-content-news-options visible" : "create-content-news-options"}>
+                        <SliderCheckboxComponent
+                            checked={previewContent.forSlider}
+                            handle={() => dispatch(setPreviewContentForSlider(!previewContent.forSlider))}/>
                     </div>
                 </div>
-                <AccountPageSubtitleComponent title={"Заголовок"}/>
+                <AccountPageSubtitleComponent
+                    title={"Заголовок"}/>
                 <div className="create-content-title-input">
-                    <AccountPageInputComponent/>
+                    <AccountPageInputComponent
+                        type="text"
+                        value={previewContent.title}
+                        handle={(e) => dispatch(setPreviewContentTitle(e.target.value))}
+                        disabled={false}/>
                 </div>
-                <AccountPageSubtitleComponent title={"Содержание"}/>
-                <TextEditorComponent/>
-                <AccountPageSubtitleComponent title={"Изображения"}/>
-                <ImageListComponent images={images} handle={handleImageChange} setImages={setImages}/>
+                <AccountPageSubtitleComponent
+                    title={"Содержание"}/>
+                <TextEditorComponent
+                    value={contentText}
+                    setValue={setContentText}/>
+                <div className={previewContent.forSlider === true ? "create-content-news-for-slider visible" : "create-content-news-for-slider"}>
+                    <AccountPageSubtitleComponent
+                        title={"Изображение для слайдера"}/>
+                </div>
+                <AccountPageSubtitleComponent
+                    title={"Основные изображения"}/>
+                <ImageListComponent
+                    images={contentImages}
+                    handleImageChange={handleImageChange}
+                    handleImageDelete={handleImageDelete}/>
                 <p className="create-content-image-warning">Для корректного отображения, все изображения должны быть
                     одного размера</p>
+                <AccountPageSubtitleComponent
+                    title={"Предпросмотр"}/>
+                <PreviewContentComponent
+                    images={contentImages.map(image => URL.createObjectURL(image))}/>
+                <AccountPageButtonComponent
+                    title={"Подтвердить"}
+                    handle={handleButtonConfirm}/>
             </div>
         </div>
     )

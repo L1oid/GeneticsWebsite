@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import "./style.css"
 
 function TextEditorComponent(props) {
-
-    const [value, setValue] = useState('');
 
     const modules = {
         toolbar: [
@@ -24,8 +22,8 @@ function TextEditorComponent(props) {
             <ReactQuill
                 className="editor-input"
                 theme="snow"
-                value={value}
-                onChange={setValue}
+                value={props.value}
+                onChange={props.setValue}
                 modules={modules}/>
         </div>
     );

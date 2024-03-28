@@ -1,0 +1,9 @@
+.preview-content-container {
+    border-top: 2px solid #434343;
+    border-bottom: 2px solid #434343;
+}
+
+.preview-content-padding {
+    padding-right: 0;
+    padding-left: 0;
+}

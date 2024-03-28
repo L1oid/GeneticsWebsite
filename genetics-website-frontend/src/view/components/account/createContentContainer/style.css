@@ -8,6 +8,7 @@
 }
 
 .create-content-image-warning {
+    margin-bottom: 15px;
     font-size: 18px;
     color: #FF4300;
 }
@@ -23,5 +24,13 @@
 }
 
 .create-content-news-options.visible {
+    display: block;
+}
+
+.create-content-news-for-slider {
+    display: none;
+}
+
+.create-content-news-for-slider.visible {
     display: block;
 }

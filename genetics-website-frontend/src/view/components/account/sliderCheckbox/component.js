@@ -13,6 +13,8 @@ function SliderCheckboxComponent(props) {
                 className="slider-checkbox-input"
                 type='checkbox'
                 id='sliderCheckbox'
+                checked={props.checked}
+                onChange={props.handle}
             />
         </div>
     )

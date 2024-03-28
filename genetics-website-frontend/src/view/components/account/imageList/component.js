@@ -1,13 +1,11 @@
 import React from 'react';
 import './style.css';
 import FileLoaderComponent from "../fileLoader/component";
+import {useSelector} from "react-redux";
 
 function ImageListComponent(props) {
-    const handleImageDelete = (imageIndex) => {
-        props.setImages(prevImages => {
-            return prevImages.filter((_, index) => index !== imageIndex);
-        });
-    };
+
+    const forSlider = useSelector(state => state.content.previewContent.forSlider)
 
     return (
         <div className="image-list-container">
@@ -21,12 +19,12 @@ function ImageListComponent(props) {
                     {imageIndex === 0 && <span className="title-image-label">Титульное</span>}
                     <button
                         className="image-list-item-close-button"
-                        onClick={() => handleImageDelete(imageIndex)}>
+                        onClick={() => props.handleImageDelete(imageIndex)}>
                         <span className="material-symbols-outlined close-image">close</span>
                     </button>
                 </div>
             ))}
-            <FileLoaderComponent handle={props.handle} accept={"image/*"} />
+            <FileLoaderComponent handle={props.handleImageChange} accept={"image/*"} />
         </div>
     );
 }
