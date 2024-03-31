@@ -1,11 +1,8 @@
 import React from 'react';
 import './style.css';
 import FileLoaderComponent from "../fileLoader/component";
-import {useSelector} from "react-redux";
 
 function ImageListComponent(props) {
-
-    const forSlider = useSelector(state => state.content.previewContent.forSlider)
 
     return (
         <div className="image-list-container">
@@ -24,7 +21,7 @@ function ImageListComponent(props) {
                     </button>
                 </div>
             ))}
-            <FileLoaderComponent handle={props.handleImageChange} accept={"image/*"} />
+            <FileLoaderComponent handleImage={props.handleImageChange} accept={"image/*"} />
         </div>
     );
 }

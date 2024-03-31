@@ -22,6 +22,7 @@ import TypeContentSelectComponent from "../typeContentSelect/component";
 import SliderCheckboxComponent from "../sliderCheckbox/component";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import PreviewContentComponent from "../../news/previewContent/component";
+import SliderImageComponent from "../sliderImage/component";
 
 function CreateContentContainerComponent(props) {
 
@@ -32,6 +33,7 @@ function CreateContentContainerComponent(props) {
 
     const [contentText, setContentText] = useState(previewContent.text);
     const [contentImages, setContentImages] = useState([]);
+    const [contentSliderImage, setContentSliderImage] = useState(null);
 
     useEffect(() => {
         dispatch(clearErrorAndStatus());
@@ -41,8 +43,15 @@ function CreateContentContainerComponent(props) {
         dispatch(setPreviewContentText(contentText));
     }, [dispatch, contentText]);
 
-    const handleImageChange = (event) => {
-        const fileList = event.target.files;
+    const handleSliderImageChange = (file) => {
+        setContentSliderImage(file);
+    };
+
+    const handleSliderImageDelete = () => {
+        setContentSliderImage(null)
+    };
+
+    const handleImageChange = (fileList) => {
         const imagesArray = Array.from(fileList);
         setContentImages(prevImages => [...prevImages, ...imagesArray]);
     };
@@ -98,6 +107,10 @@ function CreateContentContainerComponent(props) {
                 <div className={previewContent.forSlider === true ? "create-content-news-for-slider visible" : "create-content-news-for-slider"}>
                     <AccountPageSubtitleComponent
                         title={"Изображение для слайдера"}/>
+                    <SliderImageComponent
+                        sliderImage={contentSliderImage}
+                        handleSliderImageChange={handleSliderImageChange}
+                        handleSliderImageDelete={handleSliderImageDelete}/>
                 </div>
                 <AccountPageSubtitleComponent
                     title={"Основные изображения"}/>

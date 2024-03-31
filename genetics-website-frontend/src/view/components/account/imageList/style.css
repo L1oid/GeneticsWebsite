@@ -20,6 +20,10 @@
     margin: 5px;
 }
 
+.image-list-item-wrapper.for-slider {
+    width: 100%;
+}
+
 .title-image-label {
     position: absolute;
     top: 50%;
