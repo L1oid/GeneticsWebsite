@@ -12,6 +12,7 @@ import {
     setPreviewContentType
 } from "../../../../state/slices/content/contentSlice";
 import {ARTICLE, NEWS} from "../../../../state/consts/contentTypes";
+import {articleCreation} from "../../../../state/slices/content/asyncActions";
 
 import AccountPageTitleComponent from "../accountPageTitle/component";
 import TextEditorComponent from "../textEditor/component";
@@ -22,7 +23,6 @@ import TypeContentSelectComponent from "../typeContentSelect/component";
 import SliderCheckboxComponent from "../sliderCheckbox/component";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import PreviewContentComponent from "../../news/previewContent/component";
-import SliderImageComponent from "../sliderImage/component";
 
 function CreateContentContainerComponent(props) {
 
@@ -31,29 +31,86 @@ function CreateContentContainerComponent(props) {
 
     const previewContent = useSelector(state => state.content.previewContent)
 
+    const [imageWarning, setImageWarning] = useState(" ");
+    const [warningVisible, setWarningVisible] = useState(false);
+
     const [contentText, setContentText] = useState(previewContent.text);
     const [contentImages, setContentImages] = useState([]);
     const [contentSliderImage, setContentSliderImage] = useState(null);
+
+    useEffect(() => {
+        if (warningVisible) {
+            const timeout = setTimeout(() => {
+                setWarningVisible(false);
+            }, 3000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [warningVisible]);
 
     useEffect(() => {
         dispatch(clearErrorAndStatus());
     }, [dispatch, location]);
 
     useEffect(() => {
+        if (previewContent.forSlider === false) {
+            setContentSliderImage(null);
+        }
+    }, [previewContent.forSlider]);
+
+    useEffect(() => {
+        if (previewContent.type === ARTICLE) {
+            dispatch(setPreviewContentForSlider(false))
+        }
+    }, [dispatch, previewContent.type]);
+
+    useEffect(() => {
         dispatch(setPreviewContentText(contentText));
     }, [dispatch, contentText]);
 
-    const handleSliderImageChange = (file) => {
-        setContentSliderImage(file);
+    const showImageWarning = (text) => {
+        setImageWarning(text);
+        setWarningVisible(true);
+    }
+
+    const handleImageChange = (file) => {
+        if (file === undefined) {
+            return
+        }
+        if (contentImages.length < 11) {
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            img.onload = function() {
+                if (previewContent.forSlider === true && contentSliderImage === null) {
+                    if (img.height !== 500 || img.width !== 2000) {
+                        showImageWarning("Размер изображения слайдера должен быть 2000 x 500 пикселей")
+                    } else {
+                        setContentSliderImage(file)
+                    }
+                } else {
+                    if (contentImages.length > 0) {
+                        const tempImg = new Image();
+                        tempImg.src = URL.createObjectURL(contentImages[0]);
+                        tempImg.onload = function () {
+                            if (tempImg.height !== img.height || tempImg.width !== img.width) {
+                                showImageWarning("Размер картинки не совпадает с титульной")
+                            }
+                            else {
+                                setContentImages(prevImages => [...prevImages, file]);
+                            }
+                        }
+                    } else {
+                        setContentImages(prevImages => [...prevImages, file]);
+                    }
+                }
+            };
+        } else {
+            showImageWarning("Вы загрузили максимальное количество картинок")
+        }
     };
 
     const handleSliderImageDelete = () => {
-        setContentSliderImage(null)
-    };
-
-    const handleImageChange = (fileList) => {
-        const imagesArray = Array.from(fileList);
-        setContentImages(prevImages => [...prevImages, ...imagesArray]);
+        setContentSliderImage(null);
     };
 
     const handleImageDelete = (imageIndex) => {
@@ -64,7 +121,16 @@ function CreateContentContainerComponent(props) {
 
     const handleButtonConfirm = () => {
         if (previewContent.type === NEWS) {
-
+            const article = {
+                title: previewContent.title,
+                type: previewContent.type,
+                content: previewContent.text,
+                forSlider: previewContent.forSlider,
+                sliderImage: contentSliderImage,
+                previewImage: contentImages[0],
+                fileList: contentImages.slice(1)
+            }
+            dispatch(articleCreation(article));
         } else if (previewContent.type === ARTICLE) {
 
         }
@@ -104,22 +170,16 @@ function CreateContentContainerComponent(props) {
                 <TextEditorComponent
                     value={contentText}
                     setValue={setContentText}/>
-                <div className={previewContent.forSlider === true ? "create-content-news-for-slider visible" : "create-content-news-for-slider"}>
-                    <AccountPageSubtitleComponent
-                        title={"Изображение для слайдера"}/>
-                    <SliderImageComponent
-                        sliderImage={contentSliderImage}
-                        handleSliderImageChange={handleSliderImageChange}
-                        handleSliderImageDelete={handleSliderImageDelete}/>
-                </div>
                 <AccountPageSubtitleComponent
-                    title={"Основные изображения"}/>
+                    title={"Изображения"}/>
                 <ImageListComponent
+                    sliderImage={contentSliderImage}
                     images={contentImages}
+                    warningVisible={warningVisible}
+                    imageWarning={imageWarning}
+                    handleSliderImageDelete={handleSliderImageDelete}
                     handleImageChange={handleImageChange}
                     handleImageDelete={handleImageDelete}/>
-                <p className="create-content-image-warning">Для корректного отображения, все изображения должны быть
-                    одного размера</p>
                 <AccountPageSubtitleComponent
                     title={"Предпросмотр"}/>
                 <PreviewContentComponent

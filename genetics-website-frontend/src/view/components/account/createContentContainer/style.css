@@ -7,10 +7,9 @@
     margin-bottom: 15px;
 }
 
-.create-content-image-warning {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #FF4300;
+.create-content-image {
+    display: flex;
+    justify-content: space-between;
 }
 
 .create-content-type {

@@ -4,8 +4,9 @@ import {Link, useNavigate} from "react-router-dom";
 
 import './style.css';
 
-import {fetchNews, clearNews} from "../../../../state/slices/content/contentSlice";
+import {clearNews} from "../../../../state/slices/content/contentSlice";
 import BreadcrumpComponent from "../../common/breadcrump/component";
+import {fetchNews} from "../../../../state/slices/content/asyncActions";
 
 function ListNewsComponent() {
     const news_list = useSelector(state => state.content.news_list);

@@ -1,6 +1,7 @@
 export const api = {
-    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    url: "http://genetic.kemsu.ru:8082/geneticsWar/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
-    registrationUser: "api/users/",
+    registrationUser: "api/users",
+    articleCreation: "api/articles"
 }

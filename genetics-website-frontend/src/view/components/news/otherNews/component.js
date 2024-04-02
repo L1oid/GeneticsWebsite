@@ -5,7 +5,8 @@ import {Link, useNavigate} from "react-router-dom";
 import './style.css';
 
 import events_list from '../../../../data/events_list'
-import {fetchNews, clearNews} from "../../../../state/slices/content/contentSlice";
+import {clearNews} from "../../../../state/slices/content/contentSlice";
+import {fetchNews} from "../../../../state/slices/content/asyncActions";
 
 function OtherNewsComponent() {
 

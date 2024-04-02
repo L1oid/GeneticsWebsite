@@ -1,27 +1,15 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import news_list from "../../../data/news_list";
+import {createSlice} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 import {NEWS} from "../../consts/contentTypes";
 import {
     clearNewsReducer,
     clearPreviewContentReducer, setPreviewContentForSliderReducer,
-    setPreviewContentReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer
 } from "./reducers";
-
-export const fetchNews = createAsyncThunk(
-    "news/fetchNews",
-    async function(_, {rejectWithValue}) {
-        const response = news_list;
-        if (response == null) {
-            return rejectWithValue("Server Error !");
-        }
-        const data = response;
-        return data;
-    }
-);
+import {articleCreation, fetchNews} from "./asyncActions";
+import {setArticleCreationError, setFetchNewsError} from "./errorHandlers";
 
 const newsPersistConfig = {
     key: 'news',
@@ -42,7 +30,8 @@ const contentSlice = createSlice({
             text: "<p><br></p>",
         },
         status: null,
-        error: null
+        error: null,
+        success: null
     },
     reducers: {
         clearNews: clearNewsReducer,
@@ -50,30 +39,40 @@ const contentSlice = createSlice({
         setPreviewContentForSlider: setPreviewContentForSliderReducer,
         setPreviewContentTitle: setPreviewContentTitleReducer,
         setPreviewContentText: setPreviewContentTextReducer,
-        setPreviewContent: setPreviewContentReducer,
         clearPreviewContent: clearPreviewContentReducer
     },
     extraReducers: builder => {
+
         builder.addCase(fetchNews.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
+            state.success = null;
         })
         builder.addCase(fetchNews.fulfilled, (state, action) => {
             state.status = 'resolved';
             state.news_list = action.payload;
+            state.error = null;
+            state.success = "Всё круто";
         })
-        builder.addCase(fetchNews.rejected, setError)
+        builder.addCase(fetchNews.rejected, setFetchNewsError)
+
+
+        builder.addCase(articleCreation.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(articleCreation.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Всё круто";
+        })
+        builder.addCase(articleCreation.rejected, setArticleCreationError)
     }
 })
 
-const setError = (state, action) => {
-    state.status = "rejected";
-    state.error = action.payload;
-}
-
 export const {
     clearNews,
-    setPreviewContent,
     clearPreviewContent,
     setPreviewContentType,
     setPreviewContentForSlider,

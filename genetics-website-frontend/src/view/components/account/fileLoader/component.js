@@ -13,8 +13,7 @@ function FileLoaderComponent(props) {
                 id="file-upload"
                 type="file"
                 accept={props.accept}
-                onChange={e => props.handleImage(e.target.files)}
-                multiple
+                onChange={e => props.handleImage(e.target.files[0])}
             />
         </div>
     )

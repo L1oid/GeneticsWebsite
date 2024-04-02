@@ -1,17 +1,10 @@
 import {NEWS} from "../../consts/contentTypes";
 
-export const setPreviewContentReducer = (state, action) => {
-    state.previewContent.type = action.payload.type
-    state.previewContent.forSlider = action.forSlider
-    state.previewContent.title = action.payload.title
-    state.previewContent.text = action.payload.text
-}
-
 export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.type = NEWS
     state.previewContent.forSlider = false
-    state.previewContent.title = "Заголовок"
-    state.previewContent.text = "Содержание"
+    state.previewContent.title = ""
+    state.previewContent.text = "<p><br></p>"
 }
 
 export const clearNewsReducer = (state, action) => {

@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {authUser, changePassword, registrationUser} from "./asyncActions";
-import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandles";
+import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandlers";
 import {clearErrorAndStatusReducer, removeUserReducer, setUserReducer} from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
