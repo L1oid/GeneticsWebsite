@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 
-import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
 import {
+    clearContentErrorStatusSuccess,
     setPreviewContentForSlider,
     setPreviewContentText,
     setPreviewContentTitle,
@@ -23,6 +23,7 @@ import TypeContentSelectComponent from "../typeContentSelect/component";
 import SliderCheckboxComponent from "../sliderCheckbox/component";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import PreviewContentComponent from "../../news/previewContent/component";
+import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 
 function CreateContentContainerComponent(props) {
 
@@ -30,6 +31,7 @@ function CreateContentContainerComponent(props) {
     const dispatch = useDispatch();
 
     const previewContent = useSelector(state => state.content.previewContent)
+    const {error, success, status} = useSelector(state => state.content);
 
     const [imageWarning, setImageWarning] = useState(" ");
     const [warningVisible, setWarningVisible] = useState(false);
@@ -49,7 +51,7 @@ function CreateContentContainerComponent(props) {
     }, [warningVisible]);
 
     useEffect(() => {
-        dispatch(clearErrorAndStatus());
+        dispatch(clearContentErrorStatusSuccess());
     }, [dispatch, location]);
 
     useEffect(() => {
@@ -120,20 +122,16 @@ function CreateContentContainerComponent(props) {
     };
 
     const handleButtonConfirm = () => {
-        if (previewContent.type === NEWS) {
-            const article = {
-                title: previewContent.title,
-                type: previewContent.type,
-                content: previewContent.text,
-                forSlider: previewContent.forSlider,
-                sliderImage: contentSliderImage,
-                previewImage: contentImages[0],
-                fileList: contentImages.slice(1)
-            }
-            dispatch(articleCreation(article));
-        } else if (previewContent.type === ARTICLE) {
-
+        const article = {
+            title: previewContent.title,
+            type: previewContent.type,
+            content: previewContent.text,
+            forSlider: previewContent.forSlider,
+            sliderImage: contentSliderImage,
+            previewImage: contentImages[0],
+            fileList: contentImages.slice(1)
         }
+        dispatch(articleCreation(article));
     }
 
     return (
@@ -185,8 +183,10 @@ function CreateContentContainerComponent(props) {
                 <PreviewContentComponent
                     images={contentImages.map(image => URL.createObjectURL(image))}/>
                 <AccountPageButtonComponent
+                    status={status}
                     title={"Подтвердить"}
                     handle={handleButtonConfirm}/>
+                <ErrorAndSuccessWindowComponent error={error} success={success} />
             </div>
         </div>
     )

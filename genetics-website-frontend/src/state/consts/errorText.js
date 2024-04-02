@@ -1,11 +1,12 @@
+export const SERVER_IS_NOT_RESPONDING = "Server is not responding";
 
-export const PASSWORD_DONT_MATCH= "passwords do not match";
+//user
+export const PASSWORD_DONT_MATCH = "passwords do not match";
 export const CHANGE_OTHER_USER_PASSWORD = "you can’t change other peoples’ passwords";
 export const SHORT_PASSWORD = "the password must be at least 6 characters long";
 export const PASSWORD_INCLUDES_SPACES = "the password must not contain spaces";
 export const PASSWORD_CANT_BE_NULL = "password cannot be null";
 export const OLD_PASSWORD_DONT_MATCH = "Old password doesn’t match";
-export const SERVER_IS_NOT_RESPONDING = "Server is not responding";
 
 
 export const WRONG_CREDENTIALS = "wrong credentials";
@@ -20,3 +21,21 @@ export const USER_DONT_HAVE_ADMIN_PRIVILEGES = "User doesn’t have admin privil
 export const SHORT_USERNAME = "the username must be at least 6 characters long";
 export const USERNAME_INCLUDES_SPACES = "the username must not contain spaces";
 export const INVALID_EMAIL_FORMAT = "invalid email format"
+
+
+//content
+export const CONTENT_NO_AUTH_HEADER_PRESENT = "No Authorization header present";
+export const CONTENT_USER_DONT_HAVE_MODERATOR_PRIVILEGES = "User doesn’t have moderator privileges";
+export const CONTENT_COULD_NOT_GET_USER_ID = "Couldn’t get user id";
+export const CONTENT_FILES_SIZE_TOO_MANY = "Request size exceeds the maximum allowed limit (1 GB)";
+export const CONTENT_TOO_MANY_FILES = "Too many files, there shouldn't be more than 10 (excluding preview image)";
+export const CONTENT_NULL_ARTICLE_FIELDS = "One or more of the fields for the article is null";
+export const CONTENT_EMPTY_ARTICLE_FIELDS = "One or more of the fields for the article is empty";
+export const CONTENT_PREVIEW_IMAGE_IS_NOT_SUPPORTED_FORMAT = "Preview image is not of a supported format";
+export const CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT = "One of the uploaded files is not of a supported format";
+export const CONTENT_SLIDER_IMAGE_IS_NOT_SUPPORTED_FORMAT = "Slider image is not of a supported format";
+export const CONTENT_SLIDER_IMAGE_IS_NULL = "sliderImage is null"
+export const CONTENT_FAILED_TO_SAVE_ARTICLE = "Failed to save article"
+export const CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME = "One or more files in fileList lacks file name, cannot parse its type"
+export const CONTENT_PREVIEW_IMAGE_LACKS_FILE_NAME = "previewImage lacks file name, cannot parse its type"
+export const CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME = "sliderImage lacks file name, cannot parse its type"

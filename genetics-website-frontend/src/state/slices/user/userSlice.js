@@ -2,7 +2,11 @@ import {createSlice} from "@reduxjs/toolkit";
 
 import {authUser, changePassword, registrationUser} from "./asyncActions";
 import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandlers";
-import {clearErrorAndStatusReducer, removeUserReducer, setUserReducer} from "./reducers";
+import {
+    clearUserErrorStatusSuccessReducer,
+    removeUserReducer,
+    setUserReducer
+} from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 
@@ -28,7 +32,7 @@ const userSlice = createSlice({
     reducers: {
         setUser: setUserReducer,
         removeUser: removeUserReducer,
-        clearErrorAndStatus: clearErrorAndStatusReducer
+        clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer
     },
     extraReducers: builder => {
 
@@ -70,7 +74,7 @@ const userSlice = createSlice({
     }
 });
 
-export const { setUser, removeUser , clearErrorAndStatus} = userSlice.actions;
+export const { setUser, removeUser , clearErrorStatusSuccess} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

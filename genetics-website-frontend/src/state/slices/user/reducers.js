@@ -18,7 +18,7 @@ export const setUserReducer = (state, action) => {
     state.roles = action.payload.roles;
 }
 
-export const clearErrorAndStatusReducer = (state) => {
+export const clearUserErrorStatusSuccessReducer = (state) => {
     state.error = null;
     state.status = null;
     state.success = null;

@@ -3,6 +3,7 @@ import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 import {NEWS} from "../../consts/contentTypes";
 import {
+    clearContentErrorStatusSuccessReducer,
     clearNewsReducer,
     clearPreviewContentReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
@@ -35,6 +36,7 @@ const contentSlice = createSlice({
     },
     reducers: {
         clearNews: clearNewsReducer,
+        clearContentErrorStatusSuccess: clearContentErrorStatusSuccessReducer,
         setPreviewContentType: setPreviewContentTypeReducer,
         setPreviewContentForSlider: setPreviewContentForSliderReducer,
         setPreviewContentTitle: setPreviewContentTitleReducer,
@@ -65,7 +67,7 @@ const contentSlice = createSlice({
         builder.addCase(articleCreation.fulfilled, (state, action) => {
             state.status = 'resolved';
             state.error = null;
-            state.success = "Всё круто";
+            state.success = "Контент успешно создан";
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
     }
@@ -77,7 +79,8 @@ export const {
     setPreviewContentType,
     setPreviewContentForSlider,
     setPreviewContentTitle,
-    setPreviewContentText} = contentSlice.actions;
+    setPreviewContentText,
+    clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(newsPersistConfig, contentSlice.reducer);
 export default persistedContentReducer;

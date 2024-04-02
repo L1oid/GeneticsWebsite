@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 
@@ -10,7 +10,7 @@ import AccountPageButtonComponent from "../accountPageButton/component";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 import SelectRolesComponent from "../selectRoles/component";
 
-import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {clearErrorStatusSuccess} from "../../../../state/slices/user/userSlice";
 import {registrationUser} from "../../../../state/slices/user/asyncActions";
 
 function RegistrationUserContainerComponent(props) {
@@ -22,11 +22,13 @@ function RegistrationUserContainerComponent(props) {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
 
+    const {error, success, status} = useSelector(state => state.user);
+
     const location = useLocation();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(clearErrorAndStatus());
+        dispatch(clearErrorStatusSuccess());
     }, [dispatch, location]);
 
     function clearInputs() {
@@ -91,9 +93,10 @@ function RegistrationUserContainerComponent(props) {
                         roles={roleNames}
                         handle={setRoleNames} />
                     <AccountPageButtonComponent
+                        status={status}
                         title={"Зарегистрировать"}
                         handle={registrationUserHandle}/>
-                    <ErrorAndSuccessWindowComponent/>
+                    <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>
             </div>
         </div>

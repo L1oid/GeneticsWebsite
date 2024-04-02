@@ -51,7 +51,9 @@ function ImageListComponent(props) {
                     </button>
                 </div>
             ))}
-            <FileLoaderComponent handleImage={props.handleImageChange} accept={"image/*"}/>
+            {props.images.length < 11 && (
+                <FileLoaderComponent handleImage={props.handleImageChange} accept={"image/jpeg, image/png"}/>
+            )}
             <span className={props.warningVisible === true ? "image-list-warning visible" : "image-list-warning"}>
                 <p className="image-list-warning-text">{props.imageWarning}</p>
             </span>

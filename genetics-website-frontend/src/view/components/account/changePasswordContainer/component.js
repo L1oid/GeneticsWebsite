@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 
 import './style.css';
 import RowInputTextComponent from "../rowInputText/component";
-import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {clearErrorStatusSuccess} from "../../../../state/slices/user/userSlice";
 import {changePassword} from "../../../../state/slices/user/asyncActions";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 import AccountPageButtonComponent from "../accountPageButton/component";
@@ -17,11 +17,13 @@ function ChangePasswordContainerComponent(props) {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [oldPassword, setOldPassword] = useState("");
 
+    const {error, success, status} = useSelector(state => state.user);
+
     const location = useLocation();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(clearErrorAndStatus());
+        dispatch(clearErrorStatusSuccess());
     }, [dispatch, location]);
 
     function clearInputs() {
@@ -66,9 +68,10 @@ function ChangePasswordContainerComponent(props) {
                         disabled={false}
                         handle={(e) => setRepeatPassword(e.target.value)}/>
                     <AccountPageButtonComponent
+                        status={status}
                         handle={changePasswordHandle}
                         title={"Сменить пароль"}/>
-                    <ErrorAndSuccessWindowComponent />
+                    <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>
             </div>
         </div>

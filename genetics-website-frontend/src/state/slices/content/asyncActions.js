@@ -1,14 +1,44 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import news_list from "../../../data/news_list";
-import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText";
+import {
+    CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
+    CONTENT_NULL_ARTICLE_FIELDS,
+    SERVER_IS_NOT_RESPONDING
+} from "../../consts/errorText";
 import {api} from "../../consts/api";
+import {NEWS} from "../../consts/contentTypes";
 
 export const articleCreation = createAsyncThunk(
     "news/articleCreation",
     async function({title, type, content, forSlider, sliderImage, previewImage, fileList}, {rejectWithValue, getState, dispatch}) {
         try {
-            console.log("Kek1")
-            console.log({title, type, content, forSlider, sliderImage, previewImage, fileList})
+            if (type === NEWS) {
+                if (forSlider === true) {
+                    if (title === "" || content === "<p><br></p>" || sliderImage === null || previewImage === undefined) {
+                        return rejectWithValue({
+                            status: 400,
+                            statusText: 'Bad Request',
+                            text: CONTENT_NULL_ARTICLE_FIELDS
+                        });
+                    }
+                } else {
+                    if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
+                        return rejectWithValue({
+                            status: 400,
+                            statusText: 'Bad Request',
+                            text: CONTENT_NULL_ARTICLE_FIELDS
+                        });
+                    }
+                }
+            } else {
+                if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
+                    return rejectWithValue({
+                        status: 400,
+                        statusText: 'Bad Request',
+                        text: CONTENT_NULL_ARTICLE_FIELDS
+                    });
+                }
+            }
             const state = getState();
             /** @namespace state.user **/
             const formData = new FormData();
@@ -19,18 +49,40 @@ export const articleCreation = createAsyncThunk(
             formData.append('forSlider', forSlider);
             formData.append('sliderImage', sliderImage);
             formData.append('previewImage', previewImage);
-            formData.append('fileList', fileList);
+
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                let extension = '';
+                switch (file.type) {
+                    case 'image/jpeg':
+                        extension = '.jpg';
+                        break;
+                    case 'image/png':
+                        extension = '.png';
+                        break;
+                    default:
+                        return rejectWithValue({
+                            status: 400,
+                            statusText: 'Bad Request',
+                            text: CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT
+                        });
+                }
+                formData.append('fileList', file, `file${i + 1}${extension}`);
+            }
 
             const response = await fetch(api.url + api.articleCreation, {
                 method: 'POST',
-                headers: {'Content-Type': 'multipart/form-data', 'Authorization': state.user.token},
-                body: formData // Отправляем formData
+                headers: {'Authorization': state.user.token},
+                body: formData
             });
-
-            console.log(response)
-            console.log(response.status)
-            console.log(response.statusText)
-            console.log("Kek2")
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
         } catch (error) {
             return rejectWithValue({
                 status: 504,

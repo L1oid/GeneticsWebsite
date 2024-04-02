@@ -26,3 +26,9 @@ export const setPreviewContentTitleReducer = (state, action) => {
 export const setPreviewContentTextReducer = (state, action) => {
     state.previewContent.text = action.payload
 }
+
+export const clearContentErrorStatusSuccessReducer = (state) => {
+    state.error = null;
+    state.status = null;
+    state.success = null;
+}

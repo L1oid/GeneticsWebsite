@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
-import {clearErrorAndStatus} from "../../../../state/slices/user/userSlice";
+import {clearErrorStatusSuccess} from "../../../../state/slices/user/userSlice";
 import {authUser} from "../../../../state/slices/user/asyncActions";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 
@@ -15,9 +15,10 @@ function LoginContainerComponent(props) {
     const dispatch = useDispatch();
     const location = useLocation();
     const {status, isAuth} = useSelector(state => state.user);
+    const {error, success} = useSelector(state => state.user);
 
     useEffect(() => {
-        dispatch(clearErrorAndStatus());
+        dispatch(clearErrorStatusSuccess());
     }, [dispatch, location]);
 
     function handleLoginButton() {
@@ -81,7 +82,7 @@ function LoginContainerComponent(props) {
                     </div>
                 </div>
                 <div className="login-error-window">
-                    <ErrorAndSuccessWindowComponent />
+                    <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>
             </div>
         </div>
