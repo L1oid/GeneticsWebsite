@@ -5,57 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/slidePreview.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/state/functions/formatDate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/layouts/mainLayout/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/image1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/image2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/obr1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scale_1200.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/slide1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/slide2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/slide3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/articles_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/course_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/ed_materials_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/events_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/footer_info.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/news_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/globalExit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/functions/globalExit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/layout/layoutSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/layout/layoutSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/scienceSlice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/user/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/errorHandlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/createContentContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/layout/footer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/layout/footer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/contentOneNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/singleContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/contentOneNews/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/singleContent/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/listNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/listNews/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listContent/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/otherNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/otherNews/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/previewContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/previewContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/previewContent/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/previewContent/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/sliderNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderNews/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/news/sliderNews/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderNews/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/science/contentArticle/component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/science/contentArticle/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/science/listArticles/component.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/science/listArticles/style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/layouts/mainLayout/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/layouts/mainLayout/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/article/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/article/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/main/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/main/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/news/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/news/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/science/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/science/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +175,7 @@
       <workItem from="1712378962110" duration="606000" />
       <workItem from="1712382285763" duration="575000" />
       <workItem from="1712978970934" duration="14591000" />
-      <workItem from="1712993646406" duration="7770000" />
+      <workItem from="1712993646406" duration="9121000" />
     </task>
     <servers />
   </component>

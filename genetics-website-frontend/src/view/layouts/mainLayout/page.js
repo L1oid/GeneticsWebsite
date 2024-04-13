@@ -21,8 +21,8 @@ function MainLayout() {
             <HeaderComponent />
             <MainMenuComponent />
             <BurgerMenuComponent />
-            <Outlet />
-            <FooterComponent />
+            <Outlet/>
+            <FooterComponent/>
         </div>
     )
 }
