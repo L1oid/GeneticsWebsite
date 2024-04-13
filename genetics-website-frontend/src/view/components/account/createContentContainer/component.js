@@ -22,7 +22,7 @@ import ImageListComponent from "../imageList/component";
 import TypeContentSelectComponent from "../typeContentSelect/component";
 import SliderCheckboxComponent from "../sliderCheckbox/component";
 import AccountPageButtonComponent from "../accountPageButton/component";
-import PreviewContentComponent from "../../news/previewContent/component";
+import PreviewContentComponent from "../../content/previewContent/component";
 import ErrorAndSuccessWindowComponent from "../errorAndSuccessWindow/component";
 
 function CreateContentContainerComponent(props) {

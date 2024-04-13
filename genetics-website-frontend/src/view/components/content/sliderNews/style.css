@@ -91,14 +91,24 @@
     padding: 16px 42px;
     font-size: 20px;
     font-weight: 600;
+    background-color: rgba(255, 255, 255, 0);
     text-decoration: none;
     cursor: pointer;
+}
+
+.slide-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .slide-button:hover {
     border: 2px solid #FF4300;
     color: #FF4300;
     transition-duration: 0.2s;
+}
+.slide-button:hover:disabled {
+    border: 2px solid white;
+    color: white;
 }
 
 .dots-container {

@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
 
 import "./style.css"
-import news_list from '../../../../data/news_list'
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function SliderNewsComponent() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeDot, setActiveDot] = useState(0);
 
+    const navigate = useNavigate();
+    const contentListSlider = useSelector(state => state.content.contentListSlider);
+
     const slideStyles = {
-        backgroundImage: `url(${news_list[currentIndex].slide_url})`
+        backgroundImage: `url(${contentListSlider[currentIndex].sliderImage})`
     }
 
     useEffect(() => {
         function goToNext() {
-            const isLastSlide = currentIndex === news_list.length - 1;
+            const isLastSlide = currentIndex === contentListSlider.length - 1;
             const newIndex = isLastSlide ? 0 : currentIndex + 1;
             setCurrentIndex(newIndex);
             setActiveDot(newIndex);
@@ -31,15 +34,19 @@ function SliderNewsComponent() {
 
     const goToPrevious = () => {
         const isFirstImage = currentIndex === 0;
-        const newIndex = isFirstImage ? news_list.length - 1 : currentIndex - 1;
+        const newIndex = isFirstImage ? contentListSlider.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
         setActiveDot(newIndex);
     };
     const goToNext = () => {
-        const isLastImage = currentIndex === news_list.length - 1;
+        const isLastImage = currentIndex === contentListSlider.length - 1;
         const newIndex = isLastImage ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
         setActiveDot(newIndex);
+    };
+
+    const handleNavigateClick = (href) => {
+        navigate(href);
     };
 
     return (
@@ -47,7 +54,7 @@ function SliderNewsComponent() {
             <div className="slider">
                 <div className="slide" style={slideStyles}></div>
                 <div className="dots-container">
-                    {news_list.map((slide, slideIndex) => (
+                    {contentListSlider.map((slide, slideIndex) => (
                         <div className={`dot ${activeDot === slideIndex ? 'active' : ''}`}
                              key={slideIndex}
                              onClick={() => goToSlide(slideIndex)}>
@@ -60,10 +67,16 @@ function SliderNewsComponent() {
                       onClick={goToNext}>chevron_right</span>
                 <div className="slide-plate">
                     <div className="slide-header">
-                        {news_list[currentIndex].title}
+                        {contentListSlider[currentIndex].title}
                     </div>
                     <div className="slide-footer">
-                        <Link className="slide-button" to={`/news/${news_list[currentIndex].id}`}>Подробнее</Link>
+                        <button
+                            className="slide-button"
+                            data-href={`/news/${contentListSlider[currentIndex].id}`}
+                            onClick={(e) => handleNavigateClick(e.currentTarget.getAttribute('data-href'))}
+                            disabled={true}>
+                            Подробнее
+                        </button>
                     </div>
                 </div>
             </div>

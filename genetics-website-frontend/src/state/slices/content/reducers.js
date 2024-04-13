@@ -7,8 +7,21 @@ export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.text = "<p><br></p>"
 }
 
-export const clearNewsReducer = (state, action) => {
-    state.news_list.splice(0, state.news_list.length)
+export const clearContentReducer = (state, action) => {
+    state.contentList.splice(0, state.contentList.length)
+}
+
+export const clearSingleContentReducer = (state, action) => {
+    state.content.id = null
+    state.content.createdAt = null
+    state.content.title = ""
+    state.content.shortDesc = ""
+    state.content.uploadedBy = null
+    state.content.reviewImage = null
+    state.content.content = ""
+    state.content.imageList = []
+    state.content.mediaFilesMap = {}
+    state.content.type = null
 }
 
 export const setPreviewContentTypeReducer = (state, action) => {

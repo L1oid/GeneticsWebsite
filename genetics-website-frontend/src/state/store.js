@@ -12,13 +12,11 @@ import {
 
 import contentReducer from "./slices/content/contentSlice";
 import layoutReducer from "./slices/layout/layoutSlice";
-import scienceReducer from "./slices/scienceSlice";
 import userReducer from "./slices/user/userSlice";
 
 const rootReducer = combineReducers({
     content: contentReducer,
     layout: layoutReducer,
-    science: scienceReducer,
     user: userReducer
 });
 

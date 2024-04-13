@@ -7,7 +7,7 @@ import {
     USER_NOT_FOUND, USERNAME_INCLUDES_SPACES,
     WRONG_CREDENTIALS
 } from "../../consts/errorText";
-import {globalExit} from "../../globalExit";
+import {globalExit} from "../../functions/globalExit";
 
 export const setAuthError = (state, action) => {
     state.status = "rejected";

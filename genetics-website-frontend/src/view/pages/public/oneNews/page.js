@@ -1,19 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import ContentOneNewsComponent from "../../../components/news/contentOneNews/component";
-import news_list from '../../../../data/news_list'
 import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchSingleContent} from "../../../../state/slices/content/asyncActions";
+import SingleContentComponent from "../../../components/content/singleContent/component";
+import {NEWS} from "../../../../state/consts/contentTypes";
+import {clearSingleContent} from "../../../../state/slices/content/contentSlice";
 
-function OneNewsPage(props) {
+function OneNewsPage() {
     const {id} = useParams();
 
+    const dispatch = useDispatch();
+    const content = useSelector(state => state.content.content);
+
+    useEffect(() => {
+        dispatch(clearSingleContent());
+        dispatch(fetchSingleContent({ id: id }));
+    }, [dispatch, id])
+
+
     return (
-        <ContentOneNewsComponent
+        <SingleContentComponent
             id={id}
-            images={news_list[id].image_url}
-            title={news_list[id].title}
-            date={news_list[id].date}
-            content={news_list[id].content}/>
+            images={content.imageList}
+            title={content.title}
+            date={content.createdAt}
+            content={content.content}
+            type={NEWS}
+            titleType={"Новости"}/>
     )
 }
 

@@ -17,7 +17,7 @@ function MainLayout() {
     }, [dispatch, location]);
 
     return (
-        <div>
+        <div className="main-layout-container">
             <HeaderComponent />
             <MainMenuComponent />
             <BurgerMenuComponent />

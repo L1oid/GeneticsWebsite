@@ -3,8 +3,9 @@ import parse from 'html-react-parser';
 
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
+import {formatDate} from "../../../../state/functions/formatDate";
 
-function ContentOneNewsComponent(props) {
+function SingleContentComponent(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -35,41 +36,41 @@ function ContentOneNewsComponent(props) {
             name: "Главная"
         },
         {
-            link: "/news",
-            name: "Новости"
+            link: "/" + props.type,
+            name: props.titleType
         },
         {
-            link: "/news/" + props.id,
+            link: "/" + props.type + "/" + props.id,
             name: props.title
         },
     ]
 
     return (
         <div className="page-container">
-            <div className="news-content-container">
+            <div className="single-content-container">
                 <BreadcrumpComponent ways={ways}/>
-                <h1 className="news-content-heading">
+                <h1 className="single-content-heading">
                     {props.title}
                 </h1>
-                <h2 className="news-content-date">
-                    {props.date}
+                <h2 className="single-content-date">
+                    {formatDate(props.date)}
                 </h2>
-                <div className="news-content-text">
+                <div className="single-content-text">
                     {parse(props.content)}
                 </div>
                 {props.images.length !== 0 && (
                     <div>
-                        <h2 className="news-content-count-images">
+                        <h2 className="single-content-count-images">
                             {currentIndex + 1}/{props.images.length}
                         </h2>
-                        <div className="news-content-slider">
-                    <span className="material-symbols-outlined news-content-slider-left"
+                        <div className="single-content-slider">
+                    <span className="material-symbols-outlined single-content-slider-left"
                           onClick={goToPrevious}>chevron_left</span>
-                            <span className="material-symbols-outlined news-content-slider-right"
+                            <span className="material-symbols-outlined single-content-slider-right"
                                   onClick={goToNext}>chevron_right</span>
-                            <img className="news-content-slider-image"
+                            <img className="single-content-slider-image"
                                  src={props.images[currentIndex]}
-                                 alt={"news_image_" + currentIndex}
+                                 alt={"content_image_" + currentIndex}
                             />
                         </div>
                     </div>
@@ -79,4 +80,4 @@ function ContentOneNewsComponent(props) {
     )
 }
 
-export default ContentOneNewsComponent;
+export default SingleContentComponent;

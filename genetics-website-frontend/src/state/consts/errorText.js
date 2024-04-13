@@ -39,3 +39,14 @@ export const CONTENT_FAILED_TO_SAVE_ARTICLE = "Failed to save article"
 export const CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME = "One or more files in fileList lacks file name, cannot parse its type"
 export const CONTENT_PREVIEW_IMAGE_LACKS_FILE_NAME = "previewImage lacks file name, cannot parse its type"
 export const CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME = "sliderImage lacks file name, cannot parse its type"
+
+
+
+export const CONTENT_INVALID_AMOUNT_TYPE = "Invalid amount type, it should be int"
+export const CONTENT_INVALID_AMOUNT_VALUE = "Amount cannot be less than 0"
+export const CONTENT_COULD_NOT_FIND_ARTICLES = "Couldn't find a single article"
+export const CONTENT_COULD_NOT_INITIALIZE_ARTICLES = "Couldn't initialize a list of articles"
+
+
+export const CONTENT_INCORRECT_SINGLE_ARTICLE_ID = "Incorrect id specified"
+export const CONTENT_ARTICLE_DONT_FIND_BY_ID = "No article was found for specified id"

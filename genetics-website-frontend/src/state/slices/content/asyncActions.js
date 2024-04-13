@@ -1,5 +1,4 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import news_list from "../../../data/news_list";
 import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_NULL_ARTICLE_FIELDS,
@@ -9,7 +8,7 @@ import {api} from "../../consts/api";
 import {NEWS} from "../../consts/contentTypes";
 
 export const articleCreation = createAsyncThunk(
-    "news/articleCreation",
+    "content/articleCreation",
     async function({title, type, content, forSlider, sliderImage, previewImage, fileList}, {rejectWithValue, getState, dispatch}) {
         try {
             if (type === NEWS) {
@@ -93,16 +92,69 @@ export const articleCreation = createAsyncThunk(
     }
 );
 
-
-export const fetchNews = createAsyncThunk(
-    "news/fetchNews",
-    async function(_, {rejectWithValue}) {
-        const response = news_list;
-        if (response == null) {
-            return rejectWithValue("Server Error !");
+export const fetchContent = createAsyncThunk(
+    "content/fetchContent",
+    async function({type, amount}, {rejectWithValue}) {
+        try {
+            const response = await fetch(api.url + api.getArticles(amount, type), {method: 'GET'});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            let data = await response.json()
+            data = data.map(item => {
+                if (item.previewImage) {
+                    item.previewImage = api.url + api.getImage(item.previewImage);
+                }
+                return item;
+            });
+            return data;
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
         }
-        const data = response;
-        return data;
+    }
+);
+
+export const fetchSingleContent = createAsyncThunk(
+    "content/fetchSingleContent",
+    async function({id}, {rejectWithValue}) {
+        try {
+            const response = await fetch(api.url + api.getSingleArticle(id), {method: 'GET'});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            let data = await response.json()
+            /** @namespace data.mediaFilesMap **/
+            const fieldNames = Object.keys(data.mediaFilesMap);
+            data.imageList = [];
+            if (data.previewImage) {
+                data.imageList.push(api.url + api.getImage(data.previewImage));
+            }
+            for (const field of fieldNames) {
+                const imageUrl = api.url + api.getImage(field);
+                data.imageList.push(imageUrl);
+            }
+            return data;
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
     }
 );
 

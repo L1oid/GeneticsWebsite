@@ -1,9 +1,12 @@
 import React from 'react';
 
 import './style.css';
-import footer_info from "../../../../data/footer_info";
+import {useSelector} from "react-redux";
 
 function FooterComponent() {
+
+    const footerInfo = useSelector(state => state.layout.footerInfo);
+
     return (
         <div className="footer-container">
             <div className="footer-content">
@@ -12,15 +15,15 @@ function FooterComponent() {
                         Контакты
                     </p>
                     <p className="contacts-content">
-                        Адрес: {footer_info[0].address}
+                        Адрес: {footerInfo.address}
                         <br/>
-                        Тел.: {footer_info[0].phone}
+                        Тел.: {footerInfo.phone}
                         <br/>
-                        E-mail: {footer_info[0].email}
+                        E-mail: {footerInfo.email}
                     </p>
                 </div>
                 <p className="copyright-content">
-                    © {footer_info[0].copyright}
+                    © {footerInfo.copyright}
                 </p>
             </div>
         </div>

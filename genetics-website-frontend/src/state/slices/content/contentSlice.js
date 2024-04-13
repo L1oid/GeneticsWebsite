@@ -1,41 +1,84 @@
 import {createSlice} from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
-import {NEWS} from "../../consts/contentTypes";
+import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
-    clearContentErrorStatusSuccessReducer,
-    clearNewsReducer,
-    clearPreviewContentReducer, setPreviewContentForSliderReducer,
+    clearContentErrorStatusSuccessReducer, clearContentReducer,
+    clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer
 } from "./reducers";
-import {articleCreation, fetchNews} from "./asyncActions";
-import {setArticleCreationError, setFetchNewsError} from "./errorHandlers";
+import {articleCreation, fetchContent, fetchSingleContent} from "./asyncActions";
+import {setArticleCreationError, setFetchContentError, setFetchSingleContentError} from "./errorHandlers";
 
-const newsPersistConfig = {
-    key: 'news',
+const contentPersistConfig = {
+    key: 'content',
     storage: storage,
     blacklist: [
-        "news_list",
+        "newsList",
+        "articleList",
+        "eventList",
+        "contentListSlider",
+        "content"
     ]
 };
 
 const contentSlice = createSlice({
     name: "content",
     initialState: {
-        news_list: [],
+        newsList: [
+            {
+                id: null,
+                createdAt: null,
+                title: null,
+                shortDesc: "",
+                uploadedBy: null,
+                reviewImage: null
+            }
+        ],
+        articleList: [
+            {
+                id: null,
+                createdAt: null,
+                title: null,
+                shortDesc: "",
+                uploadedBy: null,
+                reviewImage: null
+            }
+        ],
+        contentListSlider: [
+            {
+                id: 0,
+                sliderImage: "http://localhost:3000/slidePreview.jpg",
+                title: "Открытие сайта кафедры генетики и фундаментальной медицины"
+            }
+        ],
+        eventList: [],
+        content: {
+            id: null,
+            createdAt: null,
+            title: null,
+            shortDesc: "",
+            uploadedBy: null,
+            reviewImage: null,
+            content: "",
+            imageList: [],
+            mediaFilesMap: {},
+            type: null
+        },
         previewContent: {
             type: NEWS,
             forSlider: false,
             title: "",
-            text: "<p><br></p>",
+            text: "<p><br></p>"
         },
         status: null,
         error: null,
         success: null
     },
     reducers: {
-        clearNews: clearNewsReducer,
+        clearContent: clearContentReducer,
+        clearSingleContent: clearSingleContentReducer,
         clearContentErrorStatusSuccess: clearContentErrorStatusSuccessReducer,
         setPreviewContentType: setPreviewContentTypeReducer,
         setPreviewContentForSlider: setPreviewContentForSliderReducer,
@@ -44,21 +87,6 @@ const contentSlice = createSlice({
         clearPreviewContent: clearPreviewContentReducer
     },
     extraReducers: builder => {
-
-        builder.addCase(fetchNews.pending, (state, action) => {
-            state.status = 'loading';
-            state.error = null;
-            state.success = null;
-        })
-        builder.addCase(fetchNews.fulfilled, (state, action) => {
-            state.status = 'resolved';
-            state.news_list = action.payload;
-            state.error = null;
-            state.success = "Всё круто";
-        })
-        builder.addCase(fetchNews.rejected, setFetchNewsError)
-
-
         builder.addCase(articleCreation.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -70,11 +98,45 @@ const contentSlice = createSlice({
             state.success = "Контент успешно создан";
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
+
+
+        builder.addCase(fetchContent.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchContent.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            /** @namespace action.meta **/
+            if (action.meta.arg.type === ARTICLE) {
+                state.articleList = action.payload;
+            } else if (action.meta.arg.type === NEWS) {
+                state.newsList = action.payload;
+            }
+            state.error = null;
+            state.success = "Контент успешно загружен";
+        })
+        builder.addCase(fetchContent.rejected, setFetchContentError)
+
+
+        builder.addCase(fetchSingleContent.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchSingleContent.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.content = action.payload;
+            state.error = null;
+            state.success = "Контент успешно загружен";
+        })
+        builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
     }
 })
 
 export const {
-    clearNews,
+    clearContent,
+    clearSingleContent,
     clearPreviewContent,
     setPreviewContentType,
     setPreviewContentForSlider,
@@ -82,5 +144,5 @@ export const {
     setPreviewContentText,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
-const persistedContentReducer = persistReducer(newsPersistConfig, contentSlice.reducer);
+const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);
 export default persistedContentReducer;

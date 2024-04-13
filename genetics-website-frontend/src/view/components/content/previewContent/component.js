@@ -27,28 +27,28 @@ function PreviewContentComponent(props) {
 
     return (
         <div className="preview-content-container">
-            <h1 className="news-content-heading preview-content-padding">
+            <h1 className="single-content-heading preview-content-padding">
                 {previewContent.title === "" ? "Заголовок" : previewContent.title}
             </h1>
-            <h2 className="news-content-date preview-content-padding">
+            <h2 className="single-content-date preview-content-padding">
                 {new Date().toLocaleDateString()}
             </h2>
-            <div className="news-content-text preview-content-padding">
+            <div className="single-content-text preview-content-padding">
                 {previewContent.text === "<p><br></p>" ? "Содержание" : parse(previewContent.text)}
             </div>
             {props.images.length !== 0 && (
                 <div>
-                    <h2 className="news-content-count-images preview-content-padding">
+                    <h2 className="single-content-count-images preview-content-padding">
                         {currentIndex + 1}/{props.images.length}
                     </h2>
-                    <div className="news-content-slider preview-content-padding">
-                    <span className="material-symbols-outlined news-content-slider-left"
+                    <div className="single-content-slider preview-content-padding">
+                    <span className="material-symbols-outlined single-content-slider-left"
                           onClick={goToPrevious}>chevron_left</span>
-                        <span className="material-symbols-outlined news-content-slider-right"
+                        <span className="material-symbols-outlined single-content-slider-right"
                               onClick={goToNext}>chevron_right</span>
-                        <img className="news-content-slider-image"
+                        <img className="single-content-slider-image"
                              src={props.images[currentIndex]}
-                             alt={"news_image_" + currentIndex}
+                             alt={"content_image_" + currentIndex}
                         />
                     </div>
                 </div>
