@@ -6,6 +6,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+    padding-left: 20px;
+}
+
 .page-container {
     min-height: 75vh;
     margin-right: auto;

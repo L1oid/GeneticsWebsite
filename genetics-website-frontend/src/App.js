@@ -16,6 +16,7 @@ import PersonalDataPage from "./view/pages/private/personalData/page";
 import ChangePasswordPage from "./view/pages/private/changePassword/page";
 import RegistrationUserPage from "./view/pages/private/registrationUser/page";
 import CreateNewsPage from "./view/pages/private/createNews/page";
+import AboutPage from "./view/pages/public/about/page";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/news/:id" element={<OneNewsPage />} />
                     <Route path="/science/" element={<SciencePage />} />
                     <Route path="/science/:id" element={<ArticlePage />} />
+                    <Route path="/about/" element={<AboutPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                     <Route path="/account" element={<AccountLayout />}>
                         <Route index element={<PersonalDataPage />} />

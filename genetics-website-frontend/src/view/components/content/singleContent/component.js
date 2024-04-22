@@ -64,8 +64,8 @@ function SingleContentComponent(props) {
                             {currentIndex + 1}/{props.images.length}
                         </h2>
                         <div className="single-content-slider">
-                    <span className="material-symbols-outlined single-content-slider-left"
-                          onClick={goToPrevious}>chevron_left</span>
+                            <span className="material-symbols-outlined single-content-slider-left"
+                                  onClick={goToPrevious}>chevron_left</span>
                             <span className="material-symbols-outlined single-content-slider-right"
                                   onClick={goToNext}>chevron_right</span>
                             <img className="single-content-slider-image"

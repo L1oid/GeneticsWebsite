@@ -8,6 +8,7 @@ function MainMenuComponent() {
         <div className='main-menu-container'>
             <Link className='main-menu-button' to="/news">НОВОСТИ</Link>
             <Link to="/science" className='main-menu-button'>НАУКА</Link>
+            <Link to="/about" className='main-menu-button'>О КАФЕДРЕ</Link>
         </div>
     )
 }
