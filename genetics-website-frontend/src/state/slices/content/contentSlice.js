@@ -33,7 +33,7 @@ const contentSlice = createSlice({
         contentListSlider: [
             {
                 id: 0,
-                sliderImage: "http://localhost:3000/slidePreview.jpg",
+                sliderImage: "http://genetic.kemsu.ru:8082/geneticsWar/api/files/images/351",
                 title: "Открытие сайта кафедры генетики и фундаментальной медицины"
             }
         ],
@@ -79,10 +79,10 @@ const contentSlice = createSlice({
                 "<li>University Rennes, EHESP, Inserm, Irset (Institut de recherche en santé, environnement et travail) (Rennes, France);</li>" +
                 "<li>Institute of Health and Society, Federal University of São Paulo, (São Paulo, Brazil);</li>" +
                 "<li>7CSIR-National Environmental Engineering Research Institute, (Nagpur, India).</li></ul>",
-            image1: "http://localhost:3000/about1.jpg",
-            image2: "http://localhost:3000/about2.jpg",
-            image3: "http://localhost:3000/about3.jpg",
-            image4: "http://localhost:3000/about4.jpg"
+            image1: "http://genetic.kemsu.ru:8082/geneticsWar/api/files/images/348",
+            image2: "http://genetic.kemsu.ru:8082/geneticsWar/api/files/images/349",
+            image3: "http://genetic.kemsu.ru:8082/geneticsWar/api/files/images/350",
+            image4: "http://genetic.kemsu.ru:8082/geneticsWar/api/files/images/352"
         },
         eventList: [],
         content: {
