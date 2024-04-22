@@ -4,23 +4,29 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchContent} from "../../../../state/slices/content/asyncActions";
 import {ARTICLE} from "../../../../state/consts/contentTypes";
 import ListContentComponent from "../../../components/content/listContent/component";
+import {clearArticleList} from "../../../../state/slices/content/contentSlice";
 
 function SciencePage() {
 
-    const [amount, setAmount] = useState(6);
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(6);
     const dispatch = useDispatch();
     const contentList = useSelector(state => state.content.articleList);
 
     useEffect(() => {
-        dispatch(fetchContent({ type: ARTICLE, amount: amount }));
-    }, [amount, dispatch])
+        dispatch(fetchContent({ type: ARTICLE, page: page , pageSize: pageSize}));
+    }, [page, dispatch, pageSize])
+
+    useEffect(() => {
+        dispatch(clearArticleList());
+    }, [dispatch]);
 
 
     return (
         <ListContentComponent
             contentList={contentList}
-            amount={amount}
-            setAmount={setAmount}
+            page={page}
+            setPage={setPage}
             type={ARTICLE}
             titleType={"Наука"}
         />

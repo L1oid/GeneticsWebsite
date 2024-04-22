@@ -42,8 +42,8 @@ export const CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME = "sliderImage lacks file name
 
 
 
-export const CONTENT_INVALID_AMOUNT_TYPE = "Invalid amount type, it should be int"
-export const CONTENT_INVALID_AMOUNT_VALUE = "Amount cannot be less than 0"
+export const CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE = "Invalid page or pageSize, they should not be less or equal to 0"
+export const CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE = "Invalid page or pageSize, they should be of int value"
 export const CONTENT_COULD_NOT_FIND_ARTICLES = "Couldn't find a single article"
 export const CONTENT_COULD_NOT_INITIALIZE_ARTICLES = "Couldn't initialize a list of articles"
 

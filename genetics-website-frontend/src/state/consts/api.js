@@ -4,8 +4,8 @@ export const api = {
     changePassword: "api/users/",
     registrationUser: "api/users",
     articleCreation: "api/articles",
-    getArticles: function(amount, type) {
-        return `api/articles/amount=${amount}&type=${type}`;
+    getArticles: function(page, pageSize, type) {
+        return `api/articles/page=${page}&pageSize=${pageSize}&type=${type}`;
     },
     getImage: function(id) {
         return `api/files/images/${id}`

@@ -4,22 +4,28 @@ import ListContentComponent from "../../../components/content/listContent/compon
 import {useDispatch, useSelector} from "react-redux";
 import {fetchContent} from "../../../../state/slices/content/asyncActions";
 import {NEWS} from "../../../../state/consts/contentTypes";
+import {clearNewsList} from "../../../../state/slices/content/contentSlice";
 
 function NewsPage() {
 
-    const [amount, setAmount] = useState(6);
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(6);
     const dispatch = useDispatch();
     const contentList = useSelector(state => state.content.newsList);
 
     useEffect(() => {
-        dispatch(fetchContent({ type: NEWS, amount: amount }));
-    }, [amount, dispatch])
+        dispatch(fetchContent({ type: NEWS, page: page , pageSize: pageSize}));
+    }, [page, dispatch, pageSize])
+
+    useEffect(() => {
+        dispatch(clearNewsList());
+    }, [dispatch]);
 
     return (
         <ListContentComponent
             contentList={contentList}
-            amount={amount}
-            setAmount={setAmount}
+            page={page}
+            setPage={setPage}
             type={NEWS}
             titleType={"Новости"}
         />

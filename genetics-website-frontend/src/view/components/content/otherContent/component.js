@@ -8,6 +8,7 @@ import './style.css';
 import {fetchContent} from "../../../../state/slices/content/asyncActions";
 import {NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
+import {clearNewsList} from "../../../../state/slices/content/contentSlice";
 
 function OtherContentComponent() {
 
@@ -15,20 +16,24 @@ function OtherContentComponent() {
     const contentList = useSelector(state => state.content.newsList);
     const eventList = useSelector(state => state.content.eventList);
     const dispatch = useDispatch();
-    const [amount, setAmount] = useState(6);
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(6);
 
     useEffect(() => {
-        dispatch(fetchContent({ type: NEWS, amount: amount }));
-    }, [amount, dispatch])
+        dispatch(fetchContent({ type: NEWS, page: page , pageSize: pageSize}));
+    }, [page, dispatch, pageSize])
 
+    useEffect(() => {
+        dispatch(clearNewsList());
+    }, [dispatch]);
 
     const handleNavigateClick = (href) => {
         navigate(href);
     };
 
     const handleLoadMore = () => {
-        if (contentList.length >= amount) {
-            setAmount(amount + 6);
+        if (contentList.length >= page) {
+            setPage(page + 1);
         }
     };
 

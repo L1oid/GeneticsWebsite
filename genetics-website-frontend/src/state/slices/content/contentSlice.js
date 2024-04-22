@@ -3,7 +3,8 @@ import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
-    clearContentErrorStatusSuccessReducer, clearContentReducer,
+    clearArticleListReducer,
+    clearContentErrorStatusSuccessReducer, clearNewsListReducer,
     clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer
@@ -27,26 +28,8 @@ const contentPersistConfig = {
 const contentSlice = createSlice({
     name: "content",
     initialState: {
-        newsList: [
-            {
-                id: null,
-                createdAt: null,
-                title: null,
-                shortDesc: "",
-                uploadedBy: null,
-                reviewImage: null
-            }
-        ],
-        articleList: [
-            {
-                id: null,
-                createdAt: null,
-                title: null,
-                shortDesc: "",
-                uploadedBy: null,
-                reviewImage: null
-            }
-        ],
+        newsList: [],
+        articleList: [],
         contentListSlider: [
             {
                 id: 0,
@@ -125,7 +108,8 @@ const contentSlice = createSlice({
         success: null
     },
     reducers: {
-        clearContent: clearContentReducer,
+        clearNewsList: clearNewsListReducer,
+        clearArticleList: clearArticleListReducer,
         clearSingleContent: clearSingleContentReducer,
         clearContentErrorStatusSuccess: clearContentErrorStatusSuccessReducer,
         setPreviewContentType: setPreviewContentTypeReducer,
@@ -157,9 +141,9 @@ const contentSlice = createSlice({
             state.status = 'resolved';
             /** @namespace action.meta **/
             if (action.meta.arg.type === ARTICLE) {
-                state.articleList = action.payload;
+                state.articleList = [...state.articleList, ...action.payload];
             } else if (action.meta.arg.type === NEWS) {
-                state.newsList = action.payload;
+                state.newsList = [...state.newsList, ...action.payload];
             }
             state.error = null;
             state.success = "Контент успешно загружен";
@@ -183,7 +167,8 @@ const contentSlice = createSlice({
 })
 
 export const {
-    clearContent,
+    clearNewsList,
+    clearArticleList,
     clearSingleContent,
     clearPreviewContent,
     setPreviewContentType,

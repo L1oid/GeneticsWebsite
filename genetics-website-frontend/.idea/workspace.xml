@@ -5,20 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/about1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/about2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/about3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/about4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/content/aboutContent/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/content/aboutContent/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/pages/public/about/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/singleContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/singleContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/layout/burgerMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/layout/burgerMenu/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/layout/mainMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/layout/mainMenu/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/public/news/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/news/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/public/science/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/science/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +188,8 @@
       <workItem from="1713156168257" duration="1551000" />
       <workItem from="1713161121329" duration="1063000" />
       <workItem from="1713411726573" duration="15000" />
-      <workItem from="1713768515528" duration="6225000" />
+      <workItem from="1713768515528" duration="6754000" />
+      <workItem from="1713777152666" duration="2758000" />
     </task>
     <servers />
   </component>

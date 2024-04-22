@@ -1,13 +1,16 @@
 import {
     CONTENT_ARTICLE_DONT_FIND_BY_ID,
     CONTENT_COULD_NOT_FIND_ARTICLES,
-    CONTENT_COULD_NOT_GET_USER_ID, CONTENT_COULD_NOT_INITIALIZE_ARTICLES,
+    CONTENT_COULD_NOT_GET_USER_ID,
+    CONTENT_COULD_NOT_INITIALIZE_ARTICLES,
     CONTENT_EMPTY_ARTICLE_FIELDS,
     CONTENT_FAILED_TO_SAVE_ARTICLE,
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_FILES_SIZE_TOO_MANY,
-    CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME, CONTENT_INCORRECT_SINGLE_ARTICLE_ID,
-    CONTENT_INVALID_AMOUNT_TYPE, CONTENT_INVALID_AMOUNT_VALUE,
+    CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME,
+    CONTENT_INCORRECT_SINGLE_ARTICLE_ID,
+    CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE,
+    CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE,
     CONTENT_NO_AUTH_HEADER_PRESENT,
     CONTENT_NULL_ARTICLE_FIELDS,
     CONTENT_PREVIEW_IMAGE_IS_NOT_SUPPORTED_FORMAT,
@@ -67,10 +70,10 @@ export const setFetchContentError = (state, action) => {
     switch (action.payload.status) {
         case 400:
             switch (action.payload.text) {
-                case CONTENT_INVALID_AMOUNT_TYPE:
+                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE:
                     state.error = "Неверный тип размерности списка контента";
                     break;
-                case CONTENT_INVALID_AMOUNT_VALUE:
+                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE:
                     state.error = "Неверная размерность списка контента";
                     break;
                 default:

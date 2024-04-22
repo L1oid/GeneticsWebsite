@@ -26,8 +26,8 @@ function ListContentComponent(props) {
     ]
 
     const handleLoadMore = () => {
-        if (props.contentList.length >= props.amount) {
-            props.setAmount(props.amount + 6);
+        if (props.contentList.length >= props.page) {
+            props.setPage(props.page + 1);
         }
     };
 

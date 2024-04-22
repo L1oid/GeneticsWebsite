@@ -7,8 +7,12 @@ export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.text = "<p><br></p>"
 }
 
-export const clearContentReducer = (state, action) => {
-    state.contentList.splice(0, state.contentList.length)
+export const clearNewsListReducer = (state, action) => {
+    state.newsList.splice(0, state.newsList.length)
+}
+
+export const clearArticleListReducer = (state, action) => {
+    state.articleList.splice(0, state.articleList.length)
 }
 
 export const clearSingleContentReducer = (state, action) => {

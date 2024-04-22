@@ -94,9 +94,9 @@ export const articleCreation = createAsyncThunk(
 
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
-    async function({type, amount}, {rejectWithValue}) {
+    async function({page, pageSize, type}, {rejectWithValue}) {
         try {
-            const response = await fetch(api.url + api.getArticles(amount, type), {method: 'GET'});
+            const response = await fetch(api.url + api.getArticles(page, pageSize, type), {method: 'GET'});
             if (!response.ok) {
                 const text = await response.text();
                 return rejectWithValue({
