@@ -1,0 +1,26 @@
+.list-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.list-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #434343;
+}
+
+.list-table th, .list-table td {
+    border: 2px solid #434343;
+    padding: 8px;
+    text-align: left;
+}
+
+.list-table th {
+    background-color: #E1E1E1;
+}
+
+.list-table-change-up-button {
+    margin-bottom: 10px;
+}

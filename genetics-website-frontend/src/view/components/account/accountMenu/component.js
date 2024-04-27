@@ -46,11 +46,17 @@ function AccountMenuComponent(props) {
             {isModerator && (
                 <div className="account-menu-admin-buttons">
                     <Link className={"account-menu-button"}
-                          to={"/account/create-news"}>
+                          to={"/account/create-content"}>
                         <span className="material-symbols-outlined account-icon">news</span>
                         Создание контента
                     </Link>
+                    <Link className={"account-menu-button"}
+                          to={"/account/content-list"}>
+                        <span className="material-symbols-outlined account-icon">view_list</span>
+                        Список контента
+                    </Link>
                 </div>
+
             )}
             <button className={"account-menu-button exit"}
                     onClick={exit}>

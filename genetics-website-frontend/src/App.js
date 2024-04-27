@@ -17,6 +17,7 @@ import ChangePasswordPage from "./view/pages/private/changePassword/page";
 import RegistrationUserPage from "./view/pages/private/registrationUser/page";
 import CreateNewsPage from "./view/pages/private/createNews/page";
 import AboutPage from "./view/pages/public/about/page";
+import ListContentPage from "./view/pages/private/listNews/page";
 
 function App() {
     return (
@@ -36,7 +37,8 @@ function App() {
                         <Route index element={<PersonalDataPage />} />
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
                         <Route path="/account/registration-user/" element={<RegistrationUserPage />} />
-                        <Route path="/account/create-news/" element={<CreateNewsPage />} />
+                        <Route path="/account/create-content/" element={<CreateNewsPage />} />
+                        <Route path="/account/content-list/" element={<ListContentPage />} />
                     </Route>
                 </Route>
             </Routes>

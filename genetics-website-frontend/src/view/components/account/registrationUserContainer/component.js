@@ -92,10 +92,12 @@ function RegistrationUserContainerComponent(props) {
                     <SelectRolesComponent
                         roles={roleNames}
                         handle={setRoleNames} />
-                    <AccountPageButtonComponent
-                        status={status}
-                        title={"Зарегистрировать"}
-                        handle={registrationUserHandle}/>
+                    <div className="registration-user-button-wrapper">
+                        <AccountPageButtonComponent
+                            status={status}
+                            title={"Зарегистрировать"}
+                            handle={registrationUserHandle}/>
+                    </div>
                     <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>
             </div>

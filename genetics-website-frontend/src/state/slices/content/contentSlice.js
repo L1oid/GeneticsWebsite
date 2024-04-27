@@ -22,7 +22,10 @@ const contentPersistConfig = {
         "eventList",
         "contentListSlider",
         "content",
-        "aboutContent"
+        "aboutContent",
+        "status",
+        "error",
+        "success"
     ]
 };
 
@@ -34,7 +37,7 @@ const contentSlice = createSlice({
         contentListSlider: [
             {
                 id: 0,
-                sliderImage: api.getImage(351),
+                sliderImage: api.url + api.getImage(421),
                 title: "Открытие сайта кафедры генетики и фундаментальной медицины"
             }
         ],
@@ -80,10 +83,10 @@ const contentSlice = createSlice({
                 "<li>University Rennes, EHESP, Inserm, Irset (Institut de recherche en santé, environnement et travail) (Rennes, France);</li>" +
                 "<li>Institute of Health and Society, Federal University of São Paulo, (São Paulo, Brazil);</li>" +
                 "<li>7CSIR-National Environmental Engineering Research Institute, (Nagpur, India).</li></ul>",
-            image1: api.getImage(348),
-            image2: api.getImage(349),
-            image3: api.getImage(350),
-            image4: api.getImage(352)
+            image1: api.url + api.getImage(422),
+            image2: api.url + api.getImage(423),
+            image3: api.url + api.getImage(424),
+            image4: api.url + api.getImage(425)
         },
         eventList: [],
         content: {

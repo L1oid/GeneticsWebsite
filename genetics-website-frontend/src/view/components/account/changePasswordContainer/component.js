@@ -67,10 +67,12 @@ function ChangePasswordContainerComponent(props) {
                         value={repeatPassword}
                         disabled={false}
                         handle={(e) => setRepeatPassword(e.target.value)}/>
-                    <AccountPageButtonComponent
-                        status={status}
-                        handle={changePasswordHandle}
-                        title={"Сменить пароль"}/>
+                    <div className="change-password-button-wrapper">
+                        <AccountPageButtonComponent
+                            status={status}
+                            handle={changePasswordHandle}
+                            title={"Сменить пароль"}/>
+                    </div>
                     <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>
             </div>

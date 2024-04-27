@@ -33,3 +33,7 @@
 .create-content-news-for-slider.visible {
     display: block;
 }
+
+.create-content-button-wrapper {
+    margin-top: 25px;
+}

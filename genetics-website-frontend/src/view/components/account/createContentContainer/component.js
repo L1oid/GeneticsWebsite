@@ -182,10 +182,12 @@ function CreateContentContainerComponent(props) {
                     title={"Предпросмотр"}/>
                 <PreviewContentComponent
                     images={contentImages.map(image => URL.createObjectURL(image))}/>
-                <AccountPageButtonComponent
-                    status={status}
-                    title={"Подтвердить"}
-                    handle={handleButtonConfirm}/>
+                <div className="create-content-button-wrapper">
+                    <AccountPageButtonComponent
+                        status={status}
+                        title={"Подтвердить"}
+                        handle={handleButtonConfirm}/>
+                </div>
                 <ErrorAndSuccessWindowComponent error={error} success={success} />
             </div>
         </div>
