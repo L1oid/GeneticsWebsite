@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 
 import './style.css';
@@ -6,9 +6,20 @@ import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {formatDate} from "../../../../state/functions/formatDate";
 import parse from "html-react-parser";
+import LoadMoreButtonComponent from "../loadMoreButton/component";
 
 function ListContentComponent(props) {
     const navigate = useNavigate();
+
+    const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
+
+    useEffect(() => {
+        if (props.contentList.length === props.contentListLength) {
+            setIsLoadMoreDisabled(true)
+        } else {
+            setIsLoadMoreDisabled(false)
+        }
+    }, [props.contentList.length, props.contentListLength]);
 
     const handleNavigateClick = (href) => {
         navigate(href);
@@ -26,9 +37,7 @@ function ListContentComponent(props) {
     ]
 
     const handleLoadMore = () => {
-        if (props.contentList.length >= props.page) {
-            props.setPage(props.page + 1);
-        }
+        props.setPage(props.page + 1);
     };
 
     return (
@@ -68,9 +77,9 @@ function ListContentComponent(props) {
                     )}
                 </div>
                 <div className="list-content-container-row-2">
-                    <button className="list-content-load-more" onClick={handleLoadMore}>
-                        Показать ещё
-                    </button>
+                    <LoadMoreButtonComponent
+                        handle={handleLoadMore}
+                        isDisabled={isLoadMoreDisabled} />
                 </div>
             </div>
         </div>

@@ -155,26 +155,6 @@
     padding-right: 25px;
 }
 
-.other-content-load-more {
-    height: 50px;
-    width: 100%;
-    background-color: #E1E1E1;
-    cursor: pointer;
-    border: none;
-    color: #FF4300;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    line-height: 50px;
-    font-weight: 600;
-}
-
-.other-content-load-more:hover {
-    background-color: #FF4300;
-    color: #FFFFFF;
-    transition-duration: 0.2s;
-}
-
 .event-item {
     padding-right: 10px;
     padding-left: 10px;

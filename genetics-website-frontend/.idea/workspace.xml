@@ -5,24 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/pages/private/listNews/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountLoadMoreButton/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/accountLoadMoreButton/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/content/loadMoreButton/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/content/loadMoreButton/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageButton/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountPageButton/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/createContentContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createContentContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/createContentContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/otherContent/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/public/news/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/news/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/pages/public/science/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/science/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +201,9 @@
       <workItem from="1713802016202" duration="104000" />
       <workItem from="1713803661974" duration="272000" />
       <workItem from="1714188069182" duration="10521000" />
+      <workItem from="1714199502119" duration="216000" />
+      <workItem from="1714557189129" duration="2000" />
+      <workItem from="1714717052025" duration="10118000" />
     </task>
     <servers />
   </component>

@@ -8,7 +8,7 @@ import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_FILES_SIZE_TOO_MANY,
     CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME,
-    CONTENT_INCORRECT_SINGLE_ARTICLE_ID,
+    CONTENT_INCORRECT_SINGLE_ARTICLE_ID, CONTENT_INVALID_DATE_FORMAT,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE,
     CONTENT_NO_AUTH_HEADER_PRESENT,
@@ -75,6 +75,9 @@ export const setFetchContentError = (state, action) => {
                     break;
                 case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE:
                     state.error = "Неверная размерность списка контента";
+                    break;
+                case CONTENT_INVALID_DATE_FORMAT:
+                    state.error = "Неверный формат даты";
                     break;
                 default:
                     state.error = "Неизвестная ошибка";

@@ -94,25 +94,38 @@ export const articleCreation = createAsyncThunk(
 
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
-    async function({page, pageSize, type}, {rejectWithValue}) {
+    async function({page, pageSize, type, author, title, date}, {rejectWithValue}) {
         try {
-            const response = await fetch(api.url + api.getArticles(page, pageSize, type), {method: 'GET'});
-            if (!response.ok) {
-                const text = await response.text();
+            const responseAmountContent = await fetch(api.url + api.getAmountArticles(author, type, title, date), {method: 'GET'});
+            if (!responseAmountContent.ok) {
+                const text = await responseAmountContent.text();
                 return rejectWithValue({
-                    status: response.status,
-                    statusText: response.statusText,
+                    status: responseAmountContent.status,
+                    statusText: responseAmountContent.statusText,
                     text: text
                 });
             }
-            let data = await response.json()
-            data = data.map(item => {
+            const responseContent = await fetch(api.url + api.getArticles(page, pageSize, type, author, title, date), {method: 'GET'});
+            if (!responseContent.ok) {
+                const text = await responseContent.text();
+                return rejectWithValue({
+                    status: responseContent.status,
+                    statusText: responseContent.statusText,
+                    text: text
+                });
+            }
+            let content = await responseContent.json()
+            content = content.map(item => {
                 if (item.previewImage) {
                     item.previewImage = api.url + api.getImage(item.previewImage);
                 }
                 return item;
             });
-            return data;
+            const amountContent = await responseAmountContent.text();
+            return {
+                content: content,
+                amountContent: amountContent
+            };
         } catch (error) {
             return rejectWithValue({
                 status: 504,
@@ -157,5 +170,3 @@ export const fetchSingleContent = createAsyncThunk(
         }
     }
 );
-
-

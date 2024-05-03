@@ -14,12 +14,15 @@ function AccountListContentContainerComponent(props) {
 
     const [contentType, setContentType] = useState(NEWS);
 
-    const [page, ] = useState(1);
+    const [page, setPage] = useState(1);
     const [pageSize] = useState(6);
+    const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
     const dispatch = useDispatch();
 
     const newsList = useSelector(state => state.content.newsList);
     const articleList = useSelector(state => state.content.articleList);
+    const newsListLength = useSelector(state => state.content.newsListLength);
+    const articleListLength = useSelector(state => state.content.articleListLength);
 
     useEffect(() => {
         dispatch(fetchContent({ type: contentType, page: page , pageSize: pageSize}));
@@ -33,6 +36,31 @@ function AccountListContentContainerComponent(props) {
         dispatch(clearArticleList());
     }, [contentType, dispatch]);
 
+    useEffect(() => {
+        if (contentType === NEWS) {
+            if (newsList.length === newsListLength) {
+                setIsLoadMoreDisabled(true)
+            } else {
+                setIsLoadMoreDisabled(false)
+            }
+        } else {
+            if (articleList.length === articleListLength) {
+                setIsLoadMoreDisabled(true)
+            } else {
+                setIsLoadMoreDisabled(false)
+            }
+        }
+    }, [articleList.length, articleListLength, contentType, newsList.length, newsListLength]);
+
+    const handleLoadMore = () => {
+        setPage(page + 1);
+    };
+
+    const handleChangeContentType = (e) => {
+        setContentType(e.target.value)
+        setPage(1)
+    };
+
     return (
         <div className="account-list-content-container">
             <AccountPageTitleComponent
@@ -42,7 +70,7 @@ function AccountListContentContainerComponent(props) {
                     <AccountPageSubtitleComponent
                         title={"Тип"}/>
                     <TypeContentSelectComponent
-                        setContentType={(e) =>setContentType(e.target.value)}
+                        setContentType={(e) => handleChangeContentType(e)}
                         contentType={contentType} />
                 </div>
                 <AccountPageSubtitleComponent
@@ -50,9 +78,11 @@ function AccountListContentContainerComponent(props) {
                 <ListTableComponent
                     contentType={contentType}
                     thead={["Название", "Дата создания", "Автор"]}
+                    inputAmount={3}
                     tbodyNews={newsList}
-                    tbodyArticles={articleList}/>
-
+                    tbodyArticles={articleList}
+                    handleLoadMore={handleLoadMore}
+                    isLoadMoreDisabled={isLoadMoreDisabled}/>
             </div>
         </div>
     )

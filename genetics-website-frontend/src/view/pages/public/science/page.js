@@ -12,6 +12,7 @@ function SciencePage() {
     const [pageSize] = useState(6);
     const dispatch = useDispatch();
     const contentList = useSelector(state => state.content.articleList);
+    const contentListLength = useSelector(state => state.content.articleListLength);
 
     useEffect(() => {
         dispatch(fetchContent({ type: ARTICLE, page: page , pageSize: pageSize}));
@@ -25,6 +26,7 @@ function SciencePage() {
     return (
         <ListContentComponent
             contentList={contentList}
+            contentListLength={contentListLength}
             page={page}
             setPage={setPage}
             type={ARTICLE}

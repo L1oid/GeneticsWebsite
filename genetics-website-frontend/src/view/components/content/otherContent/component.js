@@ -9,32 +9,41 @@ import {fetchContent} from "../../../../state/slices/content/asyncActions";
 import {NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import {clearNewsList} from "../../../../state/slices/content/contentSlice";
+import LoadMoreButtonComponent from "../loadMoreButton/component";
 
 function OtherContentComponent() {
 
     const navigate = useNavigate();
     const contentList = useSelector(state => state.content.newsList);
+    const contentListLength = useSelector(state => state.content.newsListLength);
     const eventList = useSelector(state => state.content.eventList);
     const dispatch = useDispatch();
     const [page, setPage] = useState(1);
     const [pageSize] = useState(6);
+    const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchContent({ type: NEWS, page: page , pageSize: pageSize}));
+        dispatch(fetchContent({type: NEWS, page: page, pageSize: pageSize}));
     }, [page, dispatch, pageSize])
 
     useEffect(() => {
         dispatch(clearNewsList());
     }, [dispatch]);
 
+    useEffect(() => {
+        if (contentList.length === contentListLength) {
+            setIsLoadMoreDisabled(true)
+        } else {
+            setIsLoadMoreDisabled(false)
+        }
+    }, [contentList.length, contentListLength]);
+
     const handleNavigateClick = (href) => {
         navigate(href);
     };
 
     const handleLoadMore = () => {
-        if (contentList.length >= page) {
-            setPage(page + 1);
-        }
+        setPage(page + 1);
     };
 
     return (
@@ -73,9 +82,7 @@ function OtherContentComponent() {
                     )}
                 </div>
                 <div className="other-content-container-row-3">
-                    <button className="other-content-load-more" onClick={handleLoadMore}>
-                        Показать ещё
-                    </button>
+                    <LoadMoreButtonComponent handle={handleLoadMore} />
                 </div>
                 <div className="other-content-column-2">
                     <h2 className="other-content-heading">События</h2>
@@ -108,9 +115,9 @@ function OtherContentComponent() {
                 </div>
             </div>
             <div className="other-content-container-row-2">
-                <button className="other-content-load-more" onClick={handleLoadMore}>
-                    Показать ещё
-                </button>
+                <LoadMoreButtonComponent
+                    handle={handleLoadMore}
+                    isDisabled={isLoadMoreDisabled} />
             </div>
         </div>
     )

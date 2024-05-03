@@ -12,6 +12,7 @@ function NewsPage() {
     const [pageSize] = useState(6);
     const dispatch = useDispatch();
     const contentList = useSelector(state => state.content.newsList);
+    const contentListLength = useSelector(state => state.content.newsListLength);
 
     useEffect(() => {
         dispatch(fetchContent({ type: NEWS, page: page , pageSize: pageSize}));
@@ -24,6 +25,7 @@ function NewsPage() {
     return (
         <ListContentComponent
             contentList={contentList}
+            contentListLength={contentListLength}
             page={page}
             setPage={setPage}
             type={NEWS}

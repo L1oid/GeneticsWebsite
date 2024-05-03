@@ -5,9 +5,9 @@ import {ARTICLE, NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import AccountPageInputComponent from "../accountPageInput/component";
+import AccountLoadMoreButtonComponent from "../accountLoadMoreButton/component";
 
 function ListTableComponent(props) {
-
     return (
         <div className="list-table-container">
             <table className="list-table">
@@ -21,15 +21,11 @@ function ListTableComponent(props) {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>
-                        <AccountPageInputComponent/>
-                    </td>
-                    <td>
-                        <AccountPageInputComponent/>
-                    </td>
-                    <td>
-                        <AccountPageInputComponent/>
-                    </td>
+                    {Array.from({ length: props.inputAmount }, (_, index) => (
+                        <td key={index}>
+                            <AccountPageInputComponent />
+                        </td>
+                    ))}
                     <td>
                         <AccountPageButtonComponent title={"Поиск"}/>
                     </td>
@@ -43,7 +39,7 @@ function ListTableComponent(props) {
                             {formatDate(tbody.createdAt)}
                         </td>
                         <td>
-                            {tbody.uploadedBy}
+                            {tbody.lastNamePlusFirstName}
                         </td>
                         <td>
                             <div className="list-table-change-up-button">
@@ -62,7 +58,7 @@ function ListTableComponent(props) {
                             {formatDate(tbody.createdAt)}
                         </td>
                         <td>
-                            {tbody.uploadedBy}
+                            {tbody.lastNamePlusFirstName}
                         </td>
                         <td>
                             <div className="list-table-change-up-button">
@@ -74,7 +70,9 @@ function ListTableComponent(props) {
                 ))}
                 <tr>
                     <td colSpan="4">
-                        1 2 3 4 5
+                        <AccountLoadMoreButtonComponent
+                            handle={props.handleLoadMore}
+                            isDisabled={props.isLoadMoreDisabled}/>
                     </td>
                 </tr>
                 </tbody>
