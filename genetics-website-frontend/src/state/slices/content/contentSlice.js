@@ -7,9 +7,9 @@ import {
     clearContentErrorStatusSuccessReducer, clearNewsListReducer,
     clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
-    setPreviewContentTitleReducer, setPreviewContentTypeReducer
+    setPreviewContentTitleReducer, setPreviewContentTypeReducer, setRerenderAfterDeleteFalseReducer
 } from "./reducers";
-import {articleCreation, fetchContent, fetchSingleContent} from "./asyncActions";
+import {articleCreation, articleDeletion, fetchContent, fetchSingleContent} from "./asyncActions";
 import {setArticleCreationError, setFetchContentError, setFetchSingleContentError} from "./errorHandlers";
 import {api} from "../../consts/api";
 
@@ -36,6 +36,7 @@ const contentSlice = createSlice({
         articleList: [],
         newsListLength: null,
         articleListLength: null,
+        rerenderAfterDelete: false,
         contentListSlider: [
             {
                 id: 0,
@@ -115,6 +116,7 @@ const contentSlice = createSlice({
     },
     reducers: {
         clearNewsList: clearNewsListReducer,
+        setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer,
         clearArticleList: clearArticleListReducer,
         clearSingleContent: clearSingleContentReducer,
         clearContentErrorStatusSuccess: clearContentErrorStatusSuccessReducer,
@@ -171,11 +173,25 @@ const contentSlice = createSlice({
             state.success = "Контент успешно загружен";
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
+
+        builder.addCase(articleDeletion.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(articleDeletion.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.rerenderAfterDelete = true;
+            state.success = "Выбранный контент успешно удалён";
+        })
+        builder.addCase(articleDeletion.rejected, setFetchSingleContentError)
     }
 })
 
 export const {
     clearNewsList,
+    setRerenderAfterDeleteFalse,
     clearArticleList,
     clearSingleContent,
     clearPreviewContent,

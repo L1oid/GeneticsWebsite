@@ -24,3 +24,54 @@
 .list-table-change-up-button {
     margin-bottom: 10px;
 }
+
+.list-table-confirm-modal {
+    position: fixed;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #E1E1E1;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.list-table-confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.list-table-modal-content-text {
+    color: #434343;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+.list-table-modal-content-text {
+    color: #434343;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+.list-table-modal-content-text.title {
+    font-size: 22px;
+}
+
+.list-table-modal-content-buttons {
+    display: flex;
+}
+
+.list-table-modal-content-left-button {
+    margin-right: 10px;
+}
+
+.list-table-modal-content-buttons-space {
+    padding-right: 10px;
+}

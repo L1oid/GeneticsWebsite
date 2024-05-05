@@ -52,3 +52,7 @@ export const CONTENT_COULD_NOT_INITIALIZE_ARTICLES = "Couldn't initialize a list
 
 export const CONTENT_INCORRECT_SINGLE_ARTICLE_ID = "Incorrect id specified"
 export const CONTENT_ARTICLE_DONT_FIND_BY_ID = "No article was found for specified id"
+
+export const CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE = "No rights to delete this article"
+export const CONTENT_ARTICLE_DOESNT_EXIST = "Article doesn’t exist"
+export const CONTENT_INTERNAL_ERROR = "Internal error"

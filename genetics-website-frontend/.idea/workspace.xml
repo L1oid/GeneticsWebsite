@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" afterDir="false" />
@@ -195,7 +198,7 @@
       <workItem from="1714557189129" duration="2000" />
       <workItem from="1714717052025" duration="10118000" />
       <workItem from="1714802109967" duration="9997000" />
-      <workItem from="1714901039165" duration="5640000" />
+      <workItem from="1714901039165" duration="10718000" />
     </task>
     <servers />
   </component>

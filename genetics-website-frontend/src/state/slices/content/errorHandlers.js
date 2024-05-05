@@ -1,4 +1,5 @@
 import {
+    CONTENT_ARTICLE_DOESNT_EXIST,
     CONTENT_ARTICLE_DONT_FIND_BY_ID,
     CONTENT_COULD_NOT_FIND_ARTICLES,
     CONTENT_COULD_NOT_GET_USER_ID,
@@ -8,10 +9,10 @@ import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_FILES_SIZE_TOO_MANY,
     CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME,
-    CONTENT_INCORRECT_SINGLE_ARTICLE_ID, CONTENT_INVALID_DATE_FORMAT,
+    CONTENT_INCORRECT_SINGLE_ARTICLE_ID, CONTENT_INTERNAL_ERROR, CONTENT_INVALID_DATE_FORMAT,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE,
-    CONTENT_NO_AUTH_HEADER_PRESENT,
+    CONTENT_NO_AUTH_HEADER_PRESENT, CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE,
     CONTENT_NULL_ARTICLE_FIELDS,
     CONTENT_PREVIEW_IMAGE_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_PREVIEW_IMAGE_LACKS_FILE_NAME,
@@ -48,6 +49,59 @@ export const setFetchSingleContentError = (state, action) => {
                     break;
             }
             break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setDeleteArticleError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует токен авторизации"
+                    break;
+                case CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE:
+                    state.error = "Отсутствуют права на удаление контента"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_ARTICLE_DOESNT_EXIST:
+                    state.error = "Контент с данным id отсутствует"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_INTERNAL_ERROR:
+                    state.error = "Внутренняя ошибка сервера"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:

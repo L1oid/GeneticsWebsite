@@ -7,6 +7,10 @@ export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.text = "<p><br></p>"
 }
 
+export const setRerenderAfterDeleteFalseReducer = (state, action) => {
+    state.rerenderAfterDelete = false
+}
+
 export const clearNewsListReducer = (state, action) => {
     state.newsList.splice(0, state.newsList.length)
 }

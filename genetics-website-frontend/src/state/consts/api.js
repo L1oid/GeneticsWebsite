@@ -19,6 +19,9 @@ export const api = {
 
         return queryParams;
     },
+    deleteArticle: function (id) {
+        return `api/articles?id=${id}`
+    },
     getAmountArticles: function(author, type, title, date) {
         let queryParams = `api/articles/amounts?type=${type}`
 

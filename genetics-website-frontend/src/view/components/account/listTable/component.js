@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './style.css';
 import {ARTICLE, NEWS} from "../../../../state/consts/contentTypes";
@@ -9,8 +9,49 @@ import AccountLoadMoreButtonComponent from "../accountLoadMoreButton/component";
 
 function ListTableComponent(props) {
 
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
+    const handleDeleteClick = (itemId) => {
+        setItemToDelete(itemId);
+        setShowConfirmModal(true);
+    };
+
+    const handleConfirmDelete = () => {
+        props.deleteButtonHandle(itemToDelete);
+        setShowConfirmModal(false);
+        setItemToDelete(null);
+    };
+
+    const handleCancelDelete = () => {
+        setShowConfirmModal(false);
+        setItemToDelete(null);
+    };
+
     return (
         <div className="list-table-container">
+            {showConfirmModal && (
+                <div>
+                    <div className="list-table-confirm-modal-overlay"/>
+                    <div className="list-table-confirm-modal">
+                        <div className="list-table-modal-content">
+                            <p className="list-table-modal-content-text title">Подтвердите удаление</p>
+                            <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный контент?</p>
+                            <div className="list-table-modal-content-buttons">
+                                <AccountPageButtonComponent
+                                    title={"Удалить"}
+                                    status={props.status}
+                                    handle={handleConfirmDelete}/>
+                                <div className="list-table-modal-content-buttons-space" />
+                                <AccountPageButtonComponent
+                                    title={"Отмена"}
+                                    status={props.status}
+                                    handle={handleCancelDelete}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
             <table className="list-table">
                 <thead>
                 <tr>
@@ -65,7 +106,10 @@ function ListTableComponent(props) {
                             <div className="list-table-change-up-button">
                                 <AccountPageButtonComponent title={"Изменить"}/>
                             </div>
-                            <AccountPageButtonComponent title={"Удалить"}/>
+                            <AccountPageButtonComponent
+                                title={"Удалить"}
+                                status={props.status}
+                                handle={() => handleDeleteClick(tbody.id)}/>
                         </td>
                     </tr>
                 ))}
@@ -84,7 +128,10 @@ function ListTableComponent(props) {
                             <div className="list-table-change-up-button">
                                 <AccountPageButtonComponent title={"Изменить"}/>
                             </div>
-                            <AccountPageButtonComponent title={"Удалить"}/>
+                            <AccountPageButtonComponent
+                                title={"Удалить"}
+                                status={props.status}
+                                handle={() => handleDeleteClick(tbody.id)}/>
                         </td>
                     </tr>
                 ))}

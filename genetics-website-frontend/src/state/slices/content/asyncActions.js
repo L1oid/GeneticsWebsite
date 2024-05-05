@@ -170,3 +170,28 @@ export const fetchSingleContent = createAsyncThunk(
         }
     }
 );
+
+export const articleDeletion = createAsyncThunk(
+    "content/articleDeletion",
+    async function(id, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.deleteArticle(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);

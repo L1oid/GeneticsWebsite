@@ -6,9 +6,13 @@ import ListTableComponent from "../listTable/component";
 import AccountPageSubtitleComponent from "../accountPageSubtitle/component";
 import TypeContentSelectComponent from "../typeContentSelect/component";
 import {ARTICLE, NEWS} from "../../../../state/consts/contentTypes";
-import {fetchContent} from "../../../../state/slices/content/asyncActions";
+import {articleDeletion, fetchContent} from "../../../../state/slices/content/asyncActions";
 import {useDispatch, useSelector} from "react-redux";
-import {clearArticleList, clearNewsList} from "../../../../state/slices/content/contentSlice";
+import {
+    clearArticleList,
+    clearNewsList,
+    setRerenderAfterDeleteFalse
+} from "../../../../state/slices/content/contentSlice";
 
 function AccountListContentContainerComponent(props) {
 
@@ -31,7 +35,8 @@ function AccountListContentContainerComponent(props) {
     const articleList = useSelector(state => state.content.articleList);
     const newsListLength = useSelector(state => state.content.newsListLength);
     const articleListLength = useSelector(state => state.content.articleListLength);
-    const {status} = useSelector(state => state.content);
+    const {status, rerenderAfterDelete} = useSelector(state => state.content);
+    
 
     useEffect(() => {
         if (searchTitle.trim() === '' && searchAuthor.trim() === '' && searchDate.trim() === '') {
@@ -113,6 +118,13 @@ function AccountListContentContainerComponent(props) {
         }
     };
 
+    useEffect(() => {
+        if (rerenderAfterDelete === true) {
+            searchButtonHandle();
+            dispatch(setRerenderAfterDeleteFalse());
+        }
+    }, [dispatch, rerenderAfterDelete, searchButtonHandle]);
+
     const handleDateChange = (event) => {
         const dateString = event.target.value;
         if (dateString === '') {
@@ -125,6 +137,10 @@ function AccountListContentContainerComponent(props) {
             setSearchDate(formattedDate);
         }
     };
+
+    const deleteButtonHandle = (id) => {
+        dispatch(articleDeletion(id))
+    }
 
     return (
         <div className="account-list-content-container">
@@ -155,7 +171,8 @@ function AccountListContentContainerComponent(props) {
                     secondInputValueHandle={handleDateChange}
                     thirdInputValue={searchAuthor}
                     thirdInputValueHandle={(e) => setSearchAuthor(e.target.value)}
-                    searchButtonHandle={searchButtonHandle}/>
+                    searchButtonHandle={searchButtonHandle}
+                    deleteButtonHandle={deleteButtonHandle}/>
             </div>
         </div>
     )
