@@ -14,11 +14,11 @@
 .list-table th, .list-table td {
     border: 2px solid #434343;
     padding: 8px;
-    text-align: left;
 }
 
 .list-table th {
     background-color: #E1E1E1;
+    top: 0;
 }
 
 .list-table-change-up-button {

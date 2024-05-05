@@ -8,6 +8,7 @@ import AccountPageInputComponent from "../accountPageInput/component";
 import AccountLoadMoreButtonComponent from "../accountLoadMoreButton/component";
 
 function ListTableComponent(props) {
+
     return (
         <div className="list-table-container">
             <table className="list-table">
@@ -21,13 +22,32 @@ function ListTableComponent(props) {
                 </thead>
                 <tbody>
                 <tr>
-                    {Array.from({ length: props.inputAmount }, (_, index) => (
-                        <td key={index}>
-                            <AccountPageInputComponent />
-                        </td>
-                    ))}
                     <td>
-                        <AccountPageButtonComponent title={"Поиск"}/>
+                        <AccountPageInputComponent
+                            type={"text"}
+                            value={props.firstInputValue}
+                            handle={props.firstInputValueHandle}
+                            disabled={false}/>
+                    </td>
+                    <td>
+                        <AccountPageInputComponent
+                            type={"date"}
+                            value={props.secondInputValue}
+                            handle={props.secondInputValueHandle}
+                            disabled={false}/>
+                    </td>
+                    <td>
+                        <AccountPageInputComponent
+                            type={"text"}
+                            value={props.thirdInputValue}
+                            handle={props.thirdInputValueHandle}
+                            disabled={false}/>
+                    </td>
+                    <td>
+                        <AccountPageButtonComponent
+                            title={"Поиск"}
+                            status={props.status}
+                            handle={props.searchButtonHandle}/>
                     </td>
                 </tr>
                 {props.contentType === NEWS && props.tbodyNews.map((tbody, tbodyIndex) => (
@@ -68,6 +88,20 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 ))}
+                {props.contentType === NEWS && props.tbodyNews.length === 0 && (
+                    <tr>
+                        <td colSpan="4">
+                            Ничего не найдено
+                        </td>
+                    </tr>
+                )}
+                {props.contentType === ARTICLE && props.tbodyArticles.length === 0 && (
+                    <tr>
+                        <td colSpan="4">
+                            Ничего не найдено
+                        </td>
+                    </tr>
+                )}
                 <tr>
                     <td colSpan="4">
                         <AccountLoadMoreButtonComponent

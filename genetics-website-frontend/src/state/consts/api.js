@@ -7,13 +7,13 @@ export const api = {
     getArticles: function(page, pageSize, type, author, title, date) {
         let queryParams = `api/articles/filters?page=${page}&pageSize=${pageSize}&type=${type}`;
 
-        if (author !== undefined) {
+        if (author !== undefined && author !== "") {
             queryParams += `&author=${author}`;
         }
-        if (title !== undefined) {
+        if (title !== undefined && title !== "") {
             queryParams += `&title=${title}`;
         }
-        if (date !== undefined) {
+        if (date !== undefined && date !== "") {
             queryParams += `&date=${date}`;
         }
 
@@ -22,13 +22,13 @@ export const api = {
     getAmountArticles: function(author, type, title, date) {
         let queryParams = `api/articles/amounts?type=${type}`
 
-        if (author !== undefined) {
+        if (author !== undefined && author !== "") {
             queryParams += `&author=${author}`;
         }
-        if (title !== undefined) {
+        if (title !== undefined && title !== "") {
             queryParams += `&title=${title}`;
         }
-        if (date !== undefined) {
+        if (date !== undefined && date !== "") {
             queryParams += `&date=${date}`;
         }
 
