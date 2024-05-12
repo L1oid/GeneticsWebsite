@@ -6,14 +6,12 @@ import {fetchSingleContent} from "../../../../state/slices/content/asyncActions"
 import SingleContentComponent from "../../../components/content/singleContent/component";
 import {NEWS} from "../../../../state/consts/contentTypes";
 import {clearSingleContent} from "../../../../state/slices/content/contentSlice";
-import NotFoundPage from "../notFound/page";
 
 function OneNewsPage() {
     const {id} = useParams();
 
     const dispatch = useDispatch();
     const content = useSelector(state => state.content.content);
-    const articleNotFound = useSelector(state => state.content.articleNofFound);
 
     useEffect(() => {
         dispatch(clearSingleContent());
@@ -21,9 +19,7 @@ function OneNewsPage() {
     }, [dispatch, id])
 
 
-    return articleNotFound ? (
-        <NotFoundPage />
-    ) : (
+    return (
         <SingleContentComponent
             id={id}
             images={content.imageList}

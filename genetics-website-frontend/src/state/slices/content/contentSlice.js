@@ -5,7 +5,7 @@ import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
     clearArticleListReducer,
     clearContentErrorStatusSuccessReducer, clearNewsListReducer,
-    clearPreviewContentReducer, clearSingleContentReducer, setArticleNotFoundReducer, setPreviewContentForSliderReducer,
+    clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer, setRerenderAfterDeleteFalseReducer
 } from "./reducers";

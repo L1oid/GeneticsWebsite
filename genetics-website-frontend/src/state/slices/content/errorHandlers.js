@@ -1,7 +1,6 @@
 import {
     CONTENT_ADD_TOO_MANY_FILES,
     CONTENT_ARTICLE_DOESNT_EXIST,
-    CONTENT_COULD_NOT_FIND_ARTICLES,
     CONTENT_COULD_NOT_GET_USER_ID,
     CONTENT_COULD_NOT_INITIALIZE_ARTICLES,
     CONTENT_DELETE_MEDIA_ID_IS_0,
@@ -37,7 +36,6 @@ import {globalExit} from "../../functions/globalExit";
 export const setFetchSingleContentError = (state, action) => {
     state.status = "rejected"
     state.success = null
-    console.log("kek")
     switch (action.payload.status) {
         case 400:
             switch (action.payload.text) {
