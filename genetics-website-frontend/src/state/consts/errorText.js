@@ -39,6 +39,13 @@ export const CONTENT_FAILED_TO_SAVE_ARTICLE = "Failed to save article"
 export const CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME = "One or more files in fileList lacks file name, cannot parse its type"
 export const CONTENT_PREVIEW_IMAGE_LACKS_FILE_NAME = "previewImage lacks file name, cannot parse its type"
 export const CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME = "sliderImage lacks file name, cannot parse its type"
+export const CONTENT_ADD_TOO_MANY_FILES = "Too many files to be added, there shouldn't be more than 10"
+export const CONTENT_DELETE_TOO_MANY_FILES = "Too many files to be deleted, there shouldn't be more than 10"
+export const CONTENT_DELETE_MEDIA_ID_IS_0 = "One or more ids in mediaToDelete is 0"
+export const CONTENT_USER_TOKEN_ERROR = "Couldn't get user id"
+export const CONTENT_USER_DONT_HAVE_EDIT_RIGHTS = "This user doesn't have rights to edit this article"
+export const CONTENT_PREVIEW_IMAGE_LACKS_FILENAME = "previewImage lacks filename, cannot parse its type"
+export const CONTENT_EDIT_INTERNAL_ERROR = "An error has occurred"
 
 
 

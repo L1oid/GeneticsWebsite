@@ -2,11 +2,9 @@ import React, {useEffect, useState} from 'react';
 import parse from 'html-react-parser';
 
 import './style.css';
-import {useSelector} from "react-redux";
 
 function PreviewContentComponent(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const previewContent = useSelector(state => state.content.previewContent)
 
     useEffect(() => {
         if (currentIndex >= props.images.length && props.images.length > 0) {
@@ -28,13 +26,13 @@ function PreviewContentComponent(props) {
     return (
         <div className="preview-content-container">
             <h1 className="single-content-heading preview-content-padding">
-                {previewContent.title === "" ? "Заголовок" : previewContent.title}
+                {props.title === "" ? "Заголовок" : props.title}
             </h1>
             <h2 className="single-content-date preview-content-padding">
                 {new Date().toLocaleDateString()}
             </h2>
             <div className="single-content-text preview-content-padding">
-                {previewContent.text === "<p><br></p>" ? "Содержание" : parse(previewContent.text)}
+                {props.text === "<p><br></p>" ? "Содержание" : parse(props.text)}
             </div>
             {props.images.length !== 0 && (
                 <div>

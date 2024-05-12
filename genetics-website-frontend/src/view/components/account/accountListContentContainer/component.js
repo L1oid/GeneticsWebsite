@@ -13,6 +13,7 @@ import {
     clearNewsList,
     setRerenderAfterDeleteFalse
 } from "../../../../state/slices/content/contentSlice";
+import {useNavigate} from "react-router-dom";
 
 function AccountListContentContainerComponent(props) {
 
@@ -30,6 +31,8 @@ function AccountListContentContainerComponent(props) {
     const [pageSize] = useState(6);
     const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const newsList = useSelector(state => state.content.newsList);
     const articleList = useSelector(state => state.content.articleList);
@@ -142,6 +145,10 @@ function AccountListContentContainerComponent(props) {
         dispatch(articleDeletion(id))
     }
 
+    const changeButtonHandle = (id) => {
+        navigate(`/account/content-list/edit-content/${id}`);
+    }
+
     return (
         <div className="account-list-content-container">
             <AccountPageTitleComponent
@@ -172,7 +179,8 @@ function AccountListContentContainerComponent(props) {
                     thirdInputValue={searchAuthor}
                     thirdInputValueHandle={(e) => setSearchAuthor(e.target.value)}
                     searchButtonHandle={searchButtonHandle}
-                    deleteButtonHandle={deleteButtonHandle}/>
+                    deleteButtonHandle={deleteButtonHandle}
+                    changeButtonHandle={changeButtonHandle}/>
             </div>
         </div>
     )

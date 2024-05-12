@@ -5,12 +5,17 @@ import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
     clearArticleListReducer,
     clearContentErrorStatusSuccessReducer, clearNewsListReducer,
-    clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
+    clearPreviewContentReducer, clearSingleContentReducer, setArticleNotFoundReducer, setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer, setRerenderAfterDeleteFalseReducer
 } from "./reducers";
-import {articleCreation, articleDeletion, fetchContent, fetchSingleContent} from "./asyncActions";
-import {setArticleCreationError, setFetchContentError, setFetchSingleContentError} from "./errorHandlers";
+import {articleCreation, articleDeletion, articleEdition, fetchContent, fetchSingleContent} from "./asyncActions";
+import {
+    setArticleCreationError, setArticleEditionError,
+    setDeleteArticleError,
+    setFetchContentError,
+    setFetchSingleContentError
+} from "./errorHandlers";
 import {api} from "../../consts/api";
 
 const contentPersistConfig = {
@@ -110,6 +115,7 @@ const contentSlice = createSlice({
             title: "",
             text: "<p><br></p>"
         },
+        articleNofFound: false,
         status: null,
         error: null,
         success: null
@@ -139,6 +145,17 @@ const contentSlice = createSlice({
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
 
+        builder.addCase(articleEdition.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(articleEdition.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Контент успешно изменён";
+        })
+        builder.addCase(articleEdition.rejected, setArticleEditionError)
 
         builder.addCase(fetchContent.pending, (state, action) => {
             state.status = 'loading';
@@ -156,7 +173,6 @@ const contentSlice = createSlice({
                 state.newsList = [...state.newsList, ...action.payload.content];
             }
             state.error = null;
-            state.success = "Контент успешно загружен";
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
 
@@ -170,7 +186,6 @@ const contentSlice = createSlice({
             state.status = 'resolved';
             state.content = action.payload;
             state.error = null;
-            state.success = "Контент успешно загружен";
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
 
@@ -183,9 +198,8 @@ const contentSlice = createSlice({
             state.status = 'resolved';
             state.error = null;
             state.rerenderAfterDelete = true;
-            state.success = "Выбранный контент успешно удалён";
         })
-        builder.addCase(articleDeletion.rejected, setFetchSingleContentError)
+        builder.addCase(articleDeletion.rejected, setDeleteArticleError)
     }
 })
 

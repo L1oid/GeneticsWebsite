@@ -1,0 +1,39 @@
+.change-content-container-row-2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.change-content-title-input {
+    margin-bottom: 15px;
+}
+
+.change-content-image {
+    display: flex;
+    justify-content: space-between;
+}
+
+.change-content-type {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.change-content-news-options {
+    display: none;
+    padding-left: 15px;
+}
+
+.change-content-news-options.visible {
+    display: block;
+}
+
+.change-content-news-for-slider {
+    display: none;
+}
+
+.change-content-news-for-slider.visible {
+    display: block;
+}
+
+.change-content-button-wrapper {
+    margin-top: 25px;
+}

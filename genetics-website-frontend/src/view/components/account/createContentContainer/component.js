@@ -181,6 +181,8 @@ function CreateContentContainerComponent(props) {
                 <AccountPageSubtitleComponent
                     title={"Предпросмотр"}/>
                 <PreviewContentComponent
+                    title={previewContent.title}
+                    text={previewContent.text}
                     images={contentImages.map(image => URL.createObjectURL(image))}/>
                 <div className="create-content-button-wrapper">
                     <AccountPageButtonComponent

@@ -92,6 +92,78 @@ export const articleCreation = createAsyncThunk(
     }
 );
 
+export const articleEdition = createAsyncThunk(
+    "content/articleEdition",
+    async function({articleId, title, type, content, previewImage, oldPreviewImage, addFileList, deleteFileList}, {rejectWithValue, getState, dispatch}) {
+        try {
+            if (title === "" || content === "<p><br></p>" || (previewImage === null && oldPreviewImage === null)) {
+                return rejectWithValue({
+                    status: 400,
+                    statusText: 'Bad Request',
+                    text: CONTENT_NULL_ARTICLE_FIELDS
+                });
+            }
+
+            const state = getState();
+            /** @namespace state.user **/
+
+            const formData = new FormData();
+
+            formData.append('articleId', articleId)
+            formData.append('title', title);
+            formData.append('type', type);
+            formData.append('content', content);
+            if (previewImage !== null) {
+                formData.append('previewImage', previewImage);
+            }
+
+            for (let i = 0; i < addFileList.length; i++) {
+                const file = addFileList[i];
+                let extension = '';
+                switch (file.type) {
+                    case 'image/jpeg':
+                        extension = '.jpg';
+                        break;
+                    case 'image/png':
+                        extension = '.png';
+                        break;
+                    default:
+                        return rejectWithValue({
+                            status: 400,
+                            statusText: 'Bad Request',
+                            text: CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT
+                        });
+                }
+                formData.append('mediaFilesToAdd', file, `file${i + 1}${extension}`);
+            }
+
+            deleteFileList.forEach(id => {
+                formData.append('mediaFilesToDelete', id);
+            });
+
+            const response = await fetch(api.url + api.articleCreation, {
+                method: 'PUT',
+                headers: {'Authorization': state.user.token},
+                body: formData
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
     async function({page, pageSize, type, author, title, date}, {rejectWithValue}) {

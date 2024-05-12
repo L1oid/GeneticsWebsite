@@ -23,6 +23,10 @@ function ListTableComponent(props) {
         setItemToDelete(null);
     };
 
+    const handleChangeClick = (itemId) => {
+        props.changeButtonHandle(itemId);
+    };
+
     const handleCancelDelete = () => {
         setShowConfirmModal(false);
         setItemToDelete(null);
@@ -104,7 +108,10 @@ function ListTableComponent(props) {
                         </td>
                         <td>
                             <div className="list-table-change-up-button">
-                                <AccountPageButtonComponent title={"Изменить"}/>
+                                <AccountPageButtonComponent
+                                    title={"Изменить"}
+                                    status={props.status}
+                                    handle={() => handleChangeClick(tbody.id)}/>
                             </div>
                             <AccountPageButtonComponent
                                 title={"Удалить"}
