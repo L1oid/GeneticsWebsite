@@ -252,6 +252,12 @@ export const fetchSingleContent = createAsyncThunk(
                     text: text
                 });
             }
+            if (response.status === 204) {
+                return {
+                    status: response.status,
+                    data: {}
+                }
+            }
             let data = await response.json()
             /** @namespace data.mediaFilesMap **/
             const fieldNames = Object.keys(data.mediaFilesMap);
@@ -263,7 +269,10 @@ export const fetchSingleContent = createAsyncThunk(
                 const imageUrl = api.url + api.getImage(field);
                 data.imageList.push(imageUrl);
             }
-            return data;
+            return {
+                status: response.status,
+                data: data
+            };
         } catch (error) {
             return rejectWithValue({
                 status: 504,

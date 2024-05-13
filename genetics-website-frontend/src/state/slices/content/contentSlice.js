@@ -4,10 +4,16 @@ import {persistReducer} from "redux-persist";
 import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
     clearArticleListReducer,
-    clearContentErrorStatusSuccessReducer, clearNewsListReducer,
-    clearPreviewContentReducer, clearSingleContentReducer, setPreviewContentForSliderReducer,
+    clearContentErrorStatusSuccessReducer,
+    clearNewsListReducer,
+    clearPreviewContentReducer,
+    clearSingleContentReducer,
+    setArticleNotFoundFalseReducer,
+    setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
-    setPreviewContentTitleReducer, setPreviewContentTypeReducer, setRerenderAfterDeleteFalseReducer
+    setPreviewContentTitleReducer,
+    setPreviewContentTypeReducer,
+    setRerenderAfterDeleteFalseReducer
 } from "./reducers";
 import {
     articleCreation,
@@ -122,13 +128,14 @@ const contentSlice = createSlice({
             title: "",
             text: "<p><br></p>"
         },
-        articleNofFound: false,
+        articleNotFound: false,
         status: null,
         error: null,
         success: null
     },
     reducers: {
         clearNewsList: clearNewsListReducer,
+        setArticleNotFound: setArticleNotFoundFalseReducer,
         setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer,
         clearArticleList: clearArticleListReducer,
         clearSingleContent: clearSingleContentReducer,
@@ -202,7 +209,11 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchSingleContent.fulfilled, (state, action) => {
             state.status = 'resolved';
-            state.content = action.payload;
+            if (action.payload.status === 200) {
+                state.content = action.payload.data;
+            } else {
+                state.articleNotFound = true
+            }
             state.error = null;
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
@@ -223,6 +234,7 @@ const contentSlice = createSlice({
 
 export const {
     clearNewsList,
+    setArticleNotFound,
     setRerenderAfterDeleteFalse,
     clearArticleList,
     clearSingleContent,

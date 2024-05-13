@@ -11,6 +11,10 @@ export const setRerenderAfterDeleteFalseReducer = (state, action) => {
     state.rerenderAfterDelete = false
 }
 
+export const setArticleNotFoundFalseReducer = (state, action) => {
+    state.articleNotFound = false
+}
+
 export const clearNewsListReducer = (state, action) => {
     state.newsList.splice(0, state.newsList.length)
 }

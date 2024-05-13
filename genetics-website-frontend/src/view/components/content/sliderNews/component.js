@@ -23,10 +23,6 @@ function SliderNewsComponent() {
     }, [dispatch])
 
     useEffect(() => {
-        console.log(contentListSlider)
-    }, [contentListSlider])
-
-    useEffect(() => {
         function goToNext() {
             const isLastSlide = currentIndex === contentListSlider.length - 1;
             const newIndex = isLastSlide ? 0 : currentIndex + 1;
