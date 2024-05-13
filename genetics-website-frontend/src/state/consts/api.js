@@ -4,7 +4,7 @@ export const api = {
     changePassword: "api/users/",
     registrationUser: "api/users",
     articleCreation: "api/articles",
-    getArticles: function(page, pageSize, type, author, title, date) {
+    getArticles: function(page, pageSize, type, author, title, date, dateFilter, orderByTitle) {
         let queryParams = `api/articles/filters?page=${page}&pageSize=${pageSize}&type=${type}`;
 
         if (author !== undefined && author !== "") {
@@ -16,13 +16,19 @@ export const api = {
         if (date !== undefined && date !== "") {
             queryParams += `&date=${date}`;
         }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+        if (orderByTitle !== undefined && orderByTitle !== "") {
+            queryParams += `&orderByTitle=${orderByTitle}`;
+        }
 
         return queryParams;
     },
     deleteArticle: function (id) {
         return `api/articles?id=${id}`
     },
-    getAmountArticles: function(author, type, title, date) {
+    getAmountArticles: function(author, type, title, date, dateFilter) {
         let queryParams = `api/articles/amounts?type=${type}`
 
         if (author !== undefined && author !== "") {
@@ -34,6 +40,9 @@ export const api = {
         if (date !== undefined && date !== "") {
             queryParams += `&date=${date}`;
         }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
 
         return queryParams;
     },
@@ -42,5 +51,8 @@ export const api = {
     },
     getSingleArticle: function(id) {
         return `api/articles/${id}`
+    },
+    getSliders: function(amount) {
+        return `api/articles/sliders/${amount}`
     }
 }

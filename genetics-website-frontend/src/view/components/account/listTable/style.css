@@ -75,3 +75,13 @@
 .list-table-modal-content-buttons-space {
     padding-right: 10px;
 }
+
+.list-table-filter-button {
+    user-select: none;
+}
+
+.list-table-filter-button.hoverable:hover {
+    cursor: pointer;
+    background-color: #b2b2b2;
+    transition-duration: 0.2s;
+}

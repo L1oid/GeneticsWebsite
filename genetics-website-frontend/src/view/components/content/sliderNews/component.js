@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 
 import "./style.css"
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchSliderContent} from "../../../../state/slices/content/asyncActions";
 
 function SliderNewsComponent() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,9 +12,19 @@ function SliderNewsComponent() {
     const navigate = useNavigate();
     const contentListSlider = useSelector(state => state.content.contentListSlider);
 
+    const dispatch = useDispatch();
+
     const slideStyles = {
-        backgroundImage: `url(${contentListSlider[currentIndex].sliderImage})`
+        backgroundImage: `url(${contentListSlider[currentIndex].mediaId})`
     }
+
+    useEffect(() => {
+        dispatch(fetchSliderContent({amount: 8}));
+    }, [dispatch])
+
+    useEffect(() => {
+        console.log(contentListSlider)
+    }, [contentListSlider])
 
     useEffect(() => {
         function goToNext() {
@@ -67,14 +78,13 @@ function SliderNewsComponent() {
                       onClick={goToNext}>chevron_right</span>
                 <div className="slide-plate">
                     <div className="slide-header">
-                        {contentListSlider[currentIndex].title}
+                        {contentListSlider[currentIndex].articleTitle}
                     </div>
                     <div className="slide-footer">
                         <button
                             className="slide-button"
-                            data-href={`/news/${contentListSlider[currentIndex].id}`}
-                            onClick={(e) => handleNavigateClick(e.currentTarget.getAttribute('data-href'))}
-                            disabled={true}>
+                            data-href={`/news/${contentListSlider[currentIndex].articleId}`}
+                            onClick={(e) => handleNavigateClick(e.currentTarget.getAttribute('data-href'))}>
                             Подробнее
                         </button>
                     </div>

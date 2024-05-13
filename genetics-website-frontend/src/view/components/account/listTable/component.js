@@ -12,6 +12,28 @@ function ListTableComponent(props) {
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [itemToDelete, setItemToDelete] = useState(null);
 
+    const renderSortIndicator = () => {
+        switch (props.orderByTitle) {
+            case 'asc':
+                return 'Название ⯅';
+            case 'desc':
+                return 'Название ⯆';
+            default:
+                return 'Название';
+        }
+    };
+
+    const renderDateFilterIndicator = () => {
+        switch (props.dateFilter) {
+            case 'gt':
+                return 'Дата создания ⯅';
+            case 'lt':
+                return 'Дата создания ⯆';
+            default:
+                return 'Дата создания';
+        }
+    };
+
     const handleDeleteClick = (itemId) => {
         setItemToDelete(itemId);
         setShowConfirmModal(true);
@@ -59,9 +81,14 @@ function ListTableComponent(props) {
             <table className="list-table">
                 <thead>
                 <tr>
-                    {props.thead.map((th, thIndex) => (
-                        <th key={thIndex}>{th}</th>
-                    ))}
+                    <th onClick={props.status === "loading" ? undefined : props.handleTitleSort}
+                        className="list-table-filter-button hoverable">{renderSortIndicator()}
+                    </th>
+                    <th
+                        onClick={props.status === "loading" || props.secondInputValue === "" ? undefined : props.handleDateFilter}
+                        className={`list-table-filter-button ${props.secondInputValue === "" ? "" : "hoverable"}`}>{renderDateFilterIndicator()}
+                    </th>
+                    <th>Автор</th>
                     <th>Управление</th>
                 </tr>
                 </thead>

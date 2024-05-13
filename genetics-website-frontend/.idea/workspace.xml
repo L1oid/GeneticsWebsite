@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/sliderNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderNews/component.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +198,11 @@
       <workItem from="1714717052025" duration="10118000" />
       <workItem from="1714802109967" duration="9997000" />
       <workItem from="1714901039165" duration="10718000" />
-      <workItem from="1715490875631" duration="18480000" />
+      <workItem from="1715490875631" duration="18746000" />
+      <workItem from="1715518328973" duration="146000" />
+      <workItem from="1715518496140" duration="61000" />
+      <workItem from="1715531764537" duration="262000" />
+      <workItem from="1715578758010" duration="6521000" />
     </task>
     <servers />
   </component>

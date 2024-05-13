@@ -28,6 +28,9 @@ function AccountListContentContainerComponent(props) {
     const [searchPage, setSearchPage] = useState(1);
     const [page, setPage] = useState(1);
 
+    const [orderByTitle, setOrderByTitle] = useState("");
+    const [dateFilter, setDateFilter] = useState("eq");
+
     const [pageSize] = useState(6);
     const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
     const dispatch = useDispatch();
@@ -43,23 +46,25 @@ function AccountListContentContainerComponent(props) {
 
     useEffect(() => {
         if (searchTitle.trim() === '' && searchAuthor.trim() === '' && searchDate.trim() === '') {
-            dispatch(fetchContent({ type: contentType, page: page, pageSize: pageSize }));
+            dispatch(fetchContent({ type: contentType, page: page, pageSize: pageSize, orderByTitle: orderByTitle, dateFilter: dateFilter}));
         } else {
-            dispatch(fetchContent({ type: contentType, page: searchPage, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor}));
+            dispatch(fetchContent({ type: contentType, page: searchPage, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor, orderByTitle: orderByTitle, dateFilter: dateFilter}));
         }
-    }, [page, searchPage, dispatch, pageSize, contentType]);
-
-    useEffect(() => {
-        console.log(searchDate)
-    }, [searchDate]);
+    }, [page, searchPage, dispatch, pageSize, contentType, orderByTitle, dateFilter]);
 
     useEffect(() => {
         dispatch(clearNewsList());
-    }, [contentType, dispatch]);
+    }, [dateFilter, orderByTitle, contentType, dispatch]);
 
     useEffect(() => {
         dispatch(clearArticleList());
-    }, [contentType, dispatch]);
+    }, [dateFilter, orderByTitle, contentType, dispatch]);
+
+    useEffect(() => {
+        if (showDate === "") {
+            setDateFilter("eq")
+        }
+    }, [showDate]);
 
     useEffect(() => {
         if (contentType === NEWS) {
@@ -103,7 +108,7 @@ function AccountListContentContainerComponent(props) {
                 dispatch(clearNewsList());
             }
             if (page === 1) {
-                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize }));
+                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize, orderByTitle: orderByTitle, dateFilter: dateFilter}));
             } else {
                 setPage(1)
             }
@@ -114,7 +119,7 @@ function AccountListContentContainerComponent(props) {
                 dispatch(clearNewsList());
             }
             if (searchPage === 1) {
-                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor}));
+                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor, orderByTitle: orderByTitle, dateFilter: dateFilter}));
             } else {
                 setSearchPage(1)
             }
@@ -135,9 +140,29 @@ function AccountListContentContainerComponent(props) {
             setSearchDate('');
         } else {
             const date = new Date(`${dateString}T12:00:00`);
-            const formattedDate = date.toISOString().slice(0, 10) + "T00:00:00";
+            const formattedDate = date.toISOString().slice(0, 10);
             setShowDate(dateString);
             setSearchDate(formattedDate);
+        }
+    };
+
+    const handleTitleSort = () => {
+        if (orderByTitle === "") {
+            setOrderByTitle('asc');
+        } else if (orderByTitle=== 'asc') {
+            setOrderByTitle('desc');
+        } else {
+            setOrderByTitle("");
+        }
+    };
+
+    const handleDateFilter = () => {
+        if (dateFilter === "eq") {
+            setDateFilter('lt');
+        } else if (dateFilter=== 'lt') {
+            setDateFilter('gt');
+        } else {
+            setDateFilter("eq");
         }
     };
 
@@ -166,7 +191,6 @@ function AccountListContentContainerComponent(props) {
                 <ListTableComponent
                     status={status}
                     contentType={contentType}
-                    thead={["Название", "Дата создания", "Автор"]}
                     inputAmount={3}
                     tbodyNews={newsList}
                     tbodyArticles={articleList}
@@ -180,7 +204,11 @@ function AccountListContentContainerComponent(props) {
                     thirdInputValueHandle={(e) => setSearchAuthor(e.target.value)}
                     searchButtonHandle={searchButtonHandle}
                     deleteButtonHandle={deleteButtonHandle}
-                    changeButtonHandle={changeButtonHandle}/>
+                    changeButtonHandle={changeButtonHandle}
+                    handleTitleSort={handleTitleSort}
+                    orderByTitle={orderByTitle}
+                    handleDateFilter={handleDateFilter}
+                    dateFilter={dateFilter}/>
             </div>
         </div>
     )

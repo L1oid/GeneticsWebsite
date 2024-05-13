@@ -9,12 +9,19 @@ import {
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer, setPreviewContentTypeReducer, setRerenderAfterDeleteFalseReducer
 } from "./reducers";
-import {articleCreation, articleDeletion, articleEdition, fetchContent, fetchSingleContent} from "./asyncActions";
+import {
+    articleCreation,
+    articleDeletion,
+    articleEdition,
+    fetchContent,
+    fetchSingleContent,
+    fetchSliderContent
+} from "./asyncActions";
 import {
     setArticleCreationError, setArticleEditionError,
     setDeleteArticleError,
     setFetchContentError,
-    setFetchSingleContentError
+    setFetchSingleContentError, setFetchSliderContentError
 } from "./errorHandlers";
 import {api} from "../../consts/api";
 
@@ -44,9 +51,9 @@ const contentSlice = createSlice({
         rerenderAfterDelete: false,
         contentListSlider: [
             {
-                id: 0,
-                sliderImage: api.url + api.getImage(351),
-                title: "Открытие сайта кафедры генетики и фундаментальной медицины"
+                articleId: null,
+                mediaId: null,
+                articleTitle: null
             }
         ],
         aboutContent: {
@@ -176,6 +183,17 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
 
+        builder.addCase(fetchSliderContent.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchSliderContent.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.contentListSlider = action.payload
+            state.error = null;
+        })
+        builder.addCase(fetchSliderContent.rejected, setFetchSliderContentError)
 
         builder.addCase(fetchSingleContent.pending, (state, action) => {
             state.status = 'loading';

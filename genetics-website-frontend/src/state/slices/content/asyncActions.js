@@ -166,9 +166,9 @@ export const articleEdition = createAsyncThunk(
 
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
-    async function({page, pageSize, type, author, title, date}, {rejectWithValue}) {
+    async function({page, pageSize, type, author, title, date, dateFilter, orderByTitle}, {rejectWithValue}) {
         try {
-            const responseAmountContent = await fetch(api.url + api.getAmountArticles(author, type, title, date), {method: 'GET'});
+            const responseAmountContent = await fetch(api.url + api.getAmountArticles(author, type, title, date, dateFilter), {method: 'GET'});
             if (!responseAmountContent.ok) {
                 const text = await responseAmountContent.text();
                 return rejectWithValue({
@@ -177,7 +177,7 @@ export const fetchContent = createAsyncThunk(
                     text: text
                 });
             }
-            const responseContent = await fetch(api.url + api.getArticles(page, pageSize, type, author, title, date), {method: 'GET'});
+            const responseContent = await fetch(api.url + api.getArticles(page, pageSize, type, author, title, date, dateFilter, orderByTitle), {method: 'GET'});
             if (!responseContent.ok) {
                 const text = await responseContent.text();
                 return rejectWithValue({
@@ -198,6 +198,37 @@ export const fetchContent = createAsyncThunk(
                 content: content,
                 amountContent: amountContent
             };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchSliderContent = createAsyncThunk(
+    "content/fetchSliderContent",
+    async function({amount}, {rejectWithValue}) {
+        try {
+            const responseContent = await fetch(api.url + api.getSliders(amount), {method: 'GET'});
+            if (!responseContent.ok) {
+                const text = await responseContent.text();
+                return rejectWithValue({
+                    status: responseContent.status,
+                    statusText: responseContent.statusText,
+                    text: text
+                });
+            }
+            let content = await responseContent.json()
+            content = content.map(item => {
+                if (item.mediaId) {
+                    item.mediaId = api.url + api.getImage(item.mediaId);
+                }
+                return item;
+            });
+            return content
         } catch (error) {
             return rejectWithValue({
                 status: 504,

@@ -32,6 +32,7 @@ import {
     SERVER_IS_NOT_RESPONDING
 } from "../../consts/errorText";
 import {globalExit} from "../../functions/globalExit";
+import {fetchSliderContent} from "./asyncActions";
 
 export const setFetchSingleContentError = (state, action) => {
     state.status = "rejected"
@@ -47,6 +48,26 @@ export const setFetchSingleContentError = (state, action) => {
                     break;
             }
             break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchSliderContentError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:
