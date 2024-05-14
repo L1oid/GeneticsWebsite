@@ -97,17 +97,23 @@ export const eventCreation = createAsyncThunk(
     async function({title, description, scheduledFor, rendezvous}, {rejectWithValue, getState, dispatch}) {
         try {
             const state = getState();
-            /** @namespace state.user **/
+
+            const requestBody = {
+                title: title,
+                description: description,
+                scheduledFor: scheduledFor,
+            };
+
+            if (rendezvous !== "") {
+                requestBody.rendezvous = rendezvous;
+            }
+
             const response = await fetch(api.url + api.createEvents(), {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Authorization': state.user.token},
-                body: JSON.stringify({
-                    title: title,
-                    description: description,
-                    scheduledFor: scheduledFor,
-                    rendezvous: rendezvous
-                })
+                body: JSON.stringify(requestBody)
             });
+
             if (!response.ok) {
                 const text = await response.text();
                 return rejectWithValue({
