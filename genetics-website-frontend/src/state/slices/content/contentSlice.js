@@ -18,15 +18,15 @@ import {
 import {
     articleCreation,
     articleDeletion,
-    articleEdition,
-    fetchContent,
+    articleEdition, eventCreation,
+    fetchContent, fetchEvents,
     fetchSingleContent,
     fetchSliderContent
 } from "./asyncActions";
 import {
-    setArticleCreationError, setArticleEditionError,
+    setArticleCreationError, setArticleEditionError, setCreateEventError,
     setDeleteArticleError,
-    setFetchContentError,
+    setFetchContentError, setFetchEventsError,
     setFetchSingleContentError, setFetchSliderContentError
 } from "./errorHandlers";
 import {api} from "../../consts/api";
@@ -56,12 +56,9 @@ const contentSlice = createSlice({
         articleListLength: null,
         rerenderAfterDelete: false,
         contentListSlider: [
-            {
-                articleId: null,
-                mediaId: null,
-                articleTitle: null
-            }
+
         ],
+        sliderDefaultImage: api.url + api.getImage(351),
         aboutContent: {
             title1: "Заведующая кафедрой",
             content1: "Минина Варвара Ивановна<br><em>доктор биологических наук, доцент</em>",
@@ -159,6 +156,20 @@ const contentSlice = createSlice({
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
 
+
+        builder.addCase(eventCreation.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(eventCreation.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Событие успешно создано";
+        })
+        builder.addCase(eventCreation.rejected, setCreateEventError)
+
+
         builder.addCase(articleEdition.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -170,6 +181,7 @@ const contentSlice = createSlice({
             state.success = "Контент успешно изменён";
         })
         builder.addCase(articleEdition.rejected, setArticleEditionError)
+
 
         builder.addCase(fetchContent.pending, (state, action) => {
             state.status = 'loading';
@@ -190,6 +202,7 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
 
+
         builder.addCase(fetchSliderContent.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -201,6 +214,20 @@ const contentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchSliderContent.rejected, setFetchSliderContentError)
+
+
+        builder.addCase(fetchEvents.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchEvents.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.eventList = action.payload
+            state.error = null;
+        })
+        builder.addCase(fetchEvents.rejected, setFetchEventsError)
+
 
         builder.addCase(fetchSingleContent.pending, (state, action) => {
             state.status = 'loading';
@@ -217,6 +244,7 @@ const contentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
+
 
         builder.addCase(articleDeletion.pending, (state, action) => {
             state.status = 'loading';

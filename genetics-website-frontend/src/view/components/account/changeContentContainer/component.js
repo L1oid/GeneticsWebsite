@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 import './style.css';
 import AccountPageTitleComponent from "../accountPageTitle/component";
 import AccountPageSubtitleComponent from "../accountPageSubtitle/component";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {clearSingleContent} from "../../../../state/slices/content/contentSlice";
+import {clearContentErrorStatusSuccess, clearSingleContent} from "../../../../state/slices/content/contentSlice";
 import {articleEdition, fetchSingleContent} from "../../../../state/slices/content/asyncActions";
 import AccountPageInputComponent from "../accountPageInput/component";
 import TextEditorComponent from "../textEditor/component";
@@ -19,6 +19,7 @@ function ChangeContentContainerComponent(props) {
     const {id} = useParams();
 
     const dispatch = useDispatch();
+    const location = useLocation();
 
     const {error, success, status} = useSelector(state => state.content);
 
@@ -39,6 +40,10 @@ function ChangeContentContainerComponent(props) {
     const [deletedOldContentImages, setDeletedOldContentImages] = useState([]);
     
     const content = useSelector(state => state.content.content);
+
+    useEffect(() => {
+        dispatch(clearContentErrorStatusSuccess());
+    }, [dispatch, location]);
 
     useEffect(() => {
         dispatch(clearSingleContent());

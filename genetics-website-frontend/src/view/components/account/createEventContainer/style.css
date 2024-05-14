@@ -1,0 +1,17 @@
+.create-event-container-row-2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-event-title-input {
+    margin-bottom: 15px;
+}
+
+.create-event-image {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-event-button-wrapper {
+    margin-top: 25px;
+}

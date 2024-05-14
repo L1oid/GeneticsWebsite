@@ -63,3 +63,11 @@ export const CONTENT_ARTICLE_DONT_FIND_BY_ID = "No article was found for specifi
 export const CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE = "No rights to delete this article"
 export const CONTENT_ARTICLE_DOESNT_EXIST = "Article doesn’t exist"
 export const CONTENT_INTERNAL_ERROR = "Internal error"
+
+
+export const CONTENT_INVALID_AMOUNT_EVENTS = "Invalid amount, it should not be less than 0"
+
+export const CONTENT_DATE_SHOULD_BE_SPECIFIED = "Date should be specified"
+export const CONTENT_DESCRIPTION_SHOULD_BE_SPECIFIED = "Description should be specified"
+export const CONTENT_TITLE_SHOULD_BE_SPECIFIED = "Title should be specified"
+export const CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS = "User doesn't have moderator privileges"

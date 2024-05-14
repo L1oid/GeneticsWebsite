@@ -14,9 +14,9 @@ function SliderNewsComponent() {
 
     const dispatch = useDispatch();
 
-    const slideStyles = {
+    const slideStyles = contentListSlider.length > 0 ? {
         backgroundImage: `url(${contentListSlider[currentIndex].mediaId})`
-    }
+    } : {};
 
     useEffect(() => {
         dispatch(fetchSliderContent({amount: 8}));
@@ -61,33 +61,43 @@ function SliderNewsComponent() {
             <div className="slider">
                 <div className="slide" style={slideStyles}></div>
                 <div className="dots-container">
-                    {contentListSlider.map((slide, slideIndex) => (
-                        <div className={`dot ${activeDot === slideIndex ? 'active' : ''}`}
-                             key={slideIndex}
-                             onClick={() => goToSlide(slideIndex)}>
-                        </div>
+                    {contentListSlider.length > 0 && contentListSlider.map((slide, slideIndex) => (
+                        <div
+                            className={`dot ${activeDot === slideIndex ? 'active' : ''}`}
+                            key={slideIndex}
+                            onClick={() => goToSlide(slideIndex)}
+                        ></div>
                     ))}
                 </div>
-                <span className="material-symbols-outlined slider-news-left"
-                      onClick={goToPrevious}>chevron_left</span>
-                <span className="material-symbols-outlined slider-news-right"
-                      onClick={goToNext}>chevron_right</span>
+                {contentListSlider.length > 0 && (
+                    <>
+                        <span className="material-symbols-outlined slider-news-left" onClick={goToPrevious}>
+                            chevron_left
+                        </span>
+                        <span className="material-symbols-outlined slider-news-right" onClick={goToNext}>
+                            chevron_right
+                        </span>
+                    </>
+                )}
                 <div className="slide-plate">
                     <div className="slide-header">
-                        {contentListSlider[currentIndex].articleTitle}
+                        {contentListSlider.length > 0 ? contentListSlider[currentIndex].articleTitle : "На данный момент новости отсутствуют"}
                     </div>
-                    <div className="slide-footer">
-                        <button
-                            className="slide-button"
-                            data-href={`/news/${contentListSlider[currentIndex].articleId}`}
-                            onClick={(e) => handleNavigateClick(e.currentTarget.getAttribute('data-href'))}>
-                            Подробнее
-                        </button>
-                    </div>
+                    {contentListSlider.length > 0 && (
+                        <div className="slide-footer">
+                            <button
+                                className="slide-button"
+                                data-href={`/news/${contentListSlider[currentIndex].articleId}`}
+                                onClick={(e) => handleNavigateClick(e.currentTarget.getAttribute('data-href'))}
+                            >
+                                Подробнее
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default SliderNewsComponent;

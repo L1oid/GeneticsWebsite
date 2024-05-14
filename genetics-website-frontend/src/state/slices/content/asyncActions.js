@@ -92,6 +92,40 @@ export const articleCreation = createAsyncThunk(
     }
 );
 
+export const eventCreation = createAsyncThunk(
+    "content/eventCreation",
+    async function({title, description, scheduledFor, rendezvous}, {rejectWithValue, getState, dispatch}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.createEvents(), {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Authorization': state.user.token},
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                    scheduledFor: scheduledFor,
+                    rendezvous: rendezvous
+                })
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
 export const articleEdition = createAsyncThunk(
     "content/articleEdition",
     async function({articleId, title, type, content, previewImage, oldPreviewImage, addFileList, deleteFileList}, {rejectWithValue, getState, dispatch}) {
@@ -229,6 +263,30 @@ export const fetchSliderContent = createAsyncThunk(
                 return item;
             });
             return content
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchEvents = createAsyncThunk(
+    "content/fetchEvents",
+    async function({amount}, {rejectWithValue}) {
+        try {
+            const responseContent = await fetch(api.url + api.getEvents(amount), {method: 'GET'});
+            if (!responseContent.ok) {
+                const text = await responseContent.text();
+                return rejectWithValue({
+                    status: responseContent.status,
+                    statusText: responseContent.statusText,
+                    text: text
+                });
+            }
+            return await responseContent.json()
         } catch (error) {
             return rejectWithValue({
                 status: 504,

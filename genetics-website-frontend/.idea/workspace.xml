@@ -5,14 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/createEventContainer/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/account/createEventContainer/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/pages/private/createEvent/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/slidePreview.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/account/changeContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/account/changeContentContainer/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/content/sliderNews/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderNews/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/article/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/article/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +35,8 @@
       <list>
         <option value="JSX File" />
         <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -202,6 +213,7 @@
       <workItem from="1715518496140" duration="61000" />
       <workItem from="1715531764537" duration="262000" />
       <workItem from="1715578758010" duration="9874000" />
+      <workItem from="1715664430160" duration="9464000" />
     </task>
     <servers />
   </component>

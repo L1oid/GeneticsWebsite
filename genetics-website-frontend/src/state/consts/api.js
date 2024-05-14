@@ -54,5 +54,11 @@ export const api = {
     },
     getSliders: function(amount) {
         return `api/articles/sliders/${amount}`
+    },
+    getEvents: function(amount) {
+        return `api/events?amount=${amount}`
+    },
+    createEvents: function() {
+        return `api/events`
     }
 }

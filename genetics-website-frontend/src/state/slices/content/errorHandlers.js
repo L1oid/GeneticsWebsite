@@ -2,9 +2,9 @@ import {
     CONTENT_ADD_TOO_MANY_FILES,
     CONTENT_ARTICLE_DOESNT_EXIST,
     CONTENT_COULD_NOT_GET_USER_ID,
-    CONTENT_COULD_NOT_INITIALIZE_ARTICLES,
+    CONTENT_COULD_NOT_INITIALIZE_ARTICLES, CONTENT_DATE_SHOULD_BE_SPECIFIED,
     CONTENT_DELETE_MEDIA_ID_IS_0,
-    CONTENT_DELETE_TOO_MANY_FILES,
+    CONTENT_DELETE_TOO_MANY_FILES, CONTENT_DESCRIPTION_SHOULD_BE_SPECIFIED,
     CONTENT_EDIT_INTERNAL_ERROR,
     CONTENT_EMPTY_ARTICLE_FIELDS,
     CONTENT_FAILED_TO_SAVE_ARTICLE,
@@ -12,7 +12,7 @@ import {
     CONTENT_FILES_SIZE_TOO_MANY,
     CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME,
     CONTENT_INCORRECT_SINGLE_ARTICLE_ID,
-    CONTENT_INTERNAL_ERROR,
+    CONTENT_INTERNAL_ERROR, CONTENT_INVALID_AMOUNT_EVENTS,
     CONTENT_INVALID_DATE_FORMAT,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE,
@@ -24,10 +24,10 @@ import {
     CONTENT_PREVIEW_IMAGE_LACKS_FILENAME,
     CONTENT_SLIDER_IMAGE_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_SLIDER_IMAGE_IS_NULL,
-    CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME,
+    CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME, CONTENT_TITLE_SHOULD_BE_SPECIFIED,
     CONTENT_TOO_MANY_FILES,
     CONTENT_USER_DONT_HAVE_EDIT_RIGHTS,
-    CONTENT_USER_DONT_HAVE_MODERATOR_PRIVILEGES,
+    CONTENT_USER_DONT_HAVE_MODERATOR_PRIVILEGES, CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS,
     CONTENT_USER_TOKEN_ERROR,
     SERVER_IS_NOT_RESPONDING
 } from "../../consts/errorText";
@@ -54,6 +54,85 @@ export const setFetchSingleContentError = (state, action) => {
                     break;
             }
             break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchEventsError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INVALID_AMOUNT_EVENTS:
+                    state.error = "Некорректное значение количества эвентов"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setCreateEventError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_DATE_SHOULD_BE_SPECIFIED:
+                    state.error = "Поле даты не должно быть пустым"
+                    break;
+                case CONTENT_DESCRIPTION_SHOULD_BE_SPECIFIED:
+                    state.error = "Поле описания не должно быть пустым"
+                    break;
+                case CONTENT_TITLE_SHOULD_BE_SPECIFIED:
+                    state.error = "Поле названия не должно быть пустым"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует заголовок авторизации"
+                    break;
+                case CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS:
+                    state.error = "У вас отсутствуют права на данное действие"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:

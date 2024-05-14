@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 
 import './style.css';
 
-import {fetchContent} from "../../../../state/slices/content/asyncActions";
+import {fetchContent, fetchEvents} from "../../../../state/slices/content/asyncActions";
 import {NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import {clearNewsList} from "../../../../state/slices/content/contentSlice";
@@ -25,6 +25,10 @@ function OtherContentComponent() {
     useEffect(() => {
         dispatch(fetchContent({type: NEWS, page: page, pageSize: pageSize}));
     }, [page, dispatch, pageSize])
+
+    useEffect(() => {
+        dispatch(fetchEvents({amount: 5}));
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(clearNewsList());
@@ -95,13 +99,16 @@ function OtherContentComponent() {
                                             {eventList[eventIndex].title}
                                         </div>
                                         <div className="event-card-date">
-                                            {eventList[eventIndex].date}
+                                            {eventList[eventIndex].scheduledFor}
                                         </div>
                                         <div className="event-card-time">
-                                            {eventList[eventIndex].time}
+                                            {eventList[eventIndex].scheduledFor}
                                         </div>
                                         <div className="event-card-content">
-                                            {eventList[eventIndex].content}
+                                            {eventList[eventIndex].description}
+                                        </div>
+                                        <div className="event-card-content">
+                                            {eventList[eventIndex].rendezvous}
                                         </div>
                                     </div>
                                 </div>

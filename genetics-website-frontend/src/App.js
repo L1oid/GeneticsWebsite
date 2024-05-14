@@ -19,6 +19,7 @@ import CreateNewsPage from "./view/pages/private/createNews/page";
 import AboutPage from "./view/pages/public/about/page";
 import ListContentPage from "./view/pages/private/listNews/page";
 import EditContentPage from "./view/pages/private/editContent/page";
+import CreateEventPage from "./view/pages/private/createEvent/page";
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                         <Route path="/account/create-content/" element={<CreateNewsPage />} />
                         <Route path="/account/content-list/" element={<ListContentPage />} />
                         <Route path="/account/content-list/edit-content/:id" element={<EditContentPage />} />
+                        <Route path="/account/create-event/" element={<CreateEventPage />} />
                     </Route>
                 </Route>
             </Routes>
