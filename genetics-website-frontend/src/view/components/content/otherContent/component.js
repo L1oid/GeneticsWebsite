@@ -10,6 +10,7 @@ import {NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import {clearNewsList} from "../../../../state/slices/content/contentSlice";
 import LoadMoreButtonComponent from "../loadMoreButton/component";
+import {convertDateTime} from "../../../../state/functions/formatEventDate";
 
 function OtherContentComponent() {
 
@@ -99,15 +100,12 @@ function OtherContentComponent() {
                                             {eventList[eventIndex].title}
                                         </div>
                                         <div className="event-card-date">
-                                            {eventList[eventIndex].scheduledFor}
-                                        </div>
-                                        <div className="event-card-time">
-                                            {eventList[eventIndex].scheduledFor}
+                                            {parse(convertDateTime(eventList[eventIndex].scheduledFor))}
                                         </div>
                                         <div className="event-card-content">
-                                            {eventList[eventIndex].description}
+                                            {parse(eventList[eventIndex].description)}
                                         </div>
-                                        <div className="event-card-content">
+                                        <div className="event-card-rendezvous">
                                             {eventList[eventIndex].rendezvous}
                                         </div>
                                     </div>
