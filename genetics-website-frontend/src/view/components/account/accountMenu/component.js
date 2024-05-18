@@ -60,6 +60,11 @@ function AccountMenuComponent(props) {
                         <span className="material-symbols-outlined account-icon">event</span>
                         Создание событий
                     </Link>
+                    <Link className={"account-menu-button"}
+                          to={"/account/create-questionnaire"}>
+                        <span className="material-symbols-outlined account-icon">quiz</span>
+                        Создание анкет
+                    </Link>
                 </div>
 
             )}

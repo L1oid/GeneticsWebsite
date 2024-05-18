@@ -60,5 +60,8 @@ export const api = {
     },
     createEvents: function() {
         return `api/events`
+    },
+    createQuestionnaire: function() {
+        return `api/questionnaires`
     }
 }

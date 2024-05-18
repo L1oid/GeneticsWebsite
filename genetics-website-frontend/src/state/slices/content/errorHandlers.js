@@ -10,18 +10,18 @@ import {
     CONTENT_FAILED_TO_SAVE_ARTICLE,
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_FILES_SIZE_TOO_MANY,
-    CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME,
+    CONTENT_IN_FILE_LIST_FILES_LACKS_FILE_NAME, CONTENT_INCORRECT_REQUEST,
     CONTENT_INCORRECT_SINGLE_ARTICLE_ID,
     CONTENT_INTERNAL_ERROR, CONTENT_INVALID_AMOUNT_EVENTS,
     CONTENT_INVALID_DATE_FORMAT,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE,
     CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE,
-    CONTENT_NO_AUTH_HEADER_PRESENT,
+    CONTENT_NO_AUTH_HEADER_PRESENT, CONTENT_NO_MATCH_ANSWER_IS_EMPTY,
     CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE,
-    CONTENT_NULL_ARTICLE_FIELDS,
+    CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_QUESTIONNAIRE_FIELDS,
     CONTENT_PREVIEW_IMAGE_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_PREVIEW_IMAGE_LACKS_FILE_NAME,
-    CONTENT_PREVIEW_IMAGE_LACKS_FILENAME,
+    CONTENT_PREVIEW_IMAGE_LACKS_FILENAME, CONTENT_QUESTION_LIST_IS_EMPTY,
     CONTENT_SLIDER_IMAGE_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_SLIDER_IMAGE_IS_NULL,
     CONTENT_SLIDER_IMAGE_LACKS_FILE_NAME, CONTENT_TITLE_SHOULD_BE_SPECIFIED,
@@ -127,6 +127,68 @@ export const setCreateEventError = (state, action) => {
                     break;
                 case CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS:
                     state.error = "У вас отсутствуют права на данное действие"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setCreateQuestionnaireError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INCORRECT_REQUEST:
+                    state.error = "Некорректный запрос"
+                    break;
+                case CONTENT_NO_MATCH_ANSWER_IS_EMPTY:
+                    state.error = "Стандартное сообщение должно быть заполненно"
+                    break;
+                case CONTENT_QUESTION_LIST_IS_EMPTY:
+                    state.error = "Список вопросов пуст"
+                    break;
+                case CONTENT_NULL_QUESTIONNAIRE_FIELDS:
+                    state.error = "Обязательные поля не заполнены"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 401:
+            switch (action.payload.text) {
+                case CONTENT_USER_TOKEN_ERROR:
+                    state.error = "Ошибка токена пользователя"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует заголовок авторизации"
+                    break;
+                case CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS:
+                    state.error = "Отсутствуют права на данное действие"
                     break;
                 default:
                     state.error = "Неизвестная ошибка";

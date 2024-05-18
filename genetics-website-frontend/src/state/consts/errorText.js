@@ -1,3 +1,5 @@
+import {questionnaireCreation} from "../slices/content/asyncActions";
+
 export const SERVER_IS_NOT_RESPONDING = "Server is not responding";
 
 //user
@@ -71,3 +73,8 @@ export const CONTENT_DATE_SHOULD_BE_SPECIFIED = "Date should be specified"
 export const CONTENT_DESCRIPTION_SHOULD_BE_SPECIFIED = "Description should be specified"
 export const CONTENT_TITLE_SHOULD_BE_SPECIFIED = "Title should be specified"
 export const CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS = "User doesn't have moderator privileges"
+
+export const CONTENT_INCORRECT_REQUEST = "Incorrect request"
+export const CONTENT_NO_MATCH_ANSWER_IS_EMPTY = "noMatchAnswer should be provided"
+export const CONTENT_QUESTION_LIST_IS_EMPTY = "questionList is necessary for questionnaire creation"
+export const CONTENT_NULL_QUESTIONNAIRE_FIELDS = "One or more of the fields for the questionnaire is null"

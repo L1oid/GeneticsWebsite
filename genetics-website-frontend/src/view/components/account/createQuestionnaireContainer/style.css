@@ -1,0 +1,17 @@
+.create-questionnaire-container-row-2 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.create-questionnaire-title-input {
+    margin-bottom: 15px;
+}
+
+.create-questionnaire-button-wrapper {
+    margin-top: 25px;
+}
+
+.create-questionnaire-button-plus-wrapper {
+    display: flex;
+    justify-content: center;
+}

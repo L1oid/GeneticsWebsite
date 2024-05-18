@@ -20,6 +20,7 @@ import AboutPage from "./view/pages/public/about/page";
 import ListContentPage from "./view/pages/private/listNews/page";
 import EditContentPage from "./view/pages/private/editContent/page";
 import CreateEventPage from "./view/pages/private/createEvent/page";
+import CreateQuestionnairePage from "./view/pages/private/createQuestionnaire/page";
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                         <Route path="/account/content-list/" element={<ListContentPage />} />
                         <Route path="/account/content-list/edit-content/:id" element={<EditContentPage />} />
                         <Route path="/account/create-event/" element={<CreateEventPage />} />
+                        <Route path="/account/create-questionnaire/" element={<CreateQuestionnairePage />} />
                     </Route>
                 </Route>
             </Routes>

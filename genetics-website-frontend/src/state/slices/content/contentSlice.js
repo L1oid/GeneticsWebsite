@@ -21,10 +21,10 @@ import {
     articleEdition, eventCreation,
     fetchContent, fetchEvents,
     fetchSingleContent,
-    fetchSliderContent
+    fetchSliderContent, questionnaireCreation
 } from "./asyncActions";
 import {
-    setArticleCreationError, setArticleEditionError, setCreateEventError,
+    setArticleCreationError, setArticleEditionError, setCreateEventError, setCreateQuestionnaireError,
     setDeleteArticleError,
     setFetchContentError, setFetchEventsError,
     setFetchSingleContentError, setFetchSliderContentError
@@ -156,6 +156,17 @@ const contentSlice = createSlice({
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
 
+        builder.addCase(questionnaireCreation.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(questionnaireCreation.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Анкета успешно создана";
+        })
+        builder.addCase(questionnaireCreation.rejected, setCreateQuestionnaireError)
 
         builder.addCase(eventCreation.pending, (state, action) => {
             state.status = 'loading';

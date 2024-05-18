@@ -1,11 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
-    CONTENT_NULL_ARTICLE_FIELDS,
+    CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_QUESTIONNAIRE_FIELDS,
     SERVER_IS_NOT_RESPONDING
 } from "../../consts/errorText";
 import {api} from "../../consts/api";
 import {NEWS} from "../../consts/contentTypes";
+import {setCreateQuestionnaireError} from "./errorHandlers";
 
 export const articleCreation = createAsyncThunk(
     "content/articleCreation",
@@ -114,6 +115,60 @@ export const eventCreation = createAsyncThunk(
                 body: JSON.stringify(requestBody)
             });
 
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const questionnaireCreation = createAsyncThunk(
+    "content/questionnaireCreation",
+    async function({title, noMatchAnswer, questionList}, {rejectWithValue, getState, dispatch}) {
+        try {
+            if (title === "" || noMatchAnswer === "" || questionList.length < 1) {
+                return rejectWithValue({
+                    status: 400,
+                    statusText: 'Bad Request',
+                    text: CONTENT_NULL_QUESTIONNAIRE_FIELDS
+                });
+            }
+            const hasInvalidQuestion = questionList.some(question =>
+                question.questionText === "" ||
+                question.answerForUser === "" ||
+                question.answerTriggeringWeight === "" ||
+                (question.answerList && question.answerList.some(answer => answer.text === ""))
+            );
+            if (hasInvalidQuestion) {
+                return rejectWithValue({
+                    status: 400,
+                    statusText: 'Bad Request',
+                    text: CONTENT_NULL_QUESTIONNAIRE_FIELDS
+                });
+            }
+
+
+            const state = getState();
+            const response = await fetch(api.url + api.createQuestionnaire(), {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Authorization': state.user.token},
+                body: JSON.stringify({
+                    title: title,
+                    noMatchAnswer: noMatchAnswer,
+                    questionList: questionList
+                })
+            });
             if (!response.ok) {
                 const text = await response.text();
                 return rejectWithValue({

@@ -10,6 +10,8 @@ function AccountPageInputComponent(props) {
             value={props.value}
             onChange={props.disabled ? null : props.handle}
             disabled={props.disabled}
+            min={props.min}
+            max={props.max}
         />
     )
 }
