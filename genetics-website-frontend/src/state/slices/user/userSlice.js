@@ -1,18 +1,27 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {authUser, changePassword, registrationUser} from "./asyncActions";
-import {setAuthError, setChangePasswordError, setRegistrationUserError} from "./errorHandlers";
+import {authUser, changePassword, fetchUsers, registrationUser} from "./asyncActions";
+import {setAuthError, setChangePasswordError, setFetchUserError, setRegistrationUserError} from "./errorHandlers";
 import {
-    clearUserErrorStatusSuccessReducer,
+    clearUserErrorStatusSuccessReducer, clearUsersListReducer,
     removeUserReducer,
     setUserReducer
 } from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
+import {fetchContent} from "../content/asyncActions";
+import {ARTICLE, NEWS} from "../../consts/contentTypes";
+import {setFetchContentError} from "../content/errorHandlers";
 
 const userPersistConfig = {
     key: 'user',
-    storage: storage
+    storage: storage,
+    blacklist: [
+        "status",
+        "error",
+        "success",
+        "users"
+    ]
 };
 
 const userSlice = createSlice({
@@ -27,14 +36,30 @@ const userSlice = createSlice({
         roles: [],
         status: null,
         error: null,
-        success: null
+        success: null,
+        usersList: [],
+        usersListLength: null
     },
     reducers: {
         setUser: setUserReducer,
         removeUser: removeUserReducer,
-        clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer
+        clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer,
+        clearUsersList: clearUsersListReducer
     },
     extraReducers: builder => {
+        builder.addCase(fetchUsers.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchUsers.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            /** @namespace action.meta **/
+            state.usersListLength = parseInt(action.payload.amountUsers)
+            state.usersList = [...state.usersList, ...action.payload.users];
+            state.error = null;
+        })
+        builder.addCase(fetchUsers.rejected, setFetchUserError)
 
         builder.addCase(authUser.pending, (state, action) => {
             state.status = 'loading';
@@ -74,7 +99,7 @@ const userSlice = createSlice({
     }
 });
 
-export const { setUser, removeUser , clearErrorStatusSuccess} = userSlice.actions;
+export const { setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

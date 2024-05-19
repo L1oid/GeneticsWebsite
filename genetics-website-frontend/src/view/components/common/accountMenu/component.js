@@ -41,6 +41,11 @@ function AccountMenuComponent(props) {
                         <span className="material-symbols-outlined account-icon">person_add</span>
                         Регистрация пользователя
                     </Link>
+                    <Link className={"account-menu-button"}
+                          to={"/account/users-list"}>
+                        <span className="material-symbols-outlined account-icon">group</span>
+                        Список пользователей
+                    </Link>
                 </div>
             )}
             {isModerator && (

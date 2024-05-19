@@ -207,3 +207,47 @@ export const registrationUser = createAsyncThunk(
         }
     }
 );
+
+export const fetchUsers = createAsyncThunk(
+    "user/fetchUsers",
+    async function({page, pageSize, username, email, firstNamePlusLastName, date, dateFilter, orderBy, roleName}, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const responseAmountUsers = await fetch(api.url + api.getAmountUsers(username, email, firstNamePlusLastName, date, dateFilter, roleName), {
+                method: 'GET',
+                headers: {'Authorization': state.user.token}});
+            if (!responseAmountUsers.ok) {
+                const text = await responseAmountUsers.text();
+                return rejectWithValue({
+                    status: responseAmountUsers.status,
+                    statusText: responseAmountUsers.statusText,
+                    text: text
+                });
+            }
+            const responseUsers = await fetch(api.url + api.getUsers(page, pageSize, username, email, firstNamePlusLastName, date, dateFilter, orderBy, roleName), {
+                method: 'GET',
+                headers: {'Authorization': state.user.token}});
+            if (!responseUsers.ok) {
+                const text = await responseUsers.text();
+                return rejectWithValue({
+                    status: responseUsers.status,
+                    statusText: responseUsers.statusText,
+                    text: text
+                });
+            }
+            let users = await responseUsers.json()
+            const amountUsers = await responseAmountUsers.text();
+            return {
+                users: users,
+                amountUsers: amountUsers
+            };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);

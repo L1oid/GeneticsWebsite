@@ -22,6 +22,7 @@ import EditContentPage from "./view/pages/private/content/editContent/page";
 import CreateEventPage from "./view/pages/private/content/createEvent/page";
 import CreateQuestionnairePage from "./view/pages/private/content/createQuestionnaire/page";
 import EditEventsPage from "./view/pages/private/content/listEvents/page";
+import ListUsersPage from "./view/pages/private/user/listUsers/page";
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                         <Route index element={<PersonalDataPage />} />
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
                         <Route path="/account/registration-user/" element={<RegistrationUserPage />} />
+                        <Route path="/account/users-list/" element={<ListUsersPage />} />
                         <Route path="/account/create-content/" element={<CreateNewsPage />} />
                         <Route path="/account/content-list/" element={<ListContentPage />} />
                         <Route path="/account/content-list/edit-content/:id" element={<EditContentPage />} />

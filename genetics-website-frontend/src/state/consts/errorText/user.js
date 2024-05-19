@@ -14,3 +14,13 @@ export const USER_USER_DONT_HAVE_ADMIN_PRIVILEGES = "User doesn’t have admin p
 export const USER_SHORT_USERNAME = "the username must be at least 6 characters long";
 export const USER_USERNAME_INCLUDES_SPACES = "the username must not contain spaces";
 export const USER_INVALID_EMAIL_FORMAT = "invalid email format"
+export const USER_DOESNT_HAVE_ADMIN_RIGHTS = "User doesn't have admin privileges"
+export const USER_INVALID_VALUE_PAGE_OR_PAGE_SIZE = "Invalid page or pageSize, it can't be less than 0"
+export const USER_INVALID_CREATION_DATE_FORMAT = "Invalid creationDate format, it should be yyyy-MM-dd"
+export const USER_INVALID_TYPE_VALUE_PAGE_OR_PAGE_SIZE = "Invalid page or pageSize, it should be an integer"
+export const USER_ROLE_DOESNT_EXIST = "Such role doesn't exist"
+export const USER_INTERNAL_SERVER_ERROR = "Internal Server Error"
+export const USER_INVALID_DATE_FORMAT = "Invalid date format"
+
+
+

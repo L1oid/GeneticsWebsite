@@ -23,3 +23,7 @@ export const clearUserErrorStatusSuccessReducer = (state) => {
     state.status = null;
     state.success = null;
 }
+
+export const clearUsersListReducer = (state, action) => {
+    state.usersList.splice(0, state.usersList.length)
+}

@@ -5,102 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/state/consts/errorText/common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/state/consts/errorText/content.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/state/consts/errorText/user.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/content/listEventsContainer/component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/components/content/listEventsContainer/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/pages/private/content/listEvents/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/pages/public/content/about/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/user/listUsersContainer/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/user/listUsersContainer/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/pages/private/user/listUsers/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/consts/contentTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/contentTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/user/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/user/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/errorHandlers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/accountListContentContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountListContentContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/accountListContentContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountLoadMoreButton/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountLoadMoreButton/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountLoadMoreButton/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountLoadMoreButton/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountMenu/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountMenu/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountMenu/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageButton/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageButton/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageButton/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageButton/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageInput/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageInput/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageInput/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageInput/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageSubtitle/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageSubtitle/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageSubtitle/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageSubtitle/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageTitle/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageTitle/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/accountPageTitle/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountPageTitle/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changeContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/changeContentContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changeContentContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/changeContentContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changeImageList/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/changeImageList/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changeImageList/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/changeImageList/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/changePasswordContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/changePasswordContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/changePasswordContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createContentContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createContentContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createContentContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createContentContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createEventContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createEventContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createEventContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createEventContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createQuestionnaireContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createQuestionnaireContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createQuestionnaireContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createQuestionnaireContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createQuestionnaireQuestionContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createQuestionnaireQuestionContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/createQuestionnaireQuestionContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/createQuestionnaireQuestionContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/errorAndSuccessWindow/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/errorAndSuccessWindow/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/errorAndSuccessWindow/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/errorAndSuccessWindow/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/fileLoader/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/fileLoader/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/fileLoader/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/fileLoader/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/imageList/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/imageList/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/imageList/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/imageList/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/listTable/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/listTable/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/listTable/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/loginContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/loginContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/loginContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/personalDataContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/personalDataContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/personalDataContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/plusButton/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/plusButton/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/plusButton/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/plusButton/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/registrationUserContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/registrationUserContainer/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/registrationUserContainer/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/rolesList/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/rolesList/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/rolesList/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/rolesList/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/rowInputText/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/rowInputText/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/rowInputText/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/rowInputText/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/selectRoles/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/selectRoles/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/selectRoles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/user/selectRoles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/sliderCheckbox/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderCheckbox/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/sliderCheckbox/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/sliderCheckbox/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/textEditor/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/textEditor/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/textEditor/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/textEditor/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/typeContentSelect/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/typeContentSelect/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/typeContentSelect/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/typeContentSelect/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/valuesSelector/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/valuesSelector/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/account/valuesSelector/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/valuesSelector/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/loadMoreButton/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/loadMoreButton/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/loadMoreButton/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/loadMoreButton/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/otherContent/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/layouts/accountLayout/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/layouts/accountLayout/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/changePassword/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/user/changePassword/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/createEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/content/createEvent/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/createNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/content/createNews/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/createQuestionnaire/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/content/createQuestionnaire/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/editContent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/content/editContent/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/listNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/content/listNews/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/personalData/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/user/personalData/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/private/registrationUser/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/private/user/registrationUser/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/about/page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/article/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/article/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/user/login/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/main/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/main/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/news/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/news/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/notFound/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/common/notFound/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/oneNews/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/oneNews/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/science/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/science/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/user/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/state/slices/user/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/user/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/common/accountMenu/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/accountMenu/component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/common/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/listTable/component.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +216,7 @@
       <workItem from="1716010649288" duration="25686000" />
       <workItem from="1716039735376" duration="228000" />
       <workItem from="1716041308750" duration="2624000" />
-      <workItem from="1716092082471" duration="5620000" />
+      <workItem from="1716092082471" duration="14010000" />
     </task>
     <servers />
   </component>

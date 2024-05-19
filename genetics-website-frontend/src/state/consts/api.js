@@ -64,4 +64,55 @@ export const api = {
     deleteEvent: function (id) {
         return `api/events?id=${id}`
     },
+    getUsers: function(page, pageSize, username, email, firstNamePlusLastName, date, dateFilter, orderBy, roleName) {
+        let queryParams = `api/users/filters?page=${page}&pageSize=${pageSize}`
+
+        if (username !== undefined && username !== "") {
+            queryParams += `&username=${username}`;
+        }
+        if (email !== undefined && email !== "") {
+            queryParams += `&email=${email}`;
+        }
+        if (firstNamePlusLastName !== undefined && firstNamePlusLastName !== "") {
+            queryParams += `&firstNamePlusLastName=${firstNamePlusLastName}`;
+        }
+        if (date !== undefined && date !== "") {
+            queryParams += `&creationDate=${date}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+        if (orderBy !== undefined && orderBy !== "") {
+            queryParams += `&orderBy=${orderBy}`;
+        }
+        if (roleName !== undefined && roleName !== "") {
+            queryParams += `&roleName=${roleName}`;
+        }
+
+        return queryParams;
+    },
+    getAmountUsers: function(username, email, firstNamePlusLastName, date, dateFilter, roleName) {
+        let queryParams = `api/users/amounts?`
+
+        if (username !== undefined && username !== "") {
+            queryParams += `&username=${username}`;
+        }
+        if (email !== undefined && email !== "") {
+            queryParams += `&email=${email}`;
+        }
+        if (firstNamePlusLastName !== undefined && firstNamePlusLastName !== "") {
+            queryParams += `&firstNamePlusLastName=${firstNamePlusLastName}`;
+        }
+        if (date !== undefined && date !== "") {
+            queryParams += `&creationDate=${date}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+        if (roleName !== undefined && roleName !== "") {
+            queryParams += `&roleName=${roleName}`;
+        }
+
+        return queryParams;
+    }
 }
