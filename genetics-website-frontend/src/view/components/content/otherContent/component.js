@@ -9,7 +9,7 @@ import {fetchContent, fetchEvents} from "../../../../state/slices/content/asyncA
 import {NEWS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import {clearNewsList} from "../../../../state/slices/content/contentSlice";
-import LoadMoreButtonComponent from "../loadMoreButton/component";
+import LoadMoreButtonComponent from "../../common/loadMoreButton/component";
 import {convertDateTime} from "../../../../state/functions/formatEventDate";
 
 function OtherContentComponent() {

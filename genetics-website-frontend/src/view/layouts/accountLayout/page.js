@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import "./style.css"
 
 import BreadcrumpComponent from "../../components/common/breadcrump/component";
-import AccountMenuComponent from "../../components/account/accountMenu/component";
+import AccountMenuComponent from "../../components/common/accountMenu/component";
 
 function AccountLayout() {
 

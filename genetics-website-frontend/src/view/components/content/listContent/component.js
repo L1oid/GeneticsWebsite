@@ -6,7 +6,7 @@ import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {formatDate} from "../../../../state/functions/formatDate";
 import parse from "html-react-parser";
-import LoadMoreButtonComponent from "../loadMoreButton/component";
+import LoadMoreButtonComponent from "../../common/loadMoreButton/component";
 
 function ListContentComponent(props) {
     const navigate = useNavigate();

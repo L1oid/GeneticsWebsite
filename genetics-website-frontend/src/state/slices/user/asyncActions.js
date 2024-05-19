@@ -2,12 +2,14 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {api} from "../../consts/api";
 import {jwtDecode} from "jwt-decode";
 import {
-    FIELDS_CANT_BE_NULL, INVALID_EMAIL_FORMAT,
-    PASSWORD_DONT_MATCH,
-    PASSWORD_INCLUDES_SPACES,
+    USER_FIELDS_CANT_BE_NULL, USER_INVALID_EMAIL_FORMAT,
+    USER_PASSWORD_DONT_MATCH,
+    USER_PASSWORD_INCLUDES_SPACES,
+    USER_SHORT_PASSWORD, USER_SHORT_USERNAME, USER_USERNAME_INCLUDES_SPACES
+} from "../../consts/errorText/user";
+import {
     SERVER_IS_NOT_RESPONDING,
-    SHORT_PASSWORD, SHORT_USERNAME, USERNAME_INCLUDES_SPACES
-} from "../../consts/errorText";
+} from "../../consts/errorText/common";
 import {setUser} from "./userSlice";
 
 export const authUser = createAsyncThunk(
@@ -63,28 +65,28 @@ export const changePassword = createAsyncThunk(
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: FIELDS_CANT_BE_NULL
+                    text: USER_FIELDS_CANT_BE_NULL
                 });
             }
             if (password.length < 6) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: SHORT_PASSWORD
+                    text: USER_SHORT_PASSWORD
                 });
             }
             if (password !== repeatPassword) {
                 return rejectWithValue({
                     status: 403,
                     statusText: 'Forbidden',
-                    text: PASSWORD_DONT_MATCH
+                    text: USER_PASSWORD_DONT_MATCH
                 });
             }
             if (password.includes(' ')) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: PASSWORD_INCLUDES_SPACES
+                    text: USER_PASSWORD_INCLUDES_SPACES
                 });
             }
             const state = getState();
@@ -129,49 +131,49 @@ export const registrationUser = createAsyncThunk(
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: FIELDS_CANT_BE_NULL
+                    text: USER_FIELDS_CANT_BE_NULL
                 });
             }
             if (username.length < 6) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: SHORT_USERNAME
+                    text: USER_SHORT_USERNAME
                 });
             }
             if (username.includes(' ')) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: USERNAME_INCLUDES_SPACES
+                    text: USER_USERNAME_INCLUDES_SPACES
                 });
             }
             if (password.length < 6) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: SHORT_PASSWORD
+                    text: USER_SHORT_PASSWORD
                 });
             }
             if (password.includes(' ')) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: PASSWORD_INCLUDES_SPACES
+                    text: USER_PASSWORD_INCLUDES_SPACES
                 });
             }
             if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(email)) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: INVALID_EMAIL_FORMAT
+                    text: USER_INVALID_EMAIL_FORMAT
                 });
             }
             if (!/^\S+@\S+\.\S+$/.test(email)) {
                 return rejectWithValue({
                     status: 400,
                     statusText: 'Bad Request',
-                    text: INVALID_EMAIL_FORMAT
+                    text: USER_INVALID_EMAIL_FORMAT
                 });
             }
             const state = getState();

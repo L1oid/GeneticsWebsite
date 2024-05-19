@@ -1,0 +1,1 @@
+export const SERVER_IS_NOT_RESPONDING = "Server is not responding";

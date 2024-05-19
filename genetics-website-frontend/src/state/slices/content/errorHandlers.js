@@ -9,6 +9,9 @@ import {
     CONTENT_DESCRIPTION_SHOULD_BE_SPECIFIED,
     CONTENT_EDIT_INTERNAL_ERROR,
     CONTENT_EMPTY_ARTICLE_FIELDS,
+    CONTENT_EVENT_DOESNT_EXIST,
+    CONTENT_EVENT_INCORRECT_ID_DELETE,
+    CONTENT_EVENT_NO_RIGHTS_EVENT,
     CONTENT_FAILED_TO_SAVE_ARTICLE,
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_FILES_SIZE_TOO_MANY,
@@ -32,7 +35,8 @@ import {
     CONTENT_QUESTION_LIST_IS_EMPTY,
     CONTENT_QUESTIONNAIRE_ANSWER_FOR_A_USER_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_FOR_A_USER_IS_SMALL,
-    CONTENT_QUESTIONNAIRE_ANSWER_LIST_IS_EMPTY, CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_INCLUDES_SYMBOLS,
+    CONTENT_QUESTIONNAIRE_ANSWER_LIST_IS_EMPTY,
+    CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_IS_EMPTY,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_IS_NULL,
@@ -53,76 +57,9 @@ import {
     CONTENT_USER_DONT_HAVE_MODERATOR_PRIVILEGES,
     CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS,
     CONTENT_USER_TOKEN_ERROR,
-    SERVER_IS_NOT_RESPONDING
-} from "../../consts/errorText";
+} from "../../consts/errorText/content";
+import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
 import {globalExit} from "../../functions/globalExit";
-
-export const setFetchSingleContentError = (state, action) => {
-    state.status = "rejected"
-    state.success = null
-    switch (action.payload.status) {
-        case 400:
-            switch (action.payload.text) {
-                case CONTENT_INCORRECT_SINGLE_ARTICLE_ID:
-                    state.error = "Некорректный ID контента"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break
-        case 404:
-            switch (action.payload.text) {
-                default:
-                    state.articleNotFound = true
-                    break;
-            }
-            break;
-        case 504:
-            switch (action.payload.text) {
-                case SERVER_IS_NOT_RESPONDING:
-                    state.error = "Сервер не отвечает"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        default:
-            state.error = "Неизвестная ошибка";
-            break;
-    }
-}
-
-export const setFetchEventsError = (state, action) => {
-    state.status = "rejected"
-    state.success = null
-    switch (action.payload.status) {
-        case 400:
-            switch (action.payload.text) {
-                case CONTENT_INVALID_AMOUNT_EVENTS:
-                    state.error = "Некорректное значение количества эвентов"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break
-        case 504:
-            switch (action.payload.text) {
-                case SERVER_IS_NOT_RESPONDING:
-                    state.error = "Сервер не отвечает"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        default:
-            state.error = "Неизвестная ошибка";
-            break;
-    }
-}
 
 export const setCreateEventError = (state, action) => {
     state.status = "rejected"
@@ -267,125 +204,6 @@ export const setCreateQuestionnaireError = (state, action) => {
                     break;
             }
             break
-        case 504:
-            switch (action.payload.text) {
-                case SERVER_IS_NOT_RESPONDING:
-                    state.error = "Сервер не отвечает"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        default:
-            state.error = "Неизвестная ошибка";
-            break;
-    }
-}
-
-export const setFetchSliderContentError = (state, action) => {
-    state.status = "rejected"
-    state.success = null
-    switch (action.payload.status) {
-        case 504:
-            switch (action.payload.text) {
-                case SERVER_IS_NOT_RESPONDING:
-                    state.error = "Сервер не отвечает"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        default:
-            state.error = "Неизвестная ошибка";
-            break;
-    }
-}
-
-export const setDeleteArticleError = (state, action) => {
-    state.status = "rejected"
-    state.success = null
-    switch (action.payload.status) {
-        case 403:
-            switch (action.payload.text) {
-                case CONTENT_NO_AUTH_HEADER_PRESENT:
-                    state.error = "Отсутствует токен авторизации"
-                    break;
-                case CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE:
-                    state.error = "Отсутствуют права на удаление контента"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        case 404:
-            switch (action.payload.text) {
-                case CONTENT_ARTICLE_DOESNT_EXIST:
-                    state.error = "Контент с данным id отсутствует"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        case 500:
-            switch (action.payload.text) {
-                case CONTENT_INTERNAL_ERROR:
-                    state.error = "Внутренняя ошибка сервера"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        case 504:
-            switch (action.payload.text) {
-                case SERVER_IS_NOT_RESPONDING:
-                    state.error = "Сервер не отвечает"
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        default:
-            state.error = "Неизвестная ошибка";
-            break;
-    }
-}
-
-export const setFetchContentError = (state, action) => {
-    state.status = "rejected";
-    state.success = null;
-    switch (action.payload.status) {
-        case 400:
-            switch (action.payload.text) {
-                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE:
-                    state.error = "Неверный тип размерности списка контента";
-                    break;
-                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE:
-                    state.error = "Неверная размерность списка контента";
-                    break;
-                case CONTENT_INVALID_DATE_FORMAT:
-                    state.error = "Неверный формат даты";
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
-        case 500:
-            switch (action.payload.text) {
-                case CONTENT_COULD_NOT_INITIALIZE_ARTICLES:
-                    state.error = "Не удалось инициализировать список контента";
-                    break;
-                default:
-                    state.error = "Неизвестная ошибка";
-                    break;
-            }
-            break;
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:
@@ -563,6 +381,245 @@ export const setArticleEditionError = (state, action) => {
                     break;
                 case CONTENT_EDIT_INTERNAL_ERROR:
                     state.error = "Внутренняя ошибка сервера";
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setDeleteArticleError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует токен авторизации"
+                    break;
+                case CONTENT_NO_RIGHTS_TO_DELETE_ARTICLE:
+                    state.error = "Отсутствуют права на удаление контента"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_ARTICLE_DOESNT_EXIST:
+                    state.error = "Контент с данным id отсутствует"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_INTERNAL_ERROR:
+                    state.error = "Внутренняя ошибка сервера"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setDeleteEventError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_EVENT_INCORRECT_ID_DELETE:
+                    state.error = "Неверный id события для удаления"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует токен авторизации"
+                    break;
+                case CONTENT_EVENT_NO_RIGHTS_EVENT:
+                    state.error = "Отсутствуют права на удаление события"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_EVENT_DOESNT_EXIST:
+                    state.error = "Событие с данным id отсутствует"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchSingleContentError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INCORRECT_SINGLE_ARTICLE_ID:
+                    state.error = "Некорректный ID контента"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 404:
+            switch (action.payload.text) {
+                default:
+                    state.articleNotFound = true
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchEventsError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INVALID_AMOUNT_EVENTS:
+                    state.error = "Некорректное значение количества эвентов"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchSliderContentError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchContentError = (state, action) => {
+    state.status = "rejected";
+    state.success = null;
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_TYPE:
+                    state.error = "Неверный тип размерности списка контента";
+                    break;
+                case CONTENT_INVALID_PAGE_OR_PAGE_SIZE_VALUE:
+                    state.error = "Неверная размерность списка контента";
+                    break;
+                case CONTENT_INVALID_DATE_FORMAT:
+                    state.error = "Неверный формат даты";
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_COULD_NOT_INITIALIZE_ARTICLES:
+                    state.error = "Не удалось инициализировать список контента";
                     break;
                 default:
                     state.error = "Неизвестная ошибка";

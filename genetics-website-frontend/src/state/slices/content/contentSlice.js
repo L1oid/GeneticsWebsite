@@ -18,14 +18,14 @@ import {
 import {
     articleCreation,
     articleDeletion,
-    articleEdition, eventCreation,
+    articleEdition, eventCreation, eventDeletion,
     fetchContent, fetchEvents,
     fetchSingleContent,
     fetchSliderContent, questionnaireCreation
 } from "./asyncActions";
 import {
     setArticleCreationError, setArticleEditionError, setCreateEventError, setCreateQuestionnaireError,
-    setDeleteArticleError,
+    setDeleteArticleError, setDeleteEventError,
     setFetchContentError, setFetchEventsError,
     setFetchSingleContentError, setFetchSliderContentError
 } from "./errorHandlers";
@@ -268,6 +268,18 @@ const contentSlice = createSlice({
             state.rerenderAfterDelete = true;
         })
         builder.addCase(articleDeletion.rejected, setDeleteArticleError)
+
+        builder.addCase(eventDeletion.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(eventDeletion.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.rerenderAfterDelete = true;
+        })
+        builder.addCase(eventDeletion.rejected, setDeleteEventError)
     }
 })
 

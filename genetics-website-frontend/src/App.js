@@ -5,22 +5,23 @@ import MainLayout from "./view/layouts/mainLayout/page";
 import AccountLayout from "./view/layouts/accountLayout/page";
 import ScrollToTop from "./view/components/layout/scrollToTop/component";
 
-import MainPage from './view/pages/public/main/page';
-import OneNewsPage from "./view/pages/public/oneNews/page";
-import NewsPage from "./view/pages/public/news/page";
-import NotFoundPage from "./view/pages/public/notFound/page";
-import SciencePage from "./view/pages/public/science/page";
-import ArticlePage from "./view/pages/public/article/page";
-import LoginPage from "./view/pages/public/login/page";
-import PersonalDataPage from "./view/pages/private/personalData/page";
-import ChangePasswordPage from "./view/pages/private/changePassword/page";
-import RegistrationUserPage from "./view/pages/private/registrationUser/page";
-import CreateNewsPage from "./view/pages/private/createNews/page";
-import AboutPage from "./view/pages/public/about/page";
-import ListContentPage from "./view/pages/private/listNews/page";
-import EditContentPage from "./view/pages/private/editContent/page";
-import CreateEventPage from "./view/pages/private/createEvent/page";
-import CreateQuestionnairePage from "./view/pages/private/createQuestionnaire/page";
+import MainPage from './view/pages/public/content/main/page';
+import OneNewsPage from "./view/pages/public/content/oneNews/page";
+import NewsPage from "./view/pages/public/content/news/page";
+import NotFoundPage from "./view/pages/public/common/notFound/page";
+import SciencePage from "./view/pages/public/content/science/page";
+import ArticlePage from "./view/pages/public/content/article/page";
+import LoginPage from "./view/pages/public/user/login/page";
+import PersonalDataPage from "./view/pages/private/user/personalData/page";
+import ChangePasswordPage from "./view/pages/private/user/changePassword/page";
+import RegistrationUserPage from "./view/pages/private/user/registrationUser/page";
+import CreateNewsPage from "./view/pages/private/content/createNews/page";
+import AboutPage from "./view/pages/public/content/about/page";
+import ListContentPage from "./view/pages/private/content/listNews/page";
+import EditContentPage from "./view/pages/private/content/editContent/page";
+import CreateEventPage from "./view/pages/private/content/createEvent/page";
+import CreateQuestionnairePage from "./view/pages/private/content/createQuestionnaire/page";
+import EditEventsPage from "./view/pages/private/content/listEvents/page";
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/account/content-list/" element={<ListContentPage />} />
                         <Route path="/account/content-list/edit-content/:id" element={<EditContentPage />} />
                         <Route path="/account/create-event/" element={<CreateEventPage />} />
+                        <Route path="/account/event-list/" element={<EditEventsPage />} />
                         <Route path="/account/create-questionnaire/" element={<CreateQuestionnairePage />} />
                     </Route>
                 </Route>

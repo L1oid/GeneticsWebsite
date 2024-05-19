@@ -2,11 +2,10 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
     CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_QUESTIONNAIRE_FIELDS,
-    SERVER_IS_NOT_RESPONDING
-} from "../../consts/errorText";
+} from "../../consts/errorText/content";
+import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
 import {api} from "../../consts/api";
 import {NEWS} from "../../consts/contentTypes";
-import {setCreateQuestionnaireError} from "./errorHandlers";
 
 export const articleCreation = createAsyncThunk(
     "content/articleCreation",
@@ -109,7 +108,7 @@ export const eventCreation = createAsyncThunk(
                 requestBody.rendezvous = rendezvous;
             }
 
-            const response = await fetch(api.url + api.createEvents(), {
+            const response = await fetch(api.url + api.createEvents, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Authorization': state.user.token},
                 body: JSON.stringify(requestBody)
@@ -160,7 +159,7 @@ export const questionnaireCreation = createAsyncThunk(
 
 
             const state = getState();
-            const response = await fetch(api.url + api.createQuestionnaire(), {
+            const response = await fetch(api.url + api.createQuestionnaire, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Authorization': state.user.token},
                 body: JSON.stringify({
@@ -241,6 +240,56 @@ export const articleEdition = createAsyncThunk(
                 headers: {'Authorization': state.user.token},
                 body: formData
             });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const articleDeletion = createAsyncThunk(
+    "content/articleDeletion",
+    async function(id, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.deleteArticle(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const eventDeletion = createAsyncThunk(
+    "content/eventDeletion",
+    async function(id, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.deleteEvent(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
             if (!response.ok) {
                 const text = await response.text();
                 return rejectWithValue({
@@ -392,31 +441,6 @@ export const fetchSingleContent = createAsyncThunk(
                 status: response.status,
                 data: data
             };
-        } catch (error) {
-            return rejectWithValue({
-                status: 504,
-                statusText: 'Gateway Timeout',
-                text: SERVER_IS_NOT_RESPONDING
-            });
-        }
-    }
-);
-
-export const articleDeletion = createAsyncThunk(
-    "content/articleDeletion",
-    async function(id, {rejectWithValue, getState}) {
-        try {
-            const state = getState();
-            /** @namespace state.user **/
-            const response = await fetch(api.url + api.deleteArticle(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
-            if (!response.ok) {
-                const text = await response.text();
-                return rejectWithValue({
-                    status: response.status,
-                    statusText: response.statusText,
-                    text: text
-                });
-            }
         } catch (error) {
             return rejectWithValue({
                 status: 504,

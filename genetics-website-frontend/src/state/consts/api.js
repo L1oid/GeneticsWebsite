@@ -5,6 +5,8 @@ export const api = {
     changePassword: "api/users/",
     registrationUser: "api/users",
     articleCreation: "api/articles",
+    createEvents: "api/events",
+    createQuestionnaire: "api/questionnaires",
     getArticles: function(page, pageSize, type, author, title, date, dateFilter, orderByTitle) {
         let queryParams = `api/articles/filters?page=${page}&pageSize=${pageSize}&type=${type}`;
 
@@ -59,10 +61,7 @@ export const api = {
     getEvents: function(amount) {
         return `api/events?amount=${amount}`
     },
-    createEvents: function() {
-        return `api/events`
+    deleteEvent: function (id) {
+        return `api/events?id=${id}`
     },
-    createQuestionnaire: function() {
-        return `api/questionnaires`
-    }
 }
