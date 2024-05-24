@@ -118,11 +118,6 @@ function ListUsersContainerComponent(props) {
         console.log("Deleted: " + id)
     }
 
-    useEffect(() => {
-        console.log(usersList)
-        console.log(usersListLength)
-    }, [usersList, usersListLength]);
-
     return (
         <div className="list-users-container">
             <AccountPageTitleComponent

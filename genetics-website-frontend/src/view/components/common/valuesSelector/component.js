@@ -10,6 +10,9 @@ function ValuesSelectorComponent(props) {
                 value={props.value}>
             <option value={props.optionValueOne}>{props.titleSelectOne}</option>
             <option value={props.optionValueTwo}>{props.titleSelectTwo}</option>
+            {props.optionValueThree !== undefined && (
+                <option value={props.optionValueThree}>{props.titleSelectThree}</option>
+            )}
         </select>
     );
 }

@@ -1,0 +1,96 @@
+.list-questionnaires {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.list-questionnaires-heading {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #FF4300;
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.list-questionnaires-row-1 {
+    display: flex;
+}
+
+.list-questionnaires-row-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+.list-questionnaires-column-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 25%;
+    min-height: 1px;
+}
+
+.list-questionnaires-column-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 75%;
+    min-height: 1px;
+}
+
+.list-questionnaires-empty {
+    color: #434343;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.list-questionnaires-item {
+    margin-bottom: 20px;
+}
+
+.list-questionnaires-card {
+    border: 2px solid #E1E1E1;
+    background-color: #E1E1E1;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.list-questionnaires-card:hover {
+    border: 2px solid #FF4300;
+    transition-duration: 0.2s;
+}
+
+.list-questionnaires-card-title {
+    user-select: none;
+
+    color: #434343;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.list-questionnaires-filter {
+    height: fit-content;
+    background-color: #E1E1E1;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.list-questionnaires-input {
+    margin-bottom: 15px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 1099px) {
+    .list-questionnaires-row-1 {
+        flex-direction: column;
+    }
+
+    .list-questionnaires-column-1 {
+        width: 100%;
+    }
+
+    .list-questionnaires-column-2 {
+        width: 100%;
+    }
+}

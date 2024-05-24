@@ -6,6 +6,7 @@ function AccountPageInputComponent(props) {
     return (
         <input
             className="account-page-input"
+            placeholder={props.placeholder}
             type={props.type}
             value={props.value}
             onChange={props.disabled ? null : props.handle}
