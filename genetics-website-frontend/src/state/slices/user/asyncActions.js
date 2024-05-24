@@ -236,8 +236,21 @@ export const fetchUsers = createAsyncThunk(
                     text: text
                 });
             }
-            let users = await responseUsers.json()
+            let users = await responseUsers.json();
             const amountUsers = await responseAmountUsers.text();
+
+            const roleMap = {
+                admin: 'Администратор',
+                moderator: 'Модератор',
+                teacher: 'Учитель',
+                student: 'Студент'
+            };
+
+            users = users.map(user => ({
+                ...user,
+                roleNames: user.roleNames.map(role => roleMap[role]).join(', ')
+            }));
+
             return {
                 users: users,
                 amountUsers: amountUsers

@@ -164,7 +164,6 @@
 .event-card {
     border: 2px solid #E1E1E1;
     background-color: #E1E1E1;
-    cursor: pointer;
 }
 
 .event-card:hover {

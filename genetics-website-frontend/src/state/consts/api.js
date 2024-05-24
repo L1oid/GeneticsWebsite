@@ -1,6 +1,6 @@
 export const api = {
-    //url: "http://genetic.kemsu.ru/genetics/",
-    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    url: "http://genetic.kemsu.ru/genetics/",
+    //url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
     registrationUser: "api/users",
@@ -114,5 +114,47 @@ export const api = {
         }
 
         return queryParams;
-    }
+    },
+    getQuestionnaire: function(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle) {
+        let queryParams = `api/questionnaires?page=${page}&pageSize=${pageSize}`
+
+        if (createdBy !== undefined && createdBy !== "") {
+            queryParams += `&createdBy=${createdBy}`;
+        }
+        if (title !== undefined && title !== "") {
+            queryParams += `&title=${title}`;
+        }
+        if (createdAt !== undefined && createdAt !== "") {
+            queryParams += `&createdAt=${createdAt}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+        if (orderByTitle !== undefined && orderByTitle !== "") {
+            queryParams += `&orderByTitle=${orderByTitle}`;
+        }
+
+        return queryParams;
+    },
+    getAmountQuestionnaire: function(title, createdBy, createdAt, dateFilter) {
+        let queryParams = `api/questionnaires/amounts?`
+
+        if (createdBy !== undefined && createdBy !== "") {
+            queryParams += `&createdBy=${createdBy}`;
+        }
+        if (title !== undefined && title !== "") {
+            queryParams += `&title=${title}`;
+        }
+        if (createdAt !== undefined && createdAt !== "") {
+            queryParams += `&createdAt=${createdAt}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+
+        return queryParams;
+    },
+    deleteQuestionnaire: function (questionnaireId) {
+        return `api/questionnaires/${questionnaireId}`
+    },
 }

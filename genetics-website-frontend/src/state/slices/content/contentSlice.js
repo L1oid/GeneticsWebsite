@@ -6,7 +6,7 @@ import {
     clearArticleListReducer,
     clearContentErrorStatusSuccessReducer,
     clearNewsListReducer,
-    clearPreviewContentReducer,
+    clearPreviewContentReducer, clearQuestionnaireListReducer,
     clearSingleContentReducer,
     setArticleNotFoundFalseReducer,
     setPreviewContentForSliderReducer,
@@ -19,14 +19,14 @@ import {
     articleCreation,
     articleDeletion,
     articleEdition, eventCreation, eventDeletion,
-    fetchContent, fetchEvents,
+    fetchContent, fetchEvents, fetchQuestionnaire,
     fetchSingleContent,
-    fetchSliderContent, questionnaireCreation
+    fetchSliderContent, questionnaireCreation, questionnaireDeletion
 } from "./asyncActions";
 import {
     setArticleCreationError, setArticleEditionError, setCreateEventError, setCreateQuestionnaireError,
-    setDeleteArticleError, setDeleteEventError,
-    setFetchContentError, setFetchEventsError,
+    setDeleteArticleError, setDeleteEventError, setDeleteQuestionnaireError,
+    setFetchContentError, setFetchEventsError, setFetchQuestionnaireError,
     setFetchSingleContentError, setFetchSliderContentError
 } from "./errorHandlers";
 import {api} from "../../consts/api";
@@ -52,12 +52,12 @@ const contentSlice = createSlice({
     initialState: {
         newsList: [],
         articleList: [],
+        questionnaireList: [],
+        questionnaireListLength: null,
         newsListLength: null,
         articleListLength: null,
         rerenderAfterDelete: false,
-        contentListSlider: [
-
-        ],
+        contentListSlider: [],
         sliderDefaultImage: api.url + api.getImage(351),
         aboutContent: {
             title1: "Заведующая кафедрой",
@@ -134,6 +134,7 @@ const contentSlice = createSlice({
         clearNewsList: clearNewsListReducer,
         setArticleNotFound: setArticleNotFoundFalseReducer,
         setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer,
+        clearQuestionnaireList: clearQuestionnaireListReducer,
         clearArticleList: clearArticleListReducer,
         clearSingleContent: clearSingleContentReducer,
         clearContentErrorStatusSuccess: clearContentErrorStatusSuccessReducer,
@@ -213,6 +214,19 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
 
+        builder.addCase(fetchQuestionnaire.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchQuestionnaire.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            /** @namespace action.meta **/
+            state.questionnaireListLength = parseInt(action.payload.amountQuestionnaire)
+            state.questionnaireList = [...state.questionnaireList, ...action.payload.questionnaire];
+            state.error = null;
+        })
+        builder.addCase(fetchQuestionnaire.rejected, setFetchQuestionnaireError)
 
         builder.addCase(fetchSliderContent.pending, (state, action) => {
             state.status = 'loading';
@@ -280,6 +294,18 @@ const contentSlice = createSlice({
             state.rerenderAfterDelete = true;
         })
         builder.addCase(eventDeletion.rejected, setDeleteEventError)
+
+        builder.addCase(questionnaireDeletion.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(questionnaireDeletion.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.rerenderAfterDelete = true;
+        })
+        builder.addCase(questionnaireDeletion.rejected, setDeleteQuestionnaireError)
     }
 })
 
@@ -294,6 +320,7 @@ export const {
     setPreviewContentForSlider,
     setPreviewContentTitle,
     setPreviewContentText,
+    clearQuestionnaireList,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

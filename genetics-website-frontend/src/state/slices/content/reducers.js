@@ -1,4 +1,5 @@
 import {NEWS} from "../../consts/contentTypes";
+import {setFetchQuestionnaireError} from "./errorHandlers";
 
 export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.type = NEWS
@@ -21,6 +22,10 @@ export const clearNewsListReducer = (state, action) => {
 
 export const clearArticleListReducer = (state, action) => {
     state.articleList.splice(0, state.articleList.length)
+}
+
+export const clearQuestionnaireListReducer = (state, action) => {
+    state.questionnaireList.splice(0, state.questionnaireList.length)
 }
 
 export const clearSingleContentReducer = (state, action) => {

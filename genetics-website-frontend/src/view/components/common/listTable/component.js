@@ -8,6 +8,7 @@ import AccountPageInputComponent from "../accountPageInput/component";
 import AccountLoadMoreButtonComponent from "../accountLoadMoreButton/component";
 import parse from "html-react-parser";
 import {convertDateTime} from "../../../../state/functions/formatEventDate";
+import {convertUsersDate} from "../../../../state/functions/formatUsersDate";
 
 function ListTableComponent(props) {
 
@@ -44,17 +45,6 @@ function ListTableComponent(props) {
                 return 'Дата создания ⯆';
             default:
                 return 'Дата создания';
-        }
-    };
-
-    const renderDateRegistrationFilterIndicator = () => {
-        switch (props.dateFilter) {
-            case 'gt':
-                return 'Дата регистрации ⯅';
-            case 'lt':
-                return 'Дата регистрации ⯆';
-            default:
-                return 'Дата регистрации';
         }
     };
 
@@ -254,10 +244,10 @@ function ListTableComponent(props) {
                             {user.email}
                         </td>
                         <td>
-                            Пусто
+                            {user.roleNames}
                         </td>
                         <td>
-                            Пусто
+                            {convertUsersDate(user.createdAt)}
                         </td>
                         <td>
                             <AccountPageButtonComponent

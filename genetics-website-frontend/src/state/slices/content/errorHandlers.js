@@ -456,6 +456,39 @@ export const setDeleteArticleError = (state, action) => {
     }
 }
 
+export const setDeleteQuestionnaireError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует токен авторизации"
+                    break;
+                case CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS:
+                    state.error = "Отсутствуют права на удаление анкеты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
 export const setDeleteEventError = (state, action) => {
     state.status = "rejected"
     state.success = null
@@ -530,6 +563,26 @@ export const setFetchSingleContentError = (state, action) => {
                     break;
             }
             break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchQuestionnaireError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:
