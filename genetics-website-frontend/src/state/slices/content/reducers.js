@@ -24,6 +24,10 @@ export const clearQuestionnaireQuestionsAnswersListReducer = (state, action) => 
     state.questionnaireQuestionsAnswersList.splice(0, state.questionnaireQuestionsAnswersList.length)
 }
 
+export const clearQuestionnaireQuestionsListReducer = (state, action) => {
+    state.questionnaireQuestionsList.splice(0, state.questionnaireQuestionsList.length)
+}
+
 export const clearArticleListReducer = (state, action) => {
     state.articleList.splice(0, state.articleList.length)
 }

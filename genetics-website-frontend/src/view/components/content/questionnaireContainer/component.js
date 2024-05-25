@@ -32,15 +32,6 @@ function QuestionnaireContainerComponent(props) {
     const questionnaireQuestionsAnswersList = useSelector(state => state.content.questionnaireQuestionsAnswersList);
     const questionnaireQuestionsList = useSelector(state => state.content.questionnaireQuestionsList).slice().sort((a, b) => a.questionNumber - b.questionNumber);
 
-    useEffect(() => {
-        dispatch(clearQuestionnaireQuestionsAnswersList());
-        questionnaireQuestionsList.forEach(question => {
-            if (question.questionType === SELECT) {
-                dispatch(fetchQuestionnaireQuestionsAnswers({questionId: question.questionId}));
-            }
-        });
-    }, [dispatch, questionnaireQuestionsList.length]);
-    
     const handleInputChange = (questionId, answerText) => {
         setQuestionnaireSolve(prevState => {
             const newAnswerSet = prevState.answerSet.filter(answer => answer.questionId !== questionId);

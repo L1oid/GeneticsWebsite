@@ -8,7 +8,7 @@ import {
     clearNewsListReducer,
     clearPreviewContentReducer,
     clearQuestionnaireListReducer,
-    clearQuestionnaireQuestionsAnswersListReducer,
+    clearQuestionnaireQuestionsAnswersListReducer, clearQuestionnaireQuestionsListReducer,
     clearQuestionnaireReducer,
     clearSingleContentReducer,
     setArticleNotFoundFalseReducer,
@@ -179,6 +179,7 @@ const contentSlice = createSlice({
         setPreviewContentText: setPreviewContentTextReducer,
         clearPreviewContent: clearPreviewContentReducer,
         clearQuestionnaire: clearQuestionnaireReducer,
+        clearQuestionnaireQuestionsList: clearQuestionnaireQuestionsListReducer,
         clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer
     },
     extraReducers: builder => {
@@ -410,6 +411,7 @@ export const {
     clearQuestionnaireList,
     clearQuestionnaire,
     clearQuestionnaireQuestionsAnswersList,
+    clearQuestionnaireQuestionsList,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);
