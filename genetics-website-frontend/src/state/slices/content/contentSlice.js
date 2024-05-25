@@ -6,7 +6,10 @@ import {
     clearArticleListReducer,
     clearContentErrorStatusSuccessReducer,
     clearNewsListReducer,
-    clearPreviewContentReducer, clearQuestionnaireListReducer, clearQuestionnaireReducer,
+    clearPreviewContentReducer,
+    clearQuestionnaireListReducer,
+    clearQuestionnaireQuestionsAnswersListReducer,
+    clearQuestionnaireReducer,
     clearSingleContentReducer,
     setArticleNotFoundFalseReducer,
     setPreviewContentForSliderReducer,
@@ -18,16 +21,35 @@ import {
 import {
     articleCreation,
     articleDeletion,
-    articleEdition, eventCreation, eventDeletion,
-    fetchContent, fetchEvents, fetchQuestionnaire, fetchQuestionnaires,
+    articleEdition,
+    eventCreation,
+    eventDeletion,
+    fetchContent,
+    fetchEvents,
+    fetchQuestionnaire,
+    fetchQuestionnaireQuestions,
+    fetchQuestionnaireQuestionsAnswers,
+    fetchQuestionnaires,
     fetchSingleContent,
-    fetchSliderContent, questionnaireCreation, questionnaireDeletion
+    fetchSliderContent,
+    questionnaireCreation,
+    questionnaireDeletion, solveQuestionnaire
 } from "./asyncActions";
 import {
-    setArticleCreationError, setArticleEditionError, setCreateEventError, setCreateQuestionnaireError,
-    setDeleteArticleError, setDeleteEventError, setDeleteQuestionnaireError,
-    setFetchContentError, setFetchEventsError, setFetchQuestionnaireError, setFetchQuestionnairesError,
-    setFetchSingleContentError, setFetchSliderContentError
+    setArticleCreationError,
+    setArticleEditionError,
+    setCreateEventError,
+    setCreateQuestionnaireError,
+    setDeleteArticleError,
+    setDeleteEventError,
+    setDeleteQuestionnaireError,
+    setFetchContentError,
+    setFetchEventsError,
+    setFetchQuestionnaireError, setFetchQuestionnaireQuestionsAnswersError,
+    setFetchQuestionnaireQuestionsError,
+    setFetchQuestionnairesError,
+    setFetchSingleContentError,
+    setFetchSliderContentError, setSolveQuestionnaireError
 } from "./errorHandlers";
 import {api} from "../../consts/api";
 
@@ -37,10 +59,21 @@ const contentPersistConfig = {
     blacklist: [
         "newsList",
         "articleList",
+        "questionnaireList",
+        "questionnaireListLength",
+        "newsListLength",
+        "articleListLength",
+        "rerenderAfterDelete",
+        "questionnaireQuestionsList",
+        "questionnaireQuestionsAnswersList",
         "eventList",
         "contentListSlider",
+        "sliderDefaultImage",
+        "questionnaire",
         "content",
         "aboutContent",
+        "articleNotFound",
+        "questionnaireQuestionsAnswersList",
         "status",
         "error",
         "success"
@@ -53,6 +86,8 @@ const contentSlice = createSlice({
         newsList: [],
         articleList: [],
         questionnaireList: [],
+        questionnaireQuestionsList: [],
+        questionnaireQuestionsAnswersList: [],
         questionnaireListLength: null,
         newsListLength: null,
         articleListLength: null,
@@ -144,7 +179,8 @@ const contentSlice = createSlice({
         setPreviewContentTitle: setPreviewContentTitleReducer,
         setPreviewContentText: setPreviewContentTextReducer,
         clearPreviewContent: clearPreviewContentReducer,
-        clearQuestionnaire: clearQuestionnaireReducer
+        clearQuestionnaire: clearQuestionnaireReducer,
+        clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer
     },
     extraReducers: builder => {
         builder.addCase(articleCreation.pending, (state, action) => {
@@ -183,6 +219,17 @@ const contentSlice = createSlice({
         })
         builder.addCase(eventCreation.rejected, setCreateEventError)
 
+        builder.addCase(solveQuestionnaire.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(solveQuestionnaire.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Анкета успешно отправлена";
+        })
+        builder.addCase(solveQuestionnaire.rejected, setSolveQuestionnaireError)
 
         builder.addCase(articleEdition.pending, (state, action) => {
             state.status = 'loading';
@@ -288,6 +335,30 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchQuestionnaire.rejected, setFetchQuestionnaireError)
 
+        builder.addCase(fetchQuestionnaireQuestions.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchQuestionnaireQuestions.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.questionnaireQuestionsList = action.payload;
+            state.error = null;
+        })
+        builder.addCase(fetchQuestionnaireQuestions.rejected, setFetchQuestionnaireQuestionsError)
+
+        builder.addCase(fetchQuestionnaireQuestionsAnswers.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchQuestionnaireQuestionsAnswers.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.questionnaireQuestionsAnswersList = [...state.questionnaireQuestionsAnswersList, ...action.payload];
+            state.error = null;
+        })
+        builder.addCase(fetchQuestionnaireQuestionsAnswers.rejected, setFetchQuestionnaireQuestionsAnswersError)
+
         builder.addCase(articleDeletion.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -339,6 +410,7 @@ export const {
     setPreviewContentText,
     clearQuestionnaireList,
     clearQuestionnaire,
+    clearQuestionnaireQuestionsAnswersList,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

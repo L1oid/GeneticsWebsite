@@ -6,8 +6,8 @@ import {
     clearQuestionnaire,
     setArticleNotFound
 } from "../../../../../state/slices/content/contentSlice";
-import {fetchQuestionnaire} from "../../../../../state/slices/content/asyncActions";
-import QuestionnaireComponent from "../../../../components/content/questionnaireContainer/component";
+import {fetchQuestionnaire, fetchQuestionnaireQuestions} from "../../../../../state/slices/content/asyncActions";
+import QuestionnaireContainerComponent from "../../../../components/content/questionnaireContainer/component";
 
 function QuestionnairePage(props) {
     const {id} = useParams();
@@ -18,6 +18,7 @@ function QuestionnairePage(props) {
     useEffect(() => {
         dispatch(clearQuestionnaire());
         dispatch(fetchQuestionnaire({ id: id }));
+        dispatch(fetchQuestionnaireQuestions({ questionnaireId: id }));
     }, [dispatch, id])
 
     useEffect(() => {
@@ -29,7 +30,7 @@ function QuestionnairePage(props) {
     return articleNotFound ? (
         <Navigate to="/questionnaires" />
     ) : (
-        <QuestionnaireComponent />
+        <QuestionnaireContainerComponent />
     )
 }
 

@@ -40,11 +40,16 @@ import {
     CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_IS_EMPTY,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_IS_NULL,
-    CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND,
-    CONTENT_QUESTIONNAIRE_INVALID_ID, CONTENT_QUESTIONNAIRE_NOT_FOUND,
+    CONTENT_QUESTIONNAIRE_ANSWERS_NOT_FOUND,
+    CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND, CONTENT_QUESTIONNAIRE_ID_IS_0,
+    CONTENT_QUESTIONNAIRE_INVALID_ID,
+    CONTENT_QUESTIONNAIRE_NO_ANSWERS_PROVIDED,
+    CONTENT_QUESTIONNAIRE_NO_PROVIDE_ANSWER_FOR_QUESTION,
+    CONTENT_QUESTIONNAIRE_NOT_FOUND,
     CONTENT_QUESTIONNAIRE_QUESTION_NUMBER_SHOULD_START_FROM_1,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_IS_NULL,
+    CONTENT_QUESTIONNAIRE_QUESTIONS_NOT_FOUND,
     CONTENT_QUESTIONNAIRE_TITLE_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_TITLE_IS_NULL,
     CONTENT_QUESTIONNAIRE_TITLE_IS_SMALL,
@@ -616,6 +621,112 @@ export const setFetchQuestionnaireError = (state, action) => {
                     break;
             }
             break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchQuestionnaireQuestionsError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_QUESTIONS_NOT_FOUND:
+                    state.error = "Вопросы по данному id не найдены"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setSolveQuestionnaireError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_NO_ANSWERS_PROVIDED:
+                    state.error = "Ответы не предоставлены"
+                    break;
+                case CONTENT_QUESTIONNAIRE_QUESTIONS_NOT_FOUND:
+                    state.error = "Данная анкета не найдена"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_NO_PROVIDE_ANSWER_FOR_QUESTION:
+                    state.error = "Необходимо ответить на все вопросы со знаком *"
+                    break;
+                case CONTENT_QUESTIONNAIRE_ID_IS_0:
+                    state.error = "Некорректный ID анкеты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchQuestionnaireQuestionsAnswersError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_ANSWERS_NOT_FOUND:
+                    state.error = "Ответы по данному id не найдены"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
         case 504:
             switch (action.payload.text) {
                 case SERVER_IS_NOT_RESPONDING:

@@ -1,7 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
-    CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_QUESTIONNAIRE_FIELDS,
+    CONTENT_NULL_ARTICLE_FIELDS,
+    CONTENT_NULL_QUESTIONNAIRE_FIELDS,
 } from "../../consts/errorText/content";
 import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
 import {api} from "../../consts/api";
@@ -170,6 +171,38 @@ export const questionnaireCreation = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const solveQuestionnaire = createAsyncThunk(
+    "content/solveQuestionnaire",
+    async function({questionnaireId, answerSet}, {rejectWithValue, getState, dispatch}) {
+        try {
+            const request = {
+                questionnaireId: questionnaireId,
+                answerSet: answerSet
+            }
+            const response = await fetch(api.url + api.solveQuestionnaire, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(request)
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                console.log(text)
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -532,6 +565,54 @@ export const fetchQuestionnaire = createAsyncThunk(
                 status: response.status,
                 data: data
             };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchQuestionnaireQuestions = createAsyncThunk(
+    "content/fetchQuestionnaireQuestions",
+    async function({questionnaireId}, {rejectWithValue}) {
+        try {
+            const response = await fetch(api.url + api.getQuestionnaireQuestions(questionnaireId), {method: 'GET'});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            return await response.json()
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchQuestionnaireQuestionsAnswers = createAsyncThunk(
+    "content/fetchQuestionnaireQuestionsAnswers",
+    async function({questionId}, {rejectWithValue}) {
+        try {
+            const response = await fetch(api.url + api.getQuestionnaireQuestionsAnswers(questionId), {method: 'GET'});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            return await response.json()
         } catch (error) {
             return rejectWithValue({
                 status: 504,

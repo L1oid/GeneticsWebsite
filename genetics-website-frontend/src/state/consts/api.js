@@ -1,12 +1,13 @@
 export const api = {
-    //url: "http://genetic.kemsu.ru/genetics/",
-    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    url: "http://genetic.kemsu.ru/",
+    //url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
     registrationUser: "api/users",
     articleCreation: "api/articles",
     createEvents: "api/events",
     createQuestionnaire: "api/questionnaires",
+    solveQuestionnaire: "api/questionnaires/submissions",
     getArticles: function(page, pageSize, type, author, title, date, dateFilter, orderByTitle) {
         let queryParams = `api/articles/filters?page=${page}&pageSize=${pageSize}&type=${type}`;
 
@@ -160,4 +161,10 @@ export const api = {
     getQuestionnaire: function (id) {
         return `api/questionnaires/ids/${id}`
     },
+    getQuestionnaireQuestions: function (questionnaireId) {
+        return `api/questionnaires/questions?questionnaireId=${questionnaireId}`
+    },
+    getQuestionnaireQuestionsAnswers: function (questionId) {
+        return `api/questionnaires/questions/answers-to-choose?questionId=${questionId}`
+    }
 }
