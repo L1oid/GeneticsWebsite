@@ -202,12 +202,13 @@ export const solveQuestionnaire = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
-                console.log(text)
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
                     text: text
                 });
+            } else {
+                return await response.text()
             }
         } catch (error) {
             return rejectWithValue({

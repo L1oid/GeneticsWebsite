@@ -73,7 +73,6 @@ const contentPersistConfig = {
         "content",
         "aboutContent",
         "articleNotFound",
-        "questionnaireQuestionsAnswersList",
         "status",
         "error",
         "success"
@@ -227,7 +226,7 @@ const contentSlice = createSlice({
         builder.addCase(solveQuestionnaire.fulfilled, (state, action) => {
             state.status = 'resolved';
             state.error = null;
-            state.success = "Анкета успешно отправлена";
+            state.success = action.payload;
         })
         builder.addCase(solveQuestionnaire.rejected, setSolveQuestionnaireError)
 
