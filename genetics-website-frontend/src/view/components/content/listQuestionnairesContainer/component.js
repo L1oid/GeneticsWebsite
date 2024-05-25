@@ -3,13 +3,13 @@ import React from 'react';
 import './style.css';
 import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 
-function ListQuestionnaireContainerComponent(props) {
+function ListQuestionnairesContainerComponent(props) {
     return (
-        <div className="list-questionnaire-container">
+        <div className="list-questionnaires-container">
             <AccountPageTitleComponent
                 title="Список анкет"/>
         </div>
     )
 }
 
-export default ListQuestionnaireContainerComponent;
+export default ListQuestionnairesContainerComponent;

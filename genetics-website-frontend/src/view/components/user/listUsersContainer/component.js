@@ -18,6 +18,15 @@ function ListUsersContainerComponent(props) {
     const [searchDate, setSearchDate] = useState("");
     const [showDate, setShowDate] = useState("");
 
+    const [tempSearchUsername, setTempSearchUsername] = useState("");
+    const [tempSearchFirstNamePlusLastName, setTempSearchFirstNamePlusLastName] = useState("");
+    const [tempSearchEmail, setTempSearchEmail] = useState("");
+    const [tempSearchRoleName, setTempSearchRoleName] = useState("");
+    const [tempSearchDate, setTempSearchDate] = useState("");
+
+
+    const [refresh, setRefresh] = useState(0);
+
     const [orderBy, setOrderBy] = useState("");
     const [dateFilter, setDateFilter] = useState("eq");
 
@@ -37,7 +46,7 @@ function ListUsersContainerComponent(props) {
         } else {
             dispatch(fetchUsers({page: page, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter, username: searchUsername, firstNamePlusLastName: searchFirstNamePlusLastName, email: searchEmail, roleName: searchRoleName, date: searchDate}));
         }
-    }, [dispatch, page, searchPage, pageSize, orderBy, dateFilter]);
+    }, [dispatch, page, searchPage, pageSize, orderBy, dateFilter, searchUsername, searchFirstNamePlusLastName, searchEmail, searchRoleName, searchDate, refresh]);
 
     useEffect(() => {
         dispatch(clearUsersList());
@@ -64,37 +73,33 @@ function ListUsersContainerComponent(props) {
     };
 
     const searchButtonHandle = () => {
-        if (searchUsername.trim() === '' && searchFirstNamePlusLastName.trim() === '' && searchEmail.trim() === '' && searchRoleName.trim() === '' && searchDate.trim() === '') {
-            dispatch(clearUsersList());
-            if (page === 1) {
-                dispatch(fetchUsers({page: 1, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter}));
-            } else {
-                setPage(1)
-            }
-        } else {
-            dispatch(clearUsersList());
-            if (searchPage === 1) {
-                dispatch(fetchUsers({page: 1, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter, username: searchUsername, firstNamePlusLastName: searchFirstNamePlusLastName, email: searchEmail, roleName: searchRoleName, date: searchDate}));
-            } else {
-                setSearchPage(1)
-            }
-        }
+        dispatch(clearUsersList());
+        setSearchUsername(tempSearchUsername)
+        setSearchEmail(tempSearchEmail)
+        setSearchFirstNamePlusLastName(tempSearchFirstNamePlusLastName)
+        setSearchRoleName(tempSearchRoleName)
+        setSearchDate(tempSearchDate)
+        setSearchPage(1);
+        setPage(1);
+        setRefresh(refresh => refresh + 1);
     };
 
     const handleDateChange = (event) => {
         const dateString = event.target.value;
         if (dateString === '') {
             setShowDate('');
-            setSearchDate('');
+            setTempSearchDate('');
         } else {
             const date = new Date(`${dateString}T12:00:00`);
             const formattedDate = date.toISOString().slice(0, 10);
             setShowDate(dateString);
-            setSearchDate(formattedDate);
+            setTempSearchDate(formattedDate);
         }
     };
 
     const handleUsernameSort = () => {
+        setSearchPage(1);
+        setPage(1);
         if (orderBy === "") {
             setOrderBy('asc');
         } else if (orderBy === 'asc') {
@@ -105,6 +110,8 @@ function ListUsersContainerComponent(props) {
     };
 
     const handleDateFilter = () => {
+        setSearchPage(1);
+        setPage(1);
         if (dateFilter === "eq") {
             setDateFilter('lt');
         } else if (dateFilter=== 'lt') {
@@ -139,14 +146,14 @@ function ListUsersContainerComponent(props) {
                     orderBy={orderBy}
                     date={showDate}
                     setDate={handleDateChange}
-                    searchUsername={searchUsername}
-                    setSearchUsername={(e) => setSearchUsername(e.target.value)}
-                    searchFirstNamePlusLastName={searchFirstNamePlusLastName}
-                    setSearchFirstNamePlusLastName={(e) => setSearchFirstNamePlusLastName(e.target.value)}
-                    searchEmail={searchEmail}
-                    setSearchEmail={(e) => setSearchEmail(e.target.value)}
-                    searchRoleName={searchRoleName}
-                    setSearchRoleName={(e) => setSearchRoleName(e.target.value)}
+                    searchUsername={tempSearchUsername}
+                    setSearchUsername={(e) => setTempSearchUsername(e.target.value)}
+                    searchFirstNamePlusLastName={tempSearchFirstNamePlusLastName}
+                    setSearchFirstNamePlusLastName={(e) => setTempSearchFirstNamePlusLastName(e.target.value)}
+                    searchEmail={tempSearchEmail}
+                    setSearchEmail={(e) => setTempSearchEmail(e.target.value)}
+                    searchRoleName={tempSearchRoleName}
+                    setSearchRoleName={(e) => setTempSearchRoleName(e.target.value)}
                     />
             </div>
         </div>

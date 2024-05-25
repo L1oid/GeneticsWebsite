@@ -23,10 +23,16 @@ function AccountListContentContainerComponent(props) {
     const [searchAuthor, setSearchAuthor] = useState("");
     const [searchDate, setSearchDate] = useState("");
 
+    const [tempSearchTitle, setTempSearchTitle] = useState("");
+    const [tempSearchAuthor, setTempSearchAuthor] = useState("");
+    const [tempSearchDate, setTempSearchDate] = useState("");
+
     const [showDate, setShowDate] = useState("");
 
     const [searchPage, setSearchPage] = useState(1);
     const [page, setPage] = useState(1);
+
+    const [refresh, setRefresh] = useState(0);
 
     const [orderByTitle, setOrderByTitle] = useState("");
     const [dateFilter, setDateFilter] = useState("eq");
@@ -50,7 +56,7 @@ function AccountListContentContainerComponent(props) {
         } else {
             dispatch(fetchContent({ type: contentType, page: searchPage, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor, orderByTitle: orderByTitle, dateFilter: dateFilter}));
         }
-    }, [page, searchPage, dispatch, pageSize, contentType, orderByTitle, dateFilter]);
+    }, [page, searchDate, searchAuthor, searchTitle, searchPage, dispatch, pageSize, contentType, orderByTitle, dateFilter, refresh]);
 
     useEffect(() => {
         dispatch(clearNewsList());
@@ -101,29 +107,17 @@ function AccountListContentContainerComponent(props) {
     };
 
     const searchButtonHandle = () => {
-        if (searchTitle.trim() === '' && searchAuthor.trim() === '' && searchDate.trim() === '') {
-            if (contentType === ARTICLE) {
-                dispatch(clearArticleList());
-            } else {
-                dispatch(clearNewsList());
-            }
-            if (page === 1) {
-                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize, orderByTitle: orderByTitle, dateFilter: dateFilter}));
-            } else {
-                setPage(1)
-            }
+        if (contentType === ARTICLE) {
+            dispatch(clearArticleList());
         } else {
-            if (contentType === ARTICLE) {
-                dispatch(clearArticleList());
-            } else {
-                dispatch(clearNewsList());
-            }
-            if (searchPage === 1) {
-                dispatch(fetchContent({ type: contentType, page: 1, pageSize: pageSize, title: searchTitle, date: searchDate, author: searchAuthor, orderByTitle: orderByTitle, dateFilter: dateFilter}));
-            } else {
-                setSearchPage(1)
-            }
+            dispatch(clearNewsList());
         }
+        setSearchTitle(tempSearchTitle)
+        setSearchDate(tempSearchDate)
+        setSearchAuthor(tempSearchAuthor)
+        setSearchPage(1);
+        setPage(1);
+        setRefresh(refresh => refresh + 1);
     };
 
     useEffect(() => {
@@ -137,16 +131,18 @@ function AccountListContentContainerComponent(props) {
         const dateString = event.target.value;
         if (dateString === '') {
             setShowDate('');
-            setSearchDate('');
+            setTempSearchDate('');
         } else {
             const date = new Date(`${dateString}T12:00:00`);
             const formattedDate = date.toISOString().slice(0, 10);
             setShowDate(dateString);
-            setSearchDate(formattedDate);
+            setTempSearchDate(formattedDate);
         }
     };
 
     const handleTitleSort = () => {
+        setSearchPage(1);
+        setPage(1);
         if (orderByTitle === "") {
             setOrderByTitle('asc');
         } else if (orderByTitle=== 'asc') {
@@ -157,6 +153,8 @@ function AccountListContentContainerComponent(props) {
     };
 
     const handleDateFilter = () => {
+        setSearchPage(1);
+        setPage(1);
         if (dateFilter === "eq") {
             setDateFilter('lt');
         } else if (dateFilter=== 'lt') {
@@ -195,12 +193,12 @@ function AccountListContentContainerComponent(props) {
                     tbodyArticles={articleList}
                     handleLoadMore={handleLoadMore}
                     isLoadMoreDisabled={isLoadMoreDisabled}
-                    firstInputValue={searchTitle}
-                    firstInputValueHandle={(e) => setSearchTitle(e.target.value)}
+                    firstInputValue={tempSearchTitle}
+                    firstInputValueHandle={(e) => setTempSearchTitle(e.target.value)}
                     secondInputValue={showDate}
                     secondInputValueHandle={handleDateChange}
-                    thirdInputValue={searchAuthor}
-                    thirdInputValueHandle={(e) => setSearchAuthor(e.target.value)}
+                    thirdInputValue={tempSearchAuthor}
+                    thirdInputValueHandle={(e) => setTempSearchAuthor(e.target.value)}
                     searchButtonHandle={searchButtonHandle}
                     deleteButtonHandle={deleteButtonHandle}
                     changeButtonHandle={changeButtonHandle}

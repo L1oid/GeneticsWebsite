@@ -1,5 +1,5 @@
 import {NEWS} from "../../consts/contentTypes";
-import {setFetchQuestionnaireError} from "./errorHandlers";
+import {fetchQuestionnaire} from "./asyncActions";
 
 export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.type = NEWS
@@ -39,6 +39,10 @@ export const clearSingleContentReducer = (state, action) => {
     state.content.imageList = []
     state.content.mediaFilesMap = {}
     state.content.type = null
+}
+
+export const clearQuestionnaireReducer = (state, action) => {
+    state.questionnaire= {}
 }
 
 export const setPreviewContentTypeReducer = (state, action) => {

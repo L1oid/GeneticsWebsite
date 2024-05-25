@@ -3,14 +3,14 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 import {MODERATOR} from "../../../../../state/consts/roles";
-import ListQuestionnaireContainerComponent from "../../../../components/content/listQuestionnaireContainer/component";
+import ListQuestionnairesContainerComponent from "../../../../components/content/listQuestionnairesContainer/component";
 
 function ListQuestionnairePage(props) {
     const {roles} = useSelector(state => state.user)
     const isModerator = roles.includes(MODERATOR);
 
     return isModerator ? (
-        <ListQuestionnaireContainerComponent />
+        <ListQuestionnairesContainerComponent />
     ) : (
         <Navigate to="/account" />
     )

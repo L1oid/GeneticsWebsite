@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {formatDate} from "../../../../state/functions/formatDate";
+import SingleContentHeadingComponent from "../../common/singleContentHeading/component";
 
 function SingleContentComponent(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -49,9 +50,7 @@ function SingleContentComponent(props) {
         <div className="page-container">
             <div className="single-content-container">
                 <BreadcrumpComponent ways={ways}/>
-                <h1 className="single-content-heading">
-                    {props.title}
-                </h1>
+                <SingleContentHeadingComponent title={props.title} />
                 <h2 className="single-content-date">
                     {formatDate(props.date)}
                 </h2>

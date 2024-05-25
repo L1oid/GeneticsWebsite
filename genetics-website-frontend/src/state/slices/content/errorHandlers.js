@@ -40,6 +40,8 @@ import {
     CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_IS_EMPTY,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_IS_NULL,
+    CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND,
+    CONTENT_QUESTIONNAIRE_INVALID_ID, CONTENT_QUESTIONNAIRE_NOT_FOUND,
     CONTENT_QUESTIONNAIRE_QUESTION_NUMBER_SHOULD_START_FROM_1,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_IS_NULL,
@@ -580,6 +582,57 @@ export const setFetchSingleContentError = (state, action) => {
 }
 
 export const setFetchQuestionnaireError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_INVALID_ID:
+                    state.error = "Некорректный ID анкеты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_NOT_FOUND:
+                    state.error = "Данная анкета отсутствует"
+                    state.articleNotFound = true
+                    break;
+                default:
+                    state.articleNotFound = true
+                    break;
+            }
+            break;
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND:
+                    state.error = "Автор анкеты ненайден"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchQuestionnairesError = (state, action) => {
     state.status = "rejected"
     state.success = null
     switch (action.payload.status) {

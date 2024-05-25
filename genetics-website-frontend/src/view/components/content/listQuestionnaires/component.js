@@ -5,13 +5,12 @@ import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import LoadMoreButtonComponent from "../../common/loadMoreButton/component";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchQuestionnaire} from "../../../../state/slices/content/asyncActions";
+import {fetchQuestionnaires} from "../../../../state/slices/content/asyncActions";
 import {clearQuestionnaireList} from "../../../../state/slices/content/contentSlice";
 import {useNavigate} from "react-router-dom";
 import AccountPageSubtitleComponent from "../../common/accountPageSubtitle/component";
 import AccountPageInputComponent from "../../common/accountPageInput/component";
 import AccountPageButtonComponent from "../../common/accountPageButton/component";
-import {FREE, SELECT} from "../../../../state/consts/contentTypes";
 import ValuesSelectorComponent from "../../common/valuesSelector/component";
 
 function ListQuestionnairesComponent(props) {
@@ -19,6 +18,7 @@ function ListQuestionnairesComponent(props) {
     const [page, setPage] = useState(1);
     const [searchPage, setSearchPage] = useState(1);
     const [pageSize] = useState(6);
+    const [refresh, setRefresh] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const questionnaireList = useSelector(state => state.content.questionnaireList);
@@ -32,20 +32,15 @@ function ListQuestionnairesComponent(props) {
 
     useEffect(() => {
         if (searchTitle.trim() === '') {
-            dispatch(fetchQuestionnaire({page: page , pageSize: pageSize, orderByTitle: orderByTitle}));
+            dispatch(fetchQuestionnaires({page: page , pageSize: pageSize, orderByTitle: orderByTitle}));
         } else {
-            dispatch(fetchQuestionnaire({page: searchPage , pageSize: pageSize, title: searchTitle, orderByTitle: orderByTitle}));
+            dispatch(fetchQuestionnaires({page: searchPage , pageSize: pageSize, title: searchTitle, orderByTitle: orderByTitle}));
         }
-    }, [orderByTitle, page, searchPage, searchTitle, dispatch, pageSize]);
+    }, [orderByTitle, page, searchPage, searchTitle, dispatch, pageSize, refresh]);
 
     useEffect(() => {
         dispatch(clearQuestionnaireList());
     }, [dispatch]);
-
-    useEffect(() => {
-        console.log("temp " + tempOrderByTitle)
-        console.log("real " + orderByTitle)
-    }, [orderByTitle, tempOrderByTitle]);
 
     useEffect(() => {
         if (questionnaireList.length === questionnaireListLength) {
@@ -73,6 +68,7 @@ function ListQuestionnairesComponent(props) {
         setOrderByTitle(tempOrderByTitle);
         setSearchPage(1);
         setPage(1);
+        setRefresh(refresh => refresh + 1);
     };
 
     const handleSortChange = (e) => {

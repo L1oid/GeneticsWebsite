@@ -1,6 +1,6 @@
 export const api = {
-    url: "http://genetic.kemsu.ru/genetics/",
-    //url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    //url: "http://genetic.kemsu.ru/genetics/",
+    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
     registrationUser: "api/users",
@@ -115,7 +115,7 @@ export const api = {
 
         return queryParams;
     },
-    getQuestionnaire: function(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle) {
+    getQuestionnaires: function(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle) {
         let queryParams = `api/questionnaires?page=${page}&pageSize=${pageSize}`
 
         if (createdBy !== undefined && createdBy !== "") {
@@ -136,7 +136,7 @@ export const api = {
 
         return queryParams;
     },
-    getAmountQuestionnaire: function(title, createdBy, createdAt, dateFilter) {
+    getAmountQuestionnaires: function(title, createdBy, createdAt, dateFilter) {
         let queryParams = `api/questionnaires/amounts?`
 
         if (createdBy !== undefined && createdBy !== "") {
@@ -156,5 +156,8 @@ export const api = {
     },
     deleteQuestionnaire: function (questionnaireId) {
         return `api/questionnaires/${questionnaireId}`
+    },
+    getQuestionnaire: function (id) {
+        return `api/questionnaires/ids/${id}`
     },
 }

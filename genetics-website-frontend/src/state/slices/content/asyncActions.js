@@ -476,11 +476,11 @@ export const fetchSingleContent = createAsyncThunk(
     }
 );
 
-export const fetchQuestionnaire = createAsyncThunk(
-    "content/fetchQuestionnaire",
+export const fetchQuestionnaires = createAsyncThunk(
+    "content/fetchQuestionnaires",
     async function({page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle}, {rejectWithValue}) {
         try {
-            const responseAmountQuestionnaire = await fetch(api.url + api.getAmountQuestionnaire(title, createdBy, createdAt, dateFilter), {method: 'GET'});
+            const responseAmountQuestionnaire = await fetch(api.url + api.getAmountQuestionnaires(title, createdBy, createdAt, dateFilter), {method: 'GET'});
             if (!responseAmountQuestionnaire.ok) {
                 const text = await responseAmountQuestionnaire.text();
                 return rejectWithValue({
@@ -489,7 +489,7 @@ export const fetchQuestionnaire = createAsyncThunk(
                     text: text
                 });
             }
-            const responseQuestionnaire = await fetch(api.url + api.getQuestionnaire(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle), {method: 'GET'});
+            const responseQuestionnaire = await fetch(api.url + api.getQuestionnaires(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle), {method: 'GET'});
             if (!responseQuestionnaire.ok) {
                 const text = await responseQuestionnaire.text();
                 return rejectWithValue({
@@ -503,6 +503,34 @@ export const fetchQuestionnaire = createAsyncThunk(
             return {
                 questionnaire: questionnaire,
                 amountQuestionnaire: amountQuestionnaire
+            };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchQuestionnaire = createAsyncThunk(
+    "content/fetchQuestionnaire",
+    async function({id}, {rejectWithValue}) {
+        try {
+            const response = await fetch(api.url + api.getQuestionnaire(id), {method: 'GET'});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            let data = await response.json()
+            return {
+                status: response.status,
+                data: data
             };
         } catch (error) {
             return rejectWithValue({

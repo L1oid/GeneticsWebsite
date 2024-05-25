@@ -58,3 +58,6 @@ export const CONTENT_QUESTIONNAIRE_ANSWER_LIST_TEXT_INCLUDES_SYMBOLS = "text for
 export const CONTENT_EVENT_NO_RIGHTS_EVENT = "No rights to delete this event"
 export const CONTENT_EVENT_INCORRECT_ID_DELETE = "incorrect event id"
 export const CONTENT_EVENT_DOESNT_EXIST = "Event doesn't exist"
+export const CONTENT_QUESTIONNAIRE_INVALID_ID = "Provided invalid questionnaire"
+export const CONTENT_QUESTIONNAIRE_NOT_FOUND = "Could not find such questionnaire"
+export const CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND = "A user that has created this questionnaire doesn't exist anymore or wasn't found for a different reason"

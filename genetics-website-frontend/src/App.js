@@ -24,7 +24,8 @@ import CreateQuestionnairePage from "./view/pages/private/content/createQuestion
 import ListUsersPage from "./view/pages/private/user/listUsers/page";
 import ListQuestionnairePage from "./view/pages/private/content/listQuestionnaire/page";
 import ListEventsPage from "./view/pages/private/content/listEvents/page";
-import QuestionnairesPage from "./view/pages/public/content/questionnaire/page";
+import QuestionnairesPage from "./view/pages/public/content/questionnaires/page";
+import QuestionnairePage from "./view/pages/public/content/questionnaire/page";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                     <Route path="/science/" element={<SciencePage />} />
                     <Route path="/science/:id" element={<ArticlePage />} />
                     <Route path="/questionnaires/" element={<QuestionnairesPage />} />
+                    <Route path="/questionnaires/:id" element={<QuestionnairePage />} />
                     <Route path="/about/" element={<AboutPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                     <Route path="/account" element={<AccountLayout />}>

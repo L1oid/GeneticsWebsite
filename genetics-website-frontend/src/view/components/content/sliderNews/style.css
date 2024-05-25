@@ -68,8 +68,9 @@
     }
 
     .slide-header {
-        font-size: 26px;
+        font-size: 30px;
     }
+
     .slider-news-left {
         top: 50%;
         left: 0;
@@ -80,6 +81,12 @@
         top: 50%;
         right: 0;
         transform: translate(0, -50%);
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .slide-header {
+        font-size: 22px;
     }
 }
 

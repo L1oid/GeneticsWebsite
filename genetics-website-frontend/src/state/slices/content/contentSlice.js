@@ -6,7 +6,7 @@ import {
     clearArticleListReducer,
     clearContentErrorStatusSuccessReducer,
     clearNewsListReducer,
-    clearPreviewContentReducer, clearQuestionnaireListReducer,
+    clearPreviewContentReducer, clearQuestionnaireListReducer, clearQuestionnaireReducer,
     clearSingleContentReducer,
     setArticleNotFoundFalseReducer,
     setPreviewContentForSliderReducer,
@@ -19,14 +19,14 @@ import {
     articleCreation,
     articleDeletion,
     articleEdition, eventCreation, eventDeletion,
-    fetchContent, fetchEvents, fetchQuestionnaire,
+    fetchContent, fetchEvents, fetchQuestionnaire, fetchQuestionnaires,
     fetchSingleContent,
     fetchSliderContent, questionnaireCreation, questionnaireDeletion
 } from "./asyncActions";
 import {
     setArticleCreationError, setArticleEditionError, setCreateEventError, setCreateQuestionnaireError,
     setDeleteArticleError, setDeleteEventError, setDeleteQuestionnaireError,
-    setFetchContentError, setFetchEventsError, setFetchQuestionnaireError,
+    setFetchContentError, setFetchEventsError, setFetchQuestionnaireError, setFetchQuestionnairesError,
     setFetchSingleContentError, setFetchSliderContentError
 } from "./errorHandlers";
 import {api} from "../../consts/api";
@@ -107,6 +107,7 @@ const contentSlice = createSlice({
             image4: api.url + api.getImage(352)
         },
         eventList: [],
+        questionnaire: {},
         content: {
             id: null,
             createdAt: null,
@@ -142,7 +143,8 @@ const contentSlice = createSlice({
         setPreviewContentForSlider: setPreviewContentForSliderReducer,
         setPreviewContentTitle: setPreviewContentTitleReducer,
         setPreviewContentText: setPreviewContentTextReducer,
-        clearPreviewContent: clearPreviewContentReducer
+        clearPreviewContent: clearPreviewContentReducer,
+        clearQuestionnaire: clearQuestionnaireReducer
     },
     extraReducers: builder => {
         builder.addCase(articleCreation.pending, (state, action) => {
@@ -214,19 +216,19 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
 
-        builder.addCase(fetchQuestionnaire.pending, (state, action) => {
+        builder.addCase(fetchQuestionnaires.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
             state.success = null;
         })
-        builder.addCase(fetchQuestionnaire.fulfilled, (state, action) => {
+        builder.addCase(fetchQuestionnaires.fulfilled, (state, action) => {
             state.status = 'resolved';
             /** @namespace action.meta **/
             state.questionnaireListLength = parseInt(action.payload.amountQuestionnaire)
             state.questionnaireList = [...state.questionnaireList, ...action.payload.questionnaire];
             state.error = null;
         })
-        builder.addCase(fetchQuestionnaire.rejected, setFetchQuestionnaireError)
+        builder.addCase(fetchQuestionnaires.rejected, setFetchQuestionnairesError)
 
         builder.addCase(fetchSliderContent.pending, (state, action) => {
             state.status = 'loading';
@@ -270,6 +272,21 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
 
+        builder.addCase(fetchQuestionnaire.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchQuestionnaire.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            if (action.payload.status === 200) {
+                state.questionnaire = action.payload.data;
+            } else {
+                state.articleNotFound = true
+            }
+            state.error = null;
+        })
+        builder.addCase(fetchQuestionnaire.rejected, setFetchQuestionnaireError)
 
         builder.addCase(articleDeletion.pending, (state, action) => {
             state.status = 'loading';
@@ -321,6 +338,7 @@ export const {
     setPreviewContentTitle,
     setPreviewContentText,
     clearQuestionnaireList,
+    clearQuestionnaire,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);
