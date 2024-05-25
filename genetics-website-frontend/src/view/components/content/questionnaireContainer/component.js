@@ -9,10 +9,7 @@ import AccountPageSubtitleComponent from "../../common/accountPageSubtitle/compo
 import AccountPageInputComponent from "../../common/accountPageInput/component";
 import {FREE, SELECT} from "../../../../state/consts/contentTypes";
 import {
-    clearQuestionnaireQuestionsAnswersList
-} from "../../../../state/slices/content/contentSlice";
-import {
-    fetchQuestionnaireQuestionsAnswers, solveQuestionnaire
+    solveQuestionnaire
 } from "../../../../state/slices/content/asyncActions";
 import AccountPageButtonComponent from "../../common/accountPageButton/component";
 import ErrorAndSuccessWindowComponent from "../../common/errorAndSuccessWindow/component";

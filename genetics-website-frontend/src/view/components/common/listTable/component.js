@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import './style.css';
-import {ARTICLE, EVENTS, NEWS, USERS} from "../../../../state/consts/contentTypes";
+import {ARTICLE, EVENTS, NEWS, QUESTIONNAIRES, USERS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import AccountPageInputComponent from "../accountPageInput/component";
@@ -78,6 +78,8 @@ function ListTableComponent(props) {
                             <p className="list-table-modal-content-text title">Подтвердите удаление</p>
                             {(props.contentType === ARTICLE || props.contentType === NEWS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный контент?</p>}
                             {(props.contentType === EVENTS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранное событие?</p>}
+                            {(props.contentType === USERS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранного пользователя?</p>}
+                            {(props.contentType === QUESTIONNAIRES) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранную анкету?</p>}
                             <div className="list-table-modal-content-buttons">
                                 <AccountPageButtonComponent
                                     title={"Удалить"}
@@ -123,6 +125,19 @@ function ListTableComponent(props) {
                         <th>Управление</th>
                     </tr>
                 )}
+                {props.contentType === QUESTIONNAIRES && (
+                    <tr>
+                        <th onClick={props.status === "loading" ? undefined : props.handleTitleSort}
+                            className="list-table-filter-button hoverable">{renderTitleSortIndicator()}
+                        </th>
+                        <th
+                            onClick={props.status === "loading" || props.searchCreatedAt === "" ? undefined : props.handleDateFilter}
+                            className={`list-table-filter-button ${props.searchCreatedAt === "" ? "" : "hoverable"}`}>{renderDateCreateFilterIndicator()}
+                        </th>
+                        <th>Автор</th>
+                        <th>Управление</th>
+                    </tr>
+                )}
                 {props.contentType === EVENTS && (
                     <tr>
                         <th>Название</th>
@@ -155,6 +170,37 @@ function ListTableComponent(props) {
                                 type={"text"}
                                 value={props.thirdInputValue}
                                 handle={props.thirdInputValueHandle}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageButtonComponent
+                                title={"Поиск"}
+                                status={props.status}
+                                handle={props.searchButtonHandle}/>
+                        </td>
+                    </tr>
+                )}
+                {props.contentType === QUESTIONNAIRES && (
+                    <tr>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"text"}
+                                value={props.searchTitle}
+                                handle={props.setSearchTitle}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"date"}
+                                value={props.searchCreatedAt}
+                                handle={props.setSearchCreatedAt}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"text"}
+                                value={props.searchCreatedBy}
+                                handle={props.setSearchCreatedBy}
                                 disabled={false}/>
                         </td>
                         <td>
@@ -257,6 +303,25 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 ))}
+                {props.contentType === QUESTIONNAIRES && props.questionnaireList.map((questionnaire, questionnaireIndex) => (
+                    <tr key={questionnaireIndex}>
+                        <td>
+                            {questionnaire.title}
+                        </td>
+                        <td>
+                            {formatDate(questionnaire.createdAt)}
+                        </td>
+                        <td>
+                            {questionnaire.firstNamePlusLastName}
+                        </td>
+                        <td>
+                            <AccountPageButtonComponent
+                                title={"Удалить"}
+                                status={props.status}
+                                handle={() => handleDeleteClick(questionnaire.id)}/>
+                        </td>
+                    </tr>
+                ))}
                 {props.contentType === NEWS && props.tbodyNews.map((tbody, tbodyIndex) => (
                     <tr key={tbodyIndex}>
                         <td>
@@ -321,6 +386,13 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 )}
+                {props.contentType === QUESTIONNAIRES && props.questionnaireList.length === 0 && (
+                    <tr>
+                        <td colSpan="4">
+                            Ничего не найдено
+                        </td>
+                    </tr>
+                )}
                 {props.contentType === EVENTS && props.eventList.length === 0 && (
                     <tr>
                         <td colSpan="5">
@@ -335,7 +407,7 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 )}
-                {(props.contentType === ARTICLE || props.contentType === NEWS) && (
+                {(props.contentType === ARTICLE || props.contentType === NEWS || props.contentType === QUESTIONNAIRES) && (
                     <tr>
                         <td colSpan="4">
                             <AccountLoadMoreButtonComponent

@@ -44,7 +44,7 @@ function ListUsersContainerComponent(props) {
         if (searchUsername.trim() === '' && searchFirstNamePlusLastName.trim() === '' && searchEmail.trim() === '' && searchRoleName.trim() === '' && searchDate.trim() === '') {
             dispatch(fetchUsers({page: page, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter}));
         } else {
-            dispatch(fetchUsers({page: page, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter, username: searchUsername, firstNamePlusLastName: searchFirstNamePlusLastName, email: searchEmail, roleName: searchRoleName, date: searchDate}));
+            dispatch(fetchUsers({page: searchPage, pageSize: pageSize, orderBy: orderBy, dateFilter: dateFilter, username: searchUsername, firstNamePlusLastName: searchFirstNamePlusLastName, email: searchEmail, roleName: searchRoleName, date: searchDate}));
         }
     }, [dispatch, page, searchPage, pageSize, orderBy, dateFilter, searchUsername, searchFirstNamePlusLastName, searchEmail, searchRoleName, searchDate, refresh]);
 
@@ -69,7 +69,11 @@ function ListUsersContainerComponent(props) {
     }, [usersList.length, usersListLength]);
 
     const handleLoadMore = () => {
-        setPage(page + 1);
+        if (searchUsername.trim() === '' && searchFirstNamePlusLastName.trim() === '' && searchEmail.trim() === '' && searchRoleName.trim() === '' && searchDate.trim() === '') {
+            setPage(page + 1);
+        } else {
+            setSearchPage(page + 1);
+        }
     };
 
     const searchButtonHandle = () => {

@@ -1,6 +1,7 @@
 export const ARTICLE = "science";
 export const NEWS = "news";
 export const EVENTS = "events";
+export const QUESTIONNAIRES = "questionnaires"
 
 export const USERS = "users";
 
