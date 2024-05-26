@@ -4,7 +4,7 @@ import {Navigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {
     clearQuestionnaire, clearQuestionnaireQuestionsAnswersList, clearQuestionnaireQuestionsList,
-    setArticleNotFound
+    setArticleNotFound, setSolveQuestionnaireSuccessFalse
 } from "../../../../../state/slices/content/contentSlice";
 import {
     fetchQuestionnaire,
@@ -22,6 +22,7 @@ function QuestionnairePage(props) {
     const questionnaireQuestionsList = useSelector(state => state.content.questionnaireQuestionsList);
 
     useEffect(() => {
+        dispatch(setSolveQuestionnaireSuccessFalse());
         dispatch(clearQuestionnaire());
         dispatch(clearQuestionnaireQuestionsList());
         dispatch(fetchQuestionnaire({ id: id }));
@@ -30,11 +31,15 @@ function QuestionnairePage(props) {
 
     useEffect(() => {
         dispatch(clearQuestionnaireQuestionsAnswersList());
-        questionnaireQuestionsList.forEach(question => {
-            if (question.questionType === SELECT) {
-                dispatch(fetchQuestionnaireQuestionsAnswers({questionId: question.questionId}));
-            }
-        });
+        const loadAnswers = () => {
+            questionnaireQuestionsList.forEach(question => {
+                if (question.questionType === SELECT) {
+                    dispatch(fetchQuestionnaireQuestionsAnswers({ questionId: question.questionId }));
+                }
+            });
+        };
+        const timer = setTimeout(loadAnswers, 1);
+        return () => clearTimeout(timer);
     }, [dispatch, questionnaireQuestionsList]);
 
     useEffect(() => {

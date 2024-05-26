@@ -11,6 +11,10 @@ export const setRerenderAfterDeleteFalseReducer = (state, action) => {
     state.rerenderAfterDelete = false
 }
 
+export const setSolveQuestionnaireSuccessFalseReducer = (state, action) => {
+    state.solveQuestionnaireSuccess = false
+}
+
 export const setArticleNotFoundFalseReducer = (state, action) => {
     state.articleNotFound = false
 }

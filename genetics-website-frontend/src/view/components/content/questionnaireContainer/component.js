@@ -22,6 +22,7 @@ function QuestionnaireContainerComponent(props) {
     });
 
     const { error, success, status } = useSelector(state => state.content);
+    const solveQuestionnaireSuccess = useSelector(state => state.content.solveQuestionnaireSuccess);
     const questionnaire = useSelector(state => state.content.questionnaire);
     const questionnaireQuestionsAnswersList = useSelector(state => state.content.questionnaireQuestionsAnswersList);
     const questionnaireQuestionsList = useSelector(state => state.content.questionnaireQuestionsList).slice().sort((a, b) => a.questionNumber - b.questionNumber);
@@ -90,7 +91,7 @@ function QuestionnaireContainerComponent(props) {
                                             value={getAnswerText(question.questionId)}
                                             handle={(e) => handleInputChange(question.questionId, e.target.value)}
                                             placeholder="Ответ"
-                                            disabled={false} />
+                                            disabled={solveQuestionnaireSuccess} />
                                     </div>
                                 )}
                                 {question.questionType === SELECT && (
@@ -104,6 +105,7 @@ function QuestionnaireContainerComponent(props) {
                                                        id={`question-${question.questionId}-answer-${answerIndex}`}
                                                        name={`question-${question.questionId}`}
                                                        value={answer.text}
+                                                       disabled={solveQuestionnaireSuccess}
                                                        checked={getAnswerText(question.questionId) === answer.text}
                                                        onChange={(e) => {
                                                            const isChecked = getAnswerText(question.questionId) === answer.text;
@@ -122,12 +124,14 @@ function QuestionnaireContainerComponent(props) {
                         </div>
                     ))}
                 </div>
-                <div className="questionnaire-confirm-button">
-                    <AccountPageButtonComponent
-                        status={status}
-                        handle={handleConfirmButton}
-                        title={"Подтвердить"} />
-                </div>
+                {!solveQuestionnaireSuccess && (
+                    <div className="questionnaire-confirm-button">
+                        <AccountPageButtonComponent
+                            status={status}
+                            handle={handleConfirmButton}
+                            title={"Подтвердить"} />
+                    </div>
+                )}
                 <div className="questionnaire-confirm-button">
                     <ErrorAndSuccessWindowComponent error={error} success={success} />
                 </div>

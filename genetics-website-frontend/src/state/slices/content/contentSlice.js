@@ -16,7 +16,7 @@ import {
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer,
     setPreviewContentTypeReducer,
-    setRerenderAfterDeleteFalseReducer
+    setRerenderAfterDeleteFalseReducer, setSolveQuestionnaireSuccessFalseReducer
 } from "./reducers";
 import {
     articleCreation,
@@ -50,7 +50,8 @@ import {
     setFetchQuestionnaireQuestionsError,
     setFetchQuestionnairesError,
     setFetchSingleContentError,
-    setFetchSliderContentError, setSolveQuestionnaireError
+    setFetchSliderContentError,
+    setSolveQuestionnaireError,
 } from "./errorHandlers";
 import {api} from "../../consts/api";
 
@@ -74,6 +75,7 @@ const contentPersistConfig = {
         "content",
         "aboutContent",
         "articleNotFound",
+        "solveQuestionnaireSuccess",
         "status",
         "error",
         "success"
@@ -93,6 +95,7 @@ const contentSlice = createSlice({
         articleListLength: null,
         rerenderAfterDelete: false,
         contentListSlider: [],
+        solveQuestionnaireSuccess: false,
         sliderDefaultImage: api.url + api.getImage(351),
         aboutContent: {
             title1: "Заведующая кафедрой",
@@ -181,7 +184,8 @@ const contentSlice = createSlice({
         clearPreviewContent: clearPreviewContentReducer,
         clearQuestionnaire: clearQuestionnaireReducer,
         clearQuestionnaireQuestionsList: clearQuestionnaireQuestionsListReducer,
-        clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer
+        clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer,
+        setSolveQuestionnaireSuccessFalse: setSolveQuestionnaireSuccessFalseReducer
     },
     extraReducers: builder => {
         builder.addCase(articleCreation.pending, (state, action) => {
@@ -227,6 +231,7 @@ const contentSlice = createSlice({
         })
         builder.addCase(solveQuestionnaire.fulfilled, (state, action) => {
             state.status = 'resolved';
+            state.solveQuestionnaireSuccess = true;
             state.error = null;
             state.success = action.payload;
         })
@@ -437,6 +442,7 @@ export const {
     clearQuestionnaire,
     clearQuestionnaireQuestionsAnswersList,
     clearQuestionnaireQuestionsList,
+    setSolveQuestionnaireSuccessFalse,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

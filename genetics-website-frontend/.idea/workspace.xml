@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/consts/errorText/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/consts/errorText/content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/asyncActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/errorHandlers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/common/listTable/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/common/listTable/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/listQuestionnairesContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listQuestionnairesContainer/component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/content/questionnaireContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/questionnaireContainer/component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/pages/public/content/questionnaire/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/questionnaire/page.js" afterDir="false" />
     </list>
@@ -218,7 +211,7 @@
       <workItem from="1716524406310" duration="6307000" />
       <workItem from="1716556058148" duration="9999000" />
       <workItem from="1716610875132" duration="28057000" />
-      <workItem from="1716704687676" duration="11816000" />
+      <workItem from="1716704687676" duration="13704000" />
     </task>
     <servers />
   </component>
