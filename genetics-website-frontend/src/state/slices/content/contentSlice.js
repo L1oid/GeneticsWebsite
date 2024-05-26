@@ -139,10 +139,10 @@ const contentSlice = createSlice({
                 "<li>University Rennes, EHESP, Inserm, Irset (Institut de recherche en santé, environnement et travail) (Rennes, France);</li>" +
                 "<li>Institute of Health and Society, Federal University of São Paulo, (São Paulo, Brazil);</li>" +
                 "<li>7CSIR-National Environmental Engineering Research Institute, (Nagpur, India).</li></ul>",
-            image1: api.url + api.getImage(348),
-            image2: api.url + api.getImage(349),
-            image3: api.url + api.getImage(350),
-            image4: api.url + api.getImage(352)
+            image1: api.url + api.getImage(1000),
+            image2: api.url + api.getImage(1001),
+            image3: api.url + api.getImage(1002),
+            image4: api.url + api.getImage(1004)
         },
         eventList: [],
         questionnaire: {},

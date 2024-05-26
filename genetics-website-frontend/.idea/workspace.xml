@@ -7,9 +7,7 @@
     <list default="true" id="8c68b6b3-b3d9-4f1b-87de-ee00171e6fae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/contentSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/state/slices/content/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/state/slices/content/reducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/content/questionnaireContainer/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/questionnaireContainer/component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/pages/public/content/questionnaire/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/pages/public/content/questionnaire/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/content/listQuestionnaires/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/content/listQuestionnaires/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +209,10 @@
       <workItem from="1716524406310" duration="6307000" />
       <workItem from="1716556058148" duration="9999000" />
       <workItem from="1716610875132" duration="28057000" />
-      <workItem from="1716704687676" duration="13704000" />
+      <workItem from="1716704687676" duration="13937000" />
+      <workItem from="1716721236150" duration="27000" />
+      <workItem from="1716721269669" duration="6000" />
+      <workItem from="1716721543061" duration="1259000" />
     </task>
     <servers />
   </component>
