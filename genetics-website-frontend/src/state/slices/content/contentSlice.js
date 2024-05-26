@@ -31,11 +31,12 @@ import {
     fetchQuestionnaireQuestionsAnswers,
     fetchQuestionnaires,
     fetchSingleContent,
-    fetchSliderContent,
+    fetchSliderContent, getQuestionnaireResults,
     questionnaireCreation,
     questionnaireDeletion, solveQuestionnaire
 } from "./asyncActions";
 import {
+    getQuestionnaireResultsError,
     setArticleCreationError,
     setArticleEditionError,
     setCreateEventError,
@@ -334,6 +335,30 @@ const contentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchQuestionnaire.rejected, setFetchQuestionnaireError)
+
+        builder.addCase(getQuestionnaireResults.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(getQuestionnaireResults.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            if (action.payload === 204) {
+                state.success = "У данной анкеты нет прохождений";
+            } else {
+                const url = window.URL.createObjectURL(action.payload.blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = action.payload.filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            }
+        })
+        builder.addCase(getQuestionnaireResults.rejected, getQuestionnaireResultsError)
 
         builder.addCase(fetchQuestionnaireQuestions.pending, (state, action) => {
             state.status = 'loading';

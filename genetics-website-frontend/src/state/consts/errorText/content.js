@@ -66,3 +66,7 @@ export const CONTENT_QUESTIONNAIRE_ANSWERS_NOT_FOUND = "No answers to choose for
 export const CONTENT_QUESTIONNAIRE_NO_ANSWERS_PROVIDED = "No answers provided"
 export const CONTENT_QUESTIONNAIRE_NO_PROVIDE_ANSWER_FOR_QUESTION = "Didn't provide an answer for a question that requires it"
 export const CONTENT_QUESTIONNAIRE_ID_IS_0 = "Questionnaire id is 0"
+export const CONTENT_QUESTIONNAIRE_NOT_FOUND_FOR_DOWNLOAD = "Such a questionnaire was not found"
+export const CONTENT_QUESTIONNAIRE_COULD_NOT_FETCH_DATA = "Couldn't fetch data for the questionnaire"
+export const CONTENT_QUESTIONNAIRE_NO_RESULTS_FOR_DOWNLOAD = "No results for this questionnaire"
+export const CONTENT_QUESTIONNAIRE_ERROR_GENERATING_EXCEL_FILE = "Error generating Excel file"

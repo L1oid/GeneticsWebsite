@@ -5,12 +5,13 @@ import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 import AccountPageSubtitleComponent from "../../common/accountPageSubtitle/component";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    fetchQuestionnaires,
+    fetchQuestionnaires, getQuestionnaireResults,
     questionnaireDeletion
 } from "../../../../state/slices/content/asyncActions";
 import {clearQuestionnaireList, setRerenderAfterDeleteFalse} from "../../../../state/slices/content/contentSlice";
 import ListTableComponent from "../../common/listTable/component";
 import {QUESTIONNAIRES} from "../../../../state/consts/contentTypes";
+import ErrorAndSuccessWindowComponent from "../../common/errorAndSuccessWindow/component";
 
 function ListQuestionnairesContainerComponent(props) {
 
@@ -36,7 +37,7 @@ function ListQuestionnairesContainerComponent(props) {
     const dispatch = useDispatch();
     const questionnaireList = useSelector(state => state.content.questionnaireList);
     const questionnaireListLength = useSelector(state => state.content.questionnaireListLength);
-    const {status, rerenderAfterDelete} = useSelector(state => state.content);
+    const {status, rerenderAfterDelete, error, success} = useSelector(state => state.content);
     
     useEffect(() => {
         if (searchTitle.trim() === '' && searchCreatedBy.trim() === '' && searchCreatedAt.trim() === '') {
@@ -121,6 +122,10 @@ function ListQuestionnairesContainerComponent(props) {
         }
     };
 
+    const handleDownloadButton = (id) => {
+        dispatch(getQuestionnaireResults(id))
+    };
+
     useEffect(() => {
         if (rerenderAfterDelete === true) {
             searchButtonHandle();
@@ -157,7 +162,9 @@ function ListQuestionnairesContainerComponent(props) {
                     orderByTitle={orderByTitle}
                     handleDateFilter={handleDateFilter}
                     dateFilter={dateFilter}
+                    handleDownloadButton={handleDownloadButton}
                 />
+                <ErrorAndSuccessWindowComponent error={error} success={success} />
             </div>
 
         </div>

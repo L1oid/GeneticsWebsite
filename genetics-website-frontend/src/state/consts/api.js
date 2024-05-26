@@ -166,5 +166,8 @@ export const api = {
     },
     getQuestionnaireQuestionsAnswers: function (questionId) {
         return `api/questionnaires/questions/answers-to-choose?questionId=${questionId}`
+    },
+    getQuestionnaireResults: function (id) {
+        return `api/questionnaires/results/export?id=${id}`
     }
 }

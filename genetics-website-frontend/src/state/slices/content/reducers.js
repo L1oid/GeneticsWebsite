@@ -1,5 +1,4 @@
 import {NEWS} from "../../consts/contentTypes";
-import {fetchQuestionnaire} from "./asyncActions";
 
 export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.type = NEWS

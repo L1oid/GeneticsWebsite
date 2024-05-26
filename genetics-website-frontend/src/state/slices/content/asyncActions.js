@@ -367,6 +367,39 @@ export const questionnaireDeletion = createAsyncThunk(
     }
 );
 
+export const getQuestionnaireResults = createAsyncThunk(
+    "content/getQuestionnaireResults",
+    async function (id, { rejectWithValue, getState }) {
+        try {
+            const state = getState();
+            const response = await fetch(api.url + api.getQuestionnaireResults(id), {
+                method: 'GET',
+                headers: { 'Authorization': state.user.token },
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text,
+                });
+            }
+            if (response.status === 204) {
+                return response.status
+            } else {
+                const blob = await response.blob();
+                return { blob, filename: "questionnaire_results" };
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: 'SERVER_IS_NOT_RESPONDING',
+            });
+        }
+    }
+);
+
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
     async function({page, pageSize, type, author, title, date, dateFilter, orderByTitle}, {rejectWithValue}) {

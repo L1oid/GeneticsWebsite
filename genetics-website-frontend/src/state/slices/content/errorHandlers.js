@@ -41,11 +41,15 @@ import {
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_IS_NULL,
     CONTENT_QUESTIONNAIRE_ANSWERS_NOT_FOUND,
-    CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND, CONTENT_QUESTIONNAIRE_ID_IS_0,
+    CONTENT_QUESTIONNAIRE_AUTHOR_NOT_FOUND,
+    CONTENT_QUESTIONNAIRE_COULD_NOT_FETCH_DATA,
+    CONTENT_QUESTIONNAIRE_ERROR_GENERATING_EXCEL_FILE,
+    CONTENT_QUESTIONNAIRE_ID_IS_0,
     CONTENT_QUESTIONNAIRE_INVALID_ID,
     CONTENT_QUESTIONNAIRE_NO_ANSWERS_PROVIDED,
     CONTENT_QUESTIONNAIRE_NO_PROVIDE_ANSWER_FOR_QUESTION,
     CONTENT_QUESTIONNAIRE_NOT_FOUND,
+    CONTENT_QUESTIONNAIRE_NOT_FOUND_FOR_DOWNLOAD,
     CONTENT_QUESTIONNAIRE_QUESTION_NUMBER_SHOULD_START_FROM_1,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_INCLUDES_SYMBOLS,
     CONTENT_QUESTIONNAIRE_QUESTION_TEXT_IS_NULL,
@@ -713,8 +717,82 @@ export const setSolveQuestionnaireError = (state, action) => {
     }
 }
 
+export const getQuestionnaireResultsError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 400:
+            switch (action.payload.text) {
+                case CONTENT_INCORRECT_SINGLE_ARTICLE_ID:
+                    state.error = "Некорректный ID анкеты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 401:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует заголовок авторизации"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_USER_DONT_HAVE_MODERATOR_RIGHTS:
+                    state.error = "Отсутствуют права на данное действие"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_NOT_FOUND_FOR_DOWNLOAD:
+                    state.error = "Анкета для скачивания не найдена"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_QUESTIONNAIRE_COULD_NOT_FETCH_DATA:
+                    state.error = "Не удалось получить данные анкеты"
+                    break;
+                case CONTENT_QUESTIONNAIRE_ERROR_GENERATING_EXCEL_FILE:
+                    state.error = "Ошибка генерации Exel файла анкеты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
 export const setFetchQuestionnaireQuestionsAnswersError = (state, action) => {
     state.status = "rejected"
+    state.questionnaireQuestionsListStatus = 'rejected';
     state.success = null
     switch (action.payload.status) {
         case 404:

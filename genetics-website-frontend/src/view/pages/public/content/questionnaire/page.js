@@ -35,7 +35,7 @@ function QuestionnairePage(props) {
                 dispatch(fetchQuestionnaireQuestionsAnswers({questionId: question.questionId}));
             }
         });
-    }, [dispatch, questionnaireQuestionsList.length]);
+    }, [dispatch, questionnaireQuestionsList]);
 
     useEffect(() => {
         if (articleNotFound) {

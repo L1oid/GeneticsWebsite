@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import { useParams } from "react-router-dom";

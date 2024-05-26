@@ -315,6 +315,12 @@ function ListTableComponent(props) {
                             {questionnaire.firstNamePlusLastName}
                         </td>
                         <td>
+                            <div className="list-table-change-up-button">
+                                <AccountPageButtonComponent
+                                    title={"Результаты"}
+                                    status={props.status}
+                                    handle={() => props.handleDownloadButton(questionnaire.id)}/>
+                            </div>
                             <AccountPageButtonComponent
                                 title={"Удалить"}
                                 status={props.status}
@@ -328,7 +334,7 @@ function ListTableComponent(props) {
                             {tbody.title}
                         </td>
                         <td>
-                            {formatDate(tbody.createdAt)}
+                        {formatDate(tbody.createdAt)}
                         </td>
                         <td>
                             {tbody.lastNamePlusFirstName}
