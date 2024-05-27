@@ -158,7 +158,6 @@ export const questionnaireCreation = createAsyncThunk(
                 });
             }
 
-
             const state = getState();
             const response = await fetch(api.url + api.createQuestionnaire, {
                 method: 'POST',
