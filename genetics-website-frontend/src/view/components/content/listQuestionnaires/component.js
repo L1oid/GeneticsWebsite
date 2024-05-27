@@ -12,6 +12,7 @@ import AccountPageSubtitleComponent from "../../common/accountPageSubtitle/compo
 import AccountPageInputComponent from "../../common/accountPageInput/component";
 import AccountPageButtonComponent from "../../common/accountPageButton/component";
 import ValuesSelectorComponent from "../../common/valuesSelector/component";
+import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 
 function ListQuestionnairesComponent(props) {
 
@@ -125,6 +126,8 @@ function ListQuestionnairesComponent(props) {
                         </div>
                     </div>
                     <div className="list-questionnaires-column-2">
+                        <AccountPageTitleComponent
+                            title={"Доступные анкеты"}/>
                         {questionnaireList.length === 0 || (questionnaireList.length === 1 && questionnaireList[0].id === null) ? (
                             <div className="list-questionnaires-empty">
                                 На данный момент анкеты отсутствуют

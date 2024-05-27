@@ -87,7 +87,10 @@ function OtherContentComponent() {
                     )}
                 </div>
                 <div className="other-content-container-row-3">
-                    <LoadMoreButtonComponent handle={handleLoadMore} />
+                    <LoadMoreButtonComponent
+                        handle={handleLoadMore}
+                        isDisabled={isLoadMoreDisabled}
+                    />
                 </div>
                 <div className="other-content-column-2">
                     <h2 className="other-content-heading">События</h2>
@@ -122,7 +125,8 @@ function OtherContentComponent() {
             <div className="other-content-container-row-2">
                 <LoadMoreButtonComponent
                     handle={handleLoadMore}
-                    isDisabled={isLoadMoreDisabled} />
+                    isDisabled={isLoadMoreDisabled}
+                />
             </div>
         </div>
     )
