@@ -19,6 +19,9 @@ function BurgerMenuComponent(props) {
                     <Link to="/science" className='burger-menu-button'>НАУКА</Link>
                 </li>
                 <li className="burger-menu-element">
+                    <Link to="/education" className='burger-menu-button'>ОБРАЗОВАНИЕ</Link>
+                </li>
+                <li className="burger-menu-element">
                     <Link to="/questionnaires" className='burger-menu-button'>АНКЕТИРОВАНИЕ</Link>
                 </li>
                 <li className="burger-menu-element">

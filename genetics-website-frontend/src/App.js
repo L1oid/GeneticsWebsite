@@ -26,6 +26,7 @@ import ListQuestionnairePage from "./view/pages/private/content/listQuestionnair
 import ListEventsPage from "./view/pages/private/content/listEvents/page";
 import QuestionnairesPage from "./view/pages/public/content/questionnaires/page";
 import QuestionnairePage from "./view/pages/public/content/questionnaire/page";
+import EducationLayout from "./view/layouts/educationLayout/page";
 
 function App() {
     return (
@@ -34,15 +35,16 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<MainPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                     <Route path="/login/" element={<LoginPage />} />
+                    <Route path="/about/" element={<AboutPage />} />
                     <Route path="/news/" element={<NewsPage />} />
                     <Route path="/news/:id" element={<OneNewsPage />} />
                     <Route path="/science/" element={<SciencePage />} />
                     <Route path="/science/:id" element={<ArticlePage />} />
                     <Route path="/questionnaires/" element={<QuestionnairesPage />} />
                     <Route path="/questionnaires/:id" element={<QuestionnairePage />} />
-                    <Route path="/about/" element={<AboutPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
+                    <Route path="/education/" element={<EducationLayout />} />
                     <Route path="/account" element={<AccountLayout />}>
                         <Route index element={<PersonalDataPage />} />
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
