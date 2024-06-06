@@ -15,6 +15,7 @@ function OneNewsPage() {
     const articleNotFound = useSelector(state => state.content.articleNotFound);
 
     useEffect(() => {
+        console.log("kek")
         dispatch(clearSingleContent());
         dispatch(fetchSingleContent({ id: id }));
     }, [dispatch, id])

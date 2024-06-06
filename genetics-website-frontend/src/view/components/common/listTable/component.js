@@ -26,6 +26,17 @@ function ListTableComponent(props) {
         }
     };
 
+    const renderCourseTitleSortIndicator = () => {
+        switch (props.orderByTitleAuthor) {
+            case 'titleAsc':
+                return 'Название ⯅';
+            case 'titleDesc':
+                return 'Название ⯆';
+            default:
+                return 'Название';
+        }
+    };
+
     const renderUsernameSortIndicator = () => {
         switch (props.orderBy) {
             case 'asc':
@@ -129,7 +140,7 @@ function ListTableComponent(props) {
                 {(props.courseProtection === true || props.courseProtection === false) && (
                     <tr>
                         <th onClick={props.status === "loading" ? undefined : props.handleTitleSort}
-                            className="list-table-filter-button hoverable">{renderTitleSortIndicator()}
+                            className="list-table-filter-button hoverable">{renderCourseTitleSortIndicator()}
                         </th>
                         <th
                             onClick={props.status === "loading" || props.showDate === "" ? undefined : props.handleDateFilter}

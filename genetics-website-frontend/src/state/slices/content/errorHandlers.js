@@ -2,13 +2,13 @@ import {
     CONTENT_ADD_TOO_MANY_FILES,
     CONTENT_ARTICLE_DOESNT_EXIST,
     CONTENT_COULD_NOT_GET_USER_ID,
-    CONTENT_COULD_NOT_INITIALIZE_ARTICLES,
+    CONTENT_COULD_NOT_INITIALIZE_ARTICLES, CONTENT_COURSE_DONT_RIGHTS_TO_DELETE_COURSE,
     CONTENT_COURSE_FAILED_TO_PARSE_CHAPTER_JSON,
     CONTENT_COURSE_FAILED_TO_PARSE_COURSE_JSON,
     CONTENT_COURSE_FAILED_TO_PARSE_CREATE_CURSE, CONTENT_COURSE_INVALID_DATE_FORMAT,
     CONTENT_COURSE_INVALID_PAGE_OF_PAGE_SIZE, CONTENT_COURSE_INVALID_PAGE_OR_PAGE_SIZE,
-    CONTENT_COURSE_IS_NOT_PROVIDED,
-    CONTENT_COURSE_UNKNOWN_FILE_TYPE,
+    CONTENT_COURSE_IS_NOT_PROVIDED, CONTENT_COURSE_NOT_FOUND, CONTENT_COURSE_SERVER_ERROR,
+    CONTENT_COURSE_UNKNOWN_FILE_TYPE, CONTENT_COURSE_USER_DONT_HAVE_RIGHTS,
     CONTENT_COURSE_USER_DONT_HAVE_TEACHER_RIGHTS,
     CONTENT_DATE_SHOULD_BE_SPECIFIED,
     CONTENT_DELETE_MEDIA_ID_IS_0,
@@ -989,6 +989,121 @@ export const setFetchCoursesError = (state, action) => {
                     break;
                 case CONTENT_COURSE_INVALID_DATE_FORMAT:
                     state.error = "Некорректное значение даты"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setDeleteCourseError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 401:
+            switch (action.payload.text) {
+                case CONTENT_USER_TOKEN_ERROR:
+                    state.error = "Ошибка токена пользователя"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_COURSE_DONT_RIGHTS_TO_DELETE_COURSE:
+                    state.error = "У вас нет прав на удаление данного курса"
+                    break;
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует заголовок авторизации"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_COURSE_SERVER_ERROR:
+                    state.error = "Внутренняя ошибка сервера"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 504:
+            switch (action.payload.text) {
+                case SERVER_IS_NOT_RESPONDING:
+                    state.error = "Сервер не отвечает"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break;
+        default:
+            state.error = "Неизвестная ошибка";
+            break;
+    }
+}
+
+export const setFetchCourseError = (state, action) => {
+    state.status = "rejected"
+    state.success = null
+    switch (action.payload.status) {
+        case 401:
+            switch (action.payload.text) {
+                case CONTENT_NO_AUTH_HEADER_PRESENT:
+                    state.error = "Отсутствует заголовок авторизации"
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 403:
+            switch (action.payload.text) {
+                case CONTENT_COURSE_USER_DONT_HAVE_RIGHTS:
+                    state.error = "Отсутствуют права на получение данного курса"
+                    state.articleNotFound = true
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 404:
+            switch (action.payload.text) {
+                case CONTENT_COURSE_NOT_FOUND:
+                    state.error = "Курс не найден"
+                    state.articleNotFound = true
+                    break;
+                default:
+                    state.error = "Неизвестная ошибка";
+                    break;
+            }
+            break
+        case 500:
+            switch (action.payload.text) {
+                case CONTENT_COURSE_SERVER_ERROR:
+                    state.error = "Внутренняя ошибка сервера"
                     break;
                 default:
                     state.error = "Неизвестная ошибка";

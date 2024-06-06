@@ -2,15 +2,19 @@ import React, {useEffect} from 'react';
 
 import {Navigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setArticleNotFound} from "../../../../../state/slices/content/contentSlice";
+import {clearCourse, setArticleNotFound} from "../../../../../state/slices/content/contentSlice";
 import CourseContainerComponent from "../../../../components/content/courseContainer/component";
+import {fetchCourse} from "../../../../../state/slices/content/asyncActions";
 
 function CoursePage(props) {
     const {id} = useParams();
 
     const dispatch = useDispatch();
-    const course = useSelector(state => state.content.course);
     const articleNotFound = useSelector(state => state.content.articleNotFound);
+
+    useEffect(() => {
+        dispatch(fetchCourse({ id: id }));
+    }, [dispatch, id])
 
 
     useEffect(() => {
@@ -20,11 +24,9 @@ function CoursePage(props) {
     }, [articleNotFound, dispatch]);
 
     return articleNotFound ? (
-        <Navigate to="/course-no-access" />
+        <Navigate to="/education" />
     ) : (
-        <CourseContainerComponent
-            course={course}
-        />
+        <CourseContainerComponent/>
     )
 }
 

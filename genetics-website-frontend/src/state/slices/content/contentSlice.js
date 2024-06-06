@@ -4,7 +4,7 @@ import {persistReducer} from "redux-persist";
 import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
     clearArticleListReducer, clearCloseCoursesListReducer,
-    clearContentErrorStatusSuccessReducer, clearFreeCoursesListReducer,
+    clearContentErrorStatusSuccessReducer, clearCourseReducer, clearFreeCoursesListReducer,
     clearNewsListReducer,
     clearPreviewContentReducer,
     clearQuestionnaireListReducer,
@@ -21,10 +21,10 @@ import {
 import {
     articleCreation,
     articleDeletion,
-    articleEdition, courseCreation,
+    articleEdition, courseCreation, courseDeletion,
     eventCreation,
     eventDeletion,
-    fetchContent, fetchCourses,
+    fetchContent, fetchCourse, fetchCourses,
     fetchEvents,
     fetchQuestionnaire,
     fetchQuestionnaireQuestions,
@@ -41,10 +41,10 @@ import {
     setArticleEditionError, setCreateCourseError,
     setCreateEventError,
     setCreateQuestionnaireError,
-    setDeleteArticleError,
+    setDeleteArticleError, setDeleteCourseError,
     setDeleteEventError,
     setDeleteQuestionnaireError,
-    setFetchContentError, setFetchCoursesError,
+    setFetchContentError, setFetchCourseError, setFetchCoursesError,
     setFetchEventsError,
     setFetchQuestionnaireError, setFetchQuestionnaireQuestionsAnswersError,
     setFetchQuestionnaireQuestionsError,
@@ -105,47 +105,20 @@ const contentSlice = createSlice({
         closeCoursesListLength: null,
         closeCoursesList: [],
         course: {
-            id: 1,
-            protected: false,
-            title: "ДНК - основа наследственности",
-            description: "Дезоксирибонуклеи́новая кислота (ДНК) — макромолекула (одна из трёх основных, две другие — РНК и белки), обеспечивающая хранение, передачу из поколения в поколение и реализацию генетической программы развития и функционирования организмов. Молекула ДНК хранит биологическую информацию в виде генетического кода, состоящего из последовательности нуклеотидов[1]. ДНК содержит информацию о структуре различных видов РНК и белков.",
             chapters: [
                 {
-                    title: "Глава 1",
-                    orderNumber: 1,
-                    description: "В клетках эукариот (животных, растений и грибов) ДНК находится в ядре клетки в составе хромосом, а также в некоторых клеточных органеллах (митохондриях и пластидах). В клетках прокариотических организмов (бактерий и архей) кольцевая или линейная молекула ДНК, так называемый нуклеоид, прикреплена изнутри к клеточной мембране. У прокариот и у низших эукариот (например дрожжей) встречаются также небольшие автономные, преимущественно кольцевые молекулы ДНК, называемые плазмидами. Кроме того, одно- или двухцепочечные молекулы ДНК могут образовывать геном ДНК-содержащих вирусов.",
-                    files: []
-                },
-                {
-                    title: "Глава 2",
-                    orderNumber: 2,
-                    description: "С химической точки зрения ДНК — длинная полимерная молекула, состоящая из повторяющихся блоков — нуклеотидов. Каждый нуклеотид состоит из азотистого основания, сахара (дезоксирибозы) и фосфатной группы. Связи между нуклеотидами в полимерной цепи образуются за счёт дезоксирибозы и фосфатной группы (фосфодиэфирные связи). В подавляющем большинстве случаев (кроме некоторых вирусов, содержащих одноцепочечную ДНК) макромолекула ДНК состоит из двух нуклеотидных цепей. В нуклеотидах, входящих в состав ДНК, встречаются четыре азотистых основания: аденин (A), гуанин (G), тимин (T) и цитозин (C). Азотистые основания одной цепи соединены с азотистыми основаниями другой цепи водородными связями, обеспечивая таким образом связь двух цепей макромолекулы ДНК друг с другом. Азотистые основания образуют связи попарно согласно принципу комплементарности: аденин (A) соединяется только с тимином (T), гуанин (G) — только с цитозином (C) [⇨].",
-                    files: [
-                        {
-                            type: "file",
-                            name: "ДНК - Формулы",
-                            url: "http://localhost:3000/file.pdf"
-                        },
-                        {
-                            type: "video",
-                            name: "ДНК - Видеоурок",
-                            url: "http://localhost:3000/video.mp4"
-                        }
-                    ]
+                    title: "",
+                    content: "",
+                    mediaList: []
                 }
             ],
-            files: [
-                {
-                    type: "file",
-                    name: "ДНК - Формулы",
-                    url: "http://localhost:3000/file.pdf"
-                },
-                {
-                    type: "video",
-                    name: "ДНК - Видеоурок",
-                    url: "http://localhost:3000/video.mp4"
-                }
-            ]
+            courseProtection: false,
+            creationDate: "",
+            creatorId: null,
+            description: "",
+            id: null,
+            mediaList: [],
+            title: ""
         },
         aboutContent: {
             title1: "Заведующая кафедрой",
@@ -237,7 +210,8 @@ const contentSlice = createSlice({
         clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer,
         setSolveQuestionnaireSuccessFalse: setSolveQuestionnaireSuccessFalseReducer,
         clearFreeCoursesList: clearFreeCoursesListReducer,
-        clearCloseCoursesList: clearCloseCoursesListReducer
+        clearCloseCoursesList: clearCloseCoursesListReducer,
+        clearCourse: clearCourseReducer
     },
     extraReducers: builder => {
         builder.addCase(articleCreation.pending, (state, action) => {
@@ -408,6 +382,22 @@ const contentSlice = createSlice({
         })
         builder.addCase(fetchSingleContent.rejected, setFetchSingleContentError)
 
+        builder.addCase(fetchCourse.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchCourse.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            if (action.payload.status === 200) {
+                state.course = action.payload.data;
+            } else {
+                state.articleNotFound = true
+            }
+            state.error = null;
+        })
+        builder.addCase(fetchCourse.rejected, setFetchCourseError)
+
         builder.addCase(fetchQuestionnaire.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -484,6 +474,18 @@ const contentSlice = createSlice({
         })
         builder.addCase(articleDeletion.rejected, setDeleteArticleError)
 
+        builder.addCase(courseDeletion.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(courseDeletion.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.rerenderAfterDelete = true;
+        })
+        builder.addCase(courseDeletion.rejected, setDeleteCourseError)
+
         builder.addCase(eventDeletion.pending, (state, action) => {
             state.status = 'loading';
             state.error = null;
@@ -528,6 +530,7 @@ export const {
     setSolveQuestionnaireSuccessFalse,
     clearFreeCoursesList,
     clearCloseCoursesList,
+    clearCourse,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

@@ -7,6 +7,7 @@ import {
 import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
 import {api} from "../../consts/api";
 import {NEWS} from "../../consts/contentTypes";
+import {getMediaUrl} from "../../functions/getMediaUrl";
 
 export const articleCreation = createAsyncThunk(
     "content/articleCreation",
@@ -97,7 +98,6 @@ export const courseCreation = createAsyncThunk(
     "content/courseCreation",
     async function({accessible, title, description, chapters, files}, {rejectWithValue, getState, dispatch}) {
         try {
-            console.log(chapters)
             if (title === "" || description === "") {
                 return rejectWithValue({
                     status: 400,
@@ -394,6 +394,31 @@ export const articleDeletion = createAsyncThunk(
     }
 );
 
+export const courseDeletion = createAsyncThunk(
+    "content/courseDeletion",
+    async function(id, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.deleteCourse(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
 export const eventDeletion = createAsyncThunk(
     "content/eventDeletion",
     async function(id, {rejectWithValue, getState}) {
@@ -662,9 +687,15 @@ export const fetchCourses = createAsyncThunk(
     "content/fetchCourses",
     async function({page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor}, {rejectWithValue, getState}) {
         try {
-            const state = getState();
-            /** @namespace state.user **/
             const responseAmountCourses = await fetch(api.url + api.getCoursesAmount(courseProtection, searchQuery, author, date, dateFilter), {method: 'GET'});
+            if (!responseAmountCourses.ok) {
+                const text = await responseAmountCourses.text();
+                return rejectWithValue({
+                    status: responseAmountCourses.status,
+                    statusText: responseAmountCourses.statusText,
+                    text: text
+                });
+            }
             const responseCourses = await fetch(api.url + api.getCourses(page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor), {method: 'GET'});
             if (!responseCourses.ok) {
                 const text = await responseCourses.text();
@@ -679,6 +710,58 @@ export const fetchCourses = createAsyncThunk(
             return {
                 courses: courses,
                 amountCourses: amountCourses
+            };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchCourse = createAsyncThunk(
+    "content/fetchCourse",
+    async function({id}, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            const response = await fetch(api.url + api.getCourse(id), {
+                method: 'GET',
+                headers: {'Authorization': state.user.token},
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+            let data = await response.json();
+
+            data = {
+                ...data,
+                chapters: data.chapters.map(chapter => ({
+                    ...chapter,
+                    mediaList: chapter.mediaList.map(media => ({
+                        ...media,
+                        fileName: decodeURIComponent(media.fileName.replace(/\.[^/.]+$/, "")),
+                        mediaType: media.mediaType.split('/')[0],
+                        url: getMediaUrl(media.id, media.mediaType)
+                    }))
+                })),
+                mediaList: data.mediaList.map(media => ({
+                    ...media,
+                    fileName: decodeURIComponent(media.fileName.replace(/\.[^/.]+$/, "")),
+                    mediaType: media.mediaType.split('/')[0],
+                    url: getMediaUrl(media.id, media.mediaType)
+                }))
+            };
+
+            return {
+                status: response.status,
+                data: data
             };
         } catch (error) {
             return rejectWithValue({

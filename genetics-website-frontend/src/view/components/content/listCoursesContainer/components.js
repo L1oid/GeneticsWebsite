@@ -5,7 +5,12 @@ import './style.css';
 import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {articleDeletion, fetchContent, fetchCourses} from "../../../../state/slices/content/asyncActions";
+import {
+    articleDeletion,
+    courseDeletion,
+    fetchContent,
+    fetchCourses
+} from "../../../../state/slices/content/asyncActions";
 import {
     clearArticleList,
     clearCloseCoursesList,
@@ -43,8 +48,6 @@ function ListCoursesContainerComponent(props) {
     const [pageSize] = useState(6);
     const [isLoadMoreDisabled, setIsLoadMoreDisabled] = useState(false);
     const dispatch = useDispatch();
-
-    const navigate = useNavigate();
 
     const freeCoursesList = useSelector(state => state.content.freeCoursesList);
     const closeCoursesList = useSelector(state => state.content.closeCoursesList);
@@ -150,9 +153,9 @@ function ListCoursesContainerComponent(props) {
         setSearchPage(1);
         setPage(1);
         if (orderByTitleAuthor === "") {
-            setOrderByTitleAuthor('asc');
-        } else if (orderByTitleAuthor=== 'asc') {
-            setOrderByTitleAuthor('desc');
+            setOrderByTitleAuthor('titleAsc');
+        } else if (orderByTitleAuthor=== 'titleAsc') {
+            setOrderByTitleAuthor('titleDesc');
         } else {
             setOrderByTitleAuthor("");
         }
@@ -171,7 +174,7 @@ function ListCoursesContainerComponent(props) {
     };
 
     const deleteButtonHandle = (id) => {
-        console.log("Delete id: " + id)
+        dispatch(courseDeletion(id))
     }
 
     return (
@@ -212,6 +215,7 @@ function ListCoursesContainerComponent(props) {
                     searchButtonHandle={searchButtonHandle}
                     deleteButtonHandle={deleteButtonHandle}
                     dateFilter={dateFilter}
+                    orderByTitleAuthor={orderByTitleAuthor}
                 />
             </div>
         </div>

@@ -61,7 +61,11 @@ export const clearSingleContentReducer = (state, action) => {
 }
 
 export const clearQuestionnaireReducer = (state, action) => {
-    state.questionnaire= {}
+    state.questionnaire = {}
+}
+
+export const clearCourseReducer = (state, action) => {
+    state.course = {}
 }
 
 export const setPreviewContentTypeReducer = (state, action) => {

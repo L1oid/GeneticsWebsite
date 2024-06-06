@@ -85,4 +85,10 @@ export const CONTENT_NULL_COURSE_FIELDS = "Content curse fields dont be null"
 export const CONTENT_COURSE_UNKNOWN_FILE_TYPE = "Unknown file type"
 export const CONTENT_COURSE_INVALID_PAGE_OR_PAGE_SIZE = "Invalid page or pageSize, they should not be less than 0"
 export const CONTENT_COURSE_INVALID_DATE_FORMAT = "Invalid date format"
+export const CONTENT_COURSE_NOT_FOUND = "Course not found!"
+export const CONTENT_COURSE_USER_DONT_HAVE_RIGHTS = "User doesn't have student or teacher privileges"
+export const CONTENT_COURSE_SERVER_ERROR = "Server error"
+export const CONTENT_COURSE_DONT_RIGHTS_TO_DELETE_COURSE = "User doesn't have rights to delete this course"
+
+
 

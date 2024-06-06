@@ -30,7 +30,6 @@ import EducationLayout from "./view/layouts/educationLayout/page";
 import CoursePage from "./view/pages/public/content/course/page";
 import CourseHelloContainerComponent from "./view/components/content/courseHelloContainer/component";
 import CreateCoursePage from "./view/pages/private/content/createCourse/page";
-import ListCoursesPage from "./view/pages/private/content/listCourses/page";
 import ListCoursesContainerComponent from "./view/components/content/listCoursesContainer/components";
 
 function App() {

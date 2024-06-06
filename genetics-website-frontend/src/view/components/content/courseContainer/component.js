@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 import parse from "html-react-parser";
 import FileListComponent from "../../common/fileList/component";
+import {useSelector} from "react-redux";
 
 function CourseContainerComponent(props) {
-    const initialOpenChapters = props.course.chapters.reduce((acc, chapter, index) => {
-        acc[index] = true;
-        return acc;
-    }, {});
+    const course = useSelector(state => state.content.course);
+    const [openChapters, setOpenChapters] = useState({});
 
-    const [openChapters, setOpenChapters] = useState(initialOpenChapters);
+    useEffect(() => {
+        const initialOpenChapters = course.chapters.reduce((acc, _, index) => {
+            acc[index] = true;
+            return acc;
+        }, {});
+        setOpenChapters(initialOpenChapters);
+    }, [course.chapters]);
 
-    const sortedChapters = [...props.course.chapters].sort((a, b) => a.orderNumber - b.orderNumber);
+    const sortedChapters = [...course.chapters].sort((a, b) => a.orderNumber - b.orderNumber);
 
     const toggleChapter = (index) => {
         setOpenChapters((prevOpenChapters) => ({
@@ -26,17 +30,17 @@ function CourseContainerComponent(props) {
         <div className="course-container">
             <div className="course-container-container-row-1">
                 <AccountPageTitleComponent
-                    title={props.course.title}/>
+                    title={course.title}/>
             </div>
             <div className="course-container-container-row-2">
                 <div className="course-container-description">
-                    {parse(props.course.description)}
+                    {parse(course.description)}
                 </div>
                 <FileListComponent
-                    files={props.course.files}
+                    files={course.mediaList}
                 />
             </div>
-            {sortedChapters.length > 0 && (
+            {course.id !== null && sortedChapters.length > 0 && (
                 <div className="course-container-container-row-3">
                     {sortedChapters.map((chapter, chapterIndex) => (
                         <div key={chapterIndex} className="course-container-chapter">
@@ -54,11 +58,11 @@ function CourseContainerComponent(props) {
                             {openChapters[chapterIndex] && (
                                 <div className="course-container-chapter-content">
                                     <div className="course-container-description">
-                                        {parse(chapter.description)}
+                                        {parse(chapter.content)}
                                     </div>
                                     <div className="course-container-file-list">
                                         <FileListComponent
-                                            files={chapter.files}
+                                            files={chapter.mediaList}
                                         />
                                     </div>
                                 </div>

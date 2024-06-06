@@ -1,6 +1,5 @@
 export const api = {
-    //url: "http://genetic.kemsu.ru/",
-    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    url: "http://genetic.kemsu.ru/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
     registrationUser: "api/users",
@@ -52,7 +51,16 @@ export const api = {
         return queryParams;
     },
     getImage: function(id) {
-        return `api/files/images/${id}`
+        return `api/files/${id}`
+    },
+    getVideo: function(id) {
+        return `api/files/stream/${id}`
+    },
+    getAudio: function(id) {
+        return `api/files/${id}`
+    },
+    getDocs: function(id) {
+        return `api/files/${id}`
     },
     getSingleArticle: function(id) {
         return `api/articles/${id}`
@@ -216,5 +224,11 @@ export const api = {
         }
 
         return queryParams;
-    }
+    },
+    getCourse: function (id) {
+        return `api/courses?id=${id}`;
+    },
+    deleteCourse: function (id) {
+        return `api/courses?id=${id}`
+    },
 }

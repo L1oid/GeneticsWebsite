@@ -9,4 +9,7 @@ export const FREE = "free";
 export const SELECT = "select";
 
 export const VIDEO = "video"
-export const DOCUMENT = "file"
+export const DOCUMENT = "application"
+export const TEXT = "text"
+export const AUDIO = "audio"
+export const IMAGE = "image"

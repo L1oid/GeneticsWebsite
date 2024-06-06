@@ -18,13 +18,13 @@ function EducationLayout() {
 
     useEffect(() => {
         dispatch(clearFreeCoursesList())
-        dispatch(fetchCourses({courseProtection: false}));
+        dispatch(fetchCourses({courseProtection: false, orderByTitleAuthor: "titleAsc"}));
     }, [dispatch])
 
     useEffect(() => {
         if (isStudent) {
             dispatch(clearCloseCoursesList())
-            dispatch(fetchCourses({courseProtection: true}));
+            dispatch(fetchCourses({courseProtection: true, orderByTitleAuthor: "titleAsc"}));
         }
     }, [dispatch, isStudent])
 

@@ -31,8 +31,13 @@
     user-select: none;
 }
 
-.for-student-lock {
+.courses-menu-item-title-for-student-lock {
     display: flex;
+    padding-bottom: 15px;
+    color: #434343;
+    font-size: 20px;
+    font-weight: 600;
+    user-select: none;
 }
 
 .courses-menu-item-title:hover {
@@ -49,6 +54,15 @@
 
 .courses-menu-item-list-title {
     padding-bottom: 5px;
+    display: flex;
+    font-size: 18px;
+    width: 100%;
+}
+
+.courses-menu-item-list-title-no-curses {
+    padding-bottom: 15px;
+    padding-left: 7px;
+    color: #272727;
     display: flex;
     font-size: 18px;
     width: 100%;

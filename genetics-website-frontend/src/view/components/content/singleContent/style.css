@@ -20,6 +20,8 @@
     color: #272727;
     text-align: justify;
     font-size: 18px;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .single-content-hyperlink {
