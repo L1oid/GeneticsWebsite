@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
     CONTENT_FILES_IS_NOT_SUPPORTED_FORMAT,
-    CONTENT_NULL_ARTICLE_FIELDS,
+    CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_COURSE_FIELDS,
     CONTENT_NULL_QUESTIONNAIRE_FIELDS,
 } from "../../consts/errorText/content";
 import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
@@ -71,6 +71,84 @@ export const articleCreation = createAsyncThunk(
             }
 
             const response = await fetch(api.url + api.articleCreation, {
+                method: 'POST',
+                headers: {'Authorization': state.user.token},
+                body: formData
+            });
+            if (!response.ok) {
+                const text = await response.text();
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const courseCreation = createAsyncThunk(
+    "content/courseCreation",
+    async function({accessible, title, description, chapters, files}, {rejectWithValue, getState, dispatch}) {
+        try {
+            console.log(chapters)
+            if (title === "" || description === "") {
+                return rejectWithValue({
+                    status: 400,
+                    statusText: 'Bad Request',
+                    text: CONTENT_NULL_COURSE_FIELDS
+                });
+            }
+            const hasInvalidChapter = chapters.some(chapter =>
+                chapter.title === "" ||
+                chapter.description === ""
+            );
+            if (hasInvalidChapter) {
+                return rejectWithValue({
+                    status: 400,
+                    statusText: 'Bad Request',
+                    text: CONTENT_NULL_COURSE_FIELDS
+                });
+            }
+            const state = getState();
+            /** @namespace state.user **/
+            const formData = new FormData();
+
+            const courseJson = {
+                title: title,
+                description: description,
+                courseProtection: accessible
+            }
+            formData.append('courseJson', JSON.stringify(courseJson));
+
+            for (let i = 0; i < files.length; i++) {
+                formData.append('courseMediaFiles',files[i].file, encodeURIComponent(files[i].name));
+            }
+
+            for (let i = 0; i < chapters.length; i++) {
+                const chapterFiles = chapters[i].files;
+                const fileNames = chapterFiles.map(file => encodeURIComponent(file.name));
+
+                const chapter = {
+                    title: chapters[i].title,
+                    content: chapters[i].description,
+                    order: parseInt(chapters[i].orderNumber),
+                    fileNames: fileNames
+                };
+                formData.append('chapterJson', JSON.stringify(chapter));
+
+                for (let j = 0; j < chapterFiles.length; j++) {
+                    formData.append('chapterMediaFiles', chapterFiles[j].file, encodeURIComponent(chapterFiles[j].name));
+                }
+            }
+
+            const response = await fetch(api.url + api.createCourse, {
                 method: 'POST',
                 headers: {'Authorization': state.user.token},
                 body: formData
@@ -564,11 +642,43 @@ export const fetchQuestionnaires = createAsyncThunk(
                     text: text
                 });
             }
-            let questionnaire = await responseQuestionnaire.json()
-            const amountQuestionnaire = await responseAmountQuestionnaire.text();
+            let questionnaire = responseQuestionnaire.status === 204 ? [] : await responseQuestionnaire.json();
+            const amountQuestionnaire = responseAmountQuestionnaire.status === 204 ? 0 : await responseAmountQuestionnaire.text();
             return {
                 questionnaire: questionnaire,
                 amountQuestionnaire: amountQuestionnaire
+            };
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+export const fetchCourses = createAsyncThunk(
+    "content/fetchCourses",
+    async function({page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor}, {rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const responseAmountCourses = await fetch(api.url + api.getCoursesAmount(courseProtection, searchQuery, author, date, dateFilter), {method: 'GET'});
+            const responseCourses = await fetch(api.url + api.getCourses(page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor), {method: 'GET'});
+            if (!responseCourses.ok) {
+                const text = await responseCourses.text();
+                return rejectWithValue({
+                    status: responseCourses.status,
+                    statusText: responseCourses.statusText,
+                    text: text
+                });
+            }
+            let courses = responseCourses.status === 204 ? [] : await responseCourses.json();
+            const amountCourses = responseAmountCourses.status === 204 ? 0 : await responseAmountCourses.text();
+            return {
+                courses: courses,
+                amountCourses: amountCourses
             };
         } catch (error) {
             return rejectWithValue({

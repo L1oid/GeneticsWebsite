@@ -15,13 +15,28 @@
     font-weight: 600;
 }
 
+.courses-menu-body {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .courses-menu-item-title {
-    padding: 15px;
+    display: flex;
+    padding-bottom: 15px;
     color: #434343;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     user-select: none;
+}
+
+.for-student-lock {
+    display: flex;
+}
+
+.courses-menu-item-title:hover {
+    color: #FF4300;
 }
 
 .courses-menu-item-list {
@@ -30,14 +45,28 @@
 
 .courses-menu-item-list.active {
     display: block;
-    padding-left: 30px;
 }
 
 .courses-menu-item-list-title {
+    padding-bottom: 5px;
+    display: flex;
+    font-size: 18px;
+    width: 100%;
+}
 
+.courses-menu-item-list-title::before {
+    content: "■";
+    color: #434343;
+    padding-right: 7px;
+}
+
+.courses-menu-item-list-title:last-child {
+    padding-bottom: 15px;
 }
 
 .courses-menu-item-list-href {
+    display: block;
+    width: 100%;
     text-decoration: none;
     color: #272727;
 }

@@ -1,12 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Outlet} from "react-router-dom";
 
 import "./style.css"
 
 import BreadcrumpComponent from "../../components/common/breadcrump/component";
-import CoursesNavigationComponent from "../../components/content/CoursesNavigation/component";
+import CoursesNavigationComponent from "../../components/content/coursesNavigation/component";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchCourses} from "../../../state/slices/content/asyncActions";
+import {STUDENT, TEACHER} from "../../../state/consts/roles";
+import {clearCloseCoursesList, clearFreeCoursesList} from "../../../state/slices/content/contentSlice";
 
 function EducationLayout() {
+
+    const dispatch = useDispatch();
+    const {roles} = useSelector(state => state.user)
+    const isStudent = roles.includes(STUDENT) || roles.includes(TEACHER);
+
+    useEffect(() => {
+        dispatch(clearFreeCoursesList())
+        dispatch(fetchCourses({courseProtection: false}));
+    }, [dispatch])
+
+    useEffect(() => {
+        if (isStudent) {
+            dispatch(clearCloseCoursesList())
+            dispatch(fetchCourses({courseProtection: true}));
+        }
+    }, [dispatch, isStudent])
 
     const ways = [
         {

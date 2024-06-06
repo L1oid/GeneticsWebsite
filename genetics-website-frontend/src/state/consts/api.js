@@ -1,6 +1,6 @@
 export const api = {
-    url: "http://genetic.kemsu.ru/",
-    //url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
+    //url: "http://genetic.kemsu.ru/",
+    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
     changePassword: "api/users/",
     registrationUser: "api/users",
@@ -8,6 +8,7 @@ export const api = {
     createEvents: "api/events",
     createQuestionnaire: "api/questionnaires",
     solveQuestionnaire: "api/questionnaires/submissions",
+    createCourse: "api/courses",
     getArticles: function(page, pageSize, type, author, title, date, dateFilter, orderByTitle) {
         let queryParams = `api/articles/filters?page=${page}&pageSize=${pageSize}&type=${type}`;
 
@@ -169,5 +170,51 @@ export const api = {
     },
     getQuestionnaireResults: function (id) {
         return `api/questionnaires/results/export?id=${id}`
+    },
+    getCourses: function (page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor) {
+        let queryParams = `api/courses/filters?courseProtection=${courseProtection}`
+
+        if (page !== undefined && page !== "") {
+            queryParams += `&page=${page}`;
+        }
+        if (pageSize !== undefined && pageSize !== "") {
+            queryParams += `&pageSize=${pageSize}`;
+        }
+        if (searchQuery !== undefined && searchQuery !== "") {
+            queryParams += `&searchQuery=${searchQuery}`;
+        }
+        if (author !== undefined && author !== "") {
+            queryParams += `&author=${author}`;
+        }
+        if (date !== undefined && date !== "") {
+            queryParams += `&date=${date}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+        if (orderByTitleAuthor !== undefined && orderByTitleAuthor !== "") {
+            queryParams += `&orderByTitleAuthor=${orderByTitleAuthor}`;
+        }
+
+        return queryParams;
+    },
+    getCoursesAmount: function (courseProtection, searchQuery, author, date, dateFilter) {
+        let queryParams = `api/courses/count?courseProtection=${courseProtection}`
+
+
+        if (searchQuery !== undefined && searchQuery !== "") {
+            queryParams += `&searchQuery=${searchQuery}`;
+        }
+        if (author !== undefined && author !== "") {
+            queryParams += `&author=${author}`;
+        }
+        if (date !== undefined && date !== "") {
+            queryParams += `&date=${date}`;
+        }
+        if (dateFilter !== undefined && dateFilter !== "") {
+            queryParams += `&dateFilter=${dateFilter}`;
+        }
+
+        return queryParams;
     }
 }

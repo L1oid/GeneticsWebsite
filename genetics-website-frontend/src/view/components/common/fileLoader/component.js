@@ -1,19 +1,18 @@
 import React from 'react';
-
 import './style.css';
 
 function FileLoaderComponent(props) {
-
     return (
         <div className="file-loader-container">
-            <label htmlFor="file-upload" className="file-loader-label">
-                <span className="material-symbols-outlined file-loader-icon">photo_camera</span>
+            <label htmlFor={props.inputId} className="file-loader-label">
+                <span className="material-symbols-outlined file-loader-icon">note_add</span>
             </label>
             <input className="file-loader-input"
-                id="file-upload"
-                type="file"
-                accept={props.accept}
-                onChange={e => props.handleImage(e.target.files[0])}
+                   id={props.inputId}
+                   type="file"
+                   accept={props.accept}
+                   onChange={e => props.handleUploadFile(e.target.files[0])}
+                   onClick={(e)=> {e.target.value = null}}
             />
         </div>
     )

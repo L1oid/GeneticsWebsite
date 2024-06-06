@@ -80,6 +80,7 @@ function ListTableComponent(props) {
                             {(props.contentType === EVENTS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранное событие?</p>}
                             {(props.contentType === USERS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранного пользователя?</p>}
                             {(props.contentType === QUESTIONNAIRES) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранную анкету?</p>}
+                            {(props.courseProtection === true || props.courseProtection === false) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный курс?</p>}
                             <div className="list-table-modal-content-buttons">
                                 <AccountPageButtonComponent
                                     title={"Удалить"}
@@ -120,6 +121,19 @@ function ListTableComponent(props) {
                         <th
                             onClick={props.status === "loading" || props.secondInputValue === "" ? undefined : props.handleDateFilter}
                             className={`list-table-filter-button ${props.secondInputValue === "" ? "" : "hoverable"}`}>{renderDateCreateFilterIndicator()}
+                        </th>
+                        <th>Автор</th>
+                        <th>Управление</th>
+                    </tr>
+                )}
+                {(props.courseProtection === true || props.courseProtection === false) && (
+                    <tr>
+                        <th onClick={props.status === "loading" ? undefined : props.handleTitleSort}
+                            className="list-table-filter-button hoverable">{renderTitleSortIndicator()}
+                        </th>
+                        <th
+                            onClick={props.status === "loading" || props.showDate === "" ? undefined : props.handleDateFilter}
+                            className={`list-table-filter-button ${props.showDate === "" ? "" : "hoverable"}`}>{renderDateCreateFilterIndicator()}
                         </th>
                         <th>Автор</th>
                         <th>Управление</th>
@@ -170,6 +184,37 @@ function ListTableComponent(props) {
                                 type={"text"}
                                 value={props.thirdInputValue}
                                 handle={props.thirdInputValueHandle}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageButtonComponent
+                                title={"Поиск"}
+                                status={props.status}
+                                handle={props.searchButtonHandle}/>
+                        </td>
+                    </tr>
+                )}
+                {(props.courseProtection === true || props.courseProtection === false) && (
+                    <tr>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"text"}
+                                value={props.tempSearchSearchQuery}
+                                handle={props.setTempSearchSearchQuery}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"date"}
+                                value={props.showDate}
+                                handle={props.handleDateChange}
+                                disabled={false}/>
+                        </td>
+                        <td>
+                            <AccountPageInputComponent
+                                type={"text"}
+                                value={props.tempSearchAuthor}
+                                handle={props.setTempSearchAuthor}
                                 disabled={false}/>
                         </td>
                         <td>
@@ -378,6 +423,44 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 ))}
+                {props.courseProtection === false && props.freeCoursesList.map((course, courseIndex) => (
+                    <tr key={courseIndex}>
+                        <td>
+                            {course.title}
+                        </td>
+                        <td>
+                            {convertUsersDate(course.creationDate)}
+                        </td>
+                        <td>
+                            {course.firstNamePlusLastName}
+                        </td>
+                        <td>
+                            <AccountPageButtonComponent
+                                title={"Удалить"}
+                                status={props.status}
+                                handle={() => handleDeleteClick(course.id)}/>
+                        </td>
+                    </tr>
+                ))}
+                {props.courseProtection === true && props.closeCoursesList.map((course, courseIndex) => (
+                    <tr key={courseIndex}>
+                        <td>
+                            {course.title}
+                        </td>
+                        <td>
+                            {convertUsersDate(course.creationDate)}
+                        </td>
+                        <td>
+                            {course.firstNamePlusLastName}
+                        </td>
+                        <td>
+                            <AccountPageButtonComponent
+                                title={"Удалить"}
+                                status={props.status}
+                                handle={() => handleDeleteClick(course.id)}/>
+                        </td>
+                    </tr>
+                ))}
                 {props.contentType === NEWS && props.tbodyNews.length === 0 && (
                     <tr>
                         <td colSpan="4">
@@ -392,7 +475,14 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 )}
-                {props.contentType === QUESTIONNAIRES && props.questionnaireList.length === 0 && (
+                {props.courseProtection === false && props.freeCoursesList.length === 0 && (
+                    <tr>
+                        <td colSpan="4">
+                            Ничего не найдено
+                        </td>
+                    </tr>
+                )}
+                {props.courseProtection === true && props.closeCoursesList.length === 0 && (
                     <tr>
                         <td colSpan="4">
                             Ничего не найдено
@@ -413,7 +503,7 @@ function ListTableComponent(props) {
                         </td>
                     </tr>
                 )}
-                {(props.contentType === ARTICLE || props.contentType === NEWS || props.contentType === QUESTIONNAIRES) && (
+                {(props.contentType === ARTICLE || props.contentType === NEWS || props.contentType === QUESTIONNAIRES || props.courseProtection === true || props.courseProtection === false) && (
                     <tr>
                         <td colSpan="4">
                             <AccountLoadMoreButtonComponent

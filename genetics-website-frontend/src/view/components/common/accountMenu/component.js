@@ -4,7 +4,7 @@ import './style.css';
 import {Link} from "react-router-dom";
 import {removeUser} from "../../../../state/slices/user/userSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {ADMINISTRATOR, MODERATOR} from "../../../../state/consts/roles";
+import {ADMINISTRATOR, MODERATOR, TEACHER} from "../../../../state/consts/roles";
 import {clearPreviewContent} from "../../../../state/slices/content/contentSlice";
 
 function AccountMenuComponent(props) {
@@ -12,6 +12,7 @@ function AccountMenuComponent(props) {
     const {roles} = useSelector(state => state.user)
     const isAdmin = roles.includes(ADMINISTRATOR);
     const isModerator = roles.includes(MODERATOR);
+    const isTeacher = roles.includes(TEACHER);
 
     function exit() {
         dispatch(removeUser());
@@ -82,6 +83,20 @@ function AccountMenuComponent(props) {
                     </Link>
                 </div>
 
+            )}
+            {isTeacher && (
+                <div className="account-menu-admin-buttons">
+                    <Link className={"account-menu-button"}
+                          to={"/account/create-course"}>
+                        <span className="material-symbols-outlined account-icon">history_edu</span>
+                        Создание курса
+                    </Link>
+                    <Link className={"account-menu-button"}
+                          to={"/account/courses-list"}>
+                        <span className="material-symbols-outlined account-icon">contract</span>
+                        Список курсов
+                    </Link>
+                </div>
             )}
             <button className={"account-menu-button exit"}
                     onClick={exit}>

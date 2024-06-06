@@ -7,3 +7,6 @@ export const USERS = "users";
 
 export const FREE = "free";
 export const SELECT = "select";
+
+export const VIDEO = "video"
+export const DOCUMENT = "file"

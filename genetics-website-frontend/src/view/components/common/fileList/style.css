@@ -1,0 +1,14 @@
+.file-list-item-name {
+    margin-left: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #434343;
+}
+
+.file-list-item-name:hover {
+    color: #FF4300;
+}
+
+.material-symbols-outlined.icon {
+    color: #FF4300;
+}

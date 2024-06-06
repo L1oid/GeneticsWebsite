@@ -23,6 +23,14 @@ export const clearNewsListReducer = (state, action) => {
     state.newsList.splice(0, state.newsList.length)
 }
 
+export const clearFreeCoursesListReducer = (state, action) => {
+    state.freeCoursesList.splice(0, state.freeCoursesList.length)
+}
+
+export const clearCloseCoursesListReducer = (state, action) => {
+    state.closeCoursesList.splice(0, state.closeCoursesList.length)
+}
+
 export const clearQuestionnaireQuestionsAnswersListReducer = (state, action) => {
     state.questionnaireQuestionsAnswersList.splice(0, state.questionnaireQuestionsAnswersList.length)
 }

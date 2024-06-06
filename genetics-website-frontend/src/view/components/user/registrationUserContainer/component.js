@@ -49,7 +49,9 @@ function RegistrationUserContainerComponent(props) {
             lastName: lastName,
             email: email
         }));
-        clearInputs()
+        if (status === "resolved") {
+            clearInputs()
+        }
     }
 
     return (

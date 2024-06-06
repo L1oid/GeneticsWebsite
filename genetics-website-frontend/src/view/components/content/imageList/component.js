@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import FileLoaderComponent from "../../common/fileLoader/component";
+import FileLoaderComponent from "../../common/imageLoader/component";
 import {useSelector} from "react-redux";
 
 function ImageListComponent(props) {

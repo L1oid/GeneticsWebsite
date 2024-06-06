@@ -3,8 +3,8 @@ import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
 import {ARTICLE, NEWS} from "../../consts/contentTypes";
 import {
-    clearArticleListReducer,
-    clearContentErrorStatusSuccessReducer,
+    clearArticleListReducer, clearCloseCoursesListReducer,
+    clearContentErrorStatusSuccessReducer, clearFreeCoursesListReducer,
     clearNewsListReducer,
     clearPreviewContentReducer,
     clearQuestionnaireListReducer,
@@ -21,10 +21,10 @@ import {
 import {
     articleCreation,
     articleDeletion,
-    articleEdition,
+    articleEdition, courseCreation,
     eventCreation,
     eventDeletion,
-    fetchContent,
+    fetchContent, fetchCourses,
     fetchEvents,
     fetchQuestionnaire,
     fetchQuestionnaireQuestions,
@@ -38,13 +38,13 @@ import {
 import {
     getQuestionnaireResultsError,
     setArticleCreationError,
-    setArticleEditionError,
+    setArticleEditionError, setCreateCourseError,
     setCreateEventError,
     setCreateQuestionnaireError,
     setDeleteArticleError,
     setDeleteEventError,
     setDeleteQuestionnaireError,
-    setFetchContentError,
+    setFetchContentError, setFetchCoursesError,
     setFetchEventsError,
     setFetchQuestionnaireError, setFetchQuestionnaireQuestionsAnswersError,
     setFetchQuestionnaireQuestionsError,
@@ -69,6 +69,9 @@ const contentPersistConfig = {
         "questionnaireQuestionsList",
         "questionnaireQuestionsAnswersList",
         "eventList",
+        "freeCoursesList",
+        "closeCoursesList",
+        "course",
         "contentListSlider",
         "sliderDefaultImage",
         "questionnaire",
@@ -97,6 +100,53 @@ const contentSlice = createSlice({
         contentListSlider: [],
         solveQuestionnaireSuccess: false,
         sliderDefaultImage: api.url + api.getImage(351),
+        freeCoursesListLength: null,
+        freeCoursesList: [],
+        closeCoursesListLength: null,
+        closeCoursesList: [],
+        course: {
+            id: 1,
+            protected: false,
+            title: "ДНК - основа наследственности",
+            description: "Дезоксирибонуклеи́новая кислота (ДНК) — макромолекула (одна из трёх основных, две другие — РНК и белки), обеспечивающая хранение, передачу из поколения в поколение и реализацию генетической программы развития и функционирования организмов. Молекула ДНК хранит биологическую информацию в виде генетического кода, состоящего из последовательности нуклеотидов[1]. ДНК содержит информацию о структуре различных видов РНК и белков.",
+            chapters: [
+                {
+                    title: "Глава 1",
+                    orderNumber: 1,
+                    description: "В клетках эукариот (животных, растений и грибов) ДНК находится в ядре клетки в составе хромосом, а также в некоторых клеточных органеллах (митохондриях и пластидах). В клетках прокариотических организмов (бактерий и архей) кольцевая или линейная молекула ДНК, так называемый нуклеоид, прикреплена изнутри к клеточной мембране. У прокариот и у низших эукариот (например дрожжей) встречаются также небольшие автономные, преимущественно кольцевые молекулы ДНК, называемые плазмидами. Кроме того, одно- или двухцепочечные молекулы ДНК могут образовывать геном ДНК-содержащих вирусов.",
+                    files: []
+                },
+                {
+                    title: "Глава 2",
+                    orderNumber: 2,
+                    description: "С химической точки зрения ДНК — длинная полимерная молекула, состоящая из повторяющихся блоков — нуклеотидов. Каждый нуклеотид состоит из азотистого основания, сахара (дезоксирибозы) и фосфатной группы. Связи между нуклеотидами в полимерной цепи образуются за счёт дезоксирибозы и фосфатной группы (фосфодиэфирные связи). В подавляющем большинстве случаев (кроме некоторых вирусов, содержащих одноцепочечную ДНК) макромолекула ДНК состоит из двух нуклеотидных цепей. В нуклеотидах, входящих в состав ДНК, встречаются четыре азотистых основания: аденин (A), гуанин (G), тимин (T) и цитозин (C). Азотистые основания одной цепи соединены с азотистыми основаниями другой цепи водородными связями, обеспечивая таким образом связь двух цепей макромолекулы ДНК друг с другом. Азотистые основания образуют связи попарно согласно принципу комплементарности: аденин (A) соединяется только с тимином (T), гуанин (G) — только с цитозином (C) [⇨].",
+                    files: [
+                        {
+                            type: "file",
+                            name: "ДНК - Формулы",
+                            url: "http://localhost:3000/file.pdf"
+                        },
+                        {
+                            type: "video",
+                            name: "ДНК - Видеоурок",
+                            url: "http://localhost:3000/video.mp4"
+                        }
+                    ]
+                }
+            ],
+            files: [
+                {
+                    type: "file",
+                    name: "ДНК - Формулы",
+                    url: "http://localhost:3000/file.pdf"
+                },
+                {
+                    type: "video",
+                    name: "ДНК - Видеоурок",
+                    url: "http://localhost:3000/video.mp4"
+                }
+            ]
+        },
         aboutContent: {
             title1: "Заведующая кафедрой",
             content1: "Минина Варвара Ивановна<br><em>доктор биологических наук, доцент</em>",
@@ -185,7 +235,9 @@ const contentSlice = createSlice({
         clearQuestionnaire: clearQuestionnaireReducer,
         clearQuestionnaireQuestionsList: clearQuestionnaireQuestionsListReducer,
         clearQuestionnaireQuestionsAnswersList: clearQuestionnaireQuestionsAnswersListReducer,
-        setSolveQuestionnaireSuccessFalse: setSolveQuestionnaireSuccessFalseReducer
+        setSolveQuestionnaireSuccessFalse: setSolveQuestionnaireSuccessFalseReducer,
+        clearFreeCoursesList: clearFreeCoursesListReducer,
+        clearCloseCoursesList: clearCloseCoursesListReducer
     },
     extraReducers: builder => {
         builder.addCase(articleCreation.pending, (state, action) => {
@@ -199,6 +251,18 @@ const contentSlice = createSlice({
             state.success = "Контент успешно создан";
         })
         builder.addCase(articleCreation.rejected, setArticleCreationError)
+
+        builder.addCase(courseCreation.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(courseCreation.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Образовательный материал успешно создан";
+        })
+        builder.addCase(courseCreation.rejected, setCreateCourseError)
 
         builder.addCase(questionnaireCreation.pending, (state, action) => {
             state.status = 'loading';
@@ -268,6 +332,25 @@ const contentSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchContent.rejected, setFetchContentError)
+
+        builder.addCase(fetchCourses.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(fetchCourses.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            /** @namespace action.meta **/
+            if (action.meta.arg.courseProtection === true) {
+                state.closeCoursesListLength = parseInt(action.payload.amountCourses)
+                state.closeCoursesList = [...state.closeCoursesList, ...action.payload.courses];
+            } else if (action.meta.arg.courseProtection === false) {
+                state.freeCoursesListLength = parseInt(action.payload.amountCourses)
+                state.freeCoursesList = [...state.freeCoursesList, ...action.payload.courses];
+            }
+            state.error = null;
+        })
+        builder.addCase(fetchCourses.rejected, setFetchCoursesError)
 
         builder.addCase(fetchQuestionnaires.pending, (state, action) => {
             state.status = 'loading';
@@ -443,6 +526,8 @@ export const {
     clearQuestionnaireQuestionsAnswersList,
     clearQuestionnaireQuestionsList,
     setSolveQuestionnaireSuccessFalse,
+    clearFreeCoursesList,
+    clearCloseCoursesList,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

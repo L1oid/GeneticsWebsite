@@ -27,6 +27,11 @@ import ListEventsPage from "./view/pages/private/content/listEvents/page";
 import QuestionnairesPage from "./view/pages/public/content/questionnaires/page";
 import QuestionnairePage from "./view/pages/public/content/questionnaire/page";
 import EducationLayout from "./view/layouts/educationLayout/page";
+import CoursePage from "./view/pages/public/content/course/page";
+import CourseHelloContainerComponent from "./view/components/content/courseHelloContainer/component";
+import CreateCoursePage from "./view/pages/private/content/createCourse/page";
+import ListCoursesPage from "./view/pages/private/content/listCourses/page";
+import ListCoursesContainerComponent from "./view/components/content/listCoursesContainer/components";
 
 function App() {
     return (
@@ -44,7 +49,10 @@ function App() {
                     <Route path="/science/:id" element={<ArticlePage />} />
                     <Route path="/questionnaires/" element={<QuestionnairesPage />} />
                     <Route path="/questionnaires/:id" element={<QuestionnairePage />} />
-                    <Route path="/education/" element={<EducationLayout />} />
+                    <Route path="/education/" element={<EducationLayout />} >
+                        <Route index element={<CourseHelloContainerComponent />} />
+                        <Route path="/education/:id" element={<CoursePage />} />
+                    </Route>
                     <Route path="/account" element={<AccountLayout />}>
                         <Route index element={<PersonalDataPage />} />
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
@@ -57,6 +65,8 @@ function App() {
                         <Route path="/account/event-list/" element={<ListEventsPage />} />
                         <Route path="/account/create-questionnaire/" element={<CreateQuestionnairePage />} />
                         <Route path="/account/questionnaire-list/" element={<ListQuestionnairePage />} />
+                        <Route path="/account/create-course/" element={<CreateCoursePage />} />
+                        <Route path="/account/courses-list/" element={<ListCoursesContainerComponent />} />
                     </Route>
                 </Route>
             </Routes>

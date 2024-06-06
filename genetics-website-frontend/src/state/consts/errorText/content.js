@@ -76,3 +76,13 @@ export const CONTENT_QUESTIONNAIRE_QUESTION_TEXT_INVALID_CHARACTERS = "questionT
 export const CONTENT_QUESTIONNAIRE_ANSWER_FOR_USER_INVALID_CHARACTERS = "answer for user should consist only of valid characters"
 export const CONTENT_QUESTIONNAIRE_ANSWER_TRIGGERING_WEIGHT_INVALID_CHARACTERS = "answerTriggeringWeight should consist only of valid characters"
 export const CONTENT_QUESTIONNAIRE_ANSWER_TO_CHOOSE_INVALID_CHARACTERS = "text for answerToChoose should consist only of valid characters"
+export const CONTENT_COURSE_USER_DONT_HAVE_TEACHER_RIGHTS = "User doesn't have teacher privileges"
+export const CONTENT_COURSE_IS_NOT_PROVIDED = "Course is not provided"
+export const CONTENT_COURSE_FAILED_TO_PARSE_COURSE_JSON = "Failed to parse course JSON"
+export const CONTENT_COURSE_FAILED_TO_PARSE_CHAPTER_JSON = "Failed to parse chapter JSON"
+export const CONTENT_COURSE_FAILED_TO_PARSE_CREATE_CURSE = "Failed to create course"
+export const CONTENT_NULL_COURSE_FIELDS = "Content curse fields dont be null"
+export const CONTENT_COURSE_UNKNOWN_FILE_TYPE = "Unknown file type"
+export const CONTENT_COURSE_INVALID_PAGE_OR_PAGE_SIZE = "Invalid page or pageSize, they should not be less than 0"
+export const CONTENT_COURSE_INVALID_DATE_FORMAT = "Invalid date format"
+
