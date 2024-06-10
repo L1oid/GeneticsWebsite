@@ -83,7 +83,7 @@ function ListQuestionnairesComponent(props) {
         },
         {
             link: `/questionnaires`,
-            name: "Анкетирование"
+            name: "Опросы"
         }
     ]
 
@@ -91,7 +91,7 @@ function ListQuestionnairesComponent(props) {
         <div className="page-container">
             <div className="list-questionnaires">
                 <BreadcrumpComponent ways={ways}/>
-                <h2 className="list-questionnaires-heading">Анкетирование</h2>
+                <h2 className="list-questionnaires-heading">Опросы</h2>
                 <div className="list-questionnaires-row-1">
                     <div className="list-questionnaires-column-1">
                         <div className="list-questionnaires-filter">
@@ -127,10 +127,10 @@ function ListQuestionnairesComponent(props) {
                     </div>
                     <div className="list-questionnaires-column-2">
                         <AccountPageTitleComponent
-                            title={"Доступные анкеты"}/>
+                            title={"Доступные опросы"}/>
                         {questionnaireList.length === 0 || (questionnaireList.length === 1 && questionnaireList[0].id === null) ? (
                             <div className="list-questionnaires-empty">
-                                На данный момент анкеты отсутствуют
+                                На данный момент опросы отсутствуют
                             </div>
                         ) : (
                             <div className="list-questionnaires-list">

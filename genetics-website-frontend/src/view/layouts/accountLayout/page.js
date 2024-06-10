@@ -28,7 +28,7 @@ function AccountLayout() {
                 <BreadcrumpComponent ways = {ways} />
                 <div className="account-container">
                     <div className="account-container-row-1">
-                        <p className="account-container-heading">Личный кабиент</p>
+                        <p className="account-container-heading">Личный кабинет</p>
                     </div>
                     <div className="account-container-row-2">
                         <div className="account-container-column-1">

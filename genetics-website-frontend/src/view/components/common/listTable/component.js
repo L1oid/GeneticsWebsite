@@ -90,7 +90,7 @@ function ListTableComponent(props) {
                             {(props.contentType === ARTICLE || props.contentType === NEWS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный контент?</p>}
                             {(props.contentType === EVENTS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранное событие?</p>}
                             {(props.contentType === USERS) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранного пользователя?</p>}
-                            {(props.contentType === QUESTIONNAIRES) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранную анкету?</p>}
+                            {(props.contentType === QUESTIONNAIRES) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный опрос?</p>}
                             {(props.courseProtection === true || props.courseProtection === false) && <p className="list-table-modal-content-text">Вы действительно хотите удалить выбранный курс?</p>}
                             <div className="list-table-modal-content-buttons">
                                 <AccountPageButtonComponent

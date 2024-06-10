@@ -60,7 +60,7 @@ function QuestionnaireContainerComponent(props) {
         },
         {
             link: "/questionnaires",
-            name: "Анкетирование"
+            name: "Опросы"
         },
         {
             link: "/questionnaires/" + id,

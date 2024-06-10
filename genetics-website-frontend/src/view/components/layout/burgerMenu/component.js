@@ -22,7 +22,7 @@ function BurgerMenuComponent(props) {
                     <Link to="/education" className='burger-menu-button'>ОБРАЗОВАНИЕ</Link>
                 </li>
                 <li className="burger-menu-element">
-                    <Link to="/questionnaires" className='burger-menu-button'>АНКЕТИРОВАНИЕ</Link>
+                    <Link to="/questionnaires" className='burger-menu-button'>ОПРОСЫ</Link>
                 </li>
                 <li className="burger-menu-element">
                     <Link to="/about" className='burger-menu-button'>О КАФЕДРЕ</Link>

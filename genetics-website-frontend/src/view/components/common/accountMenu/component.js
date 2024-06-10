@@ -74,12 +74,12 @@ function AccountMenuComponent(props) {
                     <Link className={"account-menu-button"}
                           to={"/account/create-questionnaire"}>
                         <span className="material-symbols-outlined account-icon">help_center</span>
-                        Создание анкет
+                        Создание опроса
                     </Link>
                     <Link className={"account-menu-button"}
                           to={"/account/questionnaire-list"}>
                         <span className="material-symbols-outlined account-icon">quiz</span>
-                        Список анкет
+                        Список опросов
                     </Link>
                 </div>
 

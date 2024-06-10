@@ -173,11 +173,11 @@ function CreateQuestionnaireContainerComponent(props) {
         <div className="create-questionnaire-container">
             <div className="create-questionnaire-container-row-1">
                 <AccountPageTitleComponent
-                    title="Создание анкет"/>
+                    title="Создание опроса"/>
             </div>
             <div className="create-questionnaire-container-row-2">
                 <AccountPageSubtitleComponent
-                    title={"Название анкеты *"}/>
+                    title={"Название опроса *"}/>
                 <div className="create-questionnaire-title-input">
                     <AccountPageInputComponent
                         type="text"

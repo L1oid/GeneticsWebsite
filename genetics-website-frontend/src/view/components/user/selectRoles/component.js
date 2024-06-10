@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./style.css"
-import { MODERATOR, STUDENT, TEACHER } from "../../../../state/consts/roles";
+import { ADMINISTRATOR, MODERATOR, STUDENT, TEACHER } from "../../../../state/consts/roles";
 
 function SelectRolesComponent(props) {
 
@@ -24,9 +24,18 @@ function SelectRolesComponent(props) {
                     <p className="select-roles-content-item">
                         <input className="select-roles-content-item-checkbox"
                                type="checkbox"
+                               id="administrator"
+                               checked={props.roles.includes(ADMINISTRATOR)}
+                               onChange={() => handleRoleChange(ADMINISTRATOR)}/>
+                        <label className="select-roles-content-item-label"
+                               htmlFor="administrator">Администратор</label>
+                    </p>
+                    <p className="select-roles-content-item">
+                        <input className="select-roles-content-item-checkbox"
+                               type="checkbox"
                                id="moderator"
                                checked={props.roles.includes(MODERATOR)}
-                               onChange={() => handleRoleChange(MODERATOR)} />
+                               onChange={() => handleRoleChange(MODERATOR)}/>
                         <label className="select-roles-content-item-label"
                                htmlFor="moderator">Модератор</label>
                     </p>
@@ -35,7 +44,7 @@ function SelectRolesComponent(props) {
                                type="checkbox"
                                id="teacher"
                                checked={props.roles.includes(TEACHER)}
-                               onChange={() => handleRoleChange(TEACHER)} />
+                               onChange={() => handleRoleChange(TEACHER)}/>
                         <label className="select-roles-content-item-label"
                                htmlFor="teacher">Учитель</label>
                     </p>
@@ -44,7 +53,7 @@ function SelectRolesComponent(props) {
                                type="checkbox"
                                id="student"
                                checked={props.roles.includes(STUDENT)}
-                               onChange={() => handleRoleChange(STUDENT)} />
+                               onChange={() => handleRoleChange(STUDENT)}/>
                         <label className="select-roles-content-item-label"
                                htmlFor="student">Студент</label>
                     </p>

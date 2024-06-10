@@ -140,7 +140,7 @@ function ListQuestionnairesContainerComponent(props) {
     return (
         <div className="list-questionnaires-container">
             <AccountPageTitleComponent
-                title="Список анкет"/>
+                title="Список опросов"/>
             <div className="list-questionnaires-container-row-2">
                 <AccountPageSubtitleComponent
                     title={"Список"}/>
