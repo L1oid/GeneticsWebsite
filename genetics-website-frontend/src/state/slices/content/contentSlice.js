@@ -188,8 +188,7 @@ const contentSlice = createSlice({
             type: NEWS,
             forSlider: false,
             title: "",
-            text: "<p><br></p>",
-            contactUs: "<p><br></p>"
+            text: "<p><br></p>"
         },
         articleNotFound: false,
         status: null,

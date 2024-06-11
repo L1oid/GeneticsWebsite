@@ -37,7 +37,7 @@ function CreateContentContainerComponent(props) {
     const [warningVisible, setWarningVisible] = useState(false);
 
     const [contentText, setContentText] = useState(previewContent.text);
-    const [contentContactUs, setContentContactUs] = useState(previewContent.contactUs);
+    const [contentContactUs, setContentContactUs] = useState("<p><br></p>");
     const [contentImages, setContentImages] = useState([]);
     const [contentSliderImage, setContentSliderImage] = useState(null);
 
@@ -71,9 +71,6 @@ function CreateContentContainerComponent(props) {
         dispatch(setPreviewContentText(contentText));
     }, [dispatch, contentText]);
 
-    useEffect(() => {
-        dispatch(setPreviewContactUs(contentContactUs));
-    }, [dispatch, contentContactUs]);
 
     const showImageWarning = (text) => {
         setImageWarning(text);
@@ -131,7 +128,7 @@ function CreateContentContainerComponent(props) {
             title: previewContent.title,
             type: previewContent.type,
             content: previewContent.text,
-            contactUs: previewContent.contactUs,
+            contactUs: contentContactUs,
             forSlider: previewContent.forSlider,
             sliderImage: contentSliderImage,
             previewImage: contentImages[0],
@@ -194,7 +191,7 @@ function CreateContentContainerComponent(props) {
                 <PreviewContentComponent
                     title={previewContent.title}
                     text={previewContent.text}
-                    contactUs={previewContent.contactUs}
+                    contactUs={contentContactUs}
                     images={contentImages.map(image => URL.createObjectURL(image))}/>
                 <div className="create-content-button-wrapper">
                     <AccountPageButtonComponent
