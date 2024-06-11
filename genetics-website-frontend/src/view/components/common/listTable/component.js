@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import './style.css';
-import {ARTICLE, EVENTS, NEWS, QUESTIONNAIRES, USERS} from "../../../../state/consts/contentTypes";
+import {ARTICLE, EVENTS, FREE, NEWS, QUESTIONNAIRES, SELECT, USERS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import AccountPageInputComponent from "../accountPageInput/component";
@@ -9,6 +9,8 @@ import AccountLoadMoreButtonComponent from "../accountLoadMoreButton/component";
 import parse from "html-react-parser";
 import {convertDateTime} from "../../../../state/functions/formatEventDate";
 import {convertUsersDate} from "../../../../state/functions/formatUsersDate";
+import ValuesSelectorComponent from "../valuesSelector/component";
+import {ADMINISTRATOR, MODERATOR, STUDENT, TEACHER} from "../../../../state/consts/roles";
 
 function ListTableComponent(props) {
 
@@ -116,7 +118,7 @@ function ListTableComponent(props) {
                         </th>
                         <th>Имя Фамилия</th>
                         <th>Почта</th>
-                        <th>Роли</th>
+                        <th>Роль</th>
                         <th
                             onClick={props.status === "loading" || props.date === "" ? undefined : props.handleDateFilter}
                             className={`list-table-filter-button ${props.date === "" ? "" : "hoverable"}`}>{renderDateCreateFilterIndicator()}
@@ -291,11 +293,20 @@ function ListTableComponent(props) {
                                 disabled={false}/>
                         </td>
                         <td>
-                            <AccountPageInputComponent
-                                type={"text"}
+                            <ValuesSelectorComponent
                                 value={props.searchRoleName}
                                 handle={props.setSearchRoleName}
-                                disabled={false}/>
+                                optionValueOne={""}
+                                titleSelectOne={"Без фильтра"}
+                                optionValueTwo={ADMINISTRATOR}
+                                titleSelectTwo={"Администратор"}
+                                optionValueThree={MODERATOR}
+                                titleSelectThree={"Модератор"}
+                                optionValueFour={TEACHER}
+                                titleSelectFour={"Учитель"}
+                                optionValueFive={STUDENT}
+                                titleSelectFive={"Студент"}
+                            />
                         </td>
                         <td>
                             <AccountPageInputComponent

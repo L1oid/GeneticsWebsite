@@ -11,11 +11,11 @@ import {getMediaUrl} from "../../functions/getMediaUrl";
 
 export const articleCreation = createAsyncThunk(
     "content/articleCreation",
-    async function({title, type, content, forSlider, sliderImage, previewImage, fileList}, {rejectWithValue, getState, dispatch}) {
+    async function({title, type, content, contactUs, forSlider, sliderImage, previewImage, fileList}, {rejectWithValue, getState, dispatch}) {
         try {
             if (type === NEWS) {
                 if (forSlider === true) {
-                    if (title === "" || content === "<p><br></p>" || sliderImage === null || previewImage === undefined) {
+                    if (title === "" || content === "<p><br></p>" || contactUs === "" || sliderImage === null || previewImage === undefined) {
                         return rejectWithValue({
                             status: 400,
                             statusText: 'Bad Request',
@@ -23,7 +23,7 @@ export const articleCreation = createAsyncThunk(
                         });
                     }
                 } else {
-                    if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
+                    if (title === "" || content === "<p><br></p>" || contactUs === "" || previewImage === undefined) {
                         return rejectWithValue({
                             status: 400,
                             statusText: 'Bad Request',
@@ -32,7 +32,7 @@ export const articleCreation = createAsyncThunk(
                     }
                 }
             } else {
-                if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
+                if (title === "" || content === "<p><br></p>" || contactUs === "" || previewImage === undefined) {
                     return rejectWithValue({
                         status: 400,
                         statusText: 'Bad Request',

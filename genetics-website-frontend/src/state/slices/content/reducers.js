@@ -84,6 +84,10 @@ export const setPreviewContentTextReducer = (state, action) => {
     state.previewContent.text = action.payload
 }
 
+export const setPreviewContactUsReducer = (state, action) => {
+    state.previewContent.contactUs = action.payload
+}
+
 export const clearContentErrorStatusSuccessReducer = (state) => {
     state.error = null;
     state.status = null;

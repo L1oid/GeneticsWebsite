@@ -5,6 +5,7 @@ import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
 import {formatDate} from "../../../../state/functions/formatDate";
 import SingleContentHeadingComponent from "../../common/singleContentHeading/component";
+import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 
 function SingleContentComponent(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,7 +51,7 @@ function SingleContentComponent(props) {
         <div className="page-container">
             <div className="single-content-container">
                 <BreadcrumpComponent ways={ways}/>
-                <SingleContentHeadingComponent title={props.title} />
+                <SingleContentHeadingComponent title={props.title}/>
                 <h2 className="single-content-date">
                     {formatDate(props.date)}
                 </h2>
@@ -74,6 +75,13 @@ function SingleContentComponent(props) {
                         </div>
                     </div>
                 )}
+                <div className="single-content-contact-us">
+                    <AccountPageTitleComponent title={"Свяжитесь с нами"}/>
+                    <p className="single-content-contact-us-text">
+                        <p>+7 (3842) 58-01-66</p>
+                        <p>Fund.med2021@mail.ru</p>
+                    </p>
+                </div>
             </div>
         </div>
     )

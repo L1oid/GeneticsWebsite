@@ -24,6 +24,21 @@
     overflow-wrap: break-word;
 }
 
+.single-content-contact-us {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.single-content-contact-us-text {
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #272727;
+    text-align: justify;
+    font-size: 18px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
 .single-content-hyperlink {
     word-break: break-all;
 }
@@ -40,7 +55,7 @@
     padding-right: 10px;
     padding-left: 10px;
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     position: relative;
     max-width: 100%;
 }

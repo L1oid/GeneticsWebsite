@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import parse from 'html-react-parser';
 
 import './style.css';
+import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 
 function PreviewContentComponent(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,6 +52,12 @@ function PreviewContentComponent(props) {
                     </div>
                 </div>
             )}
+            <div className="single-content-contact-us preview-content-padding">
+                <AccountPageTitleComponent title={"Свяжитесь с нами"}/>
+                <p className="single-content-contact-us-text">
+                    {props.contactUs === "<p><br></p>" ? "Контакты" : parse(props.contactUs)}
+                </p>
+            </div>
         </div>
     )
 }

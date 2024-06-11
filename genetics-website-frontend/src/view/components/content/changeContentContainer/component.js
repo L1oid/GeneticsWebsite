@@ -218,6 +218,7 @@ function ChangeContentContainerComponent(props) {
                 <PreviewContentComponent
                     title={title}
                     text={contentText}
+                    contactUs={"Бебра"}
                     images={allImages}/>
                 <div className="change-content-button-wrapper">
                     <AccountPageButtonComponent

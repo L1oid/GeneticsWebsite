@@ -11,7 +11,7 @@ import {
     clearQuestionnaireQuestionsAnswersListReducer, clearQuestionnaireQuestionsListReducer,
     clearQuestionnaireReducer,
     clearSingleContentReducer,
-    setArticleNotFoundFalseReducer,
+    setArticleNotFoundFalseReducer, setPreviewContactUsReducer,
     setPreviewContentForSliderReducer,
     setPreviewContentTextReducer,
     setPreviewContentTitleReducer,
@@ -71,6 +71,8 @@ const contentPersistConfig = {
         "eventList",
         "freeCoursesList",
         "closeCoursesList",
+        "freeCoursesListLength",
+        "closeCoursesListLength",
         "course",
         "contentListSlider",
         "sliderDefaultImage",
@@ -185,7 +187,8 @@ const contentSlice = createSlice({
             type: NEWS,
             forSlider: false,
             title: "",
-            text: "<p><br></p>"
+            text: "<p><br></p>",
+            contactUs: "<p><br></p>"
         },
         articleNotFound: false,
         status: null,
@@ -211,6 +214,7 @@ const contentSlice = createSlice({
         setSolveQuestionnaireSuccessFalse: setSolveQuestionnaireSuccessFalseReducer,
         clearFreeCoursesList: clearFreeCoursesListReducer,
         clearCloseCoursesList: clearCloseCoursesListReducer,
+        setPreviewContactUs: setPreviewContactUsReducer,
         clearCourse: clearCourseReducer
     },
     extraReducers: builder => {
@@ -531,6 +535,7 @@ export const {
     clearFreeCoursesList,
     clearCloseCoursesList,
     clearCourse,
+    setPreviewContactUs,
     clearContentErrorStatusSuccess} = contentSlice.actions;
 
 const persistedContentReducer = persistReducer(contentPersistConfig, contentSlice.reducer);

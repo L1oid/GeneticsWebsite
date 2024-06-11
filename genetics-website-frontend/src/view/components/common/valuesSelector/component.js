@@ -13,6 +13,12 @@ function ValuesSelectorComponent(props) {
             {props.optionValueThree !== undefined && (
                 <option value={props.optionValueThree}>{props.titleSelectThree}</option>
             )}
+            {props.optionValueFour !== undefined && (
+                <option value={props.optionValueFour}>{props.titleSelectFour}</option>
+            )}
+            {props.optionValueFive !== undefined && (
+                <option value={props.optionValueFive}>{props.titleSelectFive}</option>
+            )}
         </select>
     );
 }
