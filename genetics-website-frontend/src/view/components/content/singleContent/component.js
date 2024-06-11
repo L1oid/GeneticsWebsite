@@ -63,7 +63,7 @@ function SingleContentComponent(props) {
                         <h2 className="single-content-count-images">
                             {currentIndex + 1}/{props.images.length}
                         </h2>
-                        <div className="single-content-slider">
+                        <div className={props.contactInfo && props.contactInfo !== "<p><br></p>" ? "single-content-slider" : "single-content-slider with-margin-bottom-30"}>
                             <span className="material-symbols-outlined single-content-slider-left"
                                   onClick={goToPrevious}>chevron_left</span>
                             <span className="material-symbols-outlined single-content-slider-right"
@@ -75,13 +75,14 @@ function SingleContentComponent(props) {
                         </div>
                     </div>
                 )}
-                <div className="single-content-contact-us">
-                    <AccountPageTitleComponent title={"Свяжитесь с нами"}/>
-                    <p className="single-content-contact-us-text">
-                        <p>+7 (3842) 58-01-66</p>
-                        <p>Fund.med2021@mail.ru</p>
-                    </p>
-                </div>
+                {props.contactInfo && props.contactInfo !== "<p><br></p>" && (
+                    <div className="single-content-contact-us">
+                        <AccountPageTitleComponent title={"Свяжитесь с нами"}/>
+                        <div className="single-content-contact-us-text">
+                            {parse(props.contactInfo)}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

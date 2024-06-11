@@ -179,6 +179,7 @@ const contentSlice = createSlice({
             uploadedBy: null,
             reviewImage: null,
             content: "",
+            contactInfo: "",
             imageList: [],
             mediaFilesMap: {},
             type: null

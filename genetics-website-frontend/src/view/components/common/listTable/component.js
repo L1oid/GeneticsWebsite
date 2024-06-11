@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import './style.css';
-import {ARTICLE, EVENTS, FREE, NEWS, QUESTIONNAIRES, SELECT, USERS} from "../../../../state/consts/contentTypes";
+import {ARTICLE, EVENTS, NEWS, QUESTIONNAIRES, USERS} from "../../../../state/consts/contentTypes";
 import {formatDate} from "../../../../state/functions/formatDate";
 import AccountPageButtonComponent from "../accountPageButton/component";
 import AccountPageInputComponent from "../accountPageInput/component";
@@ -363,6 +363,12 @@ function ListTableComponent(props) {
                             {convertUsersDate(user.createdAt)}
                         </td>
                         <td>
+                            <div className="list-table-change-up-button">
+                                <AccountPageButtonComponent
+                                    title={"Изменить"}
+                                    status={props.status}
+                                    handle={() => handleChangeClick(user.userId)}/>
+                            </div>
                             <AccountPageButtonComponent
                                 title={"Удалить"}
                                 status={props.status}

@@ -5,6 +5,7 @@ export const clearPreviewContentReducer = (state, action) => {
     state.previewContent.forSlider = false
     state.previewContent.title = ""
     state.previewContent.text = "<p><br></p>"
+    state.previewContent.contactUs = "<p><br></p>"
 }
 
 export const setRerenderAfterDeleteFalseReducer = (state, action) => {

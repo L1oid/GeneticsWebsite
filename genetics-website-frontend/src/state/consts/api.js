@@ -1,7 +1,10 @@
 export const api = {
-    url: "http://genetic.kemsu.ru/",
+    //url: "http://genetic.kemsu.ru/",
+    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
-    changePassword: "api/users/",
+    changePassword: function (id) {
+        return `api/users/${id}/password`
+    },
     registrationUser: "api/users",
     articleCreation: "api/articles",
     createEvents: "api/events",
@@ -231,4 +234,10 @@ export const api = {
     deleteCourse: function (id) {
         return `api/courses?id=${id}`
     },
+    getUserInfo: function (id) {
+        return `api/users?id=${id}`;
+    },
+    editUserInfo: function (id) {
+        return `api/users/${id}/information`;
+    }
 }

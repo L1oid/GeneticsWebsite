@@ -54,9 +54,9 @@ function PreviewContentComponent(props) {
             )}
             <div className="single-content-contact-us preview-content-padding">
                 <AccountPageTitleComponent title={"Свяжитесь с нами"}/>
-                <p className="single-content-contact-us-text">
+                <div className="single-content-contact-us-text">
                     {props.contactUs === "<p><br></p>" ? "Контакты" : parse(props.contactUs)}
-                </p>
+                </div>
             </div>
         </div>
     )

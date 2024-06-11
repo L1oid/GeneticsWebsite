@@ -84,7 +84,6 @@ import {
     CONTENT_USER_TOKEN_ERROR,
 } from "../../consts/errorText/content";
 import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
-import {globalExit} from "../../functions/globalExit";
 
 export const setCreateEventError = (state, action) => {
     state.status = "rejected"
@@ -351,10 +350,10 @@ export const setArticleCreationError = (state, action) => {
                     state.error = "Количество изображений не может превышать - 10, не включая титульное изображение";
                     break;
                 case CONTENT_NULL_ARTICLE_FIELDS:
-                    state.error = "Некоторые поля не заполнены";
+                    state.error = "Обязательные поля не заполнены";
                     break;
                 case CONTENT_EMPTY_ARTICLE_FIELDS:
-                    state.error = "Некоторые поля не заполнены";
+                    state.error = "Обязательные поля не заполнен";
                     break;
                 case CONTENT_PREVIEW_IMAGE_IS_NOT_SUPPORTED_FORMAT:
                     state.error = "Титульное изображение имеет неверный формат";
@@ -377,7 +376,6 @@ export const setArticleCreationError = (state, action) => {
             switch (action.payload.text) {
                 case CONTENT_COULD_NOT_GET_USER_ID:
                     state.error = "Отсутствует ID пользователя";
-                    globalExit();
                     break;
                 default:
                     state.error = "Неизвестная ошибка";
@@ -388,11 +386,9 @@ export const setArticleCreationError = (state, action) => {
             switch (action.payload.text) {
                 case CONTENT_NO_AUTH_HEADER_PRESENT:
                     state.error = "Отсутствует заголовок авторизации";
-                    globalExit();
                     break;
                 case CONTENT_USER_DONT_HAVE_MODERATOR_PRIVILEGES:
                     state.error = "Отсутствуют права на данное действие";
-                    globalExit();
                     break;
                 default:
                     state.error = "Неизвестная ошибка";

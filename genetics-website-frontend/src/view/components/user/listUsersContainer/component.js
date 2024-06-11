@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {USERS} from "../../../../state/consts/contentTypes";
 import {fetchUsers} from "../../../../state/slices/user/asyncActions";
 import {clearUsersList} from "../../../../state/slices/user/userSlice";
+import {useNavigate} from "react-router-dom";
 
 function ListUsersContainerComponent(props) {
 
@@ -24,6 +25,7 @@ function ListUsersContainerComponent(props) {
     const [tempSearchRoleName, setTempSearchRoleName] = useState("");
     const [tempSearchDate, setTempSearchDate] = useState("");
 
+    const navigate = useNavigate();
 
     const [refresh, setRefresh] = useState(0);
 
@@ -129,6 +131,10 @@ function ListUsersContainerComponent(props) {
         console.log("Deleted: " + id)
     }
 
+    const changeButtonHandle = (id) => {
+        navigate(`/account/users-list/edit-user/${id}`);
+    }
+
     return (
         <div className="list-users-container">
             <AccountPageTitleComponent
@@ -147,6 +153,7 @@ function ListUsersContainerComponent(props) {
                     handleUsernameSort={handleUsernameSort}
                     handleDateFilter={handleDateFilter}
                     dateFilter={dateFilter}
+                    changeButtonHandle={changeButtonHandle}
                     orderBy={orderBy}
                     date={showDate}
                     setDate={handleDateChange}

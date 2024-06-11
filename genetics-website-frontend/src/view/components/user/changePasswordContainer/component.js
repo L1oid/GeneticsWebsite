@@ -36,7 +36,8 @@ function ChangePasswordContainerComponent(props) {
         const changePasswordData = {
             oldPassword: oldPassword,
             password: password,
-            repeatPassword: repeatPassword
+            repeatPassword: repeatPassword,
+            changePasswordType: "myself"
         }
         dispatch(changePassword(changePasswordData))
         clearInputs();

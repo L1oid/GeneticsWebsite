@@ -27,8 +27,9 @@ function ChangeContentContainerComponent(props) {
     const [warningVisible, setWarningVisible] = useState(false);
     
     const [title, setTitle] = useState("");
-    const [contentText, setContentText] = useState("");
+    const [contentText, setContentText] = useState("<p><br></p>");
     const [contentType, setContentType] = useState("");
+    const [contentContactInfo, setContentContactInfo] = useState("<p><br></p>");
 
     const [allImages, setAllImages] = useState([]);
 
@@ -53,10 +54,13 @@ function ChangeContentContainerComponent(props) {
     useEffect(() => {
         setTitle(content.title)
         setContentText(content.content)
-        setOldContentImages(content.imageList.slice(1));
+        setOldContentImages(content.imageList.slice(1))
         setOldPreviewImage(content.imageList[0])
         setContentType(content.type)
-    }, [content.content, content.imageList, content.previewImage, content.title, content.type])
+        if (content.contactInfo) {
+            setContentContactInfo(content.contactInfo)
+        }
+    }, [content.contactInfo, content.content, content.imageList, content.previewImage, content.title, content.type])
 
 
     useEffect(() => {
@@ -173,7 +177,8 @@ function ChangeContentContainerComponent(props) {
             previewImage: previewImage,
             oldPreviewImage: oldPreviewImage,
             addFileList: contentImages,
-            deleteFileList: deletedOldContentImages
+            deleteFileList: deletedOldContentImages,
+            contactInfo: contentContactInfo
         }
         dispatch(articleEdition(article));
     }
@@ -200,6 +205,11 @@ function ChangeContentContainerComponent(props) {
                     value={contentText}
                     setValue={setContentText}/>
                 <AccountPageSubtitleComponent
+                    title={"Свяжитесь с нами"}/>
+                <TextEditorComponent
+                    value={contentContactInfo}
+                    setValue={setContentContactInfo}/>
+                <AccountPageSubtitleComponent
                     title={"Изображения"}/>
                 <ChangeImageListComponent
                     warningVisible={warningVisible}
@@ -218,7 +228,7 @@ function ChangeContentContainerComponent(props) {
                 <PreviewContentComponent
                     title={title}
                     text={contentText}
-                    contactUs={"Бебра"}
+                    contactUs={contentContactInfo}
                     images={allImages}/>
                 <div className="change-content-button-wrapper">
                     <AccountPageButtonComponent

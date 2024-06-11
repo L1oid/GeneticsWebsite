@@ -161,7 +161,7 @@ function CreateContentContainerComponent(props) {
                     </div>
                 </div>
                 <AccountPageSubtitleComponent
-                    title={"Заголовок"}/>
+                    title={"Заголовок *"}/>
                 <div className="create-content-title-input">
                     <AccountPageInputComponent
                         type="text"
@@ -170,7 +170,7 @@ function CreateContentContainerComponent(props) {
                         disabled={false}/>
                 </div>
                 <AccountPageSubtitleComponent
-                    title={"Содержание"}/>
+                    title={"Содержание *"}/>
                 <TextEditorComponent
                     value={contentText}
                     setValue={setContentText}/>
@@ -180,7 +180,7 @@ function CreateContentContainerComponent(props) {
                     value={contentContactUs}
                     setValue={setContentContactUs}/>
                 <AccountPageSubtitleComponent
-                    title={"Изображения"}/>
+                    title={"Изображения *"}/>
                 <ImageListComponent
                     sliderImage={contentSliderImage}
                     images={contentImages}

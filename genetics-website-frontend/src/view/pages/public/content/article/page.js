@@ -34,6 +34,7 @@ function ArticlePage(props) {
             title={content.title}
             date={content.createdAt}
             content={content.content}
+            contactInfo={content.contactInfo}
             type={ARTICLE}
             titleType={"Наука"}/>
     )

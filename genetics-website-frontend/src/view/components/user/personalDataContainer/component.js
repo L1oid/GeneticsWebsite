@@ -8,9 +8,10 @@ import RowInputTextComponent from "../../common/rowInputText/component";
 function PersonalDataContainerComponent(props) {
 
     const roles = useSelector(state => state.user.roles);
-    const login = useSelector(state => state.user.login)
-    const firstName = useSelector(state => state.user.firstName)
-    const lastName = useSelector(state => state.user.lastName)
+    const login = useSelector(state => state.user.login);
+    const firstName = useSelector(state => state.user.firstName);
+    const lastName = useSelector(state => state.user.lastName);
+    const email = useSelector(state => state.user.email);
 
 
     return (
@@ -23,6 +24,13 @@ function PersonalDataContainerComponent(props) {
                     title="Логин"
                     type="text"
                     value={login}
+                    handle={null}
+                    disabled={true}
+                />
+                <RowInputTextComponent
+                    title="Почта"
+                    type="text"
+                    value={email}
                     handle={null}
                     disabled={true}
                 />

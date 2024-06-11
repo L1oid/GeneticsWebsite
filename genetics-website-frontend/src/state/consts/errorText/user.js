@@ -21,6 +21,15 @@ export const USER_INVALID_TYPE_VALUE_PAGE_OR_PAGE_SIZE = "Invalid page or pageSi
 export const USER_ROLE_DOESNT_EXIST = "Such role doesn't exist"
 export const USER_INTERNAL_SERVER_ERROR = "Internal Server Error"
 export const USER_INVALID_DATE_FORMAT = "Invalid date format"
+export const USER_INVALID_USER_ID = "Didn't provide user id or it is equal to 0"
+export const USER_NOT_FOUND = "Could not find provided user"
+export const USER_NEW_PASSWORDS_NOT_EQUAL = "New passwords are not equal"
+export const USER_YOU_MUST_PROVIDE_NEW_PASSWORD_AND_REPEAT_IT = "You must provide new password and repeat it"
+export const USER_COULD_NOT_GET_USER_ID = "Couldn't get user id"
+export const USER_DOES_NOT_EXIST = "User doesn't exist"
+export const USER_CANT_CHANGE_OTHER_PEOPLES_ROLES = "You can't change other peoples' roles"
+export const USER_INTERNAL_ERROR = "NOT IMPLEMENTED"
+
 
 
 

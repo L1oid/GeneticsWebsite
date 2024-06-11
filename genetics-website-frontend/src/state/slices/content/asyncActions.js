@@ -4,10 +4,11 @@ import {
     CONTENT_NULL_ARTICLE_FIELDS, CONTENT_NULL_COURSE_FIELDS,
     CONTENT_NULL_QUESTIONNAIRE_FIELDS,
 } from "../../consts/errorText/content";
-import {SERVER_IS_NOT_RESPONDING} from "../../consts/errorText/common";
+import {SERVER_IS_NOT_RESPONDING, USER_DOESNT_EXIST_IN_SYSTEM} from "../../consts/errorText/common";
 import {api} from "../../consts/api";
 import {NEWS} from "../../consts/contentTypes";
 import {getMediaUrl} from "../../functions/getMediaUrl";
+import {removeUser} from "../user/userSlice";
 
 export const articleCreation = createAsyncThunk(
     "content/articleCreation",
@@ -15,7 +16,7 @@ export const articleCreation = createAsyncThunk(
         try {
             if (type === NEWS) {
                 if (forSlider === true) {
-                    if (title === "" || content === "<p><br></p>" || contactUs === "" || sliderImage === null || previewImage === undefined) {
+                    if (title === "" || content === "<p><br></p>" || sliderImage === null || previewImage === undefined) {
                         return rejectWithValue({
                             status: 400,
                             statusText: 'Bad Request',
@@ -23,7 +24,7 @@ export const articleCreation = createAsyncThunk(
                         });
                     }
                 } else {
-                    if (title === "" || content === "<p><br></p>" || contactUs === "" || previewImage === undefined) {
+                    if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
                         return rejectWithValue({
                             status: 400,
                             statusText: 'Bad Request',
@@ -32,7 +33,7 @@ export const articleCreation = createAsyncThunk(
                     }
                 }
             } else {
-                if (title === "" || content === "<p><br></p>" || contactUs === "" || previewImage === undefined) {
+                if (title === "" || content === "<p><br></p>" || previewImage === undefined) {
                     return rejectWithValue({
                         status: 400,
                         statusText: 'Bad Request',
@@ -50,6 +51,9 @@ export const articleCreation = createAsyncThunk(
             formData.append('forSlider', forSlider);
             formData.append('sliderImage', sliderImage);
             formData.append('previewImage', previewImage);
+            if (contactUs !== "<p><br></p>") {
+                formData.append('contactInfo', contactUs);
+            }
 
             for (let i = 0; i < fileList.length; i++) {
                 const file = fileList[i];
@@ -78,6 +82,12 @@ export const articleCreation = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -155,6 +165,12 @@ export const courseCreation = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -195,6 +211,12 @@ export const eventCreation = createAsyncThunk(
 
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -248,6 +270,12 @@ export const questionnaireCreation = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -279,6 +307,12 @@ export const solveQuestionnaire = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -299,7 +333,7 @@ export const solveQuestionnaire = createAsyncThunk(
 
 export const articleEdition = createAsyncThunk(
     "content/articleEdition",
-    async function({articleId, title, type, content, previewImage, oldPreviewImage, addFileList, deleteFileList}, {rejectWithValue, getState, dispatch}) {
+    async function({articleId, title, type, content, contactInfo, previewImage, oldPreviewImage, addFileList, deleteFileList}, {rejectWithValue, getState, dispatch}) {
         try {
             if (title === "" || content === "<p><br></p>" || (previewImage === null && oldPreviewImage === null)) {
                 return rejectWithValue({
@@ -318,6 +352,7 @@ export const articleEdition = createAsyncThunk(
             formData.append('title', title);
             formData.append('type', type);
             formData.append('content', content);
+            formData.append('contactInfo', contactInfo);
             if (previewImage !== null) {
                 formData.append('previewImage', previewImage);
             }
@@ -353,6 +388,12 @@ export const articleEdition = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -371,13 +412,19 @@ export const articleEdition = createAsyncThunk(
 
 export const articleDeletion = createAsyncThunk(
     "content/articleDeletion",
-    async function(id, {rejectWithValue, getState}) {
+    async function(id, {rejectWithValue, getState, dispatch}) {
         try {
             const state = getState();
             /** @namespace state.user **/
             const response = await fetch(api.url + api.deleteArticle(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -396,13 +443,19 @@ export const articleDeletion = createAsyncThunk(
 
 export const courseDeletion = createAsyncThunk(
     "content/courseDeletion",
-    async function(id, {rejectWithValue, getState}) {
+    async function(id, {rejectWithValue, getState, dispatch}) {
         try {
             const state = getState();
             /** @namespace state.user **/
             const response = await fetch(api.url + api.deleteCourse(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -421,13 +474,19 @@ export const courseDeletion = createAsyncThunk(
 
 export const eventDeletion = createAsyncThunk(
     "content/eventDeletion",
-    async function(id, {rejectWithValue, getState}) {
+    async function(id, {rejectWithValue, getState, dispatch}) {
         try {
             const state = getState();
             /** @namespace state.user **/
             const response = await fetch(api.url + api.deleteEvent(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -446,13 +505,19 @@ export const eventDeletion = createAsyncThunk(
 
 export const questionnaireDeletion = createAsyncThunk(
     "content/questionnaireDeletion",
-    async function(questionnaireId, {rejectWithValue, getState}) {
+    async function(questionnaireId, {rejectWithValue, getState, dispatch}) {
         try {
             const state = getState();
             /** @namespace state.user **/
             const response = await fetch(api.url + api.deleteQuestionnaire(questionnaireId), {method: 'DELETE', headers: {'Authorization': state.user.token}});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -471,7 +536,7 @@ export const questionnaireDeletion = createAsyncThunk(
 
 export const getQuestionnaireResults = createAsyncThunk(
     "content/getQuestionnaireResults",
-    async function (id, { rejectWithValue, getState }) {
+    async function (id, { rejectWithValue, getState, dispatch }) {
         try {
             const state = getState();
             const response = await fetch(api.url + api.getQuestionnaireResults(id), {
@@ -480,6 +545,12 @@ export const getQuestionnaireResults = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -504,11 +575,17 @@ export const getQuestionnaireResults = createAsyncThunk(
 
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
-    async function({page, pageSize, type, author, title, date, dateFilter, orderByTitle}, {rejectWithValue}) {
+    async function({page, pageSize, type, author, title, date, dateFilter, orderByTitle}, {rejectWithValue,dispatch}) {
         try {
             const responseAmountContent = await fetch(api.url + api.getAmountArticles(author, type, title, date, dateFilter), {method: 'GET'});
             if (!responseAmountContent.ok) {
                 const text = await responseAmountContent.text();
+                if (responseAmountContent.status === 401) {
+                    if (responseAmountContent.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseAmountContent.status,
                     statusText: responseAmountContent.statusText,
@@ -518,6 +595,12 @@ export const fetchContent = createAsyncThunk(
             const responseContent = await fetch(api.url + api.getArticles(page, pageSize, type, author, title, date, dateFilter, orderByTitle), {method: 'GET'});
             if (!responseContent.ok) {
                 const text = await responseContent.text();
+                if (responseContent.status === 401) {
+                    if (responseContent.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseContent.status,
                     statusText: responseContent.statusText,
@@ -548,11 +631,17 @@ export const fetchContent = createAsyncThunk(
 
 export const fetchSliderContent = createAsyncThunk(
     "content/fetchSliderContent",
-    async function({amount}, {rejectWithValue}) {
+    async function({amount}, {rejectWithValue, dispatch}) {
         try {
             const responseContent = await fetch(api.url + api.getSliders(amount), {method: 'GET'});
             if (!responseContent.ok) {
                 const text = await responseContent.text();
+                if (responseContent.status === 401) {
+                    if (responseContent.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseContent.status,
                     statusText: responseContent.statusText,
@@ -579,11 +668,17 @@ export const fetchSliderContent = createAsyncThunk(
 
 export const fetchEvents = createAsyncThunk(
     "content/fetchEvents",
-    async function({amount}, {rejectWithValue}) {
+    async function({amount}, {rejectWithValue, dispatch}) {
         try {
             const responseContent = await fetch(api.url + api.getEvents(amount), {method: 'GET'});
             if (!responseContent.ok) {
                 const text = await responseContent.text();
+                if (responseContent.status === 401) {
+                    if (responseContent.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseContent.status,
                     statusText: responseContent.statusText,
@@ -603,11 +698,17 @@ export const fetchEvents = createAsyncThunk(
 
 export const fetchSingleContent = createAsyncThunk(
     "content/fetchSingleContent",
-    async function({id}, {rejectWithValue}) {
+    async function({id}, {rejectWithValue, dispatch}) {
         try {
             const response = await fetch(api.url + api.getSingleArticle(id), {method: 'GET'});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -647,11 +748,17 @@ export const fetchSingleContent = createAsyncThunk(
 
 export const fetchQuestionnaires = createAsyncThunk(
     "content/fetchQuestionnaires",
-    async function({page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle}, {rejectWithValue}) {
+    async function({page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle}, {dispatch, rejectWithValue}) {
         try {
             const responseAmountQuestionnaire = await fetch(api.url + api.getAmountQuestionnaires(title, createdBy, createdAt, dateFilter), {method: 'GET'});
             if (!responseAmountQuestionnaire.ok) {
                 const text = await responseAmountQuestionnaire.text();
+                if (responseAmountQuestionnaire.status === 401) {
+                    if (responseAmountQuestionnaire.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseAmountQuestionnaire.status,
                     statusText: responseAmountQuestionnaire.statusText,
@@ -661,6 +768,12 @@ export const fetchQuestionnaires = createAsyncThunk(
             const responseQuestionnaire = await fetch(api.url + api.getQuestionnaires(page, pageSize, title, createdBy, createdAt, dateFilter, orderByTitle), {method: 'GET'});
             if (!responseQuestionnaire.ok) {
                 const text = await responseQuestionnaire.text();
+                if (responseQuestionnaire.status === 401) {
+                    if (responseQuestionnaire.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseQuestionnaire.status,
                     statusText: responseQuestionnaire.statusText,
@@ -685,11 +798,17 @@ export const fetchQuestionnaires = createAsyncThunk(
 
 export const fetchCourses = createAsyncThunk(
     "content/fetchCourses",
-    async function({page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor}, {rejectWithValue, getState}) {
+    async function({page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor}, {dispatch, rejectWithValue, getState}) {
         try {
             const responseAmountCourses = await fetch(api.url + api.getCoursesAmount(courseProtection, searchQuery, author, date, dateFilter), {method: 'GET'});
             if (!responseAmountCourses.ok) {
                 const text = await responseAmountCourses.text();
+                if (responseAmountCourses.status === 401) {
+                    if (responseAmountCourses.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseAmountCourses.status,
                     statusText: responseAmountCourses.statusText,
@@ -699,6 +818,12 @@ export const fetchCourses = createAsyncThunk(
             const responseCourses = await fetch(api.url + api.getCourses(page, pageSize, courseProtection, searchQuery, author, date, dateFilter, orderByTitleAuthor), {method: 'GET'});
             if (!responseCourses.ok) {
                 const text = await responseCourses.text();
+                if (responseCourses.status === 401) {
+                    if (responseCourses.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: responseCourses.status,
                     statusText: responseCourses.statusText,
@@ -723,7 +848,7 @@ export const fetchCourses = createAsyncThunk(
 
 export const fetchCourse = createAsyncThunk(
     "content/fetchCourse",
-    async function({id}, {rejectWithValue, getState}) {
+    async function({id}, {dispatch, rejectWithValue, getState}) {
         try {
             const state = getState();
             const response = await fetch(api.url + api.getCourse(id), {
@@ -732,6 +857,12 @@ export const fetchCourse = createAsyncThunk(
             });
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -775,11 +906,17 @@ export const fetchCourse = createAsyncThunk(
 
 export const fetchQuestionnaire = createAsyncThunk(
     "content/fetchQuestionnaire",
-    async function({id}, {rejectWithValue}) {
+    async function({id}, {dispatch, rejectWithValue}) {
         try {
             const response = await fetch(api.url + api.getQuestionnaire(id), {method: 'GET'});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -803,11 +940,17 @@ export const fetchQuestionnaire = createAsyncThunk(
 
 export const fetchQuestionnaireQuestions = createAsyncThunk(
     "content/fetchQuestionnaireQuestions",
-    async function({questionnaireId}, {rejectWithValue}) {
+    async function({questionnaireId}, {dispatch, rejectWithValue}) {
         try {
             const response = await fetch(api.url + api.getQuestionnaireQuestions(questionnaireId), {method: 'GET'});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,
@@ -827,11 +970,17 @@ export const fetchQuestionnaireQuestions = createAsyncThunk(
 
 export const fetchQuestionnaireQuestionsAnswers = createAsyncThunk(
     "content/fetchQuestionnaireQuestionsAnswers",
-    async function({questionId}, {rejectWithValue}) {
+    async function({questionId}, {dispatch, rejectWithValue}) {
         try {
             const response = await fetch(api.url + api.getQuestionnaireQuestionsAnswers(questionId), {method: 'GET'});
             if (!response.ok) {
                 const text = await response.text();
+                if (response.status === 401) {
+                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
                 return rejectWithValue({
                     status: response.status,
                     statusText: response.statusText,

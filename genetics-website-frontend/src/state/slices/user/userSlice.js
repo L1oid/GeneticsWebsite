@@ -1,17 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {authUser, changePassword, fetchUsers, registrationUser} from "./asyncActions";
-import {setAuthError, setChangePasswordError, setFetchUserError, setRegistrationUserError} from "./errorHandlers";
+import {authUser, changePassword, editUserInfo, fetchUsers, getUserInfo, registrationUser} from "./asyncActions";
 import {
-    clearUserErrorStatusSuccessReducer, clearUsersListReducer,
+    setAuthError,
+    setChangePasswordError, setEditUserInfoError,
+    setFetchUserError,
+    setGetUserInfoError,
+    setRegistrationUserError
+} from "./errorHandlers";
+import {
+    clearUserErrorStatusSuccessReducer, clearUserInfoReducer, clearUsersListReducer,
     removeUserReducer,
     setUserReducer
 } from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
-import {fetchContent} from "../content/asyncActions";
-import {ARTICLE, NEWS} from "../../consts/contentTypes";
-import {setFetchContentError} from "../content/errorHandlers";
 
 const userPersistConfig = {
     key: 'user',
@@ -20,7 +23,10 @@ const userPersistConfig = {
         "status",
         "error",
         "success",
-        "users"
+        "users",
+        "usersList",
+        "usersListLength",
+        "userInfo"
     ]
 };
 
@@ -38,13 +44,22 @@ const userSlice = createSlice({
         error: null,
         success: null,
         usersList: [],
-        usersListLength: null
+        usersListLength: null,
+        userInfo: {
+            firstName: "",
+            email: "",
+            id: null,
+            lastName: "",
+            roleNames: [],
+            username: ""
+        }
     },
     reducers: {
         setUser: setUserReducer,
         removeUser: removeUserReducer,
         clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer,
-        clearUsersList: clearUsersListReducer
+        clearUsersList: clearUsersListReducer,
+        clearUserInfo: clearUserInfoReducer
     },
     extraReducers: builder => {
         builder.addCase(fetchUsers.pending, (state, action) => {
@@ -60,6 +75,18 @@ const userSlice = createSlice({
             state.error = null;
         })
         builder.addCase(fetchUsers.rejected, setFetchUserError)
+
+        builder.addCase(getUserInfo.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(getUserInfo.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.userInfo = action.payload
+            state.error = null;
+        })
+        builder.addCase(getUserInfo.rejected, setGetUserInfoError)
 
         builder.addCase(authUser.pending, (state, action) => {
             state.status = 'loading';
@@ -96,10 +123,22 @@ const userSlice = createSlice({
             state.success = "Пользователь успешно создан";
         })
         builder.addCase(registrationUser.rejected, (setRegistrationUserError))
+
+        builder.addCase(editUserInfo.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(editUserInfo.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.success = "Данные пользователя успешно изменены";
+        })
+        builder.addCase(editUserInfo.rejected, (setEditUserInfoError))
     }
 });
 
-export const { setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
+export const { clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

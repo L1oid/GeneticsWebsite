@@ -60,6 +60,10 @@
     max-width: 100%;
 }
 
+.single-content-slider.with-margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
 .single-content-slider-image {
     display: block;
     max-width: 100%;

@@ -31,6 +31,7 @@ import CoursePage from "./view/pages/public/content/course/page";
 import CourseHelloContainerComponent from "./view/components/content/courseHelloContainer/component";
 import CreateCoursePage from "./view/pages/private/content/createCourse/page";
 import ListCoursesContainerComponent from "./view/components/content/listCoursesContainer/components";
+import EditUserPage from "./view/pages/private/user/editUser/page";
 
 function App() {
     return (
@@ -57,6 +58,7 @@ function App() {
                         <Route path="/account/change-password/" element={<ChangePasswordPage />} />
                         <Route path="/account/registration-user/" element={<RegistrationUserPage />} />
                         <Route path="/account/users-list/" element={<ListUsersPage />} />
+                        <Route path="/account/users-list/edit-user/:id" element={<EditUserPage />} />
                         <Route path="/account/create-content/" element={<CreateNewsPage />} />
                         <Route path="/account/content-list/" element={<ListContentPage />} />
                         <Route path="/account/content-list/edit-content/:id" element={<EditContentPage />} />
