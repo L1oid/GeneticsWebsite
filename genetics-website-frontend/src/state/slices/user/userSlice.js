@@ -1,6 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {authUser, changePassword, editUserInfo, fetchUsers, getUserInfo, registrationUser} from "./asyncActions";
+import {
+    authUser,
+    changePassword,
+    editUserInfo,
+    fetchUsers,
+    getUserInfo,
+    getUserSelfInfo,
+    registrationUser
+} from "./asyncActions";
 import {
     setAuthError,
     setChangePasswordError, setEditUserInfoError,
@@ -10,7 +18,7 @@ import {
 } from "./errorHandlers";
 import {
     clearUserErrorStatusSuccessReducer, clearUserInfoReducer, clearUsersListReducer,
-    removeUserReducer,
+    removeUserReducer, setUserInfoReducer,
     setUserReducer
 } from "./reducers";
 import storage from "redux-persist/lib/storage";
@@ -59,7 +67,8 @@ const userSlice = createSlice({
         removeUser: removeUserReducer,
         clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer,
         clearUsersList: clearUsersListReducer,
-        clearUserInfo: clearUserInfoReducer
+        clearUserInfo: clearUserInfoReducer,
+        setUserInfo: setUserInfoReducer
     },
     extraReducers: builder => {
         builder.addCase(fetchUsers.pending, (state, action) => {
@@ -87,6 +96,17 @@ const userSlice = createSlice({
             state.error = null;
         })
         builder.addCase(getUserInfo.rejected, setGetUserInfoError)
+
+        builder.addCase(getUserSelfInfo.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(getUserSelfInfo.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+        })
+        builder.addCase(getUserSelfInfo.rejected, setGetUserInfoError)
 
         builder.addCase(authUser.pending, (state, action) => {
             state.status = 'loading';
@@ -138,7 +158,7 @@ const userSlice = createSlice({
     }
 });
 
-export const { clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
+export const { setUserInfo, clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

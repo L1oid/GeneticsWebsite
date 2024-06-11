@@ -11,7 +11,7 @@ import {
     USER_USERNAME_INCLUDES_SPACES
 } from "../../consts/errorText/user";
 import {SERVER_IS_NOT_RESPONDING, USER_DOESNT_EXIST_IN_SYSTEM,} from "../../consts/errorText/common";
-import {removeUser, setUser} from "./userSlice";
+import {removeUser, setUser, setUserInfo} from "./userSlice";
 
 export const authUser = createAsyncThunk(
     "user/authUser",
@@ -436,6 +436,47 @@ export const editUserInfo = createAsyncThunk(
                     text: text
                 });
             }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
+
+export const getUserSelfInfo = createAsyncThunk(
+    "user/getUserSelfInfo",
+    async function({id}, {dispatch, rejectWithValue, getState}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const responseUser = await fetch(api.url + api.getUserInfo(id), {
+                method: 'GET',
+                headers: {'Authorization': state.user.token}});
+            if (!responseUser.ok) {
+                const text = await responseUser.text();
+                if (responseUser.status === 401) {
+                    if (responseUser.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
+                return rejectWithValue({
+                    status: responseUser.status,
+                    statusText: responseUser.statusText,
+                    text: text
+                });
+            }
+            let userData = await responseUser.json();
+            dispatch(setUserInfo({
+                email: userData.email,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                roles: userData.roleNames,
+            }))
         } catch (error) {
             return rejectWithValue({
                 status: 504,

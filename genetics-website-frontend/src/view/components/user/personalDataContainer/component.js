@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './style.css';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import RolesListComponent from "../rolesList/component";
 import AccountPageTitleComponent from "../../common/accountPageTitle/component";
 import RowInputTextComponent from "../../common/rowInputText/component";
+import {getUserSelfInfo} from "../../../../state/slices/user/asyncActions";
 function PersonalDataContainerComponent(props) {
 
     const roles = useSelector(state => state.user.roles);
@@ -12,6 +13,14 @@ function PersonalDataContainerComponent(props) {
     const firstName = useSelector(state => state.user.firstName);
     const lastName = useSelector(state => state.user.lastName);
     const email = useSelector(state => state.user.email);
+    const id = useSelector(state => state.user.id);
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(getUserSelfInfo({id: id}))
+    }, [dispatch, id]);
 
 
     return (

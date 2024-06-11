@@ -20,6 +20,13 @@ export const setUserReducer = (state, action) => {
     state.roles = action.payload.roles;
 }
 
+export const setUserInfoReducer = (state, action) => {
+    state.email = action.payload.email;
+    state.firstName = action.payload.firstName;
+    state.lastName = action.payload.lastName;
+    state.roles = action.payload.roles;
+}
+
 export const clearUserErrorStatusSuccessReducer = (state) => {
     state.error = null;
     state.status = null;
