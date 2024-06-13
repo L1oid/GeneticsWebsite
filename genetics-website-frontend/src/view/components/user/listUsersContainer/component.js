@@ -128,7 +128,7 @@ function ListUsersContainerComponent(props) {
     };
 
     const deleteButtonHandle = (id) => {
-        console.log("Deleted: " + id)
+
     }
 
     const changeButtonHandle = (id) => {
