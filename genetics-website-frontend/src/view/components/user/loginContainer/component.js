@@ -18,8 +18,13 @@ function LoginContainerComponent(props) {
 
     useEffect(() => {
         dispatch(clearErrorStatusSuccess());
-        dispatch(clearLogOutErrorUser());
     }, [dispatch, location]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearLogOutErrorUser());
+        };
+    }, [dispatch]);
 
     function handleLoginButton() {
         const user ={
