@@ -83,7 +83,7 @@ export const articleCreation = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -166,7 +166,7 @@ export const courseCreation = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -212,7 +212,7 @@ export const eventCreation = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -271,7 +271,7 @@ export const questionnaireCreation = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -308,7 +308,7 @@ export const solveQuestionnaire = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -389,7 +389,7 @@ export const articleEdition = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -420,7 +420,7 @@ export const articleDeletion = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -451,7 +451,7 @@ export const courseDeletion = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -482,7 +482,7 @@ export const eventDeletion = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -513,7 +513,7 @@ export const questionnaireDeletion = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -546,7 +546,7 @@ export const getQuestionnaireResults = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -704,7 +704,7 @@ export const fetchSingleContent = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -858,7 +858,7 @@ export const fetchCourse = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -912,7 +912,7 @@ export const fetchQuestionnaire = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -946,7 +946,7 @@ export const fetchQuestionnaireQuestions = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -976,7 +976,7 @@ export const fetchQuestionnaireQuestionsAnswers = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }

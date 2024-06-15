@@ -1,5 +1,6 @@
 export const api = {
-    url: "http://genetic.kemsu.ru/",
+    //url: "http://genetic.kemsu.ru/",
+    url: "http://webschedulekemsu.ddnsking.com:2023/GeneticsWebBackend-1.0-SNAPSHOT/",
     authorization: "api/users/submissions",
     changePassword: function (id) {
         return `api/users/${id}/password`
@@ -33,6 +34,9 @@ export const api = {
     },
     deleteArticle: function (id) {
         return `api/articles?id=${id}`
+    },
+    deleteUser: function (id) {
+        return `api/users/${id}`
     },
     getAmountArticles: function(author, type, title, date, dateFilter) {
         let queryParams = `api/articles/amounts?type=${type}`

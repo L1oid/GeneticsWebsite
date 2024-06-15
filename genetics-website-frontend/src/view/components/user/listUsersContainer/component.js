@@ -6,9 +6,10 @@ import AccountPageSubtitleComponent from "../../common/accountPageSubtitle/compo
 import ListTableComponent from "../../common/listTable/component";
 import {useDispatch, useSelector} from "react-redux";
 import {USERS} from "../../../../state/consts/contentTypes";
-import {fetchUsers} from "../../../../state/slices/user/asyncActions";
+import {deleteUser, fetchUsers} from "../../../../state/slices/user/asyncActions";
 import {clearUsersList} from "../../../../state/slices/user/userSlice";
 import {useNavigate} from "react-router-dom";
+import {setRerenderAfterDeleteFalse} from "../../../../state/slices/user/userSlice";
 
 function ListUsersContainerComponent(props) {
 
@@ -40,7 +41,7 @@ function ListUsersContainerComponent(props) {
     const dispatch = useDispatch();
     const usersList = useSelector(state => state.user.usersList);
     const usersListLength = useSelector(state => state.user.usersListLength);
-    const {status} = useSelector(state => state.user);
+    const {status, rerenderAfterDelete} = useSelector(state => state.user);
 
     useEffect(() => {
         if (searchUsername.trim() === '' && searchFirstNamePlusLastName.trim() === '' && searchEmail.trim() === '' && searchRoleName.trim() === '' && searchDate.trim() === '') {
@@ -127,8 +128,15 @@ function ListUsersContainerComponent(props) {
         }
     };
 
-    const deleteButtonHandle = (id) => {
+    useEffect(() => {
+        if (rerenderAfterDelete === true) {
+            searchButtonHandle();
+            dispatch(setRerenderAfterDeleteFalse());
+        }
+    }, [dispatch, rerenderAfterDelete, searchButtonHandle]);
 
+    const deleteButtonHandle = (id) => {
+        dispatch(deleteUser({id: id}))
     }
 
     const changeButtonHandle = (id) => {

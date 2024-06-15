@@ -47,3 +47,7 @@ export const clearUserInfoReducer = (state) => {
 export const clearUsersListReducer = (state, action) => {
     state.usersList.splice(0, state.usersList.length)
 }
+
+export const setRerenderAfterDeleteFalseReducer = (state, action) => {
+    state.rerenderAfterDelete = false
+}

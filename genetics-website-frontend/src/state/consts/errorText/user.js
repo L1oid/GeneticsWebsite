@@ -29,6 +29,7 @@ export const USER_COULD_NOT_GET_USER_ID = "Couldn't get user id"
 export const USER_DOES_NOT_EXIST = "User doesn't exist"
 export const USER_CANT_CHANGE_OTHER_PEOPLES_ROLES = "You can't change other peoples' roles"
 export const USER_INTERNAL_ERROR = "NOT IMPLEMENTED"
+export const USER_SERVER_ERROR = "Server error"
 
 
 

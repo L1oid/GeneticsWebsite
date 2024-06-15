@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 import {
     authUser,
-    changePassword,
+    changePassword, deleteUser,
     editUserInfo,
     fetchUsers,
     getUserInfo,
@@ -11,18 +11,20 @@ import {
 } from "./asyncActions";
 import {
     setAuthError,
-    setChangePasswordError, setEditUserInfoError,
+    setChangePasswordError, setDeleteUserError, setEditUserInfoError,
     setFetchUserError,
     setGetUserInfoError,
     setRegistrationUserError
 } from "./errorHandlers";
 import {
     clearUserErrorStatusSuccessReducer, clearUserInfoReducer, clearUsersListReducer,
-    removeUserReducer, setUserInfoReducer,
+    removeUserReducer, setRerenderAfterDeleteFalseReducer, setUserInfoReducer,
     setUserReducer
 } from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
+import {articleDeletion} from "../content/asyncActions";
+import {setDeleteArticleError} from "../content/errorHandlers";
 
 const userPersistConfig = {
     key: 'user',
@@ -60,7 +62,8 @@ const userSlice = createSlice({
             lastName: "",
             roleNames: [],
             username: ""
-        }
+        },
+        rerenderAfterDelete: false
     },
     reducers: {
         setUser: setUserReducer,
@@ -68,7 +71,8 @@ const userSlice = createSlice({
         clearErrorStatusSuccess: clearUserErrorStatusSuccessReducer,
         clearUsersList: clearUsersListReducer,
         clearUserInfo: clearUserInfoReducer,
-        setUserInfo: setUserInfoReducer
+        setUserInfo: setUserInfoReducer,
+        setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer
     },
     extraReducers: builder => {
         builder.addCase(fetchUsers.pending, (state, action) => {
@@ -155,10 +159,22 @@ const userSlice = createSlice({
             state.success = "Данные пользователя успешно изменены";
         })
         builder.addCase(editUserInfo.rejected, (setEditUserInfoError))
+
+        builder.addCase(deleteUser.pending, (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+            state.success = null;
+        })
+        builder.addCase(deleteUser.fulfilled, (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.rerenderAfterDelete = true;
+        })
+        builder.addCase(deleteUser.rejected, setDeleteUserError)
     }
 });
 
-export const { setUserInfo, clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
+export const { setRerenderAfterDeleteFalse, setUserInfo, clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

@@ -57,6 +57,37 @@ export const authUser = createAsyncThunk(
     }
 );
 
+export const deleteUser = createAsyncThunk(
+    "user/deleteUser",
+    async function({id}, {rejectWithValue,getState, dispatch}) {
+        try {
+            const state = getState();
+            /** @namespace state.user **/
+            const response = await fetch(api.url + api.deleteUser(id), {method: 'DELETE', headers: {'Authorization': state.user.token}});
+            if (!response.ok) {
+                const text = await response.text();
+                if (response.status === 401) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        dispatch(removeUser())
+                        return
+                    }
+                }
+                return rejectWithValue({
+                    status: response.status,
+                    statusText: response.statusText,
+                    text: text
+                });
+            }
+        } catch (error) {
+            return rejectWithValue({
+                status: 504,
+                statusText: 'Gateway Timeout',
+                text: SERVER_IS_NOT_RESPONDING
+            });
+        }
+    }
+);
+
 export const changePassword = createAsyncThunk(
     "user/changePassword",
     async function({oldPassword, password, repeatPassword, changePasswordType, id}, {rejectWithValue, getState, dispatch}) {
@@ -106,7 +137,7 @@ export const changePassword = createAsyncThunk(
                 if (!response.ok) {
                     const text = await response.text();
                     if (response.status === 401) {
-                        if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                             dispatch(removeUser())
                             return
                         }
@@ -160,7 +191,7 @@ export const changePassword = createAsyncThunk(
                 if (!response.ok) {
                     const text = await response.text();
                     if (response.status === 401) {
-                        if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                        if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                             dispatch(removeUser())
                             return
                         }
@@ -257,7 +288,7 @@ export const registrationUser = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
@@ -425,7 +456,7 @@ export const editUserInfo = createAsyncThunk(
             if (!response.ok) {
                 const text = await response.text();
                 if (response.status === 401) {
-                    if (response.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
                         return
                     }
