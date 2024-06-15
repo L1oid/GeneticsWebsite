@@ -11,7 +11,7 @@ import {
     USER_USERNAME_INCLUDES_SPACES
 } from "../../consts/errorText/user";
 import {SERVER_IS_NOT_RESPONDING, USER_DOESNT_EXIST_IN_SYSTEM,} from "../../consts/errorText/common";
-import {removeUser, setUser, setUserInfo} from "./userSlice";
+import {logOutErrorUser, removeUser, setUser, setUserInfo} from "./userSlice";
 
 export const authUser = createAsyncThunk(
     "user/authUser",
@@ -69,6 +69,7 @@ export const deleteUser = createAsyncThunk(
                 if (response.status === 401) {
                     if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -139,6 +140,7 @@ export const changePassword = createAsyncThunk(
                     if (response.status === 401) {
                         if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                             dispatch(removeUser())
+                            dispatch(logOutErrorUser())
                             return
                         }
                     }
@@ -193,6 +195,7 @@ export const changePassword = createAsyncThunk(
                     if (response.status === 401) {
                         if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                             dispatch(removeUser())
+                            dispatch(logOutErrorUser())
                             return
                         }
                     }
@@ -290,6 +293,7 @@ export const registrationUser = createAsyncThunk(
                 if (response.status === 401) {
                     if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -321,8 +325,9 @@ export const fetchUsers = createAsyncThunk(
             if (!responseAmountUsers.ok) {
                 const text = await responseAmountUsers.text();
                 if (responseAmountUsers.status === 401) {
-                    if (responseAmountUsers.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -338,8 +343,9 @@ export const fetchUsers = createAsyncThunk(
             if (!responseUsers.ok) {
                 const text = await responseUsers.text();
                 if (responseUsers.status === 401) {
-                    if (responseUsers.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -390,8 +396,9 @@ export const getUserInfo = createAsyncThunk(
             if (!responseUser.ok) {
                 const text = await responseUser.text();
                 if (responseUser.status === 401) {
-                    if (responseUser.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -458,6 +465,7 @@ export const editUserInfo = createAsyncThunk(
                 if (response.status === 401) {
                     if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }
@@ -490,8 +498,9 @@ export const getUserSelfInfo = createAsyncThunk(
             if (!responseUser.ok) {
                 const text = await responseUser.text();
                 if (responseUser.status === 401) {
-                    if (responseUser.text === USER_DOESNT_EXIST_IN_SYSTEM) {
+                    if (text === USER_DOESNT_EXIST_IN_SYSTEM) {
                         dispatch(removeUser())
+                        dispatch(logOutErrorUser())
                         return
                     }
                 }

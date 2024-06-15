@@ -17,14 +17,17 @@ import {
     setRegistrationUserError
 } from "./errorHandlers";
 import {
-    clearUserErrorStatusSuccessReducer, clearUserInfoReducer, clearUsersListReducer,
-    removeUserReducer, setRerenderAfterDeleteFalseReducer, setUserInfoReducer,
+    clearLogOutErrorUserReducer,
+    clearUserErrorStatusSuccessReducer,
+    clearUserInfoReducer,
+    clearUsersListReducer, logOutErrorUserReducer,
+    removeUserReducer,
+    setRerenderAfterDeleteFalseReducer,
+    setUserInfoReducer,
     setUserReducer
 } from "./reducers";
 import storage from "redux-persist/lib/storage";
 import {persistReducer} from "redux-persist";
-import {articleDeletion} from "../content/asyncActions";
-import {setDeleteArticleError} from "../content/errorHandlers";
 
 const userPersistConfig = {
     key: 'user',
@@ -36,7 +39,9 @@ const userPersistConfig = {
         "users",
         "usersList",
         "usersListLength",
-        "userInfo"
+        "rerenderAfterDelete",
+        "userInfo",
+        "logOutError"
     ]
 };
 
@@ -63,7 +68,8 @@ const userSlice = createSlice({
             roleNames: [],
             username: ""
         },
-        rerenderAfterDelete: false
+        rerenderAfterDelete: false,
+        logOutError: ""
     },
     reducers: {
         setUser: setUserReducer,
@@ -72,7 +78,9 @@ const userSlice = createSlice({
         clearUsersList: clearUsersListReducer,
         clearUserInfo: clearUserInfoReducer,
         setUserInfo: setUserInfoReducer,
-        setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer
+        setRerenderAfterDeleteFalse: setRerenderAfterDeleteFalseReducer,
+        logOutErrorUser: logOutErrorUserReducer,
+        clearLogOutErrorUser: clearLogOutErrorUserReducer
     },
     extraReducers: builder => {
         builder.addCase(fetchUsers.pending, (state, action) => {
@@ -174,7 +182,7 @@ const userSlice = createSlice({
     }
 });
 
-export const { setRerenderAfterDeleteFalse, setUserInfo, clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
+export const {clearLogOutErrorUser, logOutErrorUser, setRerenderAfterDeleteFalse, setUserInfo, clearUserInfo, setUser, removeUser , clearErrorStatusSuccess, clearUsersList} = userSlice.actions;
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
 

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import './style.css';
 import BreadcrumpComponent from "../../common/breadcrump/component";
-import {clearErrorStatusSuccess} from "../../../../state/slices/user/userSlice";
+import {clearErrorStatusSuccess, clearLogOutErrorUser} from "../../../../state/slices/user/userSlice";
 import {authUser} from "../../../../state/slices/user/asyncActions";
 import ErrorAndSuccessWindowComponent from "../../common/errorAndSuccessWindow/component";
 
@@ -14,11 +14,11 @@ function LoginContainerComponent(props) {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const location = useLocation();
-    const {status, isAuth} = useSelector(state => state.user);
-    const {error, success} = useSelector(state => state.user);
+    const {status, isAuth, logOutError, error, success} = useSelector(state => state.user);
 
     useEffect(() => {
         dispatch(clearErrorStatusSuccess());
+        dispatch(clearLogOutErrorUser());
     }, [dispatch, location]);
 
     function handleLoginButton() {
@@ -81,8 +81,13 @@ function LoginContainerComponent(props) {
                         </p>
                     </div>
                 </div>
+                {logOutError !== "" && (
+                    <div className="login-error-window">
+                        <ErrorAndSuccessWindowComponent error={logOutError}/>
+                    </div>
+                )}
                 <div className="login-error-window">
-                    <ErrorAndSuccessWindowComponent error={error} success={success} />
+                    <ErrorAndSuccessWindowComponent error={error} success={success}/>
                 </div>
             </div>
         </div>

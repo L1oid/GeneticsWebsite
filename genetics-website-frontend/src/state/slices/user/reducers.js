@@ -9,6 +9,14 @@ export const removeUserReducer = (state) => {
     state.roles.splice(0, state.roles.length)
 }
 
+export const logOutErrorUserReducer = (state) => {
+    state.logOutError = "Вы вышли из системы, так как ваш аккаунт был удалён. Пожалуйста, свяжитесь с нами, если у вас есть вопросы.";
+}
+
+export const clearLogOutErrorUserReducer = (state) => {
+    state.logOutError = "";
+}
+
 export const setUserReducer = (state, action) => {
     state.isAuth = true;
     state.login = action.payload.login;
